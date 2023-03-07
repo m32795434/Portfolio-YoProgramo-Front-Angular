@@ -1,10 +1,10 @@
 {
-  "Projects": {
+  "projects": {
     "h1Proj": "Other PROJECTS",
     "h3TotalProj1": "Total budget =",
     "h3ConvProj1": "Need to convert?"
   },
-  "Experience": {
+  "experience": {
     "imgMobileExperience": "http://localhost:1234/Experience-mobile.a8a110b4.png",
     "imgDesktopExperience": "http://localhost:1234/experience-md-1920.77cae3bd.png",
     "h1Exp": "EXPERIENCE",
@@ -29,7 +29,7 @@
     "pS5ExpSpan": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",
     "pS5ExpEn": "\n                                    Co-owner of the company and in charge of the institutional image, audio/video\n                                    systems, sales,\n                                    invoicing and cashier. I highlight from this experience what it means to work in a\n                                    co-boss role,\n                                    coordinating all the\n                                    activity, and what entails to be responsible for the profitability of the business.\n                                "
   },
-  "QPD": {
+  "qPD": {
     "imgMobileQa": "http://localhost:1234/Experience-mobile.a8a110b4.png",
     "imgDesktopQa": "http://localhost:1234/experience-md-1920.77cae3bd.png",
     "h1Qual": "Qualifications &amp; P.D.",
@@ -65,7 +65,7 @@
     "pS8qaSpan": "\n                                    Aunque cursé solo el primer año, destaco de este trayecto un gran entrenamiento en\n                                    algoritmos de programación y matemáticas, lo que claramente marcó mi inclinación por\n                                    la programación.",
     "pS8qaEn": "\n                                    Although I studied only the first year, I highlight from this journey a great\n                                    training\n                                    in\n                                    programming algorithms and mathematics, which clearly marked my fans for\n                                    programming."
   },
-  "Home": {
+  "home": {
     "imgMobileHome": "http://localhost:1234/home2-mb-v.c12cb07e.png",
     "imgDesktopHome": "http://localhost:1234/home-md-1920.c416b6a5.png",
     "h1HomeEn": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
