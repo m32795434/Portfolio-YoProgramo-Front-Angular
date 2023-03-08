@@ -1,10 +1,22 @@
-<div ngbDropdown class="d-inline-block">
+<nav ngbDropdown class="d-inline-block">
     <button type="button" class="btn" id="sectionBtn" ngbDropdownToggle>
         Section
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem>Action - 1</button>
-        <button ngbDropdownItem>Another Action</button>
-        <button ngbDropdownItem>Something else is here</button>
+        <h6 class="dropdown-header">Section</h6>
+        <a class="button" routerLinkActive="activebutton" routerLink="home" ariaCurrentWhenActive="page"
+            ngbDropdownItem>Home</a>
+        <a class="button" routerLinkActive="activebutton" routerLink="experience" ariaCurrentWhenActive="page"
+            ngbDropdownItem>Experience</a>
+        <a class="button" routerLinkActive="activebutton" routerLink="home" ariaCurrentWhenActive="page"
+            ngbDropdownItem>Qualifications & P.D.</a>
+        <a class="button" routerLinkActive="activebutton" routerLink="experience" ariaCurrentWhenActive="page"
+            ngbDropdownItem>Projects</a>
+        <a class="button" routerLinkActive="activebutton" routerLink="experience" ariaCurrentWhenActive="page"
+            ngbDropdownItem>Hard & Soft Skills</a>
+        <hr class="dropdown-divider">
+        <button ngbDropdownItem>LOGIN</button>
+        <!-- Otra forma -->
+        <!-- <a [routerLink]="['/experience']">Enlace a Experience</a> -->
     </div>
-</div>
+</nav>

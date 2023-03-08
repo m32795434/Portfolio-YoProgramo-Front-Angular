@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +27,7 @@ import { NgbdDropdownBasic } from './components/header/section-dropdown/sectionD
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

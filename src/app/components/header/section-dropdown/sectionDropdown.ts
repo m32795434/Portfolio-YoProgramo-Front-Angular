@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
     selector: 'section-dropdown',
     standalone: true,
-    imports: [NgbDropdownModule],
+    imports: [NgbDropdownModule, RouterModule],
     templateUrl: './sectionDropdown.html',
     styles: [`
     #sectionBtn {
@@ -18,4 +20,5 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
         }`]
 
 })
-export class NgbdDropdownBasic { }
+export class NgbdDropdownBasic {
+}
