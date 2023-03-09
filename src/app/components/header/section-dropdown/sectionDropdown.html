@@ -1,6 +1,7 @@
 <nav ngbDropdown class="d-inline-block">
-    <button type="button" class="btn" id="sectionBtn" ngbDropdownToggle>
-        Section
+    <button type="button" class="btn" class="btn {{greaterThan975 ? '' : 'material-icons'}}"
+        id="{{greaterThan975? 'sectionBtn':'menu-Hamb'}}" ngbDropdownToggle>
+        {{text}}
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <h6 class="dropdown-header">Section</h6>
