@@ -13,7 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbdDropdownBasic } from './components/header/section-dropdown/sectionDropdown';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-and-soft-skills.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +23,13 @@ import { NgbdDropdownBasic } from './components/header/section-dropdown/sectionD
     QPDComponent,
     HomeComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HardAndSoftSkillsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
