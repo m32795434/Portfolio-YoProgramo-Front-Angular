@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,12 +25,12 @@ import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-
     HomeComponent,
     FooterComponent,
     HeaderComponent,
-    HardAndSoftSkillsComponent
+    HardAndSoftSkillsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

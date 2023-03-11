@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
 export interface RequestServicesInterface {
-    getAllSection(): Observable<{}>;
-    updateElContent(): Observable<{}>;
+    getAllSection(val: string): Observable<{}>;
+    updateElContent(val: string): Observable<{}>;
 }
