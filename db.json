@@ -66,8 +66,8 @@
     "pS8qaEn": "\n                                    Although I studied only the first year, I highlight from this journey a great\n                                    training\n                                    in\n                                    programming algorithms and mathematics, which clearly marked my fans for\n                                    programming."
   },
   "home": {
-    "imgMobileHome": "http://localhost:1234/home2-mb-v.c12cb07e.png",
-    "imgDesktopHome": "http://localhost:1234/home-md-1920.c416b6a5.png",
+    "imgMobileHome": "../../../assets/images/home2-mb-v.png",
+    "imgDesktopHome": "../../../assets/images/home-md-1920.png",
     "h1HomeEn": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
     "p1HomeEn": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming",
     "p2HomeSpan": "TRADUCRI LO DE\n                ABAJO\n              ",

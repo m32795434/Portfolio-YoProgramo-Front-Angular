@@ -7,8 +7,8 @@ import { JsonServerRequestsService } from 'src/services/json-server-requests/jso
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private section = {};
-  private errorMessage = '';
+  section: any;
+  errorMessage = '';
   constructor(private JsonServer: JsonServerRequestsService) { }
   ngOnInit(): void {
     this.JsonServer.getAllSection('home').subscribe((content) => {
