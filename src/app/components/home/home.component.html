@@ -1,8 +1,8 @@
 <!-- main-section  relative -->
 <main class="container-fluid m-0 p-0 main-section">
-    <img class="d-lg-none mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section.imgMobileHome"
+    <img class="d-lg-none mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobileHome"
         alt="Manuel perfil" id="imgMobileHome">
-    <img class="d-none d-lg-block desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section.imgDesktopHome"
+    <img class="d-none d-lg-block desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktopHome"
         alt="Manuel perfil" id="imgDesktopHome">
     <!-- <input type="file" accept="image/*" id="changeImg" hidden>
     <button class="edit-button changeImg edit-top-left rounded-circle material-symbols-outlined"
@@ -14,7 +14,8 @@
         <div class="d-none d-lg-block col-lg-6 m-0 p-0"></div><!-- to allow to split at middle / don't delete-->
         <div class="col-12 col-lg-6 d-flex flex-column justify-content-between m-0 p-0 main-Half-BackG">
             <div class="d-flex flex-fill">
-                <h1 class="mx-1 mt-4 edit-content" contenteditable="false" id="h1HomeEn" [innerHTML]="section.h1HomeEn">
+                <h1 class="mx-1 mt-4 edit-content" contenteditable="false" id="h1HomeEn"
+                    [innerHTML]="section?.h1HomeEn">
                 </h1>
                 <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
             </div>
