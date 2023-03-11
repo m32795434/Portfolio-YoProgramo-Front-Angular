@@ -1,8 +1,8 @@
 <header class="container-fluid d-grid align-content-center">
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start m-0 py-1">
-            <img role="button" tabindex="0" src="../../../assets/images/Argentina-Programa.png"
-                alt="Argentina Programa">
+            <img role="button" tabindex="0" src="../../../assets/images/Argentina-Programa.png" alt="Argentina Programa"
+                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
         </div>
         <div class="flex-grow-1 d-grid justify-content-center align-content-center d-lg-none">
             <div class="d-flex">
@@ -26,9 +26,12 @@
                 <section-dropdown></section-dropdown>
             </div>
 
-            <img role="button" tabindex="0" src="../../../assets/images/instagram.png" alt="Instagram">
-            <img role="button" tabindex="0" src="../../../assets/images/linkedin.png" alt="Linkedin">
-            <img role="button" tabindex="0" src="../../../assets/images/whatsapp.png" alt="Whatsapp">
+            <img role="button" tabindex="0" src="../../../assets/images/instagram.png" alt="Instagram"
+                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
+            <img role="button" tabindex="0" src="../../../assets/images/linkedin.png" alt="Linkedin"
+                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
+            <img role="button" tabindex="0" src="../../../assets/images/whatsapp.png" alt="Whatsapp"
+                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
         </div>
     </div>
 </header>
