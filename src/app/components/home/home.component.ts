@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JsonServerRequestsService } from 'src/services/json-server-requests/json-server-requests-service';
+// import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { JsonServerRequestsService } from 'src/services/json-server-requests/jso
 export class HomeComponent implements OnInit {
   section: any;
   errorMessage = '';
+  importanteA = 'importanteA';
   constructor(private JsonServer: JsonServerRequestsService) { }
   ngOnInit(): void {
     this.JsonServer.getAllSection('home').subscribe((content) => {
@@ -19,4 +21,7 @@ export class HomeComponent implements OnInit {
       this.errorMessage = error.message;
     };
   }
+  // getHtmlContent(content: string) {
+  //   return this.sanitizer.bypassSecurityTrustHtml(content);
+  // }
 }

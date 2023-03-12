@@ -32,46 +32,28 @@
     background-color: rgba(0, 0, 0, 0.66);
     width: 100%;
 
-    // position: relative;
     & .swiper-wrapper {
-        //    position: relative;
         height: 10vw;
         width: 100%;
-        //    overflow: hidden;
 
         & .swiper-slide {
-            //  position: absolute;
             width: 100%;
-            //      transition: all .25s;
-            //      transform: translateX(-200%);
 
-            //     &.current {
-            //         // z-index: 10;
-            //         transform: translateX(0);
+            &>p {
+                font: 500 16px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                color: white;
+                letter-spacing: 0.2rem;
 
-            //     }
+                @include media-breakpoint-up(lg) {
+                    font-size: 1.3vw;
+                }
 
-            //    &.prev {
-            //        transform: translateX(-100%);
-            //    }
+                @media (max-width: 410px) {
+                    font-size: 14px;
 
-            //     &.next {
-            //         transform: translateX(100%);
-            //     }
+                }
 
-            //     & button {
-            //         position: absolute;
-            //         top: 0;
-            //     }
 
-            & a {
-                color: #474e6e;
-                background-color: #fe0;
-                padding: 1px 10px;
-                font-weight: 900;
-                text-decoration-line: underline;
-                text-decoration-color: #f7141482;
-                text-decoration-thickness: 6px;
             }
 
 
@@ -87,43 +69,19 @@
         background-color: transparent;
     }
 
-    & p {
-        font: 500 16px Montserrat, 'Open Sans', Lato, 'sans-serif';
-        color: white;
-        letter-spacing: 0.2rem;
 
-        @include media-breakpoint-up(lg) {
-            font-size: 1.3vw;
-        }
 
-        @media (max-width: 410px) {
-            font-size: 14px;
-
-        }
-    }
-
-    // & .slider-buttons>button {
-    //     font-family: 'Material Symbols Outlined';
-    //     color: white;
-    //     font-size: 24px;
-    //     background-color: transparent;
-    //     outline: none;
-    //     border: transparent;
-
-    //      &:hover {
-    //          border: 1px solid white;
-
-    //      }
-
-    //      &.open1 {
-    //          border: 1px solid rgb(5, 5, 5);
-    //          background-color: #777777;
-    //          color: black
-    //      }
-    //  }
     & .swiper-button-prev,
     .swiper-button-next {
+        border-radius: 6px;
+        outline: 2px solid gray;
         color: red;
+        background-color: rgba(124, 128, 149, 0.6901960784);
+        box-shadow: 2px 2px 2px grey;
+
+        &:hover {
+            border: 2px solid rgb(0, 0, 0)
+        }
     }
 }
 
@@ -131,4 +89,14 @@
 .toast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
+}
+
+#importanteA {
+    color: white;
+    background-color: #fe0;
+    padding: 1px 10px;
+    font-weight: 900;
+    text-decoration-line: underline;
+    text-decoration-color: #f7141482;
+    text-decoration-thickness: 6px;
 }
