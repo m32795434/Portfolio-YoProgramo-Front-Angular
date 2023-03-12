@@ -15,37 +15,28 @@
         <div class="col-12 col-lg-6 d-flex flex-column justify-content-between m-0 p-0 main-Half-BackG">
             <div class="d-flex flex-fill">
                 <h1 class="mx-1 mt-4 edit-content" contenteditable="false" id="h1HomeEn"
-                    [innerHTML]="section?.h1HomeEn">
+                    [innerHTML]="section?.en[0]?.h1HomeEn">
                 </h1>
                 <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
             </div>
 
-
-
-            <!-- home-slider w100-->
-            <!-- <div class="d-flex flex-column flex-fill home-slider"> -->
-
-            <div class="swiper flex-fill home-slider">
+            <div class="swiper flex-fill">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div *ngFor="let slide of section?.en[1]?.slide" class="swiper-slide">
-                        <p [innerHTML]="slide.content"></p>
+                        <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content" contenteditable="false">
+                        </p>
                     </div>
                 </div>
                 <!-- If we need pagination -->
                 <div class="swiper-pagination"></div>
 
                 <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="d-none d-lg-block swiper-button-prev"></div>
+                <div class="d-none d-lg-block swiper-button-next"></div>
 
             </div>
-
-
-            <!-- </div> -->
-
-
 
         </div>
     </div>
