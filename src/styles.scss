@@ -33,6 +33,16 @@
         margin: 0;
         padding: 0;
     }
+
+    & .swiper-slide a {
+        color: #474e6e;
+        background-color: #fe0;
+        padding: 1px 10px;
+        font-weight: 900;
+        text-decoration-line: underline;
+        text-decoration-color: #f7141482;
+        text-decoration-thickness: 6px;
+    }
 }
 
 .Main404 {

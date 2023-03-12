@@ -52,11 +52,9 @@
                     font-size: 14px;
 
                 }
-
-
             }
 
-
+            //PARA LOS LINKS DENTRO DE ESTOS PÁRRAFOS, LOS DEFINÍ DENTRO DE STYLE.SCSS PARA DARLE PRIORIDAD
         }
 
         @include media-breakpoint-up(lg) {
@@ -89,14 +87,4 @@
 .toast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
-}
-
-#importanteA {
-    color: white;
-    background-color: #fe0;
-    padding: 1px 10px;
-    font-weight: 900;
-    text-decoration-line: underline;
-    text-decoration-color: #f7141482;
-    text-decoration-thickness: 6px;
 }
