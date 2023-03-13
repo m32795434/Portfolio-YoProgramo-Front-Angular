@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private JsonServer: JsonServerRequestsService) { }
   ngOnInit(): void {
-    this.JsonServer.getAllSection('hom').subscribe({
+    this.JsonServer.getAllSection('home').subscribe({
       next: (content) => {
         this.section = content;
         console.log('seccion cargada exitosamente:...', this.section);
