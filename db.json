@@ -70,7 +70,7 @@
     "imgDesktopHome": "../../../assets/images/home-md-1920.png",
     "en": {
       "h1HomeEn": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
-      "slide": [
+      "slides": [
         {
           "id": "p1HomeEn",
           "content": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming"
