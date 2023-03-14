@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SlidesInterface } from 'src/interfaces/slidesInterface';
 import { JsonServerRequestsService } from 'src/services/json-server-requests/json-server-requests-service';
-// import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.esm.browser.min.js'
 
 // import { DomSanitizer } from '@angular/platform-browser';
 

@@ -1,4 +1,5 @@
-@import '../../../styles.scss';
+// @import '../../../styles.scss';
+@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 .container-columns {
     height: 100%;
@@ -19,10 +20,12 @@
     }
 }
 
-.main-Half-BackG {
+#main-Half-BackG {
+    width: 100%;
 
     @include media-breakpoint-up(lg) {
         background-color: rgba(0, 0, 0, 0.6);
+        width: 50%;
     }
 }
 
