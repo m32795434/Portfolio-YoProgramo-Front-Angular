@@ -16,7 +16,7 @@
         <a class="button" routerLinkActive="activebutton" routerLink="HardAndSoftSkills" ariaCurrentWhenActive="page"
             ngbDropdownItem>Hard & Soft Skills</a>
         <hr class="dropdown-divider">
-        <button ngbDropdownItem>LOGIN</button>
+        <button class="login" (click)="loginToggle()" ngbDropdownItem>LOGIN</button>
         <!-- Otra forma -->
         <!-- <a [routerLink]="['/experience']">Enlace a Experience</a> -->
     </div>

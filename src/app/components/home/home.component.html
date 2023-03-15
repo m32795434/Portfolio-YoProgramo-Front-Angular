@@ -9,6 +9,9 @@
       data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
       data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button> -->
 
+    <button class="edit-button changeImg edit-top-left rounded-circle material-symbols-outlined"
+        hidden>upload_file</button>
+
     <!-- container-columns absolute top 0 h100 w100-->
     <div class="row m-0 p-0 container-columns">
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
@@ -18,7 +21,8 @@
                 <h1 class="mx-1 mt-4 edit-content" contenteditable="false" id="h1HomeEn"
                     [innerHTML]="lenguage === 'en'? section?.en?.h1HomeEn : section?.es?.h1HomeEs">
                 </h1>
-                <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
+                <button class="edit-button rounded-circle material-symbols-outlined" data-id="h1HomeEn"
+                    hidden>edit</button>
             </div>
 
             <div class="swiper flex-fill">
@@ -26,6 +30,9 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div *ngFor="let slide of slides" class="swiper-slide">
+                        <button class="edit-button rounded-circle material-symbols-outlined" data-id="{{slide.id}}"
+                            hidden>edit</button>
+
                         <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content" contenteditable="false">
                         </p>
                     </div>

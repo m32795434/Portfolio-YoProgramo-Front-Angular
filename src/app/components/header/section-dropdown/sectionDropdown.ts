@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { LoginService } from 'src/services/login.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ import { RouterModule } from '@angular/router';
 
 })
 export class NgbdDropdownBasic implements OnInit {
-    constructor() { }
+    constructor(private loginService: LoginService) { }
 
     ngOnInit(): void {
         window.onresize = this.checkForResize;
@@ -55,5 +56,8 @@ export class NgbdDropdownBasic implements OnInit {
             }
         }
 
+    }
+    loginToggle() {
+        this.loginService.managelogin();
     }
 }
