@@ -35,9 +35,13 @@ export class HomeComponent implements OnInit {
         console.log('Subscription completed');
       }
     });
-
   }
+  //AVOID SANITIZER
   // getHtmlContent(content: string) {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
 }
+/************************************
+TODO:
+edit-buttons + set id of every element, to the respective button
+**************************************/
