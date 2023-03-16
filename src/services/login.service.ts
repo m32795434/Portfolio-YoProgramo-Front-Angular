@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { editableElements, editButtons } from 'src/app/libraries/elements';
 
 @Injectable({
@@ -6,15 +7,17 @@ import { editableElements, editButtons } from 'src/app/libraries/elements';
 })
 export class LoginService {
   logged = false;
+  modalRef?: NgbModalRef;
+  closeResult = '';
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
   isLogged() {
     const logged: any = localStorage.getItem('logged')
     this.logged = JSON.parse(logged);
     console.log('refreshed....logged?:', this.logged);
   }
 
-  managelogin() {
+  managelogin(content: TemplateRef<any>) {
     if (this.logged) {
       // LOGOUT
       console.log('login out...');
@@ -23,8 +26,36 @@ export class LoginService {
     } else {
       // LOGIN
       console.log('logged?', this.logged);
-      // createForm();
+      this.createForm(content);
       console.log('form created');
+    }
+  }
+  createForm(content: TemplateRef<any>) {
+    this.modalRef = this.modalService.open(content, {
+      ariaLabelledBy: 'loginModal',
+      size: 'lg',
+      centered: true,
+      backdrop: 'static',
+      keyboard: true,
+      // windowClass: 'my-custom-class'
+    });
+    this.modalRef.result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 

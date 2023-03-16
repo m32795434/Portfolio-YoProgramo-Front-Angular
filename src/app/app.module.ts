@@ -17,7 +17,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbdDropdownBasic } from './components/header/section-dropdown/sectionDropdown';
 import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-and-soft-skills.component';
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +27,6 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     FooterComponent,
     HeaderComponent,
     HardAndSoftSkillsComponent,
-    LoginModalComponent,
   ],
   imports: [
     BrowserModule,

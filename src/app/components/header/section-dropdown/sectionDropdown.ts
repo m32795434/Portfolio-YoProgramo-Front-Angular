@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { LoginService } from 'src/services/login.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
     selector: 'section-dropdown',
     standalone: true,
-    imports: [NgbDropdownModule, RouterModule],
+    imports: [NgbDropdownModule, RouterModule, FormsModule],
     templateUrl: './sectionDropdown.html',
     styles: [`
     
@@ -34,6 +35,8 @@ import { LoginService } from 'src/services/login.service';
 
 })
 export class NgbdDropdownBasic implements OnInit {
+    email = '';
+    password = '';
     constructor(private loginService: LoginService) { }
 
     ngOnInit(): void {
@@ -57,7 +60,11 @@ export class NgbdDropdownBasic implements OnInit {
         }
 
     }
-    loginToggle() {
-        this.loginService.managelogin();
+    loginToggle(content: TemplateRef<any>) {
+        this.loginService.managelogin(content);
+    }
+    onSubmit() {
+        console.log(`Email: ${this.email}, Password: ${this.password}`);
+        // Aquí puedes agregar la lógica para autenticar al usuario.
     }
 }
