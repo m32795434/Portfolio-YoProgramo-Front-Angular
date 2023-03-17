@@ -3,6 +3,7 @@ import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { LoginService } from 'src/services/login.service';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -50,9 +51,15 @@ import { FormsModule } from '@angular/forms';
 
 })
 export class NgbdDropdownBasic implements OnInit {
+    logged = false;
+    loggedSubscription = new Subscription();
     userName = '';
     password = '';
-    constructor(private loginService: LoginService, private modalService: NgbModal) { }
+    constructor(private loginService: LoginService) {
+        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
+            this.logged = val;
+        })
+    }
 
     ngOnInit(): void {
         window.onresize = this.checkForResize;

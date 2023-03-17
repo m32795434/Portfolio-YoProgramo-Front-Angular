@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SlidesInterface } from 'src/interfaces/slidesInterface';
 import { JsonServerRequestsService } from 'src/services/json-server-requests/json-server-requests-service';
+import { LoginService } from 'src/services/login.service';
 
 // import { DomSanitizer } from '@angular/platform-browser';
 
@@ -10,6 +12,8 @@ import { JsonServerRequestsService } from 'src/services/json-server-requests/jso
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private logged = false;
+  private loggedSubscription = new Subscription();
   //contains all
   section: any;
   //contains all the slides content
@@ -18,7 +22,11 @@ export class HomeComponent implements OnInit {
 
   errorMessage = '';
 
-  constructor(private JsonServer: JsonServerRequestsService) { }
+  constructor(private JsonServer: JsonServerRequestsService, private loginService: LoginService) {
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
+      this.logged = val;
+    })
+  }
   ngOnInit(): void {
     this.JsonServer.getAllSection('home').subscribe({
       next: (content) => {

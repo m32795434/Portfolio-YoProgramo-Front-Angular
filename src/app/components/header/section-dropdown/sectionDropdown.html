@@ -18,7 +18,7 @@
         <hr class="dropdown-divider">
 
 
-        <button class="login" (click)="loginToggle(loginModal)" ngbDropdownItem>LOGIN</button>
+        <button class="login" (click)="loginToggle(loginModal)" ngbDropdownItem>{{logged? 'LOGOUT':'LOGIN'}}</button>
         <!-- Otra forma -->
         <!-- <a [routerLink]="['/experience']">Enlace a Experience</a> -->
         <!-- LOGIN MODAL -->
