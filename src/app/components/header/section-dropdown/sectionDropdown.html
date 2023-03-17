@@ -30,7 +30,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form (ngSubmit)="onSubmit()">
+                <form (ngSubmit)="onSubmit(loginModal)">
                     <div class="form-group">
                         <label for="userName">User Name</label>
                         <input type="userName" class="form-control" id="userName" name="userName"
@@ -41,7 +41,8 @@
                         <input type="password" class="form-control" id="password" name="password"
                             [(ngModel)]="password">
                     </div>
-                    <button type="submit" class="btn mt-2 btn-primary">Submit</button>
+                    <button type="submit" class="btn mt-2 btn-primary"
+                        (click)="modal.close('Save click')">Submit</button>
                 </form>
             </div>
         </ng-template>

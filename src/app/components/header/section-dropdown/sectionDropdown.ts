@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { LoginService } from 'src/services/login.service';
 import { FormsModule } from '@angular/forms';
@@ -36,9 +36,9 @@ import { FormsModule } from '@angular/forms';
         border-radius:5px;
         &:hover{
             color: white;
-    background-color: blue;
-    border-color: grey;
-    box-shadow: 0 0 2px 1px #8a8989;
+            background-color: blue;
+            border-color: grey;
+            box-shadow: 0 0 2px 1px #8a8989;
 
         }
     }
@@ -52,7 +52,7 @@ import { FormsModule } from '@angular/forms';
 export class NgbdDropdownBasic implements OnInit {
     userName = '';
     password = '';
-    constructor(private loginService: LoginService) { }
+    constructor(private loginService: LoginService, private modalService: NgbModal) { }
 
     ngOnInit(): void {
         window.onresize = this.checkForResize;
@@ -78,8 +78,10 @@ export class NgbdDropdownBasic implements OnInit {
     loginToggle(content: TemplateRef<any>) {
         this.loginService.managelogin(content);
     }
-    onSubmit() {
-        console.log(`Email: ${this.userName}, Password: ${this.password}`);
-        // Aquí puedes agregar la lógica para autenticar al usuario.
+    onSubmit(content: TemplateRef<any>) {
+        console.log(`User Name: ${this.userName}, Password: ${this.password}`);
+        if (this.userName === 'manuel87' && this.password === '1234') {
+            this.loginService.shouldEnableContentEditable(true);
+        }
     }
 }
