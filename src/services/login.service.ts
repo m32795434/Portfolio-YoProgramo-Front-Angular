@@ -78,7 +78,7 @@ export class LoginService {
       //     selectImg(this);
       //   };
       // }
-      // Array.from(document.querySelectorAll('.edit-button')).forEach((but: any) => {
+      // Array.from(document.querySelectorAll('.save-button')).forEach((but: any) => {
       //   but.hidden = false;
       // but.addEventListener('click', handleEditButtons);
       //});
