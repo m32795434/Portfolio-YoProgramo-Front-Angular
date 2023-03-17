@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
             border-radius: 7px;
             box-shadow: 0 0 7px 4px #8a8989;
         }
-}
+    }
     #sectionBtn {
         font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
         font-size: 20px;
@@ -31,11 +31,26 @@ import { FormsModule } from '@angular/forms';
             border-radius: 7px;
             box-shadow: 0 0 7px 4px #8a8989;
         }
-        }`]
+    }
+    .close{
+        border-radius:5px;
+        &:hover{
+            color: white;
+    background-color: blue;
+    border-color: grey;
+    box-shadow: 0 0 2px 1px #8a8989;
+
+        }
+    }
+    .form-control:hover{
+        border-radius: 7px;
+        box-shadow: 0 0 7px 4px #8a8989;
+    }
+`]
 
 })
 export class NgbdDropdownBasic implements OnInit {
-    email = '';
+    userName = '';
     password = '';
     constructor(private loginService: LoginService) { }
 
@@ -64,7 +79,7 @@ export class NgbdDropdownBasic implements OnInit {
         this.loginService.managelogin(content);
     }
     onSubmit() {
-        console.log(`Email: ${this.email}, Password: ${this.password}`);
+        console.log(`Email: ${this.userName}, Password: ${this.password}`);
         // Aquí puedes agregar la lógica para autenticar al usuario.
     }
 }
