@@ -63,6 +63,14 @@
                 }
             }
 
+            & button {
+                position: absolute;
+                z-index: 11;
+                top: 0px;
+                left: 5px;
+                opacity: 0.8;
+            }
+
             //PARA LOS LINKS DENTRO DE ESTOS PÁRRAFOS, LOS DEFINÍ DENTRO DE STYLE.SCSS PARA DARLE PRIORIDAD
         }
 
@@ -98,4 +106,9 @@
 .toast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
+}
+
+.contentEditableTrue {
+    caret-color: red;
+    background-color: #2e01ff40;
 }

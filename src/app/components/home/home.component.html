@@ -25,8 +25,8 @@
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <div class="d-flex flex-fill">
-                <h1 class="mx-1 mt-4 edit-content" contenteditable="false" id="h1HomeEn"
-                    [innerHTML]="lenguage === 'en'? section?.en?.h1HomeEn : section?.es?.h1HomeEs">
+                <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
+                    id="h1HomeEn" [innerHTML]="lenguage === 'en'? section?.en?.h1HomeEn : section?.es?.h1HomeEs">
                 </h1>
                 <button class="save-button rounded-circle material-symbols-outlined" data-id="h1HomeEn"
                     [hidden]="!logged">save</button>
@@ -40,7 +40,8 @@
                         <button class="save-button rounded-circle material-symbols-outlined" data-id="{{slide.id}}"
                             [hidden]="!logged">save</button>
 
-                        <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content" contenteditable="false">
+                        <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content"
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged">
                         </p>
                     </div>
                 </div>

@@ -64,6 +64,7 @@ export class NgbdDropdownBasic implements OnInit {
     ngOnInit(): void {
         window.onresize = this.checkForResize;
         this.checkForResize();
+        this.logged = this.loginService.isLogged();
     }
 
     text = 'Section';

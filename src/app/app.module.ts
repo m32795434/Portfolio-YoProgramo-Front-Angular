@@ -31,7 +31,7 @@ import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
