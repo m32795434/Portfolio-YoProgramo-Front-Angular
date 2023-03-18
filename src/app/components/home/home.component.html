@@ -1,16 +1,23 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
-    <img class="d-lg-none mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobileHome"
-        alt="Manuel perfil" id="imgMobileHome">
-    <img class="d-none d-lg-block desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktopHome"
-        alt="Manuel perfil" id="imgDesktopHome">
+    <div class="d-lg-none">
+        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+            [hidden]="!logged">settings</button>
+        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobileHome"
+            alt="Manuel perfil" id="imgMobileHome">
+    </div>
+    <div class="d-none d-lg-block">
+        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+            [hidden]="!logged">settings</button>
+        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktopHome"
+            alt="Manuel perfil" id="imgDesktopHome">
+    </div>
     <!-- <input type="file" accept="image/*" id="changeImg" hidden>
     <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
       data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
       data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button> -->
 
-    <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
-        hidden>upload_file</button>
+
 
     <!-- container-columns absolute top 0 h100 w100-->
     <div class="row m-0 p-0 container-columns">
@@ -22,7 +29,7 @@
                     [innerHTML]="lenguage === 'en'? section?.en?.h1HomeEn : section?.es?.h1HomeEs">
                 </h1>
                 <button class="save-button rounded-circle material-symbols-outlined" data-id="h1HomeEn"
-                    hidden>edit</button>
+                    [hidden]="!logged">save</button>
             </div>
 
             <div class="swiper flex-fill">
@@ -31,7 +38,7 @@
                     <!-- Slides -->
                     <div *ngFor="let slide of slides" class="swiper-slide">
                         <button class="save-button rounded-circle material-symbols-outlined" data-id="{{slide.id}}"
-                            hidden>edit</button>
+                            [hidden]="!logged">save</button>
 
                         <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content" contenteditable="false">
                         </p>

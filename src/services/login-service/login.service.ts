@@ -17,11 +17,15 @@ export class LoginService {
   getloggedObserver(): Observable<any> {
     return this.loggedSubject.asObservable();
   }
-  isLogged() {
-    const logged: any = localStorage.getItem('logged')
-    this.logged = JSON.parse(logged);
-    this.loggedSubject.next(this.logged);
-    console.log('refreshed....logged?:', this.logged);
+  isLogged(): boolean {
+    const logged: string | null = localStorage.getItem('logged');
+    if (logged) {
+      this.logged = JSON.parse(logged);
+      console.log('refreshed....logged?:', this.logged);
+      return this.logged;
+    } else {
+      return false;
+    }
   }
 
   managelogin(content: TemplateRef<any>) {

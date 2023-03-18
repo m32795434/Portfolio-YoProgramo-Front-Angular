@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber, Subscription } from 'rxjs';
-import { LoginService } from 'src/services/login-service/login.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +6,9 @@ import { LoginService } from 'src/services/login-service/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  private logged = false;
-  private loggedSubscription = new Subscription();
-  constructor(private loginService: LoginService) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-      this.logged = val;
-    })
+  constructor() {
   }
   ngOnInit(): void {
-    this.loginService.isLogged();
   }
 
   imgEventHandler(e: any) {

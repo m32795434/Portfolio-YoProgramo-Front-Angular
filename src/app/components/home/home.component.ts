@@ -18,7 +18,7 @@ declare global {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private logged = false;
+  logged: Boolean | undefined = false;
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   constructor(private loginService: LoginService, private dataService: DataService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
+      console.log('logged at home?', this.logged);
     });
     this.dataSubscription = this.dataService.getDataObserver().subscribe((sections) => {
       this.section = sections['home'];
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.dataService.getDataFromJsonServer();
     }
+    this.logged = this.loginService.isLogged();
     this.initSwiper();
   }
 

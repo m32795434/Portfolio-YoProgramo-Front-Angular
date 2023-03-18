@@ -1,6 +1,12 @@
 // @import '../../../styles.scss';
 @import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+//FOR ALL THE material-symbols-outlined
+.material-symbols-outlined,
+.material-icons {
+    font-family: 'Material Symbols Outlined';
+}
+
 .container-columns {
     height: 100%;
     position: absolute;
