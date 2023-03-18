@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
-import { LoginService } from 'src/services/login.service';
+import { LoginService } from 'src/services/login-service/login.service';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   imgEventHandler(e: any) {
-    console.log(e);
     if (e.key === 'Enter' || e.type === 'click') {
-      console.log(e.target.alt);
       switch (e.target.alt) {
         case 'Instagram':
           window.location.assign('https://www.instagram.com/augustox86/');

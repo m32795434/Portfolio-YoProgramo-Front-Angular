@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
 import { SlidesInterface } from 'src/interfaces/slidesInterface';
-import { JsonServerRequestsService } from 'src/services/json-server-requests/json-server-requests-service';
-import { LoginService } from 'src/services/login.service';
+import { DataService } from 'src/services/data-service/data.service';
+import { LoginService } from 'src/services/login-service/login.service';
 declare global {
   interface Window {
     Swiper: any;
@@ -20,6 +20,7 @@ declare global {
 export class HomeComponent implements OnInit {
   private logged = false;
   private loggedSubscription = new Subscription();
+  private dataSubscription = new Subscription();
   //contains all
   section: any;
   //contains all the slides content
@@ -28,50 +29,42 @@ export class HomeComponent implements OnInit {
   swiper: any;
   errorMessage = '';
 
-  constructor(private JsonServer: JsonServerRequestsService, private loginService: LoginService) {
+  constructor(private loginService: LoginService, private dataService: DataService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
+    });
+    this.dataSubscription = this.dataService.getDataObserver().subscribe((sections) => {
+      this.section = sections['home'];
+      this.slides = this.section[this.lenguage]?.slides;
     })
   }
   ngOnInit(): void {
     this.initSwiper();
-    this.JsonServer.getAllSection('home').subscribe({
-      next: (content) => {
-        this.section = content;
-        console.log('seccion cargada exitosamente:...', this.section);
-        this.slides = this.section[this.lenguage]?.slides;
-        console.log(this.slides);
-      },
-      error: (error: Error) => {
-        console.error('Error al cargar la seccion', error);
-        this.errorMessage = error.message;
-      },
-      complete: () => {
-        console.log('Subscription completed');
-      }
-    });
+
+    const content = this.dataService.getData('home');
+    if (content) {
+      this.section = content;
+      this.slides = this.section[this.lenguage]?.slides;
+    } else {
+      this.dataService.getDataFromJsonServer();
+    }
   }
 
   async initSwiper() {
-    await wait(0);//Left this code at the end of the callstack!
-    console.log('window.Swiper on init', window.Swiper);
+    await wait(1000);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.swiper', {
-      // Optional parameters
       direction: 'horizontal',
       loop: false,
 
-      // If we need pagination
       pagination: {
         el: '.swiper-pagination',
       },
 
-      // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       }
     });
-    console.log('swiper created', this.swiper)
   }
   //AVOID SANITIZER
   // getHtmlContent(content: string) {

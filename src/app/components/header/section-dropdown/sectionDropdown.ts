@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
-import { LoginService } from 'src/services/login.service';
+import { LoginService } from 'src/services/login-service/login.service';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
