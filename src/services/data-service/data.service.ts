@@ -9,11 +9,15 @@ import { JsonServerRequestsService } from '../json-server-requests/json-server-r
 })
 export class DataService {
   private dataSubject = new Subject<any>();
+  private errorSubject = new Subject<any>();
   protected data?: any;
   constructor(private JsonServer: JsonServerRequestsService) { }
 
   getDataObserver() {
     return this.dataSubject.asObservable();
+  }
+  getErrorObserver() {
+    return this.errorSubject.asObservable();
   }
   getDataFromJsonServer() {
     this.JsonServer.getAllSections().subscribe({
@@ -24,6 +28,7 @@ export class DataService {
       },
       error: (error: Error) => {
         console.error('Error al cargar las secciones', error);
+        this.errorSubject.next(error.message)
       },
       complete: () => {
         console.log('Subscription completed');

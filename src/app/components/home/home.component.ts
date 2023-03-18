@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   private logged = false;
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
+  private errorSubscription = new Subscription();
   //contains all
   section: any;
   //contains all the slides content
@@ -37,10 +38,10 @@ export class HomeComponent implements OnInit {
       this.section = sections['home'];
       this.slides = this.section[this.lenguage]?.slides;
     })
+    this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
-  ngOnInit(): void {
-    this.initSwiper();
 
+  ngOnInit(): void {
     const content = this.dataService.getData('home');
     if (content) {
       this.section = content;
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.dataService.getDataFromJsonServer();
     }
+    this.initSwiper();
   }
 
   async initSwiper() {
