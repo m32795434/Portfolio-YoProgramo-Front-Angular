@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { SlidesInterface } from 'src/interfaces/slidesInterface';
+import { ElInterface } from 'src/interfaces/slidesInterface';
 import { DataService } from 'src/services/data-service/data.service';
 import { LoginService } from 'src/services/login-service/login.service';
 declare global {
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   //contains all
   section: any;
   //contains all the slides content
-  slides?: SlidesInterface[] = [{ id: "id", content: "Loading!!..🫠" }]
+  slides?: ElInterface[] = [{ id: "id", content: "Loading!!..🫠" }]
   lenguage = 'en';
   swiper: any;
   errorMessage = '';

@@ -1,51 +1,117 @@
 {
-  "sections": {
-    "projects": {
-      "h1Proj": "Other PROJECTS",
-      "h3TotalProj1": "Total budget =",
-      "h3ConvProj1": "Need to convert?"
+  "sections": [
+    {
+      "id": "projects",
+      "es": "Otros Proyectos",
+      "en": "Other PROJECTS"
     },
-    "experience": {
-      "imgMobileExperience": "http://localhost:1234/Experience-mobile.a8a110b4.png",
-      "imgDesktopExperience": "http://localhost:1234/experience-md-1920.77cae3bd.png",
-      "h1Exp": "EXPERIENCE",
-      "h2S1ExpSpan": "Descanso\n                                - Crecimiento Profesional\n                                <br>10/2022-Actualidad\n                            ",
-      "h2S1ExpEn": "Break -\n                                Professional Development\n                                <br>10/2022-Until Now\n                            ",
-      "pS1ExpSpan": "\n                                    Habiendo culminado la primer etapa de Argentina Programa, y recorriendo la segunda,\n                                    continuo entrenando en Angular, Java y Typescript.\n                                    He diseñado gráfica y estructuralmente mi portfolio, y posteriormente lo he\n                                    desarrollado con Vanilla JavaScript. Actualmente lo estoy migrando a los stacks\n                                    Angular + Java + Mongo / MySQL &amp; M.E.A.N. y paulatinamente le iré incorporando otros\n                                    proyectos que he desarrollado.",
-      "pS1ExpEn": "\n                                    Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed.",
-      "h2S2ExpSpan": "Poder\n                                Judicial de\n                                Entre Ríos\n                                <br>06/2022-09/2022\n                            ",
-      "h2S2ExpEn": "Entre Ríos\n                                Judiciary\n                                <br>06/2022-09/2022\n                            ",
-      "pS2ExpSpan": "\n                                    Me desempeñé como escribiente suplente. Si bien es un área en la que no tenía\n                                    experiencia alguna, fue una excelente oportunidad para comprender lo que es trabajar\n                                    en el sector público, dentro de un sistema completamente estructurado.",
-      "pS2ExpEn": "\n                                    I served as an alternate clerk. While it's an area where I didn't have\n                                    any experience, it was an excellent opportunity to understand what it is to work\n                                    in the public sector, within a fully structured system.",
-      "h2S3ExpSpan": "Descanso\n                                - Crecimiento Profesional\n                                <br>01/2022-05/2022\n                            ",
-      "h2S3ExpEn": "Break -\n                                Professional Development\n                                <br>01/2022-05/2022\n                            ",
-      "pS3ExpSpan": "\n                                    Durante este período profundicé los contenidos aprendidos en el curso de WesBos y de\n                                    la UTN, reescribiendo código con una mejor calidad, armando mis propias aplicaciones\n                                    y librerías que me servirán a futuro en mi desempeño profesional.",
-      "pS3ExpEn": "\n                                    During this period, I deepened the contents learned in the course of WesBos and the\n                                    UTN, rewriting code with a better quality, writing my own applications and libraries\n                                    for my professional work.",
-      "h2S4ExpSpan": "Estudio\n                                Contable\n                                Bravard\n                                <br>01/2007-12/2021\n                            ",
-      "h2S4ExpEn": "Bravard\n                                Accountancy Firm\n                                <br>01/2007-12/2021\n                            ",
-      "pS4ExpSpan": "\n                                    Destaco de esta experiencia el trabajo en un equipo multidisciplinario y la\n                                    capacitación constante.\n                                    Actividades: Instalaciones, actualizaciones y BackUp - Elaboración de Estados\n                                    Contables - Confección de inventarios de stock -\n                                    Facturación -\n                                    Registro de comprobantes e Imputaciones contables - Recibos de sueldos y libros –\n                                    Liquidación impuestos – Rendición de comprobantes - Libro Iva Digital -\n                                    Canal/Banca\n                                    empresa:\n                                    Administración de usuarios - Confección de cheques físicos/e-cheq - Pagos y\n                                    Transferencias - Carga/envío masivo de volantes de pago para servicios públicos -\n                                    Liquidaciones de cobranzas por medios electrónicos - Conciliación bancaria - Libro\n                                    Caja de Tesorería.",
-      "pS4ExpEn": "\n                                    I remark from this experience the work in a multidisciplinary team and the\n                                    constant training.\n                                    Activities: Installations, updates and BackUp - Production of\n                                    Accounting Statements, Inventory management and stock checking.\n                                    Invoicing - Receipts records and account assignment - Tax settlement.\n                                    Certificate\n                                    and book of wages.\n                                    Enterprise Banking: User Administration - Checks/e-cheq - Payments\n                                    and\n                                    Transfers - Mass Loading/Sending of digital Public Services payment orders -\n                                    Bank account statements checking -\n                                    Treasury cash book.\n                                ",
-      "h2S5ExpSpan": "PAPPA\n                                CHARLY - Casa\n                                de Eventos - Autónomo\n                                <br>01/2016-12/2019\n                            ",
-      "h2S5ExpEn": "PAPPA CHARLY -\n                                Hall of Events - Independent\n                                <br>01/2016-12/2019\n                            ",
-      "pS5ExpSpan": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",
-      "pS5ExpEn": "\n                                    Co-owner of the company and in charge of the institutional image, audio/video\n                                    systems, sales,\n                                    invoicing and cashier. I highlight from this experience what it means to work in a\n                                    co-boss role,\n                                    coordinating all the\n                                    activity, and what entails to be responsible for the profitability of the business.\n                                "
+    {
+      "id": "experience",
+      "imgMobile": "http://localhost:1234/Experience-mobile.a8a110b4.png",
+      "imgDesktop": "http://localhost:1234/experience-md-1920.77cae3bd.png",
+      "en": "EXPERIENCE",
+      "es": "EXPERIENCIA",
+      "slides": [
+        {
+          "id": "S1",
+          "h2": {
+            "es": "Descanso\n                                - Crecimiento Profesional\n                                <br>10/2022-Actualidad\n                            ",
+            "en": "Break -\n                                Professional Development\n                                <br>10/2022-Until Now\n                            ",
+          },
+          "ph": {
+            "es": "\n                                    Habiendo culminado la primer etapa de Argentina Programa, y recorriendo la segunda,\n                                    continuo entrenando en Angular, Java y Typescript.\n                                    He diseñado gráfica y estructuralmente mi portfolio, y posteriormente lo he\n                                    desarrollado con Vanilla JavaScript. Actualmente lo estoy migrando a los stacks\n                                    Angular + Java + Mongo / MySQL &amp; M.E.A.N. y paulatinamente le iré incorporando otros\n                                    proyectos que he desarrollado.",
+            "en": "\n                                    Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed.",
+          }
+        },
+        {
+          "id": "S2",
+          "h2": {
+            "es": "Poder\n                                Judicial de\n                                Entre Ríos\n                                <br>06/2022-09/2022\n                            ",
+            "en": "Entre Ríos\n                                Judiciary\n                                <br>06/2022-09/2022\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Me desempeñé como escribiente suplente. Si bien es un área en la que no tenía\n                                    experiencia alguna, fue una excelente oportunidad para comprender lo que es trabajar\n                                    en el sector público, dentro de un sistema completamente estructurado.",
+            "en": "\n                                    I served as an alternate clerk. While it's an area where I didn't have\n                                    any experience, it was an excellent opportunity to understand what it is to work\n                                    in the public sector, within a fully structured system."
+          }
+        },
+        {
+          "id": "S3",
+          "h2": {
+            "es": "Descanso\n                                - Crecimiento Profesional\n                                <br>01/2022-05/2022\n                            ",
+            "en": "Break -\n                                Professional Development\n                                <br>01/2022-05/2022\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Durante este período profundicé los contenidos aprendidos en el curso de WesBos y de\n                                    la UTN, reescribiendo código con una mejor calidad, armando mis propias aplicaciones\n                                    y librerías que me servirán a futuro en mi desempeño profesional.",
+            "en": "\n                                    During this period, I deepened the contents learned in the course of WesBos and the\n                                    UTN, rewriting code with a better quality, writing my own applications and libraries\n                                    for my professional work."
+          }
+        },
+        {
+          "id": "S4",
+          "h2": {
+            "es": "Estudio\n                                Contable\n                                Bravard\n                                <br>01/2007-12/2021\n                            ",
+            "en": "Bravard\n                                Accountancy Firm\n                                <br>01/2007-12/2021\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Destaco de esta experiencia el trabajo en un equipo multidisciplinario y la\n                                    capacitación constante.",
+            "en": "\n                                    I highlight from this experience the work in a multidisciplinary team and the constant training."
+          }
+        },
+        {
+          "id": "S5",
+          "h2": {
+            "es": "PAPPA\n                                CHARLY - Casa\n                                de Eventos - Autónomo\n                                <br>01/2016-12/2019\n                            ",
+            "en": "PAPPA CHARLY -\n                                Hall of Events - Independent\n                                <br>01/2016-12/2019\n                            ",
+          },
+          "ph": {
+            "es": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",
+            "en": "\n                                    Co-owner of the company and in charge of the institutional image, audio/video\n                                    systems, sales,\n                                    invoicing and cashier. I highlight from this experience what it means to work in a\n                                    co-boss role,\n                                    coordinating all the\n                                    activity, and what entails to be responsible for the profitability of the business.\n                                "
+          }
+        }
+      ]
     },
-    "qPD": {
-      "imgMobileQa": "http://localhost:1234/Experience-mobile.a8a110b4.png",
-      "imgDesktopQa": "http://localhost:1234/experience-md-1920.77cae3bd.png",
-      "h1Qual": "Qualifications &amp; P.D.",
-      "h2S1QaSpan": "\n                                Programador Full\n                                Stack Junior\n                                <br>06/2022-05/2023\n                            ",
-      "h2S1QaEn": "Full Stack Junior\n                                Developer\n                                <br>06/2022-05/2023\n                            ",
-      "pS1QaSpan": "\n                                    Primeramente se nos capacitó en Fundamentos de la Programacion, Programacion\n                                    Imperativa, POO. - (Finalizado)\n                                    Posteriormente se capacita en la programación Full Stack centrada en las\n                                    tecnologías: Boostrap, Angular, Typescript, Java y María DB. - (Cursando ~50%)\n                                ",
-      "pS1QaEn": "\n                                    We were trained in Fundamentals of Programming, Programming\n                                    Imperative, OOP. - (Approved)\n                                    Subsequently, we are being trained in a Full Stack programming focused on these\n                                    technologies: Boostrap, Angular, Typescript, Java and María DB. - (Done ~50%)\n                                ",
-      "h2S2QaSpan": "\n                                Programación\n                                Informática\n                                <br>07/2022- ~09/2023\n                            ",
-      "h2S2QaEn": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            ",
-      "pS2QaSpan": "\n                                    Cursando actualmente: <br>\n                                    Angular de \"Cero a Experto\" de Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" de Stephen Grider <br>\n                                    Master completo en Java de Andrés José Guzmán.\n                                ",
-      "pS2QaEn": "\n                                    Currently studying: <br>\n                                    Angular \"from Zero to Expert\" by Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" by Stephen Grider <br>\n                                    Complete Master in Java by Andrés José Guzmán.\n                                ",
-      "h2S3QaSpan": "Curso de\n                                Javascript\n                                <br>09/2021-12/2021\n                            ",
-      "h2S3QaEn": "Javascript\n                                <br>09/2021-12/2021\n                            ",
-      "pS3QaSpan": "\n                                    Este curso entrena sobre los aspectos más significativos de Javascript incluído ES6\n                                    en adelante. Programación imperativa y POO. Aprendí a crear sliders, modals, tab\n                                    panels, galleries; realizar fetch a diferentes Apis externas, y manejar algunas Apis\n                                    muy\n                                    interesantes del explorador como DOM, MediaDevices, AudioContext, Canvas,\n                                    Intersection Observer,\n                                    FaceDetector, entre\n                                    otras. Si bien terminé el curso en Dic/2021, he reescrito el código original\n                                    varias veces aplicando buenas prácticas y POO.",
-      "pS3QaEn": "\n                                    This course trains on the most significant aspects of Javascript including ES6\n                                    and further. Imperative programming and OOP. I learned to create sliders, modals,\n                                    tab\n                                    panels, galleries; fetch to different externals Apis, and handle some very\n                                    interesting Web Apis like DOM, MediaDevices, AudioContext, Canvas, Intersection\n                                    Observer,\n                                    FaceDetector, among\n                                    other. Even though I finalized this course in 12/2021, I have re write this code\n                                    many times, applying good practices and POO.\n                                ",
+    {
+      "id": "qPD",
+      "imgMobile": "http://localhost:1234/Experience-mobile.a8a110b4.png",
+      "imgDesktop": "http://localhost:1234/experience-md-1920.77cae3bd.png",
+      "en": "Qualifications &amp; P.D.",
+      "es": "Estudios y Certificaciones",
+      "slides": [
+        {
+          "id": "S1",
+          "h2": {
+            "es": "\n                                Programador Full\n                                Stack Junior\n                                <br>06/2022-05/2023\n                            ",
+            "en": "Full Stack Junior\n                                Developer\n                                <br>06/2022-05/2023\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Primeramente se nos capacitó en Fundamentos de la Programacion, Programacion\n                                    Imperativa, POO. - (Finalizado)\n                                    Posteriormente se capacita en la programación Full Stack centrada en las\n                                    tecnologías: Boostrap, Angular, Typescript, Java y María DB. - (Cursando ~50%)\n                                ",
+            "en": "\n                                    We were trained in Fundamentals of Programming, Programming\n                                    Imperative, OOP. - (Approved)\n                                    Subsequently, we are being trained in a Full Stack programming focused on these\n                                    technologies: Boostrap, Angular, Typescript, Java and María DB. - (Done ~50%)\n                                ",
+          }
+        },
+        {
+          "id": "S2",
+          "h2": {
+            "es": "\n                                Programación\n                                Informática\n                                <br>07/2022- ~09/2023\n                            ",
+            "en": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            ",
+          },
+          "ph": {
+            "es": "\n                                    Cursando actualmente: <br>\n                                    Angular de \"Cero a Experto\" de Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" de Stephen Grider <br>\n                                    Master completo en Java de Andrés José Guzmán.\n                                ",
+            "en": "\n                                    Currently studying: <br>\n                                    Angular \"from Zero to Expert\" by Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" by Stephen Grider <br>\n                                    Complete Master in Java by Andrés José Guzmán.\n                                ",
+          }
+        },
+        {
+          "id": "S3",
+          "h2": {
+            "es": "Curso de\n                                Javascript\n                                <br>09/2021-12/2021\n                            ",
+            "en": "Javascript\n                                <br>09/2021-12/2021\n                            ",
+          },
+          "ph": {
+            "es": "\n                                    Este curso entrena sobre los aspectos más significativos de Javascript incluído ES6\n                                    en adelante. Programación imperativa y POO. Aprendí a crear sliders, modals, tab\n                                    panels, galleries; realizar fetch a diferentes Apis externas, y manejar algunas Apis\n                                    muy\n                                    interesantes del explorador como DOM, MediaDevices, AudioContext, Canvas,\n                                    Intersection Observer,\n                                    FaceDetector, entre\n                                    otras. Si bien terminé el curso en Dic/2021, he reescrito el código original\n                                    varias veces aplicando buenas prácticas y POO.",
+            "en": "\n                                    This course trains on the most significant aspects of Javascript including ES6\n                                    and further. Imperative programming and OOP. I learned to create sliders, modals,\n                                    tab\n                                    panels, galleries; fetch to different externals Apis, and handle some very\n                                    interesting Web Apis like DOM, MediaDevices, AudioContext, Canvas, Intersection\n                                    Observer,\n                                    FaceDetector, among\n                                    other. Even though I finalized this course in 12/2021, I have re write this code\n                                    many times, applying good practices and POO.\n                                ",
+          }
+        },
+      ]
+    }
+     {
       "h2S4Qa": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            ",
       "pS4QaSpan": "\n                                    Desarrollo de sitios y aplicaciones web. HTML, SCSS, Js, Bootstrap, Principios de\n                                    diseño responsive y accesibilidad; Angular, MaríaDB, NodeJs, Express.\n                                ",
       "pS4QaEn": "\n                                    Websites and web applications development. HTML, SCSS, Js, Bootstrap, Principles of\n                                    responsive design and accessibility; Angular, MaríaDB, NodeJs, Express.\n                                ",
@@ -110,5 +176,5 @@
         ]
       }
     }
-  }
+  ]
 }

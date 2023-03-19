@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { RequestServicesInterface } from 'src/interfaces/requestServicesInterface';
-import { SlidesInterface } from '../../interfaces/slidesInterface';
+import { ElInterface } from '../../interfaces/slidesInterface';
 import { Sections } from '../../interfaces/sectionsInterface';
 
 @Injectable({
@@ -22,10 +22,10 @@ export class JsonServerRequestsService implements RequestServicesInterface {
     //   })
     // )
   }
-  updateElContent(): Observable<{}> {
-    throw new Error('Method not implemented.');
+  updateElContent(obj: ElInterface): Observable<ElInterface> {
+    return this.http.put<ElInterface>(`${this.apiUrl}/`, obj, this.config)
   }
-  updateSlideElContent(): Observable<SlidesInterface> {
+  updateSlideElContent(): Observable<ElInterface> {
     throw new Error('Method not implemented.');
   }
 }
