@@ -16,11 +16,11 @@
           "id": "S1",
           "h2": {
             "es": "Descanso\n                                - Crecimiento Profesional\n                                <br>10/2022-Actualidad\n                            ",
-            "en": "Break -\n                                Professional Development\n                                <br>10/2022-Until Now\n                            ",
+            "en": "Break -\n                                Professional Development\n                                <br>10/2022-Until Now\n                            "
           },
           "ph": {
             "es": "\n                                    Habiendo culminado la primer etapa de Argentina Programa, y recorriendo la segunda,\n                                    continuo entrenando en Angular, Java y Typescript.\n                                    He diseñado gráfica y estructuralmente mi portfolio, y posteriormente lo he\n                                    desarrollado con Vanilla JavaScript. Actualmente lo estoy migrando a los stacks\n                                    Angular + Java + Mongo / MySQL &amp; M.E.A.N. y paulatinamente le iré incorporando otros\n                                    proyectos que he desarrollado.",
-            "en": "\n                                    Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed.",
+            "en": "\n                                    Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed."
           }
         },
         {
@@ -60,7 +60,7 @@
           "id": "S5",
           "h2": {
             "es": "PAPPA\n                                CHARLY - Casa\n                                de Eventos - Autónomo\n                                <br>01/2016-12/2019\n                            ",
-            "en": "PAPPA CHARLY -\n                                Hall of Events - Independent\n                                <br>01/2016-12/2019\n                            ",
+            "en": "PAPPA CHARLY -\n                                Hall of Events - Independent\n                                <br>01/2016-12/2019\n                            "
           },
           "ph": {
             "es": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",
@@ -84,97 +84,131 @@
           },
           "ph": {
             "es": "\n                                    Primeramente se nos capacitó en Fundamentos de la Programacion, Programacion\n                                    Imperativa, POO. - (Finalizado)\n                                    Posteriormente se capacita en la programación Full Stack centrada en las\n                                    tecnologías: Boostrap, Angular, Typescript, Java y María DB. - (Cursando ~50%)\n                                ",
-            "en": "\n                                    We were trained in Fundamentals of Programming, Programming\n                                    Imperative, OOP. - (Approved)\n                                    Subsequently, we are being trained in a Full Stack programming focused on these\n                                    technologies: Boostrap, Angular, Typescript, Java and María DB. - (Done ~50%)\n                                ",
+            "en": "\n                                    We were trained in Fundamentals of Programming, Programming\n                                    Imperative, OOP. - (Approved)\n                                    Subsequently, we are being trained in a Full Stack programming focused on these\n                                    technologies: Boostrap, Angular, Typescript, Java and María DB. - (Done ~50%)\n                                "
           }
         },
         {
           "id": "S2",
           "h2": {
             "es": "\n                                Programación\n                                Informática\n                                <br>07/2022- ~09/2023\n                            ",
-            "en": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            ",
+            "en": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            "
           },
           "ph": {
             "es": "\n                                    Cursando actualmente: <br>\n                                    Angular de \"Cero a Experto\" de Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" de Stephen Grider <br>\n                                    Master completo en Java de Andrés José Guzmán.\n                                ",
-            "en": "\n                                    Currently studying: <br>\n                                    Angular \"from Zero to Expert\" by Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" by Stephen Grider <br>\n                                    Complete Master in Java by Andrés José Guzmán.\n                                ",
+            "en": "\n                                    Currently studying: <br>\n                                    Angular \"from Zero to Expert\" by Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" by Stephen Grider <br>\n                                    Complete Master in Java by Andrés José Guzmán.\n                                "
           }
         },
         {
           "id": "S3",
           "h2": {
             "es": "Curso de\n                                Javascript\n                                <br>09/2021-12/2021\n                            ",
-            "en": "Javascript\n                                <br>09/2021-12/2021\n                            ",
+            "en": "Javascript\n                                <br>09/2021-12/2021\n                            "
           },
           "ph": {
             "es": "\n                                    Este curso entrena sobre los aspectos más significativos de Javascript incluído ES6\n                                    en adelante. Programación imperativa y POO. Aprendí a crear sliders, modals, tab\n                                    panels, galleries; realizar fetch a diferentes Apis externas, y manejar algunas Apis\n                                    muy\n                                    interesantes del explorador como DOM, MediaDevices, AudioContext, Canvas,\n                                    Intersection Observer,\n                                    FaceDetector, entre\n                                    otras. Si bien terminé el curso en Dic/2021, he reescrito el código original\n                                    varias veces aplicando buenas prácticas y POO.",
-            "en": "\n                                    This course trains on the most significant aspects of Javascript including ES6\n                                    and further. Imperative programming and OOP. I learned to create sliders, modals,\n                                    tab\n                                    panels, galleries; fetch to different externals Apis, and handle some very\n                                    interesting Web Apis like DOM, MediaDevices, AudioContext, Canvas, Intersection\n                                    Observer,\n                                    FaceDetector, among\n                                    other. Even though I finalized this course in 12/2021, I have re write this code\n                                    many times, applying good practices and POO.\n                                ",
+            "en": "\n                                    This course trains on the most significant aspects of Javascript including ES6\n                                    and further. Imperative programming and OOP. I learned to create sliders, modals,\n                                    tab\n                                    panels, galleries; fetch to different externals Apis, and handle some very\n                                    interesting Web Apis like DOM, MediaDevices, AudioContext, Canvas, Intersection\n                                    Observer,\n                                    FaceDetector, among\n                                    other. Even though I finalized this course in 12/2021, I have re write this code\n                                    many times, applying good practices and POO.\n                                "
           }
         },
+        {
+          "id": "S4",
+          "h2": {
+            "es": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            ",
+            "en": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Desarrollo de sitios y aplicaciones web. HTML, SCSS, Js, Bootstrap, Principios de\n                                    diseño responsive y accesibilidad; Angular, MaríaDB, NodeJs, Express.\n                                ",
+            "en": "\n                                    Websites and web applications development. HTML, SCSS, Js, Bootstrap, Principles of\n                                    responsive design and accessibility; Angular, MaríaDB, NodeJs, Express.\n                                "
+          }
+        },
+        {
+          "id": "S5",
+          "h2": {
+            "es": "Tec. Sup.\n                                Mantenimiento Industrial (Completo)\n                                <br>03/2008-08/2010\n                            ",
+            "en": "Technician\n                                in Industrial Maintenance (Complete)\n                                <br>03/2008-08/2010\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Destaco lo aprendido sobre Programación de Plcs, Electrotecnia, Mantenimiento\n                                    Industrial, Tecnología de materiales, Informática, Inglés, Mecánica e Hidráulica,\n                                    entre\n                                    otras...",
+            "en": "\n                                    I remark what I learned about Plcs Programming, Electrotechnics, Industrial\n                                    Maintenance\n                                    , Materials Technology, Computer Science, English, Mechanics and Hydraulics,\n                                    among\n                                    others..."
+          }
+        },
+        {
+          "id": "S6",
+          "h2": {
+            "es": "TEC.\n                                Martillero\n                                Público y C.C. (Incompleto)\n                                <br>03/2019-02/2021\n                            ",
+            "en": "Auctioneer Tec.\n                                and Broker (Incomplete)\n                                <br>03/2019-02/2021\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Un gran trayecto formativo en tasaciones y contratos. Si bien me gustó mucho la\n                                    carrera, me reecontré con la programación y al día de hoy hacen 2 años que no dejo\n                                    de programar ni un solo día.",
+            "en": "\n                                    A great training journey in appraisals and contracts. Although I really liked the\n                                    career, I first met with the modern programming in January 2021 and from there I\n                                    haven't stop developing for a single day."
+          }
+        },
+        {
+          "id": "S7",
+          "h2": {
+            "es": "Cont.\n                                Público\n                                Nacional (Incompleto)\n                                <br>03/2011-12/2012\n                            ",
+            "en": " Public Accountant\n                                (Incomplete)\n                                <br>03/2011-12/2012\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Cursé 2 años de esta carrera adquiriendo conocimientos de Contabilidad,\n                                    administración, tesorería, matemáticas. Abandoné este trayecto\n                                    formativo, para poder emprender en un negocio del que fui co-titular por 4 años.",
+            "en": "\n                                    I studied this career for two years, acquiring knowledge about Accounting,\n                                    Administration, Treasury and Mathematics. I left this learning path\n                                    , to be able to start in a business for which I was co-owner for 4 years.\n                                "
+          }
+        },
+        {
+          "id": "S8",
+          "h2": {
+            "es": "Ing.\n                                Electrónica\n                                (Incompleto)\n                                <br>02/2005-12/2005\n                            ",
+            "en": "Electronic Ing.\n                                (Incomplete)\n                                <br>02/2005-12/2005\n                            "
+          },
+          "ph": {
+            "es": "\n                                    Aunque cursé solo el primer año, destaco de este trayecto un gran entrenamiento en\n                                    algoritmos de programación y matemáticas, lo que claramente marcó mi inclinación por\n                                    la programación.",
+            "en": "\n                                    Although I studied only the first year, I highlight from this journey a great\n                                    training\n                                    in\n                                    programming algorithms and mathematics, which clearly marked my fans for\n                                    programming."
+          }
+        }
       ]
-    }
-     {
-      "h2S4Qa": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            ",
-      "pS4QaSpan": "\n                                    Desarrollo de sitios y aplicaciones web. HTML, SCSS, Js, Bootstrap, Principios de\n                                    diseño responsive y accesibilidad; Angular, MaríaDB, NodeJs, Express.\n                                ",
-      "pS4QaEn": "\n                                    Websites and web applications development. HTML, SCSS, Js, Bootstrap, Principles of\n                                    responsive design and accessibility; Angular, MaríaDB, NodeJs, Express.\n                                ",
-      "h2S5QaSpan": "Tec. Sup.\n                                Mantenimiento Industrial (Completo)\n                                <br>03/2008-08/2010\n                            ",
-      "h2S5QaEn": "Technician\n                                in Industrial Maintenance (Complete)\n                                <br>03/2008-08/2010\n                            ",
-      "pS5QaSpan": "\n                                    Destaco lo aprendido sobre Programación de Plcs, Electrotecnia, Mantenimiento\n                                    Industrial, Tecnología de materiales, Informática, Inglés, Mecánica e Hidráulica,\n                                    entre\n                                    otras...",
-      "pS5QaEn": "\n                                    I remark what I learned about Plcs Programming, Electrotechnics, Industrial\n                                    Maintenance\n                                    , Materials Technology, Computer Science, English, Mechanics and Hydraulics,\n                                    among\n                                    others...",
-      "h2S6QaSpan": "TEC.\n                                Martillero\n                                Público y C.C. (Incompleto)\n                                <br>03/2019-02/2021\n                            ",
-      "h2S6QaEn": "Auctioneer Tec.\n                                and Broker (Incomplete)\n                                <br>03/2019-02/2021\n                            ",
-      "pS6QaSpan": "\n                                    Un gran trayecto formativo en tasaciones y contratos. Si bien me gustó mucho la\n                                    carrera, me reecontré con la programación y al día de hoy hacen 2 años que no dejo\n                                    de programar ni un solo día.",
-      "pS6QaEn": "\n                                    A great training journey in appraisals and contracts. Although I really liked the\n                                    career, I first met with the modern programming in January 2021 and from there I\n                                    haven't stop developing for a single day.",
-      "h2S7QaSpan": "Cont.\n                                Público\n                                Nacional (Incompleto)\n                                <br>03/2011-12/2012\n                            ",
-      "h2S7QaEn": " Public Accountant\n                                (Incomplete)\n                                <br>03/2011-12/2012\n                            ",
-      "pS7QaSpan": "\n                                    Cursé 2 años de esta carrera adquiriendo conocimientos de Contabilidad,\n                                    administración, tesorería, matemáticas. Abandoné este trayecto\n                                    formativo, para poder emprender en un negocio del que fui co-titular por 4 años.",
-      "pS7QaEn": "\n                                    I studied this career for two years, acquiring knowledge about Accounting,\n                                    Administration, Treasury and Mathematics. I left this learning path\n                                    , to be able to start in a business for which I was co-owner for 4 years.\n                                ",
-      "h2S8QaSpan": "Ing.\n                                Electrónica\n                                (Incompleto)\n                                <br>02/2005-12/2005\n                            ",
-      "h2S8QaEn": "Electronic Ing.\n                                (Incomplete)\n                                <br>02/2005-12/2005\n                            ",
-      "pS8qaSpan": "\n                                    Aunque cursé solo el primer año, destaco de este trayecto un gran entrenamiento en\n                                    algoritmos de programación y matemáticas, lo que claramente marcó mi inclinación por\n                                    la programación.",
-      "pS8qaEn": "\n                                    Although I studied only the first year, I highlight from this journey a great\n                                    training\n                                    in\n                                    programming algorithms and mathematics, which clearly marked my fans for\n                                    programming."
     },
-    "home": {
-      "imgMobileHome": "../../../assets/images/home2-mb-v.png",
-      "imgDesktopHome": "../../../assets/images/home-md-1920.png",
-      "en": {
-        "h1HomeEn": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
-        "slides": [
-          {
-            "id": "p1HomeEn",
-            "content": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming"
-          },
-          {
-            "id": "p2HomeEn",
-            "content": "Since that time I have\n                been studying and\n                developing some stuff in Js and friends.<br><a href=\"https://github.com/m32795434\" [id]=\"importanteA\"> Check it on\n                  GitHub here!🫡</a><br>\n\n              "
-          },
-          {
-            "id": "p3HomeEn",
-            "content": "This is an own\n                project🧰,\n                written from scratch in JavaScript<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-javascript\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"yellow\" fill=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z\"></path>\n                  <path d=\"M7.5 8h3v8l-2 -1\"></path>\n                  <path d=\"M16.5 8h-2.5a.5 .5 0 0 0 -.5 .5v3a.5 .5 0 0 0 .5 .5h1.423a.5 .5 0 0 1 .495 .57l-.418 2.93l-2 .5\">\n                  </path>\n                </svg> and some Bootstrap<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-bootstrap\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"blue\" fill=\"white\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M2 12a2 2 0 0 0 2 -2v-4a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2\"></path>\n                  <path d=\"M2 12a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-4a2 2 0 0 1 2 -2\"></path>\n                  <path d=\"M9 16v-8h3.5a2 2 0 1 1 0 4h-3.5h4a2 2 0 1 1 0 4h-4z\"></path>\n                </svg>+Icons<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-tabler\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M8 9l3 3l-3 3\"></path>\n                  <path d=\"M13 15l3 0\"></path>\n                  <path d=\"M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z\"></path>\n                </svg>. No Frameworks. <b>No other third-party\n                  resources</b>"
-          },
-          {
-            "id": "p4HomeEn",
-            "content": "All the technologies\n                that were applied\n                are listed in every page of the site. <a [id]=\"importanteA\" href=\"https://github.com/m32795434/Portfolio-YoProgramo-MaquetadoFront\">\n                  With\n                  this\n                  link </a> you can check the Github repository😁. Enjoy it!"
-          },
-          {
-            "id": "p5HomeEn",
-            "content": "\n                These are the technologies I use!<br><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-javascript\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"yellow\" fill=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z\"></path>\n                  <path d=\"M7.5 8h3v8l-2 -1\"></path>\n                  <path d=\"M16.5 8h-2.5a.5 .5 0 0 0 -.5 .5v3a.5 .5 0 0 0 .5 .5h1.423a.5 .5 0 0 1 .495 .57l-.418 2.93l-2 .5\">\n                  </path>\n                </svg><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-database\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\"></path>\n                  <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\"></path>\n                  <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\"></path>\n                </svg>Languages - Databases:<br>\n                JavaScript - Typescript - Sass - HTML - Angular - Node.js - Java - Git - SQL- MongoDB - MySQL<br>\n                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-figma\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"red\" fill=\"#266bd3\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M15 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n                  <path d=\"M6 3m0 3a3 3 0 0 1 3 -3h6a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-6a3 3 0 0 1 -3 -3z\"></path>\n                  <path d=\"M9 9a3 3 0 0 0 0 6h3m-3 0a3 3 0 1 0 3 3v-15\"></path>\n                </svg>🎨Design Tools:<br>\n                Figma - Pixlr - Clipchamp - Movavi - Obs - Audacity\n                <!-- <button class=\"save-button mx-1 rounded-circle material-symbols-outlined\">edit</button> -->\n            "
-          },
-          {
-            "id": "p6HomeEn",
-            "content": "\n                📒Libraries:<br> Bootstrap - Date-fns - Lodash - Parcel - WebPack - Axios - Await-to-js\n                -\n                Mongoose - Bootswatch - ngx-bootstrap - nodemon - morgan -Cors - Express.<br>\n            "
-          },
-          {
-            "id": "p7HomeEn",
-            "content": "\n                ⚒️<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-github-copilot\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M4 18v-5.5c0 -.667 .167 -1.333 .5 -2\"></path>\n                  <path d=\"M12 7.5c0 -1 -.01 -4.07 -4 -3.5c-3.5 .5 -4 2.5 -4 3.5c0 1.5 0 4 3 4c4 0 5 -2.5 5 -4z\"></path>\n                  <path d=\"M4 12c-1.333 .667 -2 1.333 -2 2c0 1 0 3 1.5 4c3 2 6.5 3 8.5 3s5.499 -1 8.5 -3c1.5 -1 1.5 -3 1.5 -4c0 -.667 -.667 -1.333 -2 -2\">\n                  </path>\n                  <path d=\"M20 18v-5.5c0 -.667 -.167 -1.333 -.5 -2\"></path>\n                  <path d=\"M12 7.5l0 -.297l.01 -.269l.027 -.298l.013 -.105l.033 -.215c.014 -.073 .029 -.146 .046 -.22l.06 -.223c.336 -1.118 1.262 -2.237 3.808 -1.873c2.838 .405 3.703 1.797 3.93 2.842l.036 .204c0 .033 .01 .066 .013 .098l.016 .185l0 .171l0 .49l-.015 .394l-.02 .271c-.122 1.366 -.655 2.845 -2.962 2.845c-3.256 0 -4.524 -1.656 -4.883 -3.081l-.053 -.242a3.865 3.865 0 0 1 -.036 -.235l-.021 -.227a3.518 3.518 0 0 1 -.007 -.215z\">\n                  </path>\n                  <path d=\"M10 15v2\"></path>\n                  <path d=\"M14 15v2\"></path>\n                </svg>Others:<br>\n                GitHub - SCRUM - Heroku - Googe Cloud - Vs Code - IntelliJ IDEA - Netlify - StackBlitz <br><a [id]=\"importanteA\" href=\"https://www.linkedin.com/in/manubravard/\" alt=\"Follow me on Linkedin\"> Follow me on </a><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-linkedin\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"white\" fill=\"#266bd3\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z\"></path>\n                  <path d=\"M8 11l0 5\"></path>\n                  <path d=\"M8 8l0 .01\"></path>\n                  <path d=\"M12 16l0 -5\"></path>\n                  <path d=\"M16 16v-3a2 2 0 0 0 -4 0\"></path>\n                </svg>"
-          }
-        ]
-      },
-      "es": {
-        "slide": [
-          {
-            "p2HomeSpan": "TRADUCRI LO DE\n                ABAJO\n              "
-          }
-        ]
-      }
+    {
+      "id": "home",
+      "imgMobile": "../../../assets/images/home2-mb-v.png",
+      "imgDesktop": "../../../assets/images/home-md-1920.png",
+      "en": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
+      "es": "Hola! Soy Manuel<br> Soy desarrollador Full Stack!",
+      "slides": [
+        {
+          "id": "S1",
+          "en": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming",
+          "es": ""
+        },
+        {
+          "id": "S2",
+          "en": "Since that time I have\n                been studying and\n                developing some stuff in Js and friends.<br><a href=\"https://github.com/m32795434\" [id]=\"importanteA\"> Check it on\n                  GitHub here!🫡</a><br>\n\n              ",
+          "es": ""
+        },
+        {
+          "id": "S3",
+          "en": "This is an own\n                project🧰,\n                written from scratch in JavaScript<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-javascript\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"yellow\" fill=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z\"></path>\n                  <path d=\"M7.5 8h3v8l-2 -1\"></path>\n                  <path d=\"M16.5 8h-2.5a.5 .5 0 0 0 -.5 .5v3a.5 .5 0 0 0 .5 .5h1.423a.5 .5 0 0 1 .495 .57l-.418 2.93l-2 .5\">\n                  </path>\n                </svg> and some Bootstrap<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-bootstrap\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"blue\" fill=\"white\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M2 12a2 2 0 0 0 2 -2v-4a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2\"></path>\n                  <path d=\"M2 12a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-4a2 2 0 0 1 2 -2\"></path>\n                  <path d=\"M9 16v-8h3.5a2 2 0 1 1 0 4h-3.5h4a2 2 0 1 1 0 4h-4z\"></path>\n                </svg>+Icons<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-tabler\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M8 9l3 3l-3 3\"></path>\n                  <path d=\"M13 15l3 0\"></path>\n                  <path d=\"M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z\"></path>\n                </svg>. No Frameworks. <b>No other third-party\n                  resources</b>",
+          "es": ""
+        },
+        {
+          "id": "S4",
+          "en": "All the technologies\n                that were applied\n                are listed in every page of the site. <a [id]=\"importanteA\" href=\"https://github.com/m32795434/Portfolio-YoProgramo-MaquetadoFront\">\n                  With\n                  this\n                  link </a> you can check the Github repository😁. Enjoy it!",
+          "es": ""
+        },
+        {
+          "id": "S5",
+          "en": "\n                These are the technologies I use!<br><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-javascript\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"yellow\" fill=\"black\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z\"></path>\n                  <path d=\"M7.5 8h3v8l-2 -1\"></path>\n                  <path d=\"M16.5 8h-2.5a.5 .5 0 0 0 -.5 .5v3a.5 .5 0 0 0 .5 .5h1.423a.5 .5 0 0 1 .495 .57l-.418 2.93l-2 .5\">\n                  </path>\n                </svg><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-database\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\"></path>\n                  <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\"></path>\n                  <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\"></path>\n                </svg>Languages - Databases:<br>\n                JavaScript - Typescript - Sass - HTML - Angular - Node.js - Java - Git - SQL- MongoDB - MySQL<br>\n                <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-figma\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"red\" fill=\"#266bd3\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M15 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n                  <path d=\"M6 3m0 3a3 3 0 0 1 3 -3h6a3 3 0 0 1 3 3v0a3 3 0 0 1 -3 3h-6a3 3 0 0 1 -3 -3z\"></path>\n                  <path d=\"M9 9a3 3 0 0 0 0 6h3m-3 0a3 3 0 1 0 3 3v-15\"></path>\n                </svg>🎨Design Tools:<br>\n                Figma - Pixlr - Clipchamp - Movavi - Obs - Audacity\n                <!-- <button class=\"save-button mx-1 rounded-circle material-symbols-outlined\">edit</button> -->\n            ",
+          "es": ""
+        },
+        {
+          "id": "S6",
+          "en": "\n                📒Libraries:<br> Bootstrap - Date-fns - Lodash - Parcel - WebPack - Axios - Await-to-js\n                -\n                Mongoose - Bootswatch - ngx-bootstrap - nodemon - morgan -Cors - Express.<br>\n            ",
+          "es": ""
+        },
+        {
+          "id": "S7",
+          "en": "\n                ⚒️<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-github-copilot\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M4 18v-5.5c0 -.667 .167 -1.333 .5 -2\"></path>\n                  <path d=\"M12 7.5c0 -1 -.01 -4.07 -4 -3.5c-3.5 .5 -4 2.5 -4 3.5c0 1.5 0 4 3 4c4 0 5 -2.5 5 -4z\"></path>\n                  <path d=\"M4 12c-1.333 .667 -2 1.333 -2 2c0 1 0 3 1.5 4c3 2 6.5 3 8.5 3s5.499 -1 8.5 -3c1.5 -1 1.5 -3 1.5 -4c0 -.667 -.667 -1.333 -2 -2\">\n                  </path>\n                  <path d=\"M20 18v-5.5c0 -.667 -.167 -1.333 -.5 -2\"></path>\n                  <path d=\"M12 7.5l0 -.297l.01 -.269l.027 -.298l.013 -.105l.033 -.215c.014 -.073 .029 -.146 .046 -.22l.06 -.223c.336 -1.118 1.262 -2.237 3.808 -1.873c2.838 .405 3.703 1.797 3.93 2.842l.036 .204c0 .033 .01 .066 .013 .098l.016 .185l0 .171l0 .49l-.015 .394l-.02 .271c-.122 1.366 -.655 2.845 -2.962 2.845c-3.256 0 -4.524 -1.656 -4.883 -3.081l-.053 -.242a3.865 3.865 0 0 1 -.036 -.235l-.021 -.227a3.518 3.518 0 0 1 -.007 -.215z\">\n                  </path>\n                  <path d=\"M10 15v2\"></path>\n                  <path d=\"M14 15v2\"></path>\n                </svg>Others:<br>\n                GitHub - SCRUM - Heroku - Googe Cloud - Vs Code - IntelliJ IDEA - Netlify - StackBlitz <br><a [id]=\"importanteA\" href=\"https://www.linkedin.com/in/manubravard/\" alt=\"Follow me on Linkedin\"> Follow me on </a><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon icon-tabler icon-tabler-brand-linkedin\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"white\" fill=\"#266bd3\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n                  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n                  <path d=\"M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z\"></path>\n                  <path d=\"M8 11l0 5\"></path>\n                  <path d=\"M8 8l0 .01\"></path>\n                  <path d=\"M12 16l0 -5\"></path>\n                  <path d=\"M16 16v-3a2 2 0 0 0 -4 0\"></path>\n                </svg>",
+          "es": ""
+        }
+      ]
     }
   ]
 }
