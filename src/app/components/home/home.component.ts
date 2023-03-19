@@ -31,10 +31,12 @@ export class HomeComponent implements OnInit {
   errorMessage = '';
 
   constructor(private loginService: LoginService, private dataService: DataService) {
+    //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
       console.log('logged at home?', this.logged);
     });
+
     this.dataSubscription = this.dataService.getDataObserver().subscribe((sections) => {
       this.section = sections['home'];
       this.slides = this.section[this.lenguage]?.slides;
@@ -50,6 +52,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.dataService.getDataFromJsonServer();
     }
+    //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
   }

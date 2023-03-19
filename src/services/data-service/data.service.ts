@@ -20,7 +20,7 @@ export class DataService {
     return this.errorSubject.asObservable();
   }
   getDataFromJsonServer() {
-    this.JsonServer.getAllSections().subscribe({
+    this.JsonServer.getSection().subscribe({
       next: (content) => {
         this.data = content;
         this.dataSubject.next(this.data);

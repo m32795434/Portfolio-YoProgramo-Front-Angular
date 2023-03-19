@@ -3,7 +3,7 @@ import { Sections } from './sectionsInterface';
 import { ElInterface } from './slidesInterface';
 
 export interface RequestServicesInterface {
-    getAllSections(val: string): Observable<Sections>;
+    getAllSections(val: string): Observable<any>;
     // getSlides(val: string): Observable<any>;
     updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
     updateSlideElContent(el: ElInterface): Observable<ElInterface>;

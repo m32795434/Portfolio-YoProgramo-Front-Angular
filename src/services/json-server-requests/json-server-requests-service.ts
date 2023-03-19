@@ -13,8 +13,11 @@ export class JsonServerRequestsService implements RequestServicesInterface {
   private config = { headers: { 'Content-Type': 'application/json' } };
 
   constructor(private http: HttpClient) { }
-  getAllSections(): Observable<Sections> {
-    return this.http.get<Sections>(`${this.apiUrl}`);
+  getAllSections(val: string): Observable<any> {
+    throw new Error('Method not implemented.');
+  }
+  getSection(section: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${section}`);
     // .pipe( //I could define the error catching here. Pipe is an Observable's method
     //   catchError(error => {
     //     console.error('Error al obtener la seccion', error);
