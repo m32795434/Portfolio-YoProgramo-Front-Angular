@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { Sections } from 'src/interfaces/sectionsInterface';
+import { Home, Experience, QPD, Projects, Sections } from 'src/interfaces/sections-interfaces';
 import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
 
 
@@ -8,26 +8,62 @@ import { JsonServerRequestsService } from '../json-server-requests/json-server-r
   providedIn: 'root'
 })
 export class DataService {
-  private dataSubject = new Subject<any>();
+  private homeDataSubject = new Subject<any>();
+  private experienceDataSubject = new Subject<any>();
+  private qPDDataSubject = new Subject<any>();
+  private projectsDataSubject = new Subject<any>();
   private errorSubject = new Subject<any>();
-  protected data?: any;
+  protected data: Sections = {
+    home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
+    experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
+    qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
+    projects: { id: "projects", en: "", es: "" }
+  };
   constructor(private JsonServer: JsonServerRequestsService) { }
 
-  getDataObserver() {
-    return this.dataSubject.asObservable();
+  getHomeDataObserver() {
+    return this.homeDataSubject.asObservable();
   }
+  getExperienceDataObserver() {
+    return this.experienceDataSubject.asObservable();
+  }
+  getQPDDataObserver() {
+    return this.qPDDataSubject.asObservable();
+  }
+  getProjectsDataObserver() {
+    return this.projectsDataSubject.asObservable();
+  }
+
   getErrorObserver() {
     return this.errorSubject.asObservable();
   }
-  getDataFromJsonServer() {
-    this.JsonServer.getSection().subscribe({
-      next: (content) => {
-        this.data = content;
-        this.dataSubject.next(this.data);
-        console.log('secciones cargadas exitosamente:...', this.data);
+  getSectionFromJsonServer(section: "home" | "project" | "qPD" | "experience") {
+    this.JsonServer.getSection(section).subscribe({
+      next: (content: Home | Experience | QPD | Projects) => {
+        switch (content.id) {
+          case "home":
+            this.data[content.id] = content;
+            this.homeDataSubject.next(this.data[content.id]);
+            break;
+          case "experience":
+            this.data[content.id] = content;
+            this.experienceDataSubject.next(this.data[content.id]);
+            break;
+          case "projects":
+            this.data[content.id] = content;
+            this.projectsDataSubject.next(this.data[content.id]);
+            break;
+          case "qPD":
+            this.data[content.id] = content;
+            this.qPDDataSubject.next(this.data[content.id]);
+            break;
+          default:
+            break;
+        }
+        console.log('seccione cargada exitosamente:...', this.data[content.id]);
       },
       error: (error: Error) => {
-        console.error('Error al cargar las secciones', error);
+        console.error('Error al cargar la seccion', error);
         this.errorSubject.next(error.message)
       },
       complete: () => {
@@ -36,11 +72,31 @@ export class DataService {
     });
   }
 
-  getData(arg: string): any {
-    console.log('geting data from service:', this.data);
-    if (this.data != undefined) return this.data[arg];
-    return undefined;
+  getData(arg: "home" | "project" | "qPD" | "experience"): Home | Experience | QPD | Projects | undefined {
+    switch (arg) {
+      case "home":
+        console.log('geting home from service:', this.data[arg]);
+        if (this.data != undefined) return this.data[arg];
+        break;
+      case "experience":
+        console.log('geting data from service:', this.data[arg]);
+        if (this.data != undefined) return this.data[arg];
+        break;
+      case "projects":
+        console.log('geting data from service:', this.data[arg]);
+        if (this.data != undefined) return this.data[arg];
+        break;
+      case "qPD":
+        console.log('geting data from service:', this.data[arg]);
+        if (this.data != undefined) return this.data[arg];
+        break;
+      default:
+        break;
+    }
+    console.log('seccione cargada exitosamente:...', this.data[content.id]);
   }
+
+}
 
 
 }

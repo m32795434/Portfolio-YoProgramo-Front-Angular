@@ -2,22 +2,24 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { RequestServicesInterface } from 'src/interfaces/requestServicesInterface';
-import { ElInterface } from '../../interfaces/slidesInterface';
-import { Sections } from '../../interfaces/sectionsInterface';
+import { Experience, Home, Projects, QPD } from '../../interfaces/sections-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JsonServerRequestsService implements RequestServicesInterface {
+  //URL & CONFIG
   private apiUrl = 'http://localhost:5000/sections';
   private config = { headers: { 'Content-Type': 'application/json' } };
 
+
   constructor(private http: HttpClient) { }
-  getAllSections(val: string): Observable<any> {
-    throw new Error('Method not implemented.');
-  }
-  getSection(section: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${section}`);
+  // getSection(section: string): Observable<Home> {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  getSection(section: "home" | "project" | "qPD" | "experience"): Observable<Home | Experience | QPD | Projects> {
+    return this.http.get<Home | Experience | QPD | Projects>(`${this.apiUrl}/${section}`);
     // .pipe( //I could define the error catching here. Pipe is an Observable's method
     //   catchError(error => {
     //     console.error('Error al obtener la seccion', error);
@@ -25,12 +27,12 @@ export class JsonServerRequestsService implements RequestServicesInterface {
     //   })
     // )
   }
-  updateElContent(obj: ElInterface): Observable<ElInterface> {
-    return this.http.put<ElInterface>(`${this.apiUrl}/`, obj, this.config)
-  }
-  updateSlideElContent(): Observable<ElInterface> {
-    throw new Error('Method not implemented.');
-  }
+  // updateElContent(obj: ElInterface): Observable<ElInterface> {
+  //   return this.http.put<ElInterface>(`${this.apiUrl}/`, obj, this.config)
+  // }
+  // updateSlideElContent(): Observable<ElInterface> {
+  //   throw new Error('Method not implemented.');
+  // }
 }
 /*
 private apiUrl = 'http://localhost:5000/tasks';

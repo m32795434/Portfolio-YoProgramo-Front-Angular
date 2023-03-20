@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs';
-import { Sections } from './sectionsInterface';
-import { ElInterface } from './slidesInterface';
+import { Experience, Home, Projects, QPD } from './sections-interfaces';
 
 export interface RequestServicesInterface {
-    getAllSections(val: string): Observable<any>;
     // getSlides(val: string): Observable<any>;
-    updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
-    updateSlideElContent(el: ElInterface): Observable<ElInterface>;
+    getSection(section: string): Observable<Home | Experience | QPD | Projects>;
+
+    // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { ElInterface } from 'src/interfaces/slidesInterface';
+import { Home, HomeSlide } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LoginService } from 'src/services/login-service/login.service';
 declare global {
@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any;
+  section: Home = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
   //contains all the slides content
-  slides?: ElInterface[] = [{ id: "id", content: "Loading!!..🫠" }]
+  slides: HomeSlide[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
       console.log('logged at home?', this.logged);
     });
 
-    this.dataSubscription = this.dataService.getDataObserver().subscribe((sections) => {
-      this.section = sections['home'];
-      this.slides = this.section[this.lenguage]?.slides;
+    this.dataSubscription = this.dataService.getHomeDataObserver().subscribe((section) => {
+      this.section = section;
+      this.slides = this.section['slides'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       this.section = content;
       this.slides = this.section[this.lenguage]?.slides;
     } else {
-      this.dataService.getDataFromJsonServer();
+      this.dataService.getSectionFromJsonServer('home');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
