@@ -3,13 +3,13 @@
     <div class="d-lg-none">
         <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
             [hidden]="!logged">settings</button>
-        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobileHome"
-            alt="Manuel perfil" id="imgMobileHome">
+        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobile" alt="Manuel perfil"
+            id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
         <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
             [hidden]="!logged">settings</button>
-        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktopHome"
+        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
     <!-- <input type="file" accept="image/*" id="changeImg" hidden>
@@ -40,7 +40,7 @@
                         <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="slide.id"
                             [hidden]="!logged">save</button>
 
-                        <p [innerHTML]="slide.content" class="p-3 m-0 text-center edit-content"
+                        <p [innerHTML]="lenguage === 'en'? slide.en : slide.es" class="p-3 m-0 text-center edit-content"
                             [class]="{contentEditableTrue:logged}" [contentEditable]="logged">
                         </p>
                     </div>

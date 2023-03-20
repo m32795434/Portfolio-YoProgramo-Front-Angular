@@ -37,24 +37,24 @@ export class DataService {
   getErrorObserver() {
     return this.errorSubject.asObservable();
   }
-  getSectionFromJsonServer(section: "home" | "project" | "qPD" | "experience") {
+  getSectionFromJsonServer(section: "home" | "projects" | "qPD" | "experience") {
     this.JsonServer.getSection(section).subscribe({
       next: (content: Home | Experience | QPD | Projects) => {
         switch (content.id) {
           case "home":
-            this.data[content.id] = content;
+            this.data['home'] = content;
             this.homeDataSubject.next(this.data[content.id]);
             break;
           case "experience":
-            this.data[content.id] = content;
+            this.data['experience'] = content;
             this.experienceDataSubject.next(this.data[content.id]);
             break;
           case "projects":
-            this.data[content.id] = content;
+            this.data['projects'] = content;
             this.projectsDataSubject.next(this.data[content.id]);
             break;
           case "qPD":
-            this.data[content.id] = content;
+            this.data['qPD'] = content;
             this.qPDDataSubject.next(this.data[content.id]);
             break;
           default:
@@ -72,31 +72,12 @@ export class DataService {
     });
   }
 
-  getData(arg: "home" | "project" | "qPD" | "experience"): Home | Experience | QPD | Projects | undefined {
-    switch (arg) {
-      case "home":
-        console.log('geting home from service:', this.data[arg]);
-        if (this.data != undefined) return this.data[arg];
-        break;
-      case "experience":
-        console.log('geting data from service:', this.data[arg]);
-        if (this.data != undefined) return this.data[arg];
-        break;
-      case "projects":
-        console.log('geting data from service:', this.data[arg]);
-        if (this.data != undefined) return this.data[arg];
-        break;
-      case "qPD":
-        console.log('geting data from service:', this.data[arg]);
-        if (this.data != undefined) return this.data[arg];
-        break;
-      default:
-        break;
+  getData(arg: "home" | "projects" | "qPD" | "experience"): Home | Experience | QPD | Projects | undefined {
+
+    if (this.data[arg].en != "") {
+      console.log(`geting ${arg} from service:`, this.data[arg]);
+      return this.data[arg];
     }
-    console.log('seccione cargada exitosamente:...', this.data[content.id]);
+    return undefined;
   }
-
-}
-
-
 }

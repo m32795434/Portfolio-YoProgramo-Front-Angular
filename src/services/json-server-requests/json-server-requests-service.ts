@@ -18,7 +18,7 @@ export class JsonServerRequestsService implements RequestServicesInterface {
   //   throw new Error('Method not implemented.');
   // }
 
-  getSection(section: "home" | "project" | "qPD" | "experience"): Observable<Home | Experience | QPD | Projects> {
+  getSection(section: "home" | "projects" | "qPD" | "experience"): Observable<Home | Experience | QPD | Projects> {
     return this.http.get<Home | Experience | QPD | Projects>(`${this.apiUrl}/${section}`);
     // .pipe( //I could define the error catching here. Pipe is an Observable's method
     //   catchError(error => {

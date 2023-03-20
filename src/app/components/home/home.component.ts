@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: Home = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
+  section: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
   //contains all the slides content
   slides: HomeSlide[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
   lenguage = 'en';
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     const content = this.dataService.getData('home');
     if (content) {
       this.section = content;
-      this.slides = this.section[this.lenguage]?.slides;
+      this.slides = this.section['slides'];
     } else {
       this.dataService.getSectionFromJsonServer('home');
     }
