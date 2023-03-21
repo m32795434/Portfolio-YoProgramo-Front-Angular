@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
 import { Home, HomeSlide } from 'src/interfaces/sections-interfaces';
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
   swiper: any;
   errorMessage = '';
 
-  constructor(private loginService: LoginService, private dataService: DataService) {
+  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
@@ -90,6 +91,38 @@ export class HomeComponent implements OnInit {
     this.section[this.lenguage] = innerHTML;
     this.dataService.updateSection('home', this.section);
   }
+  //IMG SRC MODAL
+
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'loginModal',
+      size: 'lg',
+      centered: true,
+      backdrop: 'static',
+      keyboard: true,
+      // windowClass: 'my-custom-class'
+    }).result.then(
+      (result: any) => {
+        console.log(`Closed with: ${result}`);
+      },
+      (reason: any) => {
+        console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      },
+    );
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+
+
   //AVOID SANITIZER
   // getHtmlContent(content: string) {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);

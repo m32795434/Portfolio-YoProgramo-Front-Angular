@@ -54,7 +54,6 @@ export class LoginService {
         console.log(`Closed with: ${result}`)
       },
       (reason) => {
-
         console.log(`Dismissed ${this.getDismissReason(reason)}`)
       },
     );
