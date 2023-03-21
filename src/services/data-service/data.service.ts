@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { Home, Experience, QPD, Projects, Sections } from 'src/interfaces/sections-interfaces';
+import { Home, Experience, QPD, Projects, Sections, Section, StringSection } from 'src/interfaces/sections-interfaces';
 import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
 
 
@@ -37,7 +37,7 @@ export class DataService {
   getErrorObserver() {
     return this.errorSubject.asObservable();
   }
-  getSectionFromJsonServer(section: "home" | "projects" | "qPD" | "experience") {
+  getSectionFromJsonServer(section: StringSection) {
     this.JsonServer.getSection(section).subscribe({
       next: (content: Home | Experience | QPD | Projects) => {
         switch (content.id) {
@@ -72,7 +72,7 @@ export class DataService {
     });
   }
 
-  getData(arg: "home" | "projects" | "qPD" | "experience"): Home | Experience | QPD | Projects | undefined {
+  getData(arg: "home" | "projects" | "qPD" | "experience"): Section | undefined {
 
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
@@ -80,4 +80,5 @@ export class DataService {
     }
     return undefined;
   }
+
 }

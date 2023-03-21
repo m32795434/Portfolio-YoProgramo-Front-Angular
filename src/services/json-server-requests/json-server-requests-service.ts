@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { RequestServicesInterface } from 'src/interfaces/requestServicesInterface';
-import { Experience, Home, Projects, QPD } from '../../interfaces/sections-interfaces';
+import { Experience, Home, Projects, QPD, Section, StringSection } from '../../interfaces/sections-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,14 @@ export class JsonServerRequestsService implements RequestServicesInterface {
 
 
   constructor(private http: HttpClient) { }
+  updateSection(section: StringSection): Observable<Section> {
+    throw new Error('Method not implemented.');
+  }
   // getSection(section: string): Observable<Home> {
   //   throw new Error('Method not implemented.');
   // }
 
-  getSection(section: "home" | "projects" | "qPD" | "experience"): Observable<Home | Experience | QPD | Projects> {
+  getSection(section: StringSection): Observable<Section> {
     return this.http.get<Home | Experience | QPD | Projects>(`${this.apiUrl}/${section}`);
     // .pipe( //I could define the error catching here. Pipe is an Observable's method
     //   catchError(error => {
@@ -27,9 +30,10 @@ export class JsonServerRequestsService implements RequestServicesInterface {
     //   })
     // )
   }
-  // updateElContent(obj: ElInterface): Observable<ElInterface> {
-  //   return this.http.put<ElInterface>(`${this.apiUrl}/`, obj, this.config)
-  // }
+
+  updateElContent<S extends StringSection, O extends Section>(section: S, obj: O): Observable<O> {
+    return this.http.put<O>(`${this.apiUrl}/`, obj, this.config)
+  }
   // updateSlideElContent(): Observable<ElInterface> {
   //   throw new Error('Method not implemented.');
   // }

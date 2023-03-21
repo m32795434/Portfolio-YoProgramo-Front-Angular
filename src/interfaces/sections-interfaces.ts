@@ -50,4 +50,7 @@ interface Projects {
     en: string;
     es: string;
 }
-export { Home, HomeSlide, QPD, QPDSlide, Experience, ExperienceSlide, Projects, Sections }
+
+type Section = Home | QPD | Experience | Projects;
+type StringSection = "home" | "projects" | "qPD" | "experience";
+export { Home, HomeSlide, QPD, QPDSlide, Experience, ExperienceSlide, Projects, Sections, Section, StringSection }
