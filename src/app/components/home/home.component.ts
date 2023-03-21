@@ -74,10 +74,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  saveSection(content: string) {
-    console.log(content);
-    // this.dataService.updateSection('home', this.section);
-  }
+
   saveSlideEl(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
@@ -85,13 +82,13 @@ export class HomeComponent implements OnInit {
       return (el.id === targetId)
     })
     this.section.slides[index][this.lenguage] = innerHTML;
-    console.log("id:", targetId, "innerHTML", innerHTML, "this.section.slides[id][this.lenguage]", this.section.slides[index][this.lenguage]);
+    this.dataService.updateSection('home', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.lenguage] = innerHTML;
-    console.log(this.section[this.lenguage]);
+    this.dataService.updateSection('home', this.section);
   }
   //AVOID SANITIZER
   // getHtmlContent(content: string) {

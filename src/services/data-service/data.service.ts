@@ -41,8 +41,8 @@ export class DataService {
     return this.errorSubject.asObservable();
   }
   //REQUESTS
-  getSectionFromJsonServer(section: StringSection) {
-    this.JsonServer.getSection(section).subscribe({
+  subscribeSectionObjectFunct(): any {
+    const subscribeSectionObject = {
       next: (content: Home | Experience | QPD | Projects) => {
         switch (content.id) {
           case "home":
@@ -73,7 +73,12 @@ export class DataService {
       complete: () => {
         console.log('Subscription completed');
       }
-    });
+    }
+    return subscribeSectionObject;
+  }
+
+  getSectionFromJsonServer(section: StringSection) {
+    this.JsonServer.getSection(section).subscribe(this.subscribeSectionObjectFunct());
   }
 
   getData(arg: StringSection): Section | undefined {
@@ -84,7 +89,7 @@ export class DataService {
     return undefined;
   }
   updateSection(section: StringSection, obj: Section) {
-    this.JsonServer.updateSection(section, obj)
+    this.JsonServer.updateSection(section, obj).subscribe(this.subscribeSectionObjectFunct())
   }
 
 }
