@@ -66,10 +66,16 @@
         </button>
     </div>
     <div class="modal-body">
-        <form (ngSubmit)="imgSrcSubmit()">
+        <form (ngSubmit)="saveImgSrc()">
             <div class="form-group">
-                <label for="userName">User Name</label>
-                <input type="userName" class="form-control" id="userName" name="userName" [(ngModel)]="userName">
+                <label for="imgMobile">Mobile img src: </label>
+                <input type="imgMobile" class="form-control" id="imgMobile" name="imgMobile"
+                    [(ngModel)]="section.imgMobile">
+            </div>
+            <div class="form-group">
+                <label for="imgDesktop">Desktop img src: </label>
+                <input type="imgDesktop" class="form-control" id="imgDesktop" name="imgDesktop"
+                    [(ngModel)]="section.imgDesktop">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>

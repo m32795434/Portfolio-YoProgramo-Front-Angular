@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
 import { Home, HomeSlide } from 'src/interfaces/sections-interfaces';
@@ -89,6 +89,9 @@ export class HomeComponent implements OnInit {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.lenguage] = innerHTML;
+    this.dataService.updateSection('home', this.section);
+  }
+  saveImgSrc() {
     this.dataService.updateSection('home', this.section);
   }
   //IMG SRC MODAL
