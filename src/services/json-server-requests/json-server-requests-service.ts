@@ -14,15 +14,12 @@ export class JsonServerRequestsService implements RequestServicesInterface {
 
 
   constructor(private http: HttpClient) { }
-  updateSection(section: StringSection): Observable<Section> {
-    throw new Error('Method not implemented.');
+  updateSection(section: StringSection, obj: Section): Observable<Section> {
+    return this.http.put<Section>(`${this.apiUrl}/${section}`, obj, this.config)
   }
-  // getSection(section: string): Observable<Home> {
-  //   throw new Error('Method not implemented.');
-  // }
 
   getSection(section: StringSection): Observable<Section> {
-    return this.http.get<Home | Experience | QPD | Projects>(`${this.apiUrl}/${section}`);
+    return this.http.get<Section>(`${this.apiUrl}/${section}`);
     // .pipe( //I could define the error catching here. Pipe is an Observable's method
     //   catchError(error => {
     //     console.error('Error al obtener la seccion', error);
@@ -30,13 +27,6 @@ export class JsonServerRequestsService implements RequestServicesInterface {
     //   })
     // )
   }
-
-  updateElContent<S extends StringSection, O extends Section>(section: S, obj: O): Observable<O> {
-    return this.http.put<O>(`${this.apiUrl}/`, obj, this.config)
-  }
-  // updateSlideElContent(): Observable<ElInterface> {
-  //   throw new Error('Method not implemented.');
-  // }
 }
 /*
 private apiUrl = 'http://localhost:5000/tasks';

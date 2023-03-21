@@ -25,23 +25,23 @@
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <div class="d-flex flex-fill">
-                <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
-                    id="h1HomeEn" [innerHTML]="lenguage === 'en'? section?.en : section?.es">
-                </h1>
                 <button class="save-button rounded-circle material-symbols-outlined" data-id="h1HomeEn"
-                    [hidden]="!logged">save</button>
+                    [hidden]="!logged" (click)="saveH1($event)">save</button>
+                <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
+                    id="h1HomeEn" [innerHTML]="lenguage === 'en'? section?.en : section?.es" #h1>
+                </h1>
             </div>
 
             <div class="swiper flex-fill">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <div *ngFor="let slide of slides" class="swiper-slide">
+                    <div *ngFor="let slide of slides, let i=index" class="swiper-slide">
                         <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="slide.id"
-                            [hidden]="!logged">save</button>
+                            [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
 
                         <p [innerHTML]="lenguage === 'en'? slide.en : slide.es" class="p-3 m-0 text-center edit-content"
-                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged">
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="slide.id">
                         </p>
                     </div>
                 </div>

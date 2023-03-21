@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
 import { Home, HomeSlide } from 'src/interfaces/sections-interfaces';
@@ -18,6 +18,7 @@ declare global {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
@@ -72,6 +73,25 @@ export class HomeComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       }
     });
+  }
+  saveSection(content: string) {
+    console.log(content);
+    // this.dataService.updateSection('home', this.section);
+  }
+  saveSlideEl(e: any) {
+    const targetId = e.target.dataset.id;
+    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+    const index = this.section.slides.findIndex((el: HomeSlide) => {
+      return (el.id === targetId)
+    })
+    this.section.slides[index][this.lenguage] = innerHTML;
+    console.log("id:", targetId, "innerHTML", innerHTML, "this.section.slides[id][this.lenguage]", this.section.slides[index][this.lenguage]);
+  }
+  saveH1(e: any) {
+    const targetId = e.target.dataset.id;
+    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+    this.section[this.lenguage] = innerHTML;
+    console.log(this.section[this.lenguage]);
   }
   //AVOID SANITIZER
   // getHtmlContent(content: string) {

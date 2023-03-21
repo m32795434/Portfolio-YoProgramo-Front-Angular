@@ -8,11 +8,13 @@ import { JsonServerRequestsService } from '../json-server-requests/json-server-r
   providedIn: 'root'
 })
 export class DataService {
+  //SUBJECTS
   private homeDataSubject = new Subject<any>();
   private experienceDataSubject = new Subject<any>();
   private qPDDataSubject = new Subject<any>();
   private projectsDataSubject = new Subject<any>();
   private errorSubject = new Subject<any>();
+
   protected data: Sections = {
     home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
     experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
@@ -21,6 +23,7 @@ export class DataService {
   };
   constructor(private JsonServer: JsonServerRequestsService) { }
 
+  //GET OBSERVERS
   getHomeDataObserver() {
     return this.homeDataSubject.asObservable();
   }
@@ -37,6 +40,7 @@ export class DataService {
   getErrorObserver() {
     return this.errorSubject.asObservable();
   }
+  //REQUESTS
   getSectionFromJsonServer(section: StringSection) {
     this.JsonServer.getSection(section).subscribe({
       next: (content: Home | Experience | QPD | Projects) => {
@@ -72,13 +76,15 @@ export class DataService {
     });
   }
 
-  getData(arg: "home" | "projects" | "qPD" | "experience"): Section | undefined {
-
+  getData(arg: StringSection): Section | undefined {
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
     }
     return undefined;
+  }
+  updateSection(section: StringSection, obj: Section) {
+    this.JsonServer.updateSection(section, obj)
   }
 
 }
