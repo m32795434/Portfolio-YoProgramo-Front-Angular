@@ -99,6 +99,5 @@ export class HomeComponent implements OnInit {
   }
 }
 /************************************
-TODO:
-save-buttons + set id of every element, to the respective button
+
 **************************************/

@@ -10,7 +10,6 @@ export class LoginService {
   private logged = false;
   private loggedSubject = new Subject<any>();
   modalRef?: NgbModalRef;
-  closeResult = '';
 
   constructor(private modalService: NgbModal) { }
 
@@ -52,10 +51,11 @@ export class LoginService {
     });
     this.modalRef.result.then(
       (result) => {
-        this.closeResult = `Closed with: ${result}`;
+        console.log(`Closed with: ${result}`)
       },
       (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
+        console.log(`Dismissed ${this.getDismissReason(reason)}`)
       },
     );
 
