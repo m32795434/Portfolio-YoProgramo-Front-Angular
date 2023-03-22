@@ -5,40 +5,36 @@
                 src="../src/images/Experience-mobile.png" alt="Manuel perfil" id="imgMobileQa">
             <img class="d-none d-lg-block desktop imgsToChange edit-content" data-z="423 x 756"
                 src="../src/images/experience-md-1920.png" alt="Manuel perfil" id="imgDesktopQa">
-            <input type="file" accept="image/*" id="changeImg" hidden>
-            <button class="edit-button changeImg edit-top-left rounded-circle material-symbols-outlined"
+            <!-- <button class="edit-button changeImg edit-top-left rounded-circle material-symbols-outlined"
                 data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
-                data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button>
-            <div class="d-flex wrapper-h1-Edit-button-experience">
+                data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button> -->
+            <div class="d-flex wrapper-h1-Edit-button">
                 <h1 class=" edit-content" contenteditable="false" id="h1Qual">Qualifications & P.D.</h1>
                 <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
             </div>
         </div>
         <div class="col-12 col-lg-9 m-0 p-0">
-            <div class="d-grid slider-experience">
-                <div class="swiper flex-fill">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div *ngFor="let slide of slides, let i=index" class="swiper-slide">
-                            <button class="save-button rounded-circle material-symbols-outlined"
-                                [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
+            <div class="swiper flex-fill">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div *ngFor="let slide of slides, let i=index" class="swiper-slide">
+                        <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="slide.id"
+                            [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
 
-                            <p [innerHTML]="lenguage === 'en'? slide.en : slide.es"
-                                class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                                [contentEditable]="logged" #p{{i}} [id]="slide.id">
-                            </p>
-                        </div>
+                        <p [innerHTML]="lenguage === 'en'? slide.en : slide.es" class="p-3 m-0 text-center edit-content"
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="slide.id">
+                        </p>
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-
-                    <!-- If we need navigation buttons -->
-                    <div class="d-none d-lg-block swiper-button-prev"></div>
-                    <div class="d-none d-lg-block swiper-button-next"></div>
                 </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
 
+                <!-- If we need navigation buttons -->
+                <div class="d-none d-lg-block swiper-button-prev"></div>
+                <div class="d-none d-lg-block swiper-button-next"></div>
             </div>
+
         </div>
     </div>
 </main>
