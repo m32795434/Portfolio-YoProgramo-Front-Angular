@@ -25,7 +25,7 @@
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <div class="d-flex flex-fill">
-                <button class="save-button rounded-circle material-symbols-outlined" data-id="h1HomeEn"
+                <button class="save-button rounded-circle save-top-right material-symbols-outlined" data-id="h1HomeEn"
                     [hidden]="!logged" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
                     id="h1HomeEn" [innerHTML]="lenguage === 'en'? section?.en : section?.es" #h1>
