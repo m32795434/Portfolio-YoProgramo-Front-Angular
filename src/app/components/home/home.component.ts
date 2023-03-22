@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
-      console.log('logged at home?', this.logged);
     });
 
     this.dataSubscription = this.dataService.getHomeDataObserver().subscribe((section) => {
@@ -98,7 +97,7 @@ export class HomeComponent implements OnInit {
 
   open(content: TemplateRef<any>) {
     this.modalService.open(content, {
-      ariaLabelledBy: 'loginModal',
+      ariaLabelledBy: 'imgSrcModal',
       size: 'lg',
       centered: true,
       backdrop: 'static',

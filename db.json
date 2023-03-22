@@ -71,13 +71,14 @@
     },
     {
       "id": "qPD",
-      "imgMobile": "http://localhost:1234/Experience-mobile.a8a110b4.png",
-      "imgDesktop": "http://localhost:1234/experience-md-1920.77cae3bd.png",
+      "imgMobile": "../../../assets/images/Experience-mobile.png",
+      "imgDesktop": "../../../assets/images/experience-md-1920.png",
       "en": "Qualifications &amp; P.D.",
       "es": "Estudios y Certificaciones",
       "slides": [
         {
           "id": "S1",
+          "img": "../../../assets/images/ArgProgIcon.png",
           "h2": {
             "es": "\n                                Programador Full\n                                Stack Junior\n                                <br>06/2022-05/2023\n                            ",
             "en": "Full Stack Junior\n                                Developer\n                                <br>06/2022-05/2023\n                            "
@@ -89,6 +90,7 @@
         },
         {
           "id": "S2",
+          "img": "",
           "h2": {
             "es": "\n                                Programación\n                                Informática\n                                <br>07/2022- ~09/2023\n                            ",
             "en": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            "
@@ -100,6 +102,7 @@
         },
         {
           "id": "S3",
+          "img": "",
           "h2": {
             "es": "Curso de\n                                Javascript\n                                <br>09/2021-12/2021\n                            ",
             "en": "Javascript\n                                <br>09/2021-12/2021\n                            "
@@ -111,6 +114,7 @@
         },
         {
           "id": "S4",
+          "img": "",
           "h2": {
             "es": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            ",
             "en": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            "
@@ -122,6 +126,7 @@
         },
         {
           "id": "S5",
+          "img": "",
           "h2": {
             "es": "Tec. Sup.\n                                Mantenimiento Industrial (Completo)\n                                <br>03/2008-08/2010\n                            ",
             "en": "Technician\n                                in Industrial Maintenance (Complete)\n                                <br>03/2008-08/2010\n                            "
@@ -133,6 +138,7 @@
         },
         {
           "id": "S6",
+          "img": "",
           "h2": {
             "es": "TEC.\n                                Martillero\n                                Público y C.C. (Incompleto)\n                                <br>03/2019-02/2021\n                            ",
             "en": "Auctioneer Tec.\n                                and Broker (Incomplete)\n                                <br>03/2019-02/2021\n                            "
@@ -144,6 +150,7 @@
         },
         {
           "id": "S7",
+          "img": "",
           "h2": {
             "es": "Cont.\n                                Público\n                                Nacional (Incompleto)\n                                <br>03/2011-12/2012\n                            ",
             "en": " Public Accountant\n                                (Incomplete)\n                                <br>03/2011-12/2012\n                            "
@@ -155,6 +162,7 @@
         },
         {
           "id": "S8",
+          "img": "",
           "h2": {
             "es": "Ing.\n                                Electrónica\n                                (Incompleto)\n                                <br>02/2005-12/2005\n                            ",
             "en": "Electronic Ing.\n                                (Incomplete)\n                                <br>02/2005-12/2005\n                            "
