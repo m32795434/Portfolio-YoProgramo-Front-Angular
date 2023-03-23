@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { HomeSlide } from 'src/interfaces/sections-interfaces';
+import { HomeSlide, QPDSlide } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,10 +24,16 @@ export class QPDComponent implements OnInit {
   //contains all
   section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
   //contains all the slides content
-  slides: HomeSlide[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
+  slides: QPDSlide[] = [{
+    id: "id", img: "",
+    h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
+    ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+  }]
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
+  slidesIndex = 0;
+
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
@@ -87,7 +93,8 @@ export class QPDComponent implements OnInit {
   }
   //IMG SRC MODAL
 
-  open(content: TemplateRef<any>) {
+  open(content: TemplateRef<any>, index?: any) {
+    this.slidesIndex = index;
     this.modalService.open(content, {
       ariaLabelledBy: 'imgSrcModal',
       size: 'lg',

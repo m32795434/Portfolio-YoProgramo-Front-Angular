@@ -27,9 +27,9 @@ interface QPD {
 }
 interface QPDSlide {
     id: string;
-    h2: string;
-    es: string;
-    en: string;
+    img: string;
+    h2: { en: string, es: string };
+    ph: { en: string, es: string };
 }
 interface Experience {
     id: "experience";
