@@ -33,6 +33,8 @@ export class QPDComponent implements OnInit {
   swiper: any;
   errorMessage = '';
   slidesIndex = 0;
+  // greaterThan975 = false;
+
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -46,6 +48,7 @@ export class QPDComponent implements OnInit {
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
   ngOnInit(): void {
+    // window.onresize = this.checkForResize;
     const content = this.dataService.getData('qPD');
     if (content) {
       this.section = content;
@@ -56,7 +59,25 @@ export class QPDComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
+    // this.checkForResize();
   }
+
+  // checkForResize = (): void => {
+  //   const widthViewPort: any = window?.visualViewport?.width;
+  //   if (widthViewPort != null) {
+  //     if (widthViewPort > 975.2) {
+  //       this.greaterThan975 = true;
+  //       this.swiper.destroy();
+  //     } else if (widthViewPort < 975.2) {
+  //       this.greaterThan975 = false;
+  //       if (this.swiper?.destroyed === true || this.swiper === undefined) {
+  //         console.log(this.swiper)
+  //       }
+  //     }
+  //   }
+
+  // }
+
   async initSwiper() {
     await wait(1000);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.swiper', {

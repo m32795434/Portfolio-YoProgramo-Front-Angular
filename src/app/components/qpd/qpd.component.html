@@ -21,7 +21,32 @@
                     [innerHTML]="lenguage === 'en'? section?.en : section?.es"></h1>
             </div>
         </div>
-        <div class="swiper col-12 col-lg-9 m-0 p-0">
+        <div class="cardWrapper d-none d-lg-block col-lg-9 m-0 p-0">
+            <div *ngFor="let slide of slides, let i=index" class="myCard">
+                <div class="d-flex justify-content-center my-2">
+                    <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+                        [hidden]="!logged" (click)="open(slideImgSrcModal, i)">settings</button>
+                    <img [src]="slide.img" alt="Company Logo" class="rounded-circle">
+                </div>
+                <div>
+                    <button class="save-button rounded-circle save-top-right material-symbols-outlined" data-id="h2S2Qa"
+                        [hidden]="!logged" (click)="saveH1($event)">save</button>
+                    <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
+                        [contentEditable]="logged" id="h2S2Qa"
+                        [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
+                    </h2>
+                </div>
+                <div>
+                    <button class="save-button rounded-circle save-top-left material-symbols-outlined"
+                        [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
+                    <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
+                        class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
+                        [contentEditable]="logged" #p{{i}} [id]="slide.id">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper d-lg-none col-12 col-lg-9 m-0 p-0">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
@@ -54,8 +79,8 @@
             <div class="swiper-pagination"></div>
 
             <!-- If we need navigation buttons -->
-            <div class="d-none d-lg-block swiper-button-prev"></div>
-            <div class="d-none d-lg-block swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
 </main>
