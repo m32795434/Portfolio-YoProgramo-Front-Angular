@@ -94,7 +94,7 @@
             // width: 100%;
             background-color: #f7f7f7;
             border: 2px solid grey;
-            box-shadow: 1px 1px 5px 2px #0a0202;
+            box-shadow: 1px 1px 5px 2px grey;
             //only in experience!
             // & .edit-h2-slide-ex {
             //     position: absolute;
@@ -148,6 +148,7 @@
 
     & .swiper-button-prev,
     .swiper-button-next {
+        top: 80%;
         border-radius: 6px;
         outline: 2px solid gray;
         color: red;
