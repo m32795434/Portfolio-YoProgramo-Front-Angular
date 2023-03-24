@@ -4,6 +4,10 @@ import { HomeSlide, QPDSlide } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+//DATEPICKER
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+
 import { wait } from 'src/app/libraries/utils';
 declare global {
   interface Window {
@@ -13,7 +17,7 @@ declare global {
 @Component({
   selector: 'app-qpd',
   templateUrl: './qpd.component.html',
-  styleUrls: ['./qpd.component.scss']
+  styleUrls: ['./qpd.component.scss'],
 })
 export class QPDComponent implements OnInit {
   // @ViewChild('h1') h1: any;
@@ -45,6 +49,7 @@ export class QPDComponent implements OnInit {
   errorMessage = '';
   slidesIndex = 0;
   // greaterThan975 = false;
+  model?: NgbDateStruct;
 
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {

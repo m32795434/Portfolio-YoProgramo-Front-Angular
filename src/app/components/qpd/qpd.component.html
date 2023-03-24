@@ -142,4 +142,15 @@
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
     </div>
+    <form class="row row-cols-sm-auto">
+        <div class="col-12">
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker" />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <pre>Model: {{ model | json }}</pre>
 </ng-template>
