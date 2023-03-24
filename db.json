@@ -78,10 +78,16 @@
       "slides": [
         {
           "id": "S1",
-          "img": "../../../assets/images/ArgProgIcon.png",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Argentina Programa"
+          },
           "h2": {
             "es": "\n                                Programador Full\n                                Stack Junior\n                                <br>06/2022-05/2023\n                            ",
             "en": "Full Stack Junior\n                                Developer\n                                <br>06/2022-05/2023\n                            "
+          },
+          "h4": {
+            "text": "Argentina Programa"
           },
           "ph": {
             "es": "\n                                    Primeramente se nos capacitó en Fundamentos de la Programacion, Programacion\n                                    Imperativa, POO. - (Finalizado)\n                                    Posteriormente se capacita en la programación Full Stack centrada en las\n                                    tecnologías: Boostrap, Angular, Typescript, Java y María DB. - (Cursando ~50%)\n                                ",
@@ -90,10 +96,16 @@
         },
         {
           "id": "S2",
-          "img": "../../../assets/images/udemy.png",
+          "img": {
+            "src": "../../../assets/images/udemy.png",
+            "alt": "Udemy"
+          },
           "h2": {
             "es": "\n                                Programación\n                                Informática\n                                <br>07/2022- ~09/2023\n                            ",
             "en": "Software\n                                Programming\n                                <br>07/2022- ~09/2023\n                            "
+          },
+          "h4": {
+            "text": "Udemy"
           },
           "ph": {
             "es": "\n                                    Cursando actualmente: <br>\n                                    Angular de \"Cero a Experto\" de Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" de Stephen Grider <br>\n                                    Master completo en Java de Andrés José Guzmán.\n                                ",
@@ -102,10 +114,16 @@
         },
         {
           "id": "S3",
-          "img": "../../../assets/images/wes.png",
+          "img": {
+            "src": "../../../assets/images/wes.png",
+            "alt": "Wes Bos"
+          },
           "h2": {
             "es": "Curso de\n                                Javascript\n                                <br>09/2021-12/2021\n                            ",
             "en": "Javascript\n                                <br>09/2021-12/2021\n                            "
+          },
+          "h4": {
+            "text": "Wes Bos"
           },
           "ph": {
             "es": "\n                                    Este curso entrena sobre los aspectos más significativos de Javascript incluído ES6\n                                    en adelante. Programación imperativa y POO. Aprendí a crear sliders, modals, tab\n                                    panels, galleries; realizar fetch a diferentes Apis externas, y manejar algunas Apis\n                                    muy\n                                    interesantes del explorador como DOM, MediaDevices, AudioContext, Canvas,\n                                    Intersection Observer,\n                                    FaceDetector, entre\n                                    otras. Si bien terminé el curso en Dic/2021, he reescrito el código original\n                                    varias veces aplicando buenas prácticas y POO.",
@@ -114,10 +132,16 @@
         },
         {
           "id": "S4",
-          "img": "../../../assets/images/regional-bs.png",
+          "img": {
+            "src": "../../../assets/images/regional-bs.png",
+            "alt": "Universidad Tecnológica Nacional Regional Buenos Aires"
+          },
           "h2": {
             "es": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            ",
             "en": "PROFESSIONAL\n                                WEBMASTER\n                                <br>04/2021-08/2021\n                            "
+          },
+          "h4": {
+            "text": "UTN - Regional Buenos Aires"
           },
           "ph": {
             "es": "\n                                    Desarrollo de sitios y aplicaciones web. HTML, SCSS, Js, Bootstrap, Principios de\n                                    diseño responsive y accesibilidad; Angular, MaríaDB, NodeJs, Express.\n                                ",
@@ -126,10 +150,16 @@
         },
         {
           "id": "S5",
-          "img": "../../../assets/images/utnIcon.png",
+          "img": {
+            "src": "../../../assets/images/utnIcon.png",
+            "alt": "Universidad Tecnológica Nacional"
+          },
           "h2": {
             "es": "Tec. Sup.\n                                Mantenimiento Industrial (Completo)\n                                <br>03/2008-08/2010\n                            ",
             "en": "Technician\n                                in Industrial Maintenance (Complete)\n                                <br>03/2008-08/2010\n                            "
+          },
+          "h4": {
+            "text": "Universidad Tecnológica Nacional"
           },
           "ph": {
             "es": "\n                                    Destaco lo aprendido sobre Programación de Plcs, Electrotecnia, Mantenimiento\n                                    Industrial, Tecnología de materiales, Informática, Inglés, Mecánica e Hidráulica,\n                                    entre\n                                    otras...",
@@ -138,10 +168,16 @@
         },
         {
           "id": "S6",
-          "img": "../../../assets/images/unl.png",
+          "img": {
+            "src": "../../../assets/images/unl.png",
+            "alt": "Universidad Nacional del Litoral"
+          },
           "h2": {
             "es": "TEC.\n                                Martillero\n                                Público y C.C. (Incompleto)\n                                <br>03/2019-02/2021\n                            ",
             "en": "Auctioneer Tec.\n                                and Broker (Incomplete)\n                                <br>03/2019-02/2021\n                            "
+          },
+          "h4": {
+            "text": "Universidad Nacional del Litoral"
           },
           "ph": {
             "es": "\n                                    Un gran trayecto formativo en tasaciones y contratos. Si bien me gustó mucho la\n                                    carrera, me reecontré con la programación y al día de hoy hacen 2 años que no dejo\n                                    de programar ni un solo día.",
@@ -150,10 +186,16 @@
         },
         {
           "id": "S7",
-          "img": "../../../assets/images/uner.png",
+          "img": {
+            "src": "../../../assets/images/uner.png",
+            "alt": "Universidad Nacional de Entre Ríos"
+          },
           "h2": {
             "es": "Cont.\n                                Público\n                                Nacional (Incompleto)\n                                <br>03/2011-12/2012\n                            ",
             "en": " Public Accountant\n                                (Incomplete)\n                                <br>03/2011-12/2012\n                            "
+          },
+          "h4": {
+            "text": "Universidad Nacional de Entre Ríos"
           },
           "ph": {
             "es": "\n                                    Cursé 2 años de esta carrera adquiriendo conocimientos de Contabilidad,\n                                    administración, tesorería, matemáticas. Abandoné este trayecto\n                                    formativo, para poder emprender en un negocio del que fui co-titular por 4 años.",
@@ -162,10 +204,16 @@
         },
         {
           "id": "S8",
-          "img": "../../../assets/images/unr.png",
+          "img": {
+            "src": "../../../assets/images/unr.png",
+            "alt": "Universidad Nacional de Rosario"
+          },
           "h2": {
             "es": "Ing.\n                                Electrónica\n                                (Incompleto)\n                                <br>02/2005-12/2005\n                            ",
             "en": "Electronic Ing.\n                                (Incomplete)\n                                <br>02/2005-12/2005\n                            "
+          },
+          "h4": {
+            "text": "Universidad Nacional de Rosario"
           },
           "ph": {
             "es": "\n                                    Aunque cursé solo el primer año, destaco de este trayecto un gran entrenamiento en\n                                    algoritmos de programación y matemáticas, lo que claramente marcó mi inclinación por\n                                    la programación.",

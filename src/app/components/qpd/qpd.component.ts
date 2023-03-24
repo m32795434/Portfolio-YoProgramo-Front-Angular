@@ -25,8 +25,9 @@ export class QPDComponent implements OnInit {
   section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
   //contains all the slides content
   slides: QPDSlide[] = [{
-    id: "id", img: "",
+    id: "id", img: { src: "", alt: "" },
     h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
+    h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
   lenguage = 'en';
@@ -44,6 +45,7 @@ export class QPDComponent implements OnInit {
     this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
       this.section = section;
       this.slides = this.section['slides'];
+      console.log('slides!', this.slides)
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
