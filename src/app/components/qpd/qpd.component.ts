@@ -26,6 +26,16 @@ export class QPDComponent implements OnInit {
   //contains all the slides content
   slides: QPDSlide[] = [{
     id: "id", img: { src: "", alt: "" },
+    dateS: {
+      year: 2022,
+      month: 6,
+      day: 1
+    },
+    dateE: {
+      year: 2023,
+      month: 5,
+      day: 31
+    },
     h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
     h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
