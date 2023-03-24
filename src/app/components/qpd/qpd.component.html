@@ -29,7 +29,7 @@
                 <div *ngFor="let slide of slides, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button changeImg save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged" (click)="open(slideImgSrcModal, i)"
+                            [hidden]="!logged" (click)="open(slideModal, i)"
                             aria-label="Change institution image">settings</button>
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
@@ -64,22 +64,19 @@
                 <div *ngFor="let slide of slides, let i=index" class="swiper-slide w-100 card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button changeImg save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged" (click)="open(slideImgSrcModal, i)">settings</button>
+                            [hidden]="!logged" (click)="open(slideModal, i)">settings</button>
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
-                    <div>
+                    <div class="slideTitleDateWrapper">
                         <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)">save</button>
-                        <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="h2S2Qa"
-                            [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
+                        <h2 class="text-start edit-content" [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
                         </h2>
-                        <h4 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="#" [innerHTML]=" slide.h4.text">
+                        <h4 class="text-start edit-content" [innerHTML]=" slide.h4.text">
                         </h4>
-                        <p></p>
+                        <p>{{slide.dateS.month}}/{{slide.dateS.year}}-{{slide.dateE.month}}/{{slide.dateE.year}}</p>
                     </div>
-                    <div>
+                    <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
@@ -125,7 +122,7 @@
     </div>
 </ng-template>
 
-<ng-template #slideImgSrcModal let-modal class="imgSrcModal">
+<ng-template #slideModal let-modal class="imgSrcModal">
     <div class="modal-header">
         <h4 class="modal-title">Set Img Src</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
