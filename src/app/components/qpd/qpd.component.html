@@ -1,5 +1,5 @@
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
-    <div class="d-flex flex-column flex-lg-row m-0 p-0">
+    <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0">
         <div class="col-12 col-lg-3 flex-fill p-0 m-0">
             <div class="d-lg-none">
                 <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
@@ -48,11 +48,11 @@
                 </div>
             </div>
         </div>
-        <div class="swiper flex-fill d-lg-none col-12 m-0 p-0">
+        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Slides -->
-                <div *ngFor="let slide of slides, let i=index" class="swiper-slide">
+                <div *ngFor="let slide of slides, let i=index" class="swiper-slide w-100 card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(slideImgSrcModal, i)">settings</button>

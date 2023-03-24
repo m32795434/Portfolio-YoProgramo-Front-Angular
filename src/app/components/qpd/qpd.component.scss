@@ -83,16 +83,18 @@
 }
 
 .swiper {
+    // width: 100%;
 
     & .swiper-wrapper {
         height: 460px;
         // height: 390px;//EXPERIENCE
-        width: 100%;
+        // width: 100%;
 
         & .swiper-slide {
-            width: 100%;
+            // width: 100%;
             background-color: #f7f7f7;
-
+            border: 2px solid grey;
+            box-shadow: 1px 1px 5px 2px #0a0202;
             //only in experience!
             // & .edit-h2-slide-ex {
             //     position: absolute;
