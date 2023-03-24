@@ -2,21 +2,21 @@
     <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0">
         <div class="col-12 col-lg-3 flex-fill p-0 m-0">
             <div class="d-lg-none">
-                <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+                <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal)">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
                     [src]="section?.imgMobile" id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
-                <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+                <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal)">settings</button>
                 <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="section?.imgDesktop"
                     alt="Manuel perfil" id="imgDesktopQa">
             </div>
 
             <div class="d-flex wrapper-h1-Edit-button">
-                <button class="save-button rounded-circle save-top-right material-symbols-outlined" data-id="h1Qual"
-                    [hidden]="!logged" (click)="saveH1($event)">save</button>
+                <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
+                    data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
                     [innerHTML]="lenguage === 'en'? section?.en : section?.es"></h1>
             </div>
@@ -25,20 +25,20 @@
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let slide of slides, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
-                        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+                        <button class="save-button changeImg save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(slideImgSrcModal, i)">settings</button>
                         <img [src]="slide.img" alt="Company Logo" class="rounded-circle">
                     </div>
                     <div>
-                        <button class="save-button rounded-circle save-top-right material-symbols-outlined"
-                            data-id="h2S2Qa" [hidden]="!logged" (click)="saveH1($event)">save</button>
+                        <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
+                            [hidden]="!logged" (click)="saveH1($event)">save</button>
                         <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" id="h2S2Qa"
                             [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
                         </h2>
                     </div>
                     <div>
-                        <button class="save-button rounded-circle save-top-left material-symbols-outlined"
+                        <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
@@ -54,20 +54,20 @@
                 <!-- Slides -->
                 <div *ngFor="let slide of slides, let i=index" class="swiper-slide w-100 card">
                     <div class="d-flex justify-content-center my-2">
-                        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+                        <button class="save-button changeImg save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(slideImgSrcModal, i)">settings</button>
                         <img [src]="slide.img" alt="Company Logo" class="rounded-circle">
                     </div>
                     <div>
-                        <button class="save-button rounded-circle save-top-right material-symbols-outlined"
-                            data-id="h2S2Qa" [hidden]="!logged" (click)="saveH1($event)">save</button>
+                        <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
+                            [hidden]="!logged" (click)="saveH1($event)">save</button>
                         <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" id="h2S2Qa"
                             [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
                         </h2>
                     </div>
                     <div>
-                        <button class="save-button rounded-circle save-top-left material-symbols-outlined"
+                        <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"

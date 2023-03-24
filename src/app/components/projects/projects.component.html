@@ -1,7 +1,7 @@
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 mainProjects">
     <div class="m-0 p-0 titleAndButtons">
         <div class="p-0 m-0 titleWrapper">
-            <button class="save-button rounded-circle save-top-right material-symbols-outlined" data-id="h1Proj"
+            <button class="save-button rounded-circle save-top save-right material-symbols-outlined" data-id="h1Proj"
                 [hidden]="!logged" (click)="saveH1($event)">save</button>
             <!-- <input type="file" accept="image/*" id="changeImg" hidden>
             <button class="edit-button edit-top-left changeImg rounded-circle material-symbols-outlined"

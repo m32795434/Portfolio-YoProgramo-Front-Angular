@@ -69,20 +69,22 @@
     }
 }
 
-.save-top-left {
+.save-top {
+    top: -30px;
+}
+
+.save-left {
     position: absolute;
     z-index: 11;
-    top: -30px;
     left: 5px;
 }
 
-
-.save-top-right {
+.save-right {
     position: absolute;
     z-index: 11;
-    top: -30px;
     left: 85%;
 }
+
 
 //-------------------SWIPER-------------------
 
@@ -119,4 +121,11 @@
 .form-control:hover {
     border-radius: 7px;
     box-shadow: 0 0 7px 4px #8a8989;
+}
+
+//-------------------CONTENT EDITABLE TRUE-------------------
+
+.contentEditableTrue {
+    caret-color: red !important;
+    background-color: #2e01ff40 !important;
 }

@@ -1,19 +1,19 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
     <div class="d-lg-none">
-        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined" [hidden]="!logged"
-            (click)="open(imgSrcModal)">settings</button>
+        <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
+            [hidden]="!logged" (click)="open(imgSrcModal)">settings</button>
         <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobile" alt="Manuel perfil"
             id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
-        <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined" [hidden]="!logged"
-            (click)="open(imgSrcModal)">settings</button>
+        <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
+            [hidden]="!logged" (click)="open(imgSrcModal)">settings</button>
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
     <!-- <input type="file" accept="image/*" id="changeImg" hidden>
-    <button class="save-button changeImg save-top-left rounded-circle material-symbols-outlined"
+    <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
       data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
       data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button> -->
 
@@ -25,8 +25,8 @@
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <div class="d-flex flex-fill">
-                <button class="save-button rounded-circle save-top-right material-symbols-outlined" data-id="h1HomeEn"
-                    [hidden]="!logged" (click)="saveH1($event)">save</button>
+                <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
+                    data-id="h1HomeEn" [hidden]="!logged" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
                     id="h1HomeEn" [innerHTML]="lenguage === 'en'? section?.en : section?.es" #h1>
                 </h1>
