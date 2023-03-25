@@ -127,7 +127,8 @@ export class QPDComponent implements OnInit {
     this.section[this.lenguage] = innerHTML;
     this.dataService.updateSection('qPD', this.section);
   }
-  saveImgSrc() {
+  updateSlide() {
+    console.log('updating with:', this.section);
     this.dataService.updateSection('qPD', this.section);
   }
   //IMG SRC MODAL

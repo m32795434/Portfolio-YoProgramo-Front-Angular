@@ -78,12 +78,12 @@
       "slides": [
         {
           "id": "S1",
-          "dateS": {
+          "startDate": {
             "year": "2022",
             "month": "6",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2023",
             "month": "5",
             "day": "31"
@@ -106,12 +106,12 @@
         },
         {
           "id": "S2",
-          "dateS": {
+          "startDate": {
             "year": "2022",
             "month": "7",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2023",
             "month": "9",
             "day": "30"
@@ -134,12 +134,12 @@
         },
         {
           "id": "S3",
-          "dateS": {
+          "startDate": {
             "year": "2021",
             "month": "9",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2021",
             "month": "12",
             "day": "31"
@@ -162,12 +162,12 @@
         },
         {
           "id": "S4",
-          "dateS": {
+          "startDate": {
             "year": "2021",
             "month": "4",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2021",
             "month": "8",
             "day": "31"
@@ -190,12 +190,12 @@
         },
         {
           "id": "S5",
-          "dateS": {
+          "startDate": {
             "year": "2008",
             "month": "3",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2010",
             "month": "8",
             "day": "31"
@@ -218,12 +218,12 @@
         },
         {
           "id": "S6",
-          "dateS": {
+          "startDate": {
             "year": "2019",
             "month": "3",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2021",
             "month": "2",
             "day": "28"
@@ -246,12 +246,12 @@
         },
         {
           "id": "S7",
-          "dateS": {
+          "startDate": {
             "year": "2011",
             "month": "3",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2012",
             "month": "12",
             "day": "31"
@@ -274,12 +274,12 @@
         },
         {
           "id": "S8",
-          "dateS": {
+          "startDate": {
             "year": "2005",
             "month": "2",
             "day": "1"
           },
-          "dateE": {
+          "endDate": {
             "year": "2005",
             "month": "12",
             "day": "31"

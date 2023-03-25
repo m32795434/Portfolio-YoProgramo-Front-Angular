@@ -34,9 +34,9 @@
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
                     <div>
-                        <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
+                        <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)"
-                            aria-label="Change institution name">save</button>
+                            aria-label="Change institution name">save</button> -->
                         <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" id="h2S2Qa"
                             [innerHTML]="lenguage === 'en'? slide.h2.en : slide.h2.es">
@@ -44,6 +44,8 @@
                         <h4 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" id="#" [innerHTML]=" slide.h4.text">
                         </h4>
+                        <p>{{slide.startDate.month}}/{{slide.startDate.year}}-{{slide.endDate.month}}/{{slide.endDate.year}}
+                        </p>
                     </div>
                     <div>
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
@@ -75,8 +77,8 @@
                         </h2>
                         <h4 class="text-start edit-content" [innerHTML]=" slide.h4.text">
                         </h4>
-                        <!-- <p>{{slide.startDate.month}}/{{slide.startDate.year}}-{{slide.endDate.month}}/{{slide.endDate.year}}
-                        </p> -->
+                        <p>{{slide.startDate.month}}/{{slide.startDate.year}}-{{slide.endDate.month}}/{{slide.endDate.year}}
+                        </p>
                     </div>
                     <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
@@ -109,7 +111,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <form (ngSubmit)="saveImgSrc()">
+        <form (ngSubmit)="updateSlide()">
             <div class="form-group">
                 <label for="imgMobile">Mobile img src: </label>
                 <input type="text" class="form-control" id="imgMobile" name="imgMobile" [(ngModel)]="section.imgMobile">
@@ -132,27 +134,27 @@
         </button>
     </div>
     <div class="modal-body">
-        <form (ngSubmit)="saveImgSrc()">
+        <form (ngSubmit)="updateSlide()">
             <div class="form-group">
                 <label for="companyImg">Company img src: </label>
                 <input type="text" class="form-control" id="companyImg" name="companyImg"
-                    [(ngModel)]="slides[slidesIndex].img.src">
+                    [(ngModel)]="section.slides[slidesIndex].img.src">
             </div>
             <div class="form-group">
                 <label for="Certificate">Certificate / Title</label>
                 <input type="text" class="form-control" id="Certificate" name="Certificate"
-                    [(ngModel)]="lenguage === 'en'? slides[slidesIndex].h2.en : slides[slidesIndex].h2.es">
+                    [(ngModel)]="lenguage === 'en'? section.slides[slidesIndex].h2.en : section.slides[slidesIndex].h2.es">
             </div>
             <div class="form-group">
                 <label for="Institution">Company / Institution name</label>
                 <input type="text" class="form-control" id="Institution" name="Institution"
-                    [(ngModel)]="slides[slidesIndex].h4.text">
+                    [(ngModel)]="section.slides[slidesIndex].h4.text">
             </div>
             <div class="form-group">
                 <label for="companyImg">Start date </label>
                 <div class="input-group">
                     <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="slides[slidesIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
+                        [(ngModel)]="section.slides[slidesIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
                         type="button"></button>
                 </div>
@@ -161,15 +163,12 @@
                 <label for="companyImg">End date </label>
                 <div class="input-group">
                     <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="slides[slidesIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
+                        [(ngModel)]="section.slides[slidesIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
                         type="button"></button>
                 </div>
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
-
         </form>
     </div>
-    <hr />
-    <pre>Model: {{ model | json }}</pre>
 </ng-template>
