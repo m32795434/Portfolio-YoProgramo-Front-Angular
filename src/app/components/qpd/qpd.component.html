@@ -143,7 +143,7 @@
             <div class="form-group">
                 <label for="Certificate">Certificate / Title</label>
                 <input type="text" class="form-control" id="Certificate" name="Certificate"
-                    [(ngModel)]="lenguage === 'en'? section.slides[slidesIndex].h2.en : section.slides[slidesIndex].h2.es">
+                    [(ngModel)]="section.slides[slidesIndex].h2[lenguage]">
             </div>
             <div class="form-group">
                 <label for="Institution">Company / Institution name</label>
