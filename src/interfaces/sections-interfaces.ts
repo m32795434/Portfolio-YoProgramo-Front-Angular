@@ -27,8 +27,8 @@ interface QPD {
 }
 interface QPDSlide {
     id: string;
-    dateS: { year: number, month: number, day: number },
-    dateE: { year: number, month: number, day: number },
+    startDate: { year: number, month: number, day: number },
+    endDate: { year: number, month: number, day: number },
     img: { src: string, alt: string }
     h2: { en: string, es: string };
     h4: { text: string },

@@ -29,13 +29,14 @@ export class QPDComponent implements OnInit {
   section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
   //contains all the slides content
   slides: QPDSlide[] = [{
-    id: "id", img: { src: "", alt: "" },
-    dateS: {
+    id: "id",
+    img: { src: "", alt: "" },
+    startDate: {
       year: 2022,
       month: 6,
       day: 1
     },
-    dateE: {
+    endDate: {
       year: 2023,
       month: 5,
       day: 31
