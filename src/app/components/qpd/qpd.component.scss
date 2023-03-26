@@ -44,29 +44,6 @@
         box-shadow: 1px 1px 5px 2px #0a0202;
 
 
-        & h2 {
-            color: #5A5A5A;
-            font-size: 17px;
-            background-color: white;
-            font-weight: 200;
-            padding: 17px 0 9px 13px;
-
-            &::first-line {
-                font-size: 19px;
-                font-weight: 500;
-            }
-        }
-
-        & p {
-            font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-            color: #5A5A5A;
-            line-height: 1.5;
-
-            @media (max-width: 410px) {
-                font-size: 14px;
-            }
-        }
-
         & img {
             width: 100px;
             height: 100px;
@@ -117,34 +94,7 @@
                 box-shadow: 5px 5px grey;
             }
 
-            .slideTitleDateWrapper {
-                color: #5A5A5A;
-                background-color: white;
-                padding: 17px 0 9px 13px;
 
-                &>h2 {
-                    font-size: 19px;
-                    font-weight: 500;
-                }
-
-                &>h4,
-                &>p {
-                    font-size: 17px;
-                    font-weight: 200;
-                }
-            }
-
-            .slideMainPh {
-                &>p {
-                    font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-                    color: #5A5A5A;
-                    line-height: 1.5;
-
-                    @media (max-width: 410px) {
-                        font-size: 14px;
-                    }
-                }
-            }
         }
     }
 
@@ -182,4 +132,33 @@
     //     }
     // }
 
+}
+
+.slideTitleDateWrapper {
+    color: #5A5A5A;
+    background-color: white;
+    padding: 17px 0 9px 13px;
+
+    &>h2 {
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    &>h4,
+    &>p {
+        font-size: 17px;
+        font-weight: 200;
+    }
+}
+
+.slideMainPh {
+    &>p {
+        font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
+        color: #5A5A5A;
+        line-height: 1.5;
+
+        @media (max-width: 410px) {
+            font-size: 14px;
+        }
+    }
 }

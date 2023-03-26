@@ -33,7 +33,7 @@
                             aria-label="Change slide header and image">settings</button>
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
-                    <div>
+                    <div class="slideTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)"
                             aria-label="Change institution name">save</button> -->
@@ -47,9 +47,9 @@
                         <p>{{slide.startDate.month}}/{{slide.startDate.year}}-{{slide.endDate.month}}/{{slide.endDate.year}}
                         </p>
                     </div>
-                    <div>
+                    <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)"
+                            [hidden]="!logged" (click)="saveSlideEl(slide.id, i)"
                             aria-label="Change p content">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
@@ -82,10 +82,10 @@
                     </div>
                     <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [attr.data-id]="slide.id" [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
+                            [hidden]="!logged" (click)="saveSlideEl(slide.id+i, i)">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="slide.id">
+                            [contentEditable]="logged" #p{{i}} [id]="slide.id+i">
                         </p>
                     </div>
                 </div>

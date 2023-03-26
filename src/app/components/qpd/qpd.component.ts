@@ -112,13 +112,17 @@ export class QPDComponent implements OnInit {
       }
     });
   }
-  saveSlideEl(e: any) {
-    const targetId = e.target.dataset.id;
-    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.section.slides.findIndex((el: HomeSlide) => {
-      return (el.id === targetId)
-    })
-    this.section.slides[index][this.lenguage] = innerHTML;
+  saveSlideEl(id: any, i: any) {
+    console.log('id:', id, 'index:', i)
+    // const targetId = e.target.dataset.id;
+    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
+    console.log('innerHTML', innerHTML)
+    // const index = this.section.slides.findIndex((el: HomeSlide) => {
+    //   return (el.id === targetId)
+    // })
+    this.section.slides[i].ph[this.lenguage] = innerHTML;
+    console.log('this.section.slides[i].ph[this.lenguage]', this.section.slides[i].ph[this.lenguage])
+
     this.dataService.updateSection('qPD', this.section);
   }
   saveH1(e: any) {
