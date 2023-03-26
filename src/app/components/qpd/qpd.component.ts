@@ -135,7 +135,10 @@ export class QPDComponent implements OnInit {
     console.log('updating with:', this.section);
     this.dataService.updateSection('qPD', this.section);
   }
-  //IMG SRC MODAL
+  deleteSlide() {
+    console.log('deleting index:', this.slidesIndex);
+  }
+  //MODALS
 
   open(content: TemplateRef<any>, index?: any) {
     this.slidesIndex = index;
@@ -165,6 +168,7 @@ export class QPDComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   //AVOID SANITIZER
   // getHtmlContent(content: string) {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);

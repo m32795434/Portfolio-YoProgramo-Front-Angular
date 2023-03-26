@@ -1,21 +1,21 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
     <div class="d-lg-none">
-        <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
-            [hidden]="!logged" (click)="open(imgSrcModal)">settings</button>
+        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
+            (click)="open(imgSrcModal)">settings</button>
         <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobile" alt="Manuel perfil"
             id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
-        <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
-            [hidden]="!logged" (click)="open(imgSrcModal)">settings</button>
+        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
+            (click)="open(imgSrcModal)">settings</button>
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
-    <!-- <input type="file" accept="image/*" id="changeImg" hidden>
-    <button class="save-button changeImg save-top save-left rounded-circle material-symbols-outlined"
+    <!-- <input type="file" accept="image/*" id=" " hidden>
+    <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
       data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
-      data-bs-custom-class="innerRed changeImgTool" hidden>upload_file</button> -->
+      data-bs-custom-class="innerRed  Tool" hidden>upload_file</button> -->
 
 
 
