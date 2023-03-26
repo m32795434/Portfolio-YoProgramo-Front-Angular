@@ -22,6 +22,9 @@
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
                     [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
+                <button [hidden]="!logged" type="button"
+                    class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete slide"
+                    (click)="open(createSlideModal)">library_add</button>
             </div>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
@@ -196,6 +199,53 @@
             </button>
             <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
                 (click)="modal.close('Delete')">delete</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #createSlideModal let-modal class="imgSrcModal">
+    <div class="modal-header">
+        <h4 class="modal-title">Slide Header</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="createSlide($event)">
+            <div class="form-group">
+                <label for="companyImg">Company img src:</label>
+                <input type="text" class="form-control" id="companyImg" name="companyImg">
+            </div>
+            <div class="form-group">
+                <label for="certificate">Certificate / Title:</label>
+                <input type="text" class="form-control" id="certificate" name="certificate">
+            </div>
+            <div class="form-group">
+                <label for="institution">Company / Institution name:</label>
+                <input type="text" class="form-control" id="institution" name="institution">
+            </div>
+            <div class="form-group">
+                <label for="companyImg">Start date:</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
+                        #d1="ngbDatepicker" />
+                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                        type="button"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="companyImg">End date:</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
+                        #d2="ngbDatepicker" />
+                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                        type="button"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
     </div>
 </ng-template>

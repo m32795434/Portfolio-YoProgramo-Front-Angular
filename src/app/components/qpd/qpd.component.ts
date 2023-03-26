@@ -125,6 +125,9 @@ export class QPDComponent implements OnInit {
     console.log('this.section.slides', this.section.slides)
     this.dataService.updateSection('qPD', this.section);
   }
+  createSlide(e: Event) {
+    console.log(e)
+  }
   //MODALS
 
   open(content: TemplateRef<any>, index?: any) {
