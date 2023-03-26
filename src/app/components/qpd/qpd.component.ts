@@ -77,24 +77,8 @@ export class QPDComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
-    // this.checkForResize();
   }
 
-  // checkForResize = (): void => {
-  //   const widthViewPort: any = window?.visualViewport?.width;
-  //   if (widthViewPort != null) {
-  //     if (widthViewPort > 975.2) {
-  //       this.greaterThan975 = true;
-  //       this.swiper.destroy();
-  //     } else if (widthViewPort < 975.2) {
-  //       this.greaterThan975 = false;
-  //       if (this.swiper?.destroyed === true || this.swiper === undefined) {
-  //         console.log(this.swiper)
-  //       }
-  //     }
-  //   }
-
-  // }
 
   async initSwiper() {
     await wait(1000);//Left this code at the end of the callstack!
@@ -137,6 +121,9 @@ export class QPDComponent implements OnInit {
   }
   deleteSlide() {
     console.log('deleting index:', this.slidesIndex);
+    this.section.slides.splice(this.slidesIndex, 1);
+    console.log('this.section.slides', this.section.slides)
+    this.dataService.updateSection('qPD', this.section);
   }
   //MODALS
 
