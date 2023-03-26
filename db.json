@@ -79,14 +79,14 @@
         {
           "id": "S1",
           "startDate": {
-            "year": "2022",
-            "month": "6",
-            "day": "1"
+            "year": 2022,
+            "month": 6,
+            "day": 1
           },
           "endDate": {
-            "year": "2023",
-            "month": "5",
-            "day": "31"
+            "year": 2023,
+            "month": 5,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
@@ -107,14 +107,14 @@
         {
           "id": "S2",
           "startDate": {
-            "year": "2022",
-            "month": "7",
-            "day": "1"
+            "year": 2022,
+            "month": 7,
+            "day": 1
           },
           "endDate": {
-            "year": "2023",
-            "month": "9",
-            "day": "30"
+            "year": 2023,
+            "month": 9,
+            "day": 30
           },
           "img": {
             "src": "../../../assets/images/udemy.png",
@@ -135,14 +135,14 @@
         {
           "id": "S3",
           "startDate": {
-            "year": "2021",
-            "month": "9",
-            "day": "1"
+            "year": 2021,
+            "month": 9,
+            "day": 1
           },
           "endDate": {
-            "year": "2021",
-            "month": "12",
-            "day": "31"
+            "year": 2021,
+            "month": 12,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/wes.png",
@@ -163,14 +163,14 @@
         {
           "id": "S4",
           "startDate": {
-            "year": "2021",
-            "month": "4",
-            "day": "1"
+            "year": 2021,
+            "month": 4,
+            "day": 1
           },
           "endDate": {
-            "year": "2021",
-            "month": "8",
-            "day": "31"
+            "year": 2021,
+            "month": 8,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/regional-bs.png",
@@ -191,14 +191,14 @@
         {
           "id": "S5",
           "startDate": {
-            "year": "2008",
-            "month": "3",
-            "day": "1"
+            "year": 2008,
+            "month": 3,
+            "day": 1
           },
           "endDate": {
-            "year": "2010",
-            "month": "8",
-            "day": "31"
+            "year": 2010,
+            "month": 8,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/utnIcon.png",
@@ -219,14 +219,14 @@
         {
           "id": "S6",
           "startDate": {
-            "year": "2019",
-            "month": "3",
-            "day": "1"
+            "year": 2019,
+            "month": 3,
+            "day": 1
           },
           "endDate": {
-            "year": "2021",
-            "month": "2",
-            "day": "28"
+            "year": 2021,
+            "month": 2,
+            "day": 28
           },
           "img": {
             "src": "../../../assets/images/unl.png",
@@ -247,14 +247,14 @@
         {
           "id": "S7",
           "startDate": {
-            "year": "2011",
-            "month": "3",
-            "day": "1"
+            "year": 2011,
+            "month": 3,
+            "day": 1
           },
           "endDate": {
-            "year": "2012",
-            "month": "12",
-            "day": "31"
+            "year": 2012,
+            "month": 12,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/uner.png",
@@ -275,14 +275,14 @@
         {
           "id": "S8",
           "startDate": {
-            "year": "2005",
-            "month": "2",
-            "day": "1"
+            "year": 2005,
+            "month": 2,
+            "day": 1
           },
           "endDate": {
-            "year": "2005",
-            "month": "12",
-            "day": "31"
+            "year": 2005,
+            "month": 12,
+            "day": 31
           },
           "img": {
             "src": "../../../assets/images/unr.png",
