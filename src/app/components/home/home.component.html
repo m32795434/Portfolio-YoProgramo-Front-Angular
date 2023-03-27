@@ -35,13 +35,13 @@
             <div class="swiper flex-fill">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div *ngFor="let slide of slides, let i=index" class="swiper-slide">
-                        <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="slide.id"
-                            [hidden]="!logged" (click)="saveSlideEl($event)">save</button>
+                    <!-- Cards -->
+                    <div *ngFor="let card of cards, let i=index" class="swiper-slide">
+                        <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="card.id"
+                            [hidden]="!logged" (click)="saveCardEl($event)">save</button>
 
-                        <p [innerHTML]="lenguage === 'en'? slide.en : slide.es" class="p-3 m-0 text-center edit-content"
-                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="slide.id">
+                        <p [innerHTML]="lenguage === 'en'? card.en : card.es" class="p-3 m-0 text-center edit-content"
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
                     </div>
                 </div>

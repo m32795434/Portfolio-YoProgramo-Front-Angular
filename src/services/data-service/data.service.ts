@@ -16,9 +16,9 @@ export class DataService {
   private errorSubject = new Subject<any>();
 
   protected data: Sections = {
-    home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
-    experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
-    qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] },
+    home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
+    experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
+    qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     projects: { id: "projects", en: "", es: "" }
   };
   constructor(private JsonServer: JsonServerRequestsService) { }

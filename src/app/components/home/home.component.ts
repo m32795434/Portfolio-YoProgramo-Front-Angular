@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { Home, HomeSlide } from 'src/interfaces/sections-interfaces';
+import { Home, HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LoginService } from 'src/services/login-service/login.service';
 declare global {
@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
-  //contains all the slides content
-  slides: HomeSlide[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
+  section: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  //contains all the cards content
+  cards: HomeCard[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
     this.dataSubscription = this.dataService.getHomeDataObserver().subscribe((section) => {
       this.section = section;
-      this.slides = this.section['slides'];
+      this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     const content = this.dataService.getData('home');
     if (content) {
       this.section = content;
-      this.slides = this.section['slides'];
+      this.cards = this.section['cards'];
     } else {
       this.dataService.getSectionFromJsonServer('home');
     }
@@ -75,13 +75,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  saveSlideEl(e: any) {
+  saveCardEl(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.section.slides.findIndex((el: HomeSlide) => {
+    const index = this.section.cards.findIndex((el: HomeCard) => {
       return (el.id === targetId)
     })
-    this.section.slides[index][this.lenguage] = innerHTML;
+    this.section.cards[index][this.lenguage] = innerHTML;
     this.dataService.updateSection('home', this.section);
   }
   saveH1(e: any) {

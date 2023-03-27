@@ -11,7 +11,7 @@
       "imgDesktop": "http://localhost:1234/experience-md-1920.77cae3bd.png",
       "en": "EXPERIENCE",
       "es": "EXPERIENCIA",
-      "slides": [
+      "cards": [
         {
           "id": "S1",
           "h2": {
@@ -75,7 +75,7 @@
       "imgDesktop": "../../../assets/images/experience-md-1920.png",
       "en": "Qualifications &amp; P.D.",
       "es": "Estudios y Certificaciones",
-      "slides": [
+      "cards": [
         {
           "id": "S1",
           "startDate": {
@@ -308,7 +308,7 @@
       "imgDesktop": "../../../assets/images/home-md-1920.png",
       "en": "Hi! I’m Manuel<br> I’m a\n            FullStack<br>Developer Jr.\n          ",
       "es": "Hola! Soy Manuel<br> Soy desarrollador Full Stack!",
-      "slides": [
+      "cards": [
         {
           "id": "S1",
           "en": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming",

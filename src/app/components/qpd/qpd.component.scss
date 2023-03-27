@@ -88,7 +88,7 @@
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
             //only in experience!
-            // & .edit-h2-slide-ex {
+            // & .edit-h2-card-ex {
             //     position: absolute;
             //     z-index: 11;
             //     left: 280px;
@@ -126,7 +126,7 @@
         }
     }
 
-    // & .slider-buttons>button {
+    // & .cardr-buttons>button {
     //     font-family: 'Material Symbols Outlined';
     //     color: #777777;
     //     font-size: 24px;
@@ -148,7 +148,7 @@
 
 }
 
-.slideTitleDateWrapper {
+.cardTitleDateWrapper {
     color: #5A5A5A;
     background-color: white;
     padding: 17px 0 9px 13px;
@@ -165,7 +165,7 @@
     }
 }
 
-.slideMainPh {
+.cardMainPh {
     &>p {
         font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
         color: #5A5A5A;

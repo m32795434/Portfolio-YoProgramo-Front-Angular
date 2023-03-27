@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { HomeSlide, QPDSlide } from 'src/interfaces/sections-interfaces';
+import { HomeCard, QPDCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,9 +26,9 @@ export class QPDComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", slides: [] };
-  //contains all the slides content
-  slides: QPDSlide[] = [{
+  section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  //contains all the cards content
+  cards: QPDCard[] = [{
     id: "id",
     img: { src: "", alt: "" },
     startDate: {
@@ -48,12 +48,12 @@ export class QPDComponent implements OnInit {
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
-  slidesIndex = 0;
+  cardsIndex = 0;
   // greaterThan975 = false;
   model?: NgbDateStruct;
 
-  //new slide
-  newSlide: QPDSlide = {
+  //new card
+  newCard: QPDCard = {
     id: "id",
     img: { src: "", alt: "" },
     startDate: {
@@ -78,7 +78,7 @@ export class QPDComponent implements OnInit {
 
     this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
       this.section = section;
-      this.slides = this.section['slides'];
+      this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
@@ -87,7 +87,7 @@ export class QPDComponent implements OnInit {
     const content = this.dataService.getData('qPD');
     if (content) {
       this.section = content;
-      this.slides = this.section['slides'];
+      this.cards = this.section['cards'];
     } else {
       this.dataService.getSectionFromJsonServer('qPD');
     }
@@ -118,11 +118,11 @@ export class QPDComponent implements OnInit {
     // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
     console.log('innerHTML', innerHTML)
-    // const index = this.section.slides.findIndex((el: HomeSlide) => {
+    // const index = this.section.cards.findIndex((el: HomeCard) => {
     //   return (el.id === targetId)
     // })
-    this.section.slides[i].ph[this.lenguage] = innerHTML;
-    console.log('this.section.slides[i].ph[this.lenguage]', this.section.slides[i].ph[this.lenguage])
+    this.section.cards[i].ph[this.lenguage] = innerHTML;
+    console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
 
     this.dataService.updateSection('qPD', this.section);
   }
@@ -132,26 +132,26 @@ export class QPDComponent implements OnInit {
     this.section[this.lenguage] = innerHTML;
     this.dataService.updateSection('qPD', this.section);
   }
-  updateSlide() {
+  updateCard() {
     console.log('updating with:', this.section);
     this.dataService.updateSection('qPD', this.section);
   }
-  deleteSlide() {
-    console.log('deleting index:', this.slidesIndex);
-    this.section.slides.splice(this.slidesIndex, 1);
-    console.log('this.section.slides', this.section.slides)
+  deleteCard() {
+    console.log('deleting index:', this.cardsIndex);
+    this.section.cards.splice(this.cardsIndex, 1);
+    console.log('this.section.cards', this.section.cards)
     this.dataService.updateSection('qPD', this.section);
   }
-  createSlide() {
-    this.newSlide.id = `S${this.slides.length}`;
-    this.section.slides.push(this.newSlide);
+  createCard() {
+    this.newCard.id = `S${this.cards.length}`;
+    this.section.cards.push(this.newCard);
     this.dataService.updateSection('qPD', this.section);
   }
   //MODALS
 
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
-    this.slidesIndex = index;
+    this.cardsIndex = index;
     this.modalService.open(content, {
       ariaLabelledBy: `${ref}`,
       size: 'lg',
