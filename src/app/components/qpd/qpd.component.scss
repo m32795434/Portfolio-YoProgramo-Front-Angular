@@ -7,8 +7,22 @@
     font-family: 'Material Symbols Outlined';
 }
 
+.imgTitleWrapper {
+    position: relative;
 
-.wrapper-h1-Edit-button {
+    & #createCard {
+        position: absolute;
+        z-index: 11;
+        top: 80%;
+
+        @include media-breakpoint-up(lg) {
+            top: 0;
+            left: 85%;
+        }
+    }
+}
+
+.wrapper-h1-save {
     position: absolute;
     top: 0;
 
