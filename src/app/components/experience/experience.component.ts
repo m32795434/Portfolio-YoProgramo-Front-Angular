@@ -43,7 +43,6 @@ export class ExperienceComponent implements OnInit {
       day: 31
     },
     h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
-    h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
   lenguage = 'en';
@@ -54,7 +53,7 @@ export class ExperienceComponent implements OnInit {
   model?: NgbDateStruct;
 
   //new card
-  newCard: QPDCard = {
+  newCard: ExperienceCard = {
     id: "id",
     img: { src: "", alt: "" },
     startDate: {
@@ -68,7 +67,6 @@ export class ExperienceComponent implements OnInit {
       day: 31
     },
     h2: { en: "", es: "" },
-    h4: { text: "" },
     ph: { en: "", es: "" }
   }
 
@@ -77,7 +75,7 @@ export class ExperienceComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getExperienceDataObserver().subscribe((section) => {
       this.section = section;
       this.cards = this.section['cards'];
     })
@@ -85,12 +83,12 @@ export class ExperienceComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('qPD');
+    const content = this.dataService.getData('experience');
     if (content) {
       this.section = content;
       this.cards = this.section['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('qPD');
+      this.dataService.getSectionFromJsonServer('experience');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -115,38 +113,31 @@ export class ExperienceComponent implements OnInit {
     });
   }
   saveCardEl(id: any, i: any) {
-    console.log('id:', id, 'index:', i)
-    // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    console.log('innerHTML', innerHTML)
-    // const index = this.section.cards.findIndex((el: HomeCard) => {
-    //   return (el.id === targetId)
-    // })
     this.section.cards[i].ph[this.lenguage] = innerHTML;
     console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
-
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSection('experience', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.lenguage] = innerHTML;
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSection('experience', this.section);
   }
   updateCard() {
     console.log('updating with:', this.section);
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSection('experience', this.section);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.section.cards.splice(this.cardsIndex, 1);
     console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSection('experience', this.section);
   }
   createCard() {
     this.newCard.id = `S${this.cards.length}`;
     this.section.cards.push(this.newCard);
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSection('experience', this.section);
   }
   //MODALS
 
