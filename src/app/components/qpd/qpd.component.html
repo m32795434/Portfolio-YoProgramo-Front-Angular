@@ -42,12 +42,10 @@
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)"
                             aria-label="Change institution name">save</button> -->
-                        <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="h2S2Qa"
+                        <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
                         </h2>
-                        <h4 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="#" [innerHTML]=" card.h4.text">
+                        <h4 class="text-start edit-content" id="#" [innerHTML]=" card.h4.text">
                         </h4>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>

@@ -42,13 +42,9 @@
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)"
                             aria-label="Change institution name">save</button> -->
-                        <h2 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="h2S2Qa"
+                        <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
                         </h2>
-                        <h4 class="text-start edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" id="#" [innerHTML]=" card.h4.text">
-                        </h4>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
@@ -83,8 +79,6 @@
                             [hidden]="!logged" (click)="saveH1($event)">save</button> -->
                         <h2 class="text-start edit-content" [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
                         </h2>
-                        <h4 class="text-start edit-content" [innerHTML]=" card.h4.text">
-                        </h4>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
@@ -154,14 +148,9 @@
                     [(ngModel)]="section.cards[cardsIndex].img.alt">
             </div>
             <div class="form-group">
-                <label for="Certificate">Certificate / Title</label>
-                <input type="text" class="form-control" id="Certificate" name="Certificate"
+                <label for="institution">Company / Institution name</label>
+                <input type="text" class="form-control" id="institution" name="institution"
                     [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
-            </div>
-            <div class="form-group">
-                <label for="Institution">Company / Institution name</label>
-                <input type="text" class="form-control" id="Institution" name="Institution"
-                    [(ngModel)]="section.cards[cardsIndex].h4.text">
             </div>
             <div class="form-group">
                 <label for="companyImg">Start date </label>
@@ -220,13 +209,8 @@
                 <input type="text" class="form-control" id="companyImg" name="companyImg" [(ngModel)]="newCard.img.src">
             </div>
             <div class="form-group">
-                <label for="certificate">Certificate / Title(En):</label>
-                <input type="text" class="form-control" id="certificate" name="certificate" [(ngModel)]="newCard.h2.en">
-            </div>
-            <div class="form-group">
                 <label for="institution">Company / Institution name(En):</label>
-                <input type="text" class="form-control" id="institution" name="institution"
-                    [(ngModel)]="newCard.h4.text">
+                <input type="text" class="form-control" id="institution" name="institution" [(ngModel)]="newCard.h2.en">
             </div>
             <div class="form-group">
                 <label for="dp1">Start date:</label>
