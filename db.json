@@ -39,9 +39,23 @@
         },
         {
           "id": "S2",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Entre Ríos Judiciary"
+          },
+          "startDate": {
+            "year": 2022,
+            "month": 6,
+            "day": 1
+          },
+          "endDate": {
+            "year": 2022,
+            "month": 9,
+            "day": 30
+          },
           "h2": {
-            "es": "Poder\n                                Judicial de\n                                Entre Ríos\n                                <br>06/2022-09/2022\n                            ",
-            "en": "Entre Ríos\n                                Judiciary\n                                <br>06/2022-09/2022\n                            "
+            "es": "Poder Judicial de Entre Ríos",
+            "en": "Entre Ríos Judiciary"
           },
           "ph": {
             "es": "\n                                    Me desempeñé como escribiente suplente. Si bien es un área en la que no tenía\n                                    experiencia alguna, fue una excelente oportunidad para comprender lo que es trabajar\n                                    en el sector público, dentro de un sistema completamente estructurado.",
@@ -50,9 +64,23 @@
         },
         {
           "id": "S3",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Break - Professional Development"
+          },
+          "startDate": {
+            "year": 2022,
+            "month": 1,
+            "day": 1
+          },
+          "endDate": {
+            "year": 2022,
+            "month": 5,
+            "day": 31
+          },
           "h2": {
-            "es": "Descanso\n                                - Crecimiento Profesional\n                                <br>01/2022-05/2022\n                            ",
-            "en": "Break -\n                                Professional Development\n                                <br>01/2022-05/2022\n                            "
+            "es": "Descanso - Crecimiento Profesional",
+            "en": "Break - Professional Development"
           },
           "ph": {
             "es": "\n                                    Durante este período profundicé los contenidos aprendidos en el curso de WesBos y de\n                                    la UTN, reescribiendo código con una mejor calidad, armando mis propias aplicaciones\n                                    y librerías que me servirán a futuro en mi desempeño profesional.",
@@ -61,9 +89,23 @@
         },
         {
           "id": "S4",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Bravard Accountancy Firm"
+          },
+          "startDate": {
+            "year": 2007,
+            "month": 1,
+            "day": 1
+          },
+          "endDate": {
+            "year": 2021,
+            "month": 12,
+            "day": 31
+          },
           "h2": {
-            "es": "Estudio\n                                Contable\n                                Bravard\n                                <br>01/2007-12/2021\n                            ",
-            "en": "Bravard\n                                Accountancy Firm\n                                <br>01/2007-12/2021\n                            "
+            "es": "Estudio Contable Bravard",
+            "en": "Bravard Accountancy Firm"
           },
           "ph": {
             "es": "\n                                    Destaco de esta experiencia el trabajo en un equipo multidisciplinario y la\n                                    capacitación constante.",
@@ -72,9 +114,23 @@
         },
         {
           "id": "S5",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Bravard Accountancy Firm"
+          },
+          "startDate": {
+            "year": 2016,
+            "month": 1,
+            "day": 1
+          },
+          "endDate": {
+            "year": 2019,
+            "month": 12,
+            "day": 31
+          },
           "h2": {
-            "es": "PAPPA\n                                CHARLY - Casa\n                                de Eventos - Autónomo\n                                <br>01/2016-12/2019\n                            ",
-            "en": "PAPPA CHARLY -\n                                Hall of Events - Independent\n                                <br>01/2016-12/2019\n                            "
+            "es": "PAPPA CHARLY - Casa de Eventos - Autónomo <br>01/2016-12/2019",
+            "en": "PAPPA CHARLY - Hall of Events - Independent"
           },
           "ph": {
             "es": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",
