@@ -1,4 +1,11 @@
-@import '../../../styles.scss';
+@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../../../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
+
+//FOR ALL THE material-symbols-outlined
+.material-symbols-outlined,
+.material-icons {
+    font-family: 'Material Symbols Outlined';
+}
 
 .mainProjects {
     position: relative;
