@@ -44,9 +44,11 @@ interface Experience {
 }
 interface ExperienceCard {
     id: string;
-    h2: string;
-    es: string;
-    en: string;
+    startDate: { year: number, month: number, day: number },
+    endDate: { year: number, month: number, day: number },
+    img: { src: string, alt: string }
+    h2: { en: string, es: string };
+    ph: { en: string, es: string };
 }
 interface Projects {
     id: "projects";

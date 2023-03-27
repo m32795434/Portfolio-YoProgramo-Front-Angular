@@ -14,13 +14,27 @@
       "cards": [
         {
           "id": "S1",
+          "img": {
+            "src": "../../../assets/images/ArgProgIcon.png",
+            "alt": "Break - Professional Development"
+          },
           "h2": {
-            "es": "Descanso\n                                - Crecimiento Profesional\n                                <br>10/2022-Actualidad\n                            ",
-            "en": "Break -\n                                Professional Development\n                                <br>10/2022-Until Now\n                            "
+            "es": "Descanso - Crecimiento Profesional",
+            "en": "Break - Professional Development"
+          },
+          "startDate": {
+            "year": 2022,
+            "month": 10,
+            "day": 1
+          },
+          "endDate": {
+            "year": 0,
+            "month": 0,
+            "day": 0
           },
           "ph": {
-            "es": "\n                                    Habiendo culminado la primer etapa de Argentina Programa, y recorriendo la segunda,\n                                    continuo entrenando en Angular, Java y Typescript.\n                                    He diseñado gráfica y estructuralmente mi portfolio, y posteriormente lo he\n                                    desarrollado con Vanilla JavaScript. Actualmente lo estoy migrando a los stacks\n                                    Angular + Java + Mongo / MySQL &amp; M.E.A.N. y paulatinamente le iré incorporando otros\n                                    proyectos que he desarrollado.",
-            "en": "\n                                    Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed."
+            "es": "Habiendo culminado la primer etapa de Argentina Programa, y recorriendo la segunda,\n                                    continuo entrenando en Angular, Java y Typescript.\n                                    He diseñado gráfica y estructuralmente mi portfolio, y posteriormente lo he\n                                    desarrollado con Vanilla JavaScript. Actualmente lo estoy migrando a los stacks\n                                    Angular + Java + Mongo / MySQL &amp; M.E.A.N. y paulatinamente le iré incorporando otros\n                                    proyectos que he desarrollado.",
+            "en": "Having completed the first stage of Argentina Program, and surfing the second, I\n                                    continue training in Angular, Java and Typescript.\n                                    I have graphically and structurally designed my portfolio, and subsequently\n                                    developed it with Vanilla JavaScript. I am currently migrating it to the Angular +\n                                    Java + (Mongo / MySQL) &amp; M.E.A.N stacks and gradually incorporating the other\n                                    projects I have developed."
           }
         },
         {

@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { HomeCard, QPDCard } from 'src/interfaces/sections-interfaces';
+import { ExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,9 +27,9 @@ export class ExperienceComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  section: any = { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
   //contains all the cards content
-  cards: QPDCard[] = [{
+  cards: ExperienceCard[] = [{
     id: "id",
     img: { src: "", alt: "" },
     startDate: {
