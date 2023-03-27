@@ -52,6 +52,24 @@ export class QPDComponent implements OnInit {
   // greaterThan975 = false;
   model?: NgbDateStruct;
 
+  //new slide
+  newSlide: QPDSlide = {
+    id: "id",
+    img: { src: "", alt: "" },
+    startDate: {
+      year: 2022,
+      month: 6,
+      day: 1
+    },
+    endDate: {
+      year: 2023,
+      month: 5,
+      day: 31
+    },
+    h2: { en: "", es: "" },
+    h4: { text: "" },
+    ph: { en: "", es: "" }
+  }
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -61,7 +79,6 @@ export class QPDComponent implements OnInit {
     this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
       this.section = section;
       this.slides = this.section['slides'];
-      console.log('slides!', this.slides)
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
   }
@@ -96,7 +113,7 @@ export class QPDComponent implements OnInit {
       }
     });
   }
-  saveSlideEl(id: any, i: any) {
+  saveCardEl(id: any, i: any) {
     console.log('id:', id, 'index:', i)
     // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
@@ -125,15 +142,18 @@ export class QPDComponent implements OnInit {
     console.log('this.section.slides', this.section.slides)
     this.dataService.updateSection('qPD', this.section);
   }
-  createSlide(e: Event) {
-    console.log(e)
+  createSlide() {
+    this.newSlide.id = `S${this.slides.length}`;
+    this.section.slides.push(this.newSlide);
+    this.dataService.updateSection('qPD', this.section);
   }
   //MODALS
 
-  open(content: TemplateRef<any>, index?: any) {
+  open(content: TemplateRef<any>, ref: string, index?: any) {
+    console.log(content)
     this.slidesIndex = index;
     this.modalService.open(content, {
-      ariaLabelledBy: 'imgSrcModal',
+      ariaLabelledBy: `${ref}`,
       size: 'lg',
       centered: true,
       backdrop: 'static',

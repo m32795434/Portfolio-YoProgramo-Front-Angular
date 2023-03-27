@@ -3,14 +3,14 @@
         <div class="col-12 col-lg-3 flex-fill p-0 m-0">
             <div class="d-lg-none">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
-                    [hidden]="!logged" (click)="open(mainImgSrcModal)"
+                    [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
                     [src]="section?.imgMobile" id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
-                    [hidden]="!logged" (click)="open(mainImgSrcModal)"
+                    [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="section?.imgDesktop"
                     alt="Manuel perfil" id="imgDesktopQa">
@@ -23,8 +23,8 @@
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
                     [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
                 <button [hidden]="!logged" type="button"
-                    class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete slide"
-                    (click)="open(createSlideModal)">library_add</button>
+                    class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
+                    (click)="open(createCardModal, 'create new card')">library_add</button>
             </div>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
@@ -32,11 +32,11 @@
                 <div *ngFor="let slide of slides, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button   save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged" (click)="open(slideHeaderModal, i)"
-                            aria-label="Change slide header and image">settings</button>
+                            [hidden]="!logged" (click)="open(cardHeaderModal,'change card header' ,i)"
+                            aria-label="Change card header and image">settings</button>
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
-                            aria-label="Delete slide" (click)="open(confirmDelete, i)">delete</button>
+                            aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
                     <div class="slideTitleDateWrapper">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveSlideEl(slide.id, i)"
+                            [hidden]="!logged" (click)="saveCardEl(slide.id, i)"
                             aria-label="Change p content">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
@@ -72,11 +72,12 @@
                 <div *ngFor="let slide of slides, let i=index" class="swiper-slide w-100 card">
                     <div class="d-flex justify-content-center my-2">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged" (click)="open(slideHeaderModal, i)"
-                            aria-label="Change slide header and image">settings</button>
+                            [hidden]="!logged" (click)="open(cardHeaderModal, 'change card header ',i)"
+                            aria-label="Change card header and image">settings</button>
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
-                            aria-label="Delete slide" (click)="open(confirmDelete, i)">delete</button>
+                            aria-label="Delete slide"
+                            (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                         <img [src]="slide.img.src" [alt]="slide.img.alt" class="rounded-circle">
                     </div>
                     <div class="slideTitleDateWrapper">
@@ -91,7 +92,7 @@
                     </div>
                     <div class="slideMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveSlideEl(slide.id+i, i)">save</button>
+                            [hidden]="!logged" (click)="saveCardEl(slide.id+i, i)">save</button>
                         <p [innerHTML]="lenguage === 'en'? slide.ph.en : slide.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="slide.id+i">
@@ -135,7 +136,7 @@
     </div>
 </ng-template>
 
-<ng-template #slideHeaderModal let-modal class="imgSrcModal">
+<ng-template #cardHeaderModal let-modal class="imgSrcModal">
     <div class="modal-header">
         <h4 class="modal-title">Set Slide Header</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -148,6 +149,11 @@
                 <label for="companyImg">Company img src: </label>
                 <input type="text" class="form-control" id="companyImg" name="companyImg"
                     [(ngModel)]="section.slides[slidesIndex].img.src">
+            </div>
+            <div class="form-group">
+                <label for="imgAlt">Img alt: </label>
+                <input type="text" class="form-control" id="companyImg" name="imgAlt"
+                    [(ngModel)]="section.slides[slidesIndex].img.alt">
             </div>
             <div class="form-group">
                 <label for="Certificate">Certificate / Title</label>
@@ -202,48 +208,52 @@
         </form>
     </div>
 </ng-template>
-<ng-template #createSlideModal let-modal class="imgSrcModal">
+<ng-template #createCardModal let-modal class="imgSrcModal">
     <div class="modal-header">
-        <h4 class="modal-title">Slide Header</h4>
+        <h4 class="modal-title">Create Slide - English version</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form (ngSubmit)="createSlide($event)">
+        <form (ngSubmit)="createSlide()">
             <div class="form-group">
                 <label for="companyImg">Company img src:</label>
-                <input type="text" class="form-control" id="companyImg" name="companyImg">
+                <input type="text" class="form-control" id="companyImg" name="companyImg"
+                    [(ngModel)]="newSlide.img.src">
             </div>
             <div class="form-group">
-                <label for="certificate">Certificate / Title:</label>
-                <input type="text" class="form-control" id="certificate" name="certificate">
+                <label for="certificate">Certificate / Title(En):</label>
+                <input type="text" class="form-control" id="certificate" name="certificate"
+                    [(ngModel)]="newSlide.h2.en">
             </div>
             <div class="form-group">
-                <label for="institution">Company / Institution name:</label>
-                <input type="text" class="form-control" id="institution" name="institution">
+                <label for="institution">Company / Institution name(En):</label>
+                <input type="text" class="form-control" id="institution" name="institution"
+                    [(ngModel)]="newSlide.h4.text">
             </div>
             <div class="form-group">
-                <label for="companyImg">Start date:</label>
+                <label for="dp1">Start date:</label>
                 <div class="input-group">
                     <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
-                        #d1="ngbDatepicker" />
+                        #d1="ngbDatepicker" [(ngModel)]="newSlide.startDate" />
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
                         type="button"></button>
                 </div>
             </div>
             <div class="form-group">
-                <label for="companyImg">End date:</label>
+                <label for="dp2">End date:</label>
                 <div class="input-group">
                     <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
-                        #d2="ngbDatepicker" />
+                        #d2="ngbDatepicker" [(ngModel)]="newSlide.endDate" />
                     <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
                         type="button"></button>
                 </div>
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
-                <input type="text" class="form-control" id="description" name="description">
+                <label for="description">Description(En):</label>
+                <input type="text" class="form-control" id="description" name="description"
+                    [(ngModel)]="newSlide.ph.en">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
