@@ -109,7 +109,7 @@
 
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
 
-<ng-template #mainImgSrcModal let-modal class="imgSrcModal">
+<ng-template #mainImgSrcModal let-modal class="#">
     <div class="modal-header">
         <h4 class="modal-title">Set Src</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -132,7 +132,7 @@
     </div>
 </ng-template>
 
-<ng-template #cardHeaderModal let-modal class="imgSrcModal">
+<ng-template #cardHeaderModal let-modal class="#">
     <div class="modal-header">
         <h4 class="modal-title">Set Card Header</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -204,7 +204,7 @@
         </form>
     </div>
 </ng-template>
-<ng-template #createCardModal let-modal class="imgSrcModal">
+<ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
         <h4 class="modal-title">Create Card - English version</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">

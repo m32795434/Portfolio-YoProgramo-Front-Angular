@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
+  newCard: HomeCard = {
+    id: "id",
+    en: "", es: ""
+  }
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     //updates the user login status when changes occur
@@ -93,11 +97,12 @@ export class HomeComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSection('home', this.section);
   }
-  //IMG SRC MODAL
 
-  open(content: TemplateRef<any>) {
+  //MODAL
+
+  open(content: TemplateRef<any>, ref: string) {
     this.modalService.open(content, {
-      ariaLabelledBy: 'imgSrcModal',
+      ariaLabelledBy: `${ref}`,
       size: 'lg',
       centered: true,
       backdrop: 'static',
@@ -111,6 +116,12 @@ export class HomeComponent implements OnInit {
         console.log(`Dismissed ${this.getDismissReason(reason)}`);
       },
     );
+  }
+
+  createCard() {
+    this.newCard.id = `S${this.cards.length}`;
+    this.section.cards.push(this.newCard);
+    this.dataService.updateSection('home', this.section);
   }
 
   private getDismissReason(reason: any): string {
