@@ -10,9 +10,9 @@ interface Home {
     imgDesktop: string;
     en: string;
     es: string;
-    slides: HomeSlide[];
+    cards: HomeCard[];
 }
-interface HomeSlide {
+interface HomeCard {
     id: string;
     en: string;
     es: string;
@@ -23,13 +23,16 @@ interface QPD {
     imgDesktop: string;
     en: string;
     es: string;
-    slides: QPDSlide[];
+    cards: QPDCard[];
 }
-interface QPDSlide {
+interface QPDCard {
     id: string;
-    h2: string;
-    es: string;
-    en: string;
+    startDate: { year: number, month: number, day: number },
+    endDate: { year: number, month: number, day: number },
+    img: { src: string, alt: string }
+    h2: { en: string, es: string };
+    h4: { text: string },
+    ph: { en: string, es: string };
 }
 interface Experience {
     id: "experience";
@@ -37,9 +40,9 @@ interface Experience {
     imgDesktop: string;
     en: string;
     es: string;
-    slides: ExperienceSlide[];
+    cards: ExperienceCard[];
 }
-interface ExperienceSlide {
+interface ExperienceCard {
     id: string;
     h2: string;
     es: string;
@@ -53,4 +56,4 @@ interface Projects {
 
 type Section = Home | QPD | Experience | Projects;
 type StringSection = "home" | "projects" | "qPD" | "experience";
-export { Home, HomeSlide, QPD, QPDSlide, Experience, ExperienceSlide, Projects, Sections, Section, StringSection }
+export { Home, HomeCard, QPD, QPDCard, Experience, ExperienceCard, Projects, Sections, Section, StringSection }

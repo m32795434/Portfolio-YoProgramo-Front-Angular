@@ -33,20 +33,6 @@ import { Subscription } from 'rxjs';
             box-shadow: 0 0 7px 4px #8a8989;
         }
     }
-    .close{
-        border-radius:5px;
-        &:hover{
-            color: white;
-            background-color: blue;
-            border-color: grey;
-            box-shadow: 0 0 2px 1px #8a8989;
-
-        }
-    }
-    .form-control:hover{
-        border-radius: 7px;
-        box-shadow: 0 0 7px 4px #8a8989;
-    }
 `]
 
 })
