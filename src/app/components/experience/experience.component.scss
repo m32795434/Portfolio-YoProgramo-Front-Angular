@@ -1,6 +1,6 @@
 @import '../../../styles.scss';
 
-.cols-slider-wrapper {
+.cols-cardr-wrapper {
     height: 100%;
 }
 
@@ -26,9 +26,9 @@
 }
 
 
-.slider-experience {
+.cardr-experience {
 
-    & .slides {
+    & .cards {
         position: relative;
         height: 390px;
         overflow: hidden;
@@ -45,7 +45,7 @@
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         }
 
-        & .slide {
+        & .card {
             width: 100%;
             background-color: #f7f7f7;
             position: absolute;
@@ -61,7 +61,7 @@
                 transform: translateX(0);
             }
 
-            & .edit-h2-slide-ex {
+            & .edit-h2-card-ex {
                 position: absolute;
                 z-index: 11;
                 left: 280px;
@@ -87,7 +87,7 @@
 
             }
 
-            &.next+.slide {
+            &.next+.card {
                 transform: translateX(200%);
             }
 
@@ -122,7 +122,7 @@
         }
     }
 
-    & .slider-buttons>button {
+    & .cardr-buttons>button {
         font-family: 'Material Symbols Outlined';
         color: #777777;
         font-size: 24px;

@@ -88,6 +88,7 @@
 
     & .swiper-button-prev,
     .swiper-button-next {
+        top: 80%;
         border-radius: 6px;
         outline: 2px solid gray;
         color: red;
@@ -106,28 +107,4 @@
 .toast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
-}
-
-.contentEditableTrue {
-    caret-color: red;
-    background-color: #2e01ff40;
-}
-
-//-------------------IMG SRC MODAL-------------------
-
-.close {
-    border-radius: 5px;
-
-    &:hover {
-        color: white;
-        background-color: blue;
-        border-color: grey;
-        box-shadow: 0 0 2px 1px #8a8989;
-
-    }
-}
-
-.form-control:hover {
-    border-radius: 7px;
-    box-shadow: 0 0 7px 4px #8a8989;
 }
