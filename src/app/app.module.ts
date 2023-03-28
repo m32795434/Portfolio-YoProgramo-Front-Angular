@@ -33,15 +33,25 @@ import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, JsonPipe, NgCircleProgressModule.forRoot({
-      // set defaults here
-      radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300
-    })
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, JsonPipe, NgCircleProgressModule.forRoot(
+      {
+        "backgroundColor": "#FDB900",
+        "radius": 60,
+        "maxPercent": 200,
+        "units": " Point",
+        "unitsColor": "#483500",
+        "outerStrokeWidth": 5,
+        "outerStrokeColor": "#ffffff",
+        "innerStrokeColor": "#c83232",
+        "titleColor": "#483500",
+        "subtitleColor": "#483500",
+        "showTitle": false,
+        "showSubtitle": false,
+        "showUnits": false,
+        "showImage": true,
+        "showInnerStroke": false,
+        "startFromZero": false
+      })
   ],
   providers: [],
   bootstrap: [AppComponent]

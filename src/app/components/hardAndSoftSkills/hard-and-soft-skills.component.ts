@@ -33,7 +33,10 @@ export class HardAndSoftSkillsComponent implements OnInit {
     id: "S1",
     img: { src: "../../../assets/images/regional-bs.png", alt: "regional-bs" },
     value: 50,
-    color: "red",
+    bkColor: "red",
+    size: 50,
+    outStroke: "blue"
+
   }]
   lenguage = 'en';
   swiper: any;
@@ -45,7 +48,9 @@ export class HardAndSoftSkillsComponent implements OnInit {
     id: "",
     img: { src: "", alt: "" },
     value: 0,
-    color: "red",
+    bkColor: "red",
+    size: 50,
+    outStroke: "blue"
   }
 
 

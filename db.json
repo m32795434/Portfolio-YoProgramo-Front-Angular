@@ -15,11 +15,68 @@
         {
           "id": "S1",
           "img": {
-            "src": "../../../assets/images/regional-bs.png",
-            "alt": "regional-bs"
+            "src": "../../../assets/images/bootstrap.jfif",
+            "alt": "bootstrap"
           },
           "value": 50,
-          "color": "red"
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
+        },
+        {
+          "id": "S2",
+          "img": {
+            "src": "../../../assets/images/java.jfif",
+            "alt": "java"
+          },
+          "value": 50,
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
+        },
+        {
+          "id": "S3",
+          "img": {
+            "src": "../../../assets/images/node-js.png",
+            "alt": "node-js"
+          },
+          "value": 50,
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
+        },
+        {
+          "id": "S4",
+          "img": {
+            "src": "../../../assets/images/github.png",
+            "alt": "github"
+          },
+          "value": 50,
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
+        },
+        {
+          "id": "S5",
+          "img": {
+            "src": "../../../assets/images/git.jfif",
+            "alt": "git"
+          },
+          "value": 50,
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
+        },
+        {
+          "id": "S6",
+          "img": {
+            "src": "../../../assets/images/angular.jfif",
+            "alt": "angular"
+          },
+          "value": 50,
+          "bkColor": "red",
+          "size:": 50,
+          "outStroke": "blue"
         }
       ]
     },

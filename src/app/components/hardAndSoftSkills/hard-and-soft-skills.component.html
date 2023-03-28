@@ -36,11 +36,11 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
-                        <circle-progress tabindex="0" aria-label="onesoftskill" [showImage]="false"
-                            [percent]="card.value" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
-                            [outerStrokeColor]="card.color" [innerStrokeColor]="'#C7E596'" [animation]="true"
-                            [animationDuration]="300" [imageSrc]="card.img.src" [imageHeight]="50" [imageWidth]="50"
-                            [ariaValueText]="card.value"></circle-progress>
+                        <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value"
+                            [showImage]="true" [percent]="card.value" [radius]="100" [outerStrokeColor]="card.outStroke"
+                            [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
+                            [imageSrc]="card.img.src" [imageHeight]="card.size"
+                            [imageWidth]="card.size"></circle-progress>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,6 @@
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                     </div>
-
                 </div>
             </div>
 
@@ -172,10 +171,6 @@
                 <label for="value">Skill value (En):</label>
                 <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
                     [(ngModel)]="newCard.value">
-            </div>
-            <div class="form-group">
-                <label for="color">Progress bar color (En):</label>
-                <input type="text" class="form-control" id="color" name="color" [(ngModel)]="newCard.color">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
