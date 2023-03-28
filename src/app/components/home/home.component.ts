@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
+  cardsIndex?: number;
   newCard: HomeCard = {
     id: "id",
     en: "", es: ""
@@ -98,9 +99,22 @@ export class HomeComponent implements OnInit {
     this.dataService.updateSection('home', this.section);
   }
 
+  deleteCard() {
+    console.log('deleting index:', this.cardsIndex);
+    this.section.cards.splice(this.cardsIndex, 1);
+    console.log('this.section.cards', this.section.cards)
+    this.dataService.updateSection('home', this.section);
+  }
+
+  createCard() {
+    this.newCard.id = `S${this.cards.length}`;
+    this.section.cards.push(this.newCard);
+    this.dataService.updateSection('home', this.section);
+  }
   //MODAL
 
-  open(content: TemplateRef<any>, ref: string) {
+  open(content: TemplateRef<any>, ref: string, i?: number) {
+    this.cardsIndex = i;
     this.modalService.open(content, {
       ariaLabelledBy: `${ref}`,
       size: 'lg',
@@ -117,13 +131,6 @@ export class HomeComponent implements OnInit {
       },
     );
   }
-
-  createCard() {
-    this.newCard.id = `S${this.cards.length}`;
-    this.section.cards.push(this.newCard);
-    this.dataService.updateSection('home', this.section);
-  }
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
