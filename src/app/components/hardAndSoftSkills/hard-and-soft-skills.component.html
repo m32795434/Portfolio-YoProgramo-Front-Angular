@@ -28,20 +28,18 @@
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
-                <div *ngFor="let card of cards, let i=index" class="myCard card">
-                    <div class="d-flex justify-content-center my-2">
-                        <button class="save-button   save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged" (click)="open(cardHeaderModal,'change card header' ,i)"
-                            aria-label="Change card header and image">settings</button>
-                        <button [hidden]="!logged" type="button"
-                            class="save-button save-right rounded-circle material-symbols-outlined"
-                            aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
-                        <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value"
-                            [showImage]="true" [percent]="card.value" [radius]="100" [outerStrokeColor]="card.outStroke"
-                            [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
-                            [imageSrc]="card.img.src" [imageHeight]="card.size"
-                            [imageWidth]="card.size"></circle-progress>
-                    </div>
+                <div *ngFor="let card of cards, let i=index"
+                    class="d-grid justify-content-center align-content-center myCard card">
+                    <button class="save-button save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
+                        (click)="open(cardHeaderModal,'change card header' ,i)"
+                        aria-label="Change card header and image">settings</button>
+                    <button [hidden]="!logged" type="button"
+                        class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
+                        (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                    <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value" [showImage]="true"
+                        [percent]="card.value" [outerStrokeColor]="card.outStroke" [backgroundColor]="card.bkColor"
+                        [animation]="true" [animationDuration]="500" [imageSrc]="card.img.src" [imageHeight]="100"
+                        [imageWidth]="100"></circle-progress>
                 </div>
             </div>
         </div>

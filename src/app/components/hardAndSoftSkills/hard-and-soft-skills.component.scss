@@ -47,12 +47,12 @@
     width: 100%;
     height: 44vw;
     overflow: auto;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
     & .myCard {
         width: 100%;
         background-color: #f7f7f7;
-        height: 30em;
+        height: 21em;
         position: relative;
         border: 2px solid grey;
         box-shadow: 1px 1px 5px 2px #0a0202;
