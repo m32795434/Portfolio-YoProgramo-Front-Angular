@@ -16,7 +16,7 @@
           "id": "S1",
           "img": {
             "src": "../../../assets/images/bootstrap.png",
-            "alt": "bootstrap"
+            "alt": "Bootstrap"
           },
           "value": 50,
           "bkColor": "red",
@@ -27,7 +27,7 @@
           "id": "S2",
           "img": {
             "src": "../../../assets/images/java.png",
-            "alt": "java"
+            "alt": "Java"
           },
           "value": 50,
           "bkColor": "red",
@@ -38,7 +38,7 @@
           "id": "S3",
           "img": {
             "src": "../../../assets/images/node-js.png",
-            "alt": "node-js"
+            "alt": "Node-js"
           },
           "value": 50,
           "bkColor": "red",
@@ -49,7 +49,7 @@
           "id": "S4",
           "img": {
             "src": "../../../assets/images/github.png",
-            "alt": "github"
+            "alt": "Github"
           },
           "value": 50,
           "bkColor": "red",
@@ -60,7 +60,7 @@
           "id": "S5",
           "img": {
             "src": "../../../assets/images/git.png",
-            "alt": "git"
+            "alt": "Git"
           },
           "value": 50,
           "bkColor": "red",
@@ -71,7 +71,7 @@
           "id": "S6",
           "img": {
             "src": "../../../assets/images/angular.png",
-            "alt": "angular"
+            "alt": "Angular"
           },
           "value": 50,
           "bkColor": "red",

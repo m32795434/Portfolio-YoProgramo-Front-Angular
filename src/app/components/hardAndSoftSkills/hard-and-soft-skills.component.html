@@ -40,6 +40,7 @@
                         [percent]="card.value" [outerStrokeColor]="card.outStroke" [backgroundColor]="card.bkColor"
                         [animation]="true" [animationDuration]="500" [imageSrc]="card.img.src" [imageHeight]="100"
                         [imageWidth]="100"></circle-progress>
+                    <span>{{card.img.alt+': '+card.value+'%'}}</span>
                 </div>
             </div>
         </div>
