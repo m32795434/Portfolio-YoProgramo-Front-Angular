@@ -36,10 +36,11 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
-                        <circle-progress [percent]="card.value" [radius]="100" [outerStrokeWidth]="16"
-                            [innerStrokeWidth]="8" [outerStrokeColor]="card.color" [innerStrokeColor]="'#C7E596'"
-                            [animation]="true" [animationDuration]="300" [imageSrc]="card.img.src" [imageHeight]="50"
-                            [imageWidth]="50" [ariaValueText]="card.img.alt"></circle-progress>
+                        <circle-progress tabindex="0" aria-label="onesoftskill" [showImage]="false"
+                            [percent]="card.value" [radius]="100" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+                            [outerStrokeColor]="card.color" [innerStrokeColor]="'#C7E596'" [animation]="true"
+                            [animationDuration]="300" [imageSrc]="card.img.src" [imageHeight]="50" [imageWidth]="50"
+                            [ariaValueText]="card.value"></circle-progress>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ export class DataService {
             break;
           case "skills":
             this.data['skills'] = content;
-            this.qPDDataSubject.next(this.data[content.id]);
+            this.skillsDataSubject.next(this.data[content.id]);
             break;
           default:
             break;
