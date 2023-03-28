@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { SkillsCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,54 +27,34 @@ export class HardAndSoftSkillsComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  section: any = { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
   //contains all the cards content
-  cards: ExperienceCard[] = [{
-    id: "id",
-    img: { src: "", alt: "" },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
-    ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+  cards: SkillsCard[] = [{
+    id: "S1",
+    img: { src: "../../../assets/images/regional-bs.png", alt: "regional-bs" },
+    value: 50,
+    color: "red",
   }]
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
-  // greaterThan975 = false;
 
   //new card
-  newCard: ExperienceCard = {
-    id: "id",
+  newCard: SkillsCard = {
+    id: "",
     img: { src: "", alt: "" },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    h2: { en: "", es: "" },
-    ph: { en: "", es: "" }
+    value: 0,
+    color: "red",
   }
+
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getExperienceDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getSkillsDataObserver().subscribe((section) => {
       this.section = section;
       this.cards = this.section['cards'];
     })
@@ -82,12 +62,12 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('experience');
+    const content = this.dataService.getData('skills');
     if (content) {
       this.section = content;
       this.cards = this.section['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('experience');
+      this.dataService.getSectionFromJsonServer('skills');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -115,28 +95,28 @@ export class HardAndSoftSkillsComponent implements OnInit {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
     this.section.cards[i].ph[this.lenguage] = innerHTML;
     console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
-    this.dataService.updateSection('experience', this.section);
+    this.dataService.updateSection('skills', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.lenguage] = innerHTML;
-    this.dataService.updateSection('experience', this.section);
+    this.dataService.updateSection('skills', this.section);
   }
   updateCard() {
     console.log('updating with:', this.section);
-    this.dataService.updateSection('experience', this.section);
+    this.dataService.updateSection('skills', this.section);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.section.cards.splice(this.cardsIndex, 1);
     console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('experience', this.section);
+    this.dataService.updateSection('skills', this.section);
   }
   createCard() {
     this.newCard.id = `S${this.cards.length}`;
     this.section.cards.push(this.newCard);
-    this.dataService.updateSection('experience', this.section);
+    this.dataService.updateSection('skills', this.section);
   }
   //MODALS
 

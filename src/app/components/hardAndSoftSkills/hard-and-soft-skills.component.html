@@ -36,6 +36,10 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                        <circle-progress [percent]="card.value" [radius]="100" [outerStrokeWidth]="16"
+                            [innerStrokeWidth]="8" [outerStrokeColor]="card.color" [innerStrokeColor]="'#C7E596'"
+                            [animation]="true" [animationDuration]="300" [imageSrc]="card.img.src" [imageHeight]="50"
+                            [imageWidth]="50" [ariaValueText]="card.img.alt"></circle-progress>
                     </div>
                 </div>
             </div>
@@ -94,7 +98,7 @@
 
 <ng-template #cardHeaderModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">Set Card Header</h4>
+        <h4 class="modal-title">Update Skill</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -102,37 +106,24 @@
     <div class="modal-body">
         <form (ngSubmit)="updateCard()">
             <div class="form-group">
-                <label for="companyImg">Company img src: </label>
-                <input type="text" class="form-control" id="companyImg" name="companyImg"
+                <label for="skillImg">Skill img src:</label>
+                <input type="text" class="form-control" id="skillImg" name="skillImg"
                     [(ngModel)]="section.cards[cardsIndex].img.src">
             </div>
             <div class="form-group">
-                <label for="imgAlt">Img alt: </label>
-                <input type="text" class="form-control" id="companyImg" name="imgAlt"
+                <label for="imgAlt">Skill img alt(En):</label>
+                <input type="text" class="form-control" id="imgAlt" name="imgAlt"
                     [(ngModel)]="section.cards[cardsIndex].img.alt">
             </div>
             <div class="form-group">
-                <label for="institution">Company / Institution name</label>
-                <input type="text" class="form-control" id="institution" name="institution"
-                    [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
+                <label for="value">Skill value (En):</label>
+                <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
+                    [(ngModel)]="section.cards[cardsIndex].value">
             </div>
             <div class="form-group">
-                <label for="companyImg">Start date </label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="section.cards[cardsIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                        type="button"></button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="companyImg">End date </label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="section.cards[cardsIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                        type="button"></button>
-                </div>
+                <label for="color">Progress bar color (En):</label>
+                <input type="text" class="form-control" id="color" name="color"
+                    [(ngModel)]="section.cards[cardsIndex].color">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
@@ -161,7 +152,7 @@
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">Create Card - English version</h4>
+        <h4 class="modal-title">New Skill - English version</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -169,34 +160,21 @@
     <div class="modal-body">
         <form (ngSubmit)="createCard()">
             <div class="form-group">
-                <label for="companyImg">Company img src:</label>
-                <input type="text" class="form-control" id="companyImg" name="companyImg" [(ngModel)]="newCard.img.src">
+                <label for="skillImg">Skill img src:</label>
+                <input type="text" class="form-control" id="skillImg" name="skillImg" [(ngModel)]="newCard.img.src">
             </div>
             <div class="form-group">
-                <label for="institution">Company / Institution name(En):</label>
-                <input type="text" class="form-control" id="institution" name="institution" [(ngModel)]="newCard.h2.en">
+                <label for="imgAlt">Skill img alt(En):</label>
+                <input type="text" class="form-control" id="imgAlt" name="imgAlt" [(ngModel)]="newCard.img.alt">
             </div>
             <div class="form-group">
-                <label for="dp1">Start date:</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
-                        #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                        type="button"></button>
-                </div>
+                <label for="value">Skill value (En):</label>
+                <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
+                    [(ngModel)]="newCard.value">
             </div>
             <div class="form-group">
-                <label for="dp2">End date:</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
-                        #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                        type="button"></button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="description">Description(En):</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
+                <label for="color">Progress bar color (En):</label>
+                <input type="text" class="form-control" id="color" name="color" [(ngModel)]="newCard.color">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>

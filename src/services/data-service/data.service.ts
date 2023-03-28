@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { Home, Experience, QPD, Projects, Sections, Section, StringSection } from 'src/interfaces/sections-interfaces';
+import { Home, Experience, QPD, Projects, Sections, Section, StringSection, Skills } from 'src/interfaces/sections-interfaces';
 import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
 
 
@@ -13,13 +13,16 @@ export class DataService {
   private experienceDataSubject = new Subject<any>();
   private qPDDataSubject = new Subject<any>();
   private projectsDataSubject = new Subject<any>();
+  private skillsDataSubject = new Subject<any>();
+
   private errorSubject = new Subject<any>();
 
   protected data: Sections = {
     home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
-    projects: { id: "projects", en: "", es: "" }
+    projects: { id: "projects", en: "", es: "" },
+    skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };
   constructor(private JsonServer: JsonServerRequestsService) { }
 
@@ -35,7 +38,10 @@ export class DataService {
   }
   getProjectsDataObserver() {
     return this.projectsDataSubject.asObservable();
+  } getSkillsDataObserver() {
+    return this.skillsDataSubject.asObservable();
   }
+
 
   getErrorObserver() {
     return this.errorSubject.asObservable();
@@ -43,7 +49,7 @@ export class DataService {
   //REQUESTS
   subscribeSectionObjectFunct(): any {
     const subscribeSectionObject = {
-      next: (content: Home | Experience | QPD | Projects) => {
+      next: (content: Home | Experience | QPD | Projects | Skills) => {
         switch (content.id) {
           case "home":
             this.data['home'] = content;
@@ -59,6 +65,10 @@ export class DataService {
             break;
           case "qPD":
             this.data['qPD'] = content;
+            this.qPDDataSubject.next(this.data[content.id]);
+            break;
+          case "skills":
+            this.data['skills'] = content;
             this.qPDDataSubject.next(this.data[content.id]);
             break;
           default:
