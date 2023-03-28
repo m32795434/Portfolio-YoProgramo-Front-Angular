@@ -9,6 +9,10 @@
 
 button[aria-label="Create-card"] {
     top: 50%;
+
+    @include media-breakpoint-up(lg) {
+        top: 40%;
+    }
 }
 
 .container-columns {
