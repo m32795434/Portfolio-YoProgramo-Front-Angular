@@ -15,7 +15,7 @@
         {
           "id": "S1",
           "img": {
-            "src": "../../../assets/images/bootstrap.jfif",
+            "src": "../../../assets/images/bootstrap.png",
             "alt": "bootstrap"
           },
           "value": 50,
@@ -26,7 +26,7 @@
         {
           "id": "S2",
           "img": {
-            "src": "../../../assets/images/java.jfif",
+            "src": "../../../assets/images/java.png",
             "alt": "java"
           },
           "value": 50,
@@ -59,7 +59,7 @@
         {
           "id": "S5",
           "img": {
-            "src": "../../../assets/images/git.jfif",
+            "src": "../../../assets/images/git.png",
             "alt": "git"
           },
           "value": 50,
@@ -70,7 +70,7 @@
         {
           "id": "S6",
           "img": {
-            "src": "../../../assets/images/angular.jfif",
+            "src": "../../../assets/images/angular.png",
             "alt": "angular"
           },
           "value": 50,
