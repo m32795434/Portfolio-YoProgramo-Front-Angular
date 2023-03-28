@@ -31,6 +31,11 @@ export class HomeComponent implements OnInit {
   lenguage = 'en';
   swiper: any;
   errorMessage = '';
+  cardsIndex?: number;
+  newCard: HomeCard = {
+    id: "id",
+    en: "", es: ""
+  }
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     //updates the user login status when changes occur
@@ -93,11 +98,25 @@ export class HomeComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSection('home', this.section);
   }
-  //IMG SRC MODAL
 
-  open(content: TemplateRef<any>) {
+  deleteCard() {
+    console.log('deleting index:', this.cardsIndex);
+    this.section.cards.splice(this.cardsIndex, 1);
+    console.log('this.section.cards', this.section.cards)
+    this.dataService.updateSection('home', this.section);
+  }
+
+  createCard() {
+    this.newCard.id = `S${this.cards.length}`;
+    this.section.cards.push(this.newCard);
+    this.dataService.updateSection('home', this.section);
+  }
+  //MODAL
+
+  open(content: TemplateRef<any>, ref: string, i?: number) {
+    this.cardsIndex = i;
     this.modalService.open(content, {
-      ariaLabelledBy: 'imgSrcModal',
+      ariaLabelledBy: `${ref}`,
       size: 'lg',
       centered: true,
       backdrop: 'static',
@@ -112,7 +131,6 @@ export class HomeComponent implements OnInit {
       },
     );
   }
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

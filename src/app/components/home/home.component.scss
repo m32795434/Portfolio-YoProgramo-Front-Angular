@@ -7,6 +7,14 @@
     font-family: 'Material Symbols Outlined';
 }
 
+button[aria-label="Create-card"] {
+    top: 50%;
+
+    @include media-breakpoint-up(lg) {
+        top: 40%;
+    }
+}
+
 .container-columns {
     height: 100%;
     position: absolute;
@@ -27,6 +35,7 @@
 }
 
 #main-Half-BackG {
+    position: relative;
     width: 100%;
 
     @include media-breakpoint-up(lg) {
@@ -68,6 +77,14 @@
                 z-index: 11;
                 top: 0px;
                 left: 5px;
+                opacity: 0.8;
+            }
+
+            &>#delete {
+                position: absolute;
+                z-index: 11;
+                top: 0px;
+                left: 85%;
                 opacity: 0.8;
             }
 

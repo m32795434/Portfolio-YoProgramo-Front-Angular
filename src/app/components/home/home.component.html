@@ -1,14 +1,17 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
+    <button [hidden]="!logged" id="createCard" type="button"
+        class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="Create-card"
+        (click)="open(createCardModal, 'create-new-card')">library_add</button>
     <div class="d-lg-none">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
-            (click)="open(imgSrcModal)">settings</button>
+            (click)="open(imgSrcModal, 'image-source')">settings</button>
         <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="section?.imgMobile" alt="Manuel perfil"
             id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
-            (click)="open(imgSrcModal)">settings</button>
+            (click)="open(imgSrcModal, 'image-source')">settings</button>
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
@@ -24,6 +27,9 @@
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
+            <button [hidden]="!logged" id="createCard" type="button"
+                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Create-card"
+                (click)="open(createCardModal, 'create-new-card')">library_add</button>
             <div class="d-flex flex-fill">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
                     data-id="h1HomeEn" [hidden]="!logged" (click)="saveH1($event)">save</button>
@@ -39,7 +45,9 @@
                     <div *ngFor="let card of cards, let i=index" class="swiper-slide">
                         <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="card.id"
                             [hidden]="!logged" (click)="saveCardEl($event)">save</button>
-
+                        <button [hidden]="!logged" type="button" id="delete"
+                            class="save-button save-right rounded-circle material-symbols-outlined"
+                            aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                         <p [innerHTML]="lenguage === 'en'? card.en : card.es" class="p-3 m-0 text-center edit-content"
                             [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
@@ -58,7 +66,7 @@
     </div>
 </main>
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
-<ng-template #imgSrcModal let-modal class="imgSrcModal">
+<ng-template #imgSrcModal let-modal class="#">
     <div class="modal-header">
         <h4 class="modal-title">Set Src</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -78,6 +86,44 @@
                     [(ngModel)]="section.imgDesktop">
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #createCardModal let-modal class="#">
+    <div class="modal-header">
+        <h4 class="modal-title">Create Card - English version</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="createCard()">
+            <div class="form-group">
+                <label for="description">Description(En):</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.en">
+            </div>
+            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #confirmDelete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete?</p>
+    </div>
+    <div class="modal-footer d-grid align-content-center justify-content-center">
+        <form (ngSubmit)="deleteCard()">
+            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                (click)="modal.dismiss('Cancel')">
+                cancel
+            </button>
+            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                (click)="modal.close('Delete')">delete</button>
         </form>
     </div>
 </ng-template>
