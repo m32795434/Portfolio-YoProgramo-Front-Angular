@@ -18,7 +18,7 @@ export class SocialsDropdown {
     }
     imgEventHandler(e: any) {
         if (e.key === 'Enter' || e.type === 'click') {
-            switch (e.target.alt) {
+            switch (e.currentTarget.dataset.social) {
                 case 'Instagram':
                     window.location.assign('https://www.instagram.com/augustox86/');
                     break;

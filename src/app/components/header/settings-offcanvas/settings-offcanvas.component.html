@@ -1,6 +1,7 @@
 <ng-template #content let-offcanvas>
     <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvas-basic-title">Profile update</h4>
+        <h4 class="offcanvas-title" id="offcanvas-basic-title" [textContent]="language==='en'? 'Settings':'Ajustes'">
+        </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
     </div>
     <div class="offcanvas-body">
@@ -9,10 +10,10 @@
 
         <!--  -->
 
-        <div class="text-end">
+        <!-- <div class="text-end">
             <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
-        </div>
+        </div> -->
     </div>
 </ng-template>
 
-<button id="settingsBtn" type="button" class="btn material-icons" (click)="open(content)">settings</button>
+<button id="settingsBtn" type="button" class="btn material-icons" (click)="openEnd(content)">settings</button>

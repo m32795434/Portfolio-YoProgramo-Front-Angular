@@ -1,5 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { LanguageService } from 'src/services/language/language.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-settings-offcanvas',
@@ -8,10 +10,16 @@ import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstra
 })
 export class SettingsOffcanvasComponent {
   closeResult = '';
-  constructor(private offcanvasService: NgbOffcanvas) { }
+  language = "en"
+  languageSubsc = new Subscription();
 
-  open(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
+  constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService) {
+    this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val)
+  }
+
+
+  openEnd(content: TemplateRef<any>) {
+    this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title', position: 'end' }).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
