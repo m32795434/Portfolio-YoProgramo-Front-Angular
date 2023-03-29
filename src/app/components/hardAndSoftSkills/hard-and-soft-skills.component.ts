@@ -34,8 +34,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
     img: { src: "../../../assets/images/regional-bs.png", alt: "regional-bs" },
     value: 50,
     bkColor: "red",
-    size: 50,
-    outStroke: "blue"
+    outStrokeColor: "blue"
 
   }]
   lenguage = 'en';
@@ -49,8 +48,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
     img: { src: "", alt: "" },
     value: 0,
     bkColor: "red",
-    size: 50,
-    outStroke: "blue"
+    outStrokeColor: "blue"
   }
 
 

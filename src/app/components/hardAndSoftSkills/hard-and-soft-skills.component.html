@@ -37,7 +37,7 @@
                         class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
                         (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
                     <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value" [showImage]="true"
-                        [percent]="card.value" [outerStrokeColor]="card.outStroke" [backgroundColor]="card.bkColor"
+                        [percent]="card.value" [outerStrokeColor]="card.outStrokeColor" [backgroundColor]="card.bkColor"
                         [animation]="true" [animationDuration]="500" [imageSrc]="card.img.src" [imageHeight]="100"
                         [imageWidth]="100"></circle-progress>
                     <span>{{card.img.alt+': '+card.value+'%'}}</span>
@@ -113,7 +113,7 @@
                         [(ngModel)]="section.cards[cardsIndex].img.src">
                 </div>
                 <div class="form-group">
-                    <label for="imgAlt">Skill img alt(En):</label>
+                    <label for="imgAlt">Skill name(En):</label>
                     <input type="text" class="form-control" id="imgAlt" name="imgAlt"
                         [(ngModel)]="section.cards[cardsIndex].img.alt">
                 </div>
@@ -123,9 +123,14 @@
                         [(ngModel)]="section.cards[cardsIndex].value">
                 </div>
                 <div class="form-group">
-                    <label for="color">Progress bar color (En):</label>
-                    <input type="text" class="form-control" id="color" name="color"
-                        [(ngModel)]="section.cards[cardsIndex].color">
+                    <label for="bkColor">Background color:</label>
+                    <input type="text" class="form-control" id="bkColor" name="bkColor"
+                        [(ngModel)]="section.cards[cardsIndex].bkColor">
+                </div>
+                <div class="form-group">
+                    <label for="outStrokeColor">Progress bar color:</label>
+                    <input type="text" class="form-control" id="outStrokeColor" name="outStrokeColor"
+                        [(ngModel)]="section.cards[cardsIndex].outStrokeColor">
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
             </form>

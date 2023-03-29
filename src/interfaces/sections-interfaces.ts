@@ -70,8 +70,7 @@ interface SkillsCard {
     img: { src: string, alt: string };
     value: number;
     bkColor: string;
-    size: number;
-    outStroke: string;
+    outStrokeColor: string;
 }
 type Section = Home | QPD | Experience | Projects | Skills;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";

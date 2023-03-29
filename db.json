@@ -20,8 +20,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         },
         {
           "id": "S2",
@@ -31,8 +30,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         },
         {
           "id": "S3",
@@ -42,8 +40,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         },
         {
           "id": "S4",
@@ -53,8 +50,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         },
         {
           "id": "S5",
@@ -64,8 +60,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         },
         {
           "id": "S6",
@@ -75,8 +70,7 @@
           },
           "value": 50,
           "bkColor": "red",
-          "size:": 50,
-          "outStroke": "blue"
+          "outStrokeColor": "blue"
         }
       ]
     },
