@@ -106,72 +106,77 @@
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
 
 <ng-template #mainImgSrcModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">Set Src</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="updateCard()">
-            <div class="form-group">
-                <label for="imgMobile">Mobile img src: </label>
-                <input type="text" class="form-control" id="imgMobile" name="imgMobile" [(ngModel)]="section.imgMobile">
-            </div>
-            <div class="form-group">
-                <label for="imgDesktop">Desktop img src: </label>
-                <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
-                    [(ngModel)]="section.imgDesktop">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
-        </form>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Set Src</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="imgMobile">Mobile img src: </label>
+                    <input type="text" class="form-control" id="imgMobile" name="imgMobile"
+                        [(ngModel)]="section.imgMobile">
+                </div>
+                <div class="form-group">
+                    <label for="imgDesktop">Desktop img src: </label>
+                    <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
+                        [(ngModel)]="section.imgDesktop">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 
 <ng-template #cardHeaderModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">Set Card Header</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="updateCard()">
-            <div class="form-group">
-                <label for="companyImg">Company img src: </label>
-                <input type="text" class="form-control" id="companyImg" name="companyImg"
-                    [(ngModel)]="section.cards[cardsIndex].img.src">
-            </div>
-            <div class="form-group">
-                <label for="imgAlt">Img alt: </label>
-                <input type="text" class="form-control" id="companyImg" name="imgAlt"
-                    [(ngModel)]="section.cards[cardsIndex].img.alt">
-            </div>
-            <div class="form-group">
-                <label for="institution">Company / Institution name</label>
-                <input type="text" class="form-control" id="institution" name="institution"
-                    [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
-            </div>
-            <div class="form-group">
-                <label for="companyImg">Start date </label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="section.cards[cardsIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                        type="button"></button>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Set Card Header</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="companyImg">Company img src: </label>
+                    <input type="text" class="form-control" id="companyImg" name="companyImg"
+                        [(ngModel)]="section.cards[cardsIndex].img.src">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="companyImg">End date </label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                        [(ngModel)]="section.cards[cardsIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                        type="button"></button>
+                <div class="form-group">
+                    <label for="imgAlt">Img alt: </label>
+                    <input type="text" class="form-control" id="companyImg" name="imgAlt"
+                        [(ngModel)]="section.cards[cardsIndex].img.alt">
                 </div>
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
-        </form>
+                <div class="form-group">
+                    <label for="institution">Company / Institution name</label>
+                    <input type="text" class="form-control" id="institution" name="institution"
+                        [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
+                </div>
+                <div class="form-group">
+                    <label for="companyImg">Start date </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                            [(ngModel)]="section.cards[cardsIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="companyImg">End date </label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                            [(ngModel)]="section.cards[cardsIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>

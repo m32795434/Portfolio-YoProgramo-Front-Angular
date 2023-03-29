@@ -67,26 +67,28 @@
 </main>
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
 <ng-template #imgSrcModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">Set Src</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="saveImgSrc()">
-            <div class="form-group">
-                <label for="imgMobile">Mobile img src: </label>
-                <input type="imgMobile" class="form-control" id="imgMobile" name="imgMobile"
-                    [(ngModel)]="section.imgMobile">
-            </div>
-            <div class="form-group">
-                <label for="imgDesktop">Desktop img src: </label>
-                <input type="imgDesktop" class="form-control" id="imgDesktop" name="imgDesktop"
-                    [(ngModel)]="section.imgDesktop">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
-        </form>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Set Src</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="saveImgSrc()">
+                <div class="form-group">
+                    <label for="imgMobile">Mobile img src: </label>
+                    <input type="imgMobile" class="form-control" id="imgMobile" name="imgMobile"
+                        [(ngModel)]="section.imgMobile">
+                </div>
+                <div class="form-group">
+                    <label for="imgDesktop">Desktop img src: </label>
+                    <input type="imgDesktop" class="form-control" id="imgDesktop" name="imgDesktop"
+                        [(ngModel)]="section.imgDesktop">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #createCardModal let-modal class="#">

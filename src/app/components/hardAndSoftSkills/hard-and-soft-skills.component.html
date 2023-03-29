@@ -98,36 +98,38 @@
 </ng-template>
 
 <ng-template #cardHeaderModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">Update Skill</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="updateCard()">
-            <div class="form-group">
-                <label for="skillImg">Skill img src:</label>
-                <input type="text" class="form-control" id="skillImg" name="skillImg"
-                    [(ngModel)]="section.cards[cardsIndex].img.src">
-            </div>
-            <div class="form-group">
-                <label for="imgAlt">Skill img alt(En):</label>
-                <input type="text" class="form-control" id="imgAlt" name="imgAlt"
-                    [(ngModel)]="section.cards[cardsIndex].img.alt">
-            </div>
-            <div class="form-group">
-                <label for="value">Skill value (En):</label>
-                <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
-                    [(ngModel)]="section.cards[cardsIndex].value">
-            </div>
-            <div class="form-group">
-                <label for="color">Progress bar color (En):</label>
-                <input type="text" class="form-control" id="color" name="color"
-                    [(ngModel)]="section.cards[cardsIndex].color">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
-        </form>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Update Skill</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="skillImg">Skill img src:</label>
+                    <input type="text" class="form-control" id="skillImg" name="skillImg"
+                        [(ngModel)]="section.cards[cardsIndex].img.src">
+                </div>
+                <div class="form-group">
+                    <label for="imgAlt">Skill img alt(En):</label>
+                    <input type="text" class="form-control" id="imgAlt" name="imgAlt"
+                        [(ngModel)]="section.cards[cardsIndex].img.alt">
+                </div>
+                <div class="form-group">
+                    <label for="value">Skill value (En):</label>
+                    <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
+                        [(ngModel)]="section.cards[cardsIndex].value">
+                </div>
+                <div class="form-group">
+                    <label for="color">Progress bar color (En):</label>
+                    <input type="text" class="form-control" id="color" name="color"
+                        [(ngModel)]="section.cards[cardsIndex].color">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
