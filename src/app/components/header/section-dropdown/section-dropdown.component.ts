@@ -11,29 +11,7 @@ import { Subscription } from 'rxjs';
     standalone: true,
     imports: [NgbDropdownModule, RouterModule, FormsModule],
     templateUrl: './section-dropdown.component.html',
-    styles: [`
-    
-    #menu-Hamb {
-    color: #b3b3b3;
-    font-size: 20px;
-    background-color: transparent;
-    outline: none;
-    border: transparent;
-    &:hover {
-            border-radius: 7px;
-            box-shadow: 0 0 7px 4px #8a8989;
-        }
-    }
-    #sectionBtn {
-        font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
-        font-size: 20px;
-        color: #b3b3b3;
-        &:hover {
-            border-radius: 7px;
-            box-shadow: 0 0 7px 4px #8a8989;
-        }
-    }
-`]
+    styleUrls: ['./section-dropdown.component.scss']
 
 })
 export class NgbdDropdownBasic implements OnInit {

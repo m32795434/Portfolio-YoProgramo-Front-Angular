@@ -2,26 +2,13 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start m-0 py-1">
             <img role="button" tabindex="0" src="../../../assets/images/Argentina-Programa.png" alt="Argentina Programa"
-                (click)="imgEventHandler()" (keyup)="imgEventHandler()">
+                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
         </div>
-        <div class="flex-grow-1 d-grid justify-content-center align-content-center d-lg-none">
-            <!-- <div class="d-flex">
-                <button class="save-button material-symbols-outlined save" type="button" hidden>save</button>
-
-            </div> -->
-        </div>
-        <div class="d-flex justify-content-end align-content-center gap-1" id="section-socials">
-            <div class="btn-group">
-
-                <!-- <button class="save-button material-symbols-outlined saveLg" type="button" hidden>save</button> -->
-                <!-- class="dropdown-toggle" is for the arrow in the button. -->
-
-                <section-dropdown></section-dropdown>
-                <socials-dropdown></socials-dropdown>
-                <app-settings-offcanvas></app-settings-offcanvas>
-            </div>
-
-
+        <div class="d-flex justify-content-end align-content-center gap-1">
+            <!-- class="dropdown-toggle" is for the arrow in the button. -->
+            <section-dropdown></section-dropdown>
+            <socials-dropdown></socials-dropdown>
+            <app-settings-offcanvas></app-settings-offcanvas>
         </div>
     </div>
 </header>

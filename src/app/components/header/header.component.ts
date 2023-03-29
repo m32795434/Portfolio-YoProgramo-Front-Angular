@@ -10,8 +10,10 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  imgEventHandler() {
-    window.location.assign('https://www.argentina.gob.ar/economia/conocimiento/argentina-programa');
+  imgEventHandler(e: any) {
+    if (e.key === 'Enter' || e.type === 'click') {
+      window.location.assign('https://www.argentina.gob.ar/economia/conocimiento/argentina-programa');
+    }
   }
 
 }

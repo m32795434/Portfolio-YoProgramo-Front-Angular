@@ -12,27 +12,18 @@ header {
     }
 }
 
-#section-socials>img {
-    width: 35px;
-    height: 35px;
-
-    &:hover {
-        border-radius: 7px;
-        box-shadow: 0 0 7px 4px #8a8989;
-    }
-}
-
-img[alt="Argentina Programa"]:hover {
+img[alt="Argentina Programa"]:hover,
+img[alt="Argentina Programa"]:focus {
     border-radius: 7px;
     box-shadow: 0 0 7px 4px #8a8989;
 }
 
-button.save {
-    color: #FA1C1C;
-    border: 1px solid #FA1C1C;
-    font-size: 34px;
-    background-color: #393838;
-}
+// button.save {
+//     color: #FA1C1C;
+//     border: 1px solid #FA1C1C;
+//     font-size: 34px;
+//     background-color: #393838;
+// }
 
 /*:host /deep/ .mi-clase {
     /* Estilos CSS aquí */
