@@ -6,9 +6,78 @@
       "en": "Other PROJECTS"
     },
     {
+      "id": "skills",
+      "imgMobile": "../../../assets/images/Experience-mobile.png",
+      "imgDesktop": "../../../assets/images/experience-md-1920.png",
+      "en": "Hard &amp; Soft Skills",
+      "es": "Competencias Duras y Blandas",
+      "cards": [
+        {
+          "id": "S1",
+          "img": {
+            "src": "../../../assets/images/bootstrap.png",
+            "alt": "Bootstrap"
+          },
+          "value": 75,
+          "bkColor": "orange",
+          "outStrokeColor": "blue"
+        },
+        {
+          "id": "S2",
+          "img": {
+            "src": "../../../assets/images/java.png",
+            "alt": "Java"
+          },
+          "value": 40,
+          "bkColor": "purple",
+          "outStrokeColor": "red"
+        },
+        {
+          "id": "S3",
+          "img": {
+            "src": "../../../assets/images/node-js.png",
+            "alt": "Node-js"
+          },
+          "value": 78,
+          "bkColor": "orange",
+          "outStrokeColor": "blue"
+        },
+        {
+          "id": "S4",
+          "img": {
+            "src": "../../../assets/images/github.png",
+            "alt": "Github"
+          },
+          "value": 90,
+          "bkColor": "grey",
+          "outStrokeColor": "red"
+        },
+        {
+          "id": "S5",
+          "img": {
+            "src": "../../../assets/images/git.png",
+            "alt": "Git"
+          },
+          "value": 60,
+          "bkColor": "purple",
+          "outStrokeColor": "white"
+        },
+        {
+          "id": "S6",
+          "img": {
+            "src": "../../../assets/images/angular.png",
+            "alt": "Angular"
+          },
+          "value": 75,
+          "bkColor": "green",
+          "outStrokeColor": "red"
+        }
+      ]
+    },
+    {
       "id": "experience",
-      "imgMobile": "http://localhost:1234/Experience-mobile.a8a110b4.png",
-      "imgDesktop": "http://localhost:1234/experience-md-1920.77cae3bd.png",
+      "imgMobile": "../../../assets/images/Experience-mobile.png",
+      "imgDesktop": "../../../assets/images/experience-md-1920.png",
       "en": "EXPERIENCE",
       "es": "EXPERIENCIA",
       "cards": [

@@ -1,1 +1,194 @@
-<p>hard-and-soft-skills works!</p>
+<main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
+    <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0">
+        <div class="col-12 col-lg-3 flex-fill p-0 m-0 imgTitleWrapper">
+            <div class="d-lg-none">
+                <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+                    [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
+                    aria-label="Change main image source">settings</button>
+                <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
+                    [src]="section?.imgMobile" id="imgMobileQa">
+            </div>
+            <div class="d-none d-lg-block">
+                <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+                    [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
+                    aria-label="Change main image source">settings</button>
+                <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="section?.imgDesktop"
+                    alt="Manuel perfil" id="imgDesktopQa">
+            </div>
+            <div class="d-flex wrapper-h1-save">
+                <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
+                    data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
+                    aria-label="Change Section title">save</button>
+                <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
+                    [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
+            </div>
+            <button [hidden]="!logged" id="createCard" type="button"
+                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                (click)="open(createCardModal, 'create-new-card')">library_add</button>
+        </div>
+        <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
+            <div class="cardWrapper d-grid m-0 p-2 gap-3">
+                <div *ngFor="let card of cards, let i=index"
+                    class="d-grid justify-content-center align-content-center myCard card">
+                    <button class="save-button save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
+                        (click)="open(updateCardModal,'change card header' ,i)"
+                        aria-label="Change card header and image">settings</button>
+                    <button [hidden]="!logged" type="button"
+                        class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
+                        (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                    <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value" [showImage]="true"
+                        [percent]="card.value" [outerStrokeColor]="card.outStrokeColor" [backgroundColor]="card.bkColor"
+                        [animation]="true" [animationDuration]="500" [imageSrc]="card.img.src" [imageHeight]="100"
+                        [imageWidth]="100"></circle-progress>
+                    <span>{{card.img.alt+': '+card.value+'%'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper w-100 p-2 gap-3">
+                <!-- Cards -->
+                <div *ngFor="let card of cards, let i=index" class="swiper-slide w-100 card">
+                    <div class="d-grid justify-content-center align-content-center">
+                        <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
+                            [hidden]="!logged" (click)="open(updateCardModal, 'change card header ',i)"
+                            aria-label="Change card header and image">settings</button>
+                        <button [hidden]="!logged" type="button"
+                            class="save-button save-right rounded-circle material-symbols-outlined"
+                            aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
+                        <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value"
+                            [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
+                            [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
+                            [imageSrc]="card.img.src" [imageHeight]="100" [imageWidth]="100"></circle-progress>
+                        <span>{{card.img.alt+': '+card.value+'%'}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</main>
+
+<ng-template #errorLoading>{{errorMessage}}</ng-template>
+<ng-template #mainImgSrcModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Set Src</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="imgMobile">Mobile img src: </label>
+                    <input type="text" class="form-control" id="imgMobile" name="imgMobile"
+                        [(ngModel)]="section.imgMobile">
+                </div>
+                <div class="form-group">
+                    <label for="imgDesktop">Desktop img src: </label>
+                    <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
+                        [(ngModel)]="section.imgDesktop">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #updateCardModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Update Skill</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="skillImg">Skill img src:</label>
+                    <input type="text" class="form-control" id="skillImg" name="skillImg"
+                        [(ngModel)]="section.cards[cardsIndex].img.src">
+                </div>
+                <div class="form-group">
+                    <label for="imgAlt">Skill name(En):</label>
+                    <input type="text" class="form-control" id="imgAlt" name="imgAlt"
+                        [(ngModel)]="section.cards[cardsIndex].img.alt">
+                </div>
+                <div class="form-group">
+                    <label for="value">Skill value:</label>
+                    <mat-slider discrete>
+                        <input matSliderThumb [value]="section.cards[cardsIndex].value"
+                            [(ngModel)]="section.cards[cardsIndex].value" class="form-control" id="value" name="value">
+                    </mat-slider>
+                </div>
+                <div class=" form-group">
+                    <label for="bkColor">Background color:</label>
+                    <input type="text" class="form-control" id="bkColor" name="bkColor"
+                        [(ngModel)]="section.cards[cardsIndex].bkColor">
+                </div>
+                <div class="form-group">
+                    <label for="outStrokeColor">Progress bar color:</label>
+                    <input type="text" class="form-control" id="outStrokeColor" name="outStrokeColor"
+                        [(ngModel)]="section.cards[cardsIndex].outStrokeColor">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<ng-template #confirmDelete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete?</p>
+    </div>
+    <div class="modal-footer d-grid align-content-center justify-content-center">
+        <form (ngSubmit)="deleteCard()">
+            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                (click)="modal.dismiss('Cancel')">
+                cancel
+            </button>
+            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                (click)="modal.close('Delete')">delete</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #createCardModal let-modal class="#">
+    <div class="modal-header">
+        <h4 class="modal-title">New Skill - English version</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="createCard()">
+            <div class="form-group">
+                <label for="skillImg">Skill img src:</label>
+                <input type="text" class="form-control" id="skillImg" name="skillImg" [(ngModel)]="newCard.img.src">
+            </div>
+            <div class="form-group">
+                <label for="imgAlt">Skill img alt(En):</label>
+                <input type="text" class="form-control" id="imgAlt" name="imgAlt" [(ngModel)]="newCard.img.alt">
+            </div>
+            <div class="form-group">
+                <label for="value">Skill value (En):</label>
+                <mat-slider discrete>
+                    <input matSliderThumb [(ngModel)]="newCard.value" class="form-control" id="value" name="value">
+                </mat-slider>
+            </div>
+            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+        </form>
+    </div>
+</ng-template>

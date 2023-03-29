@@ -3,7 +3,9 @@ interface Sections {
     experience: Experience;
     qPD: QPD;
     projects: Projects;
+    skills: Skills;
 }
+
 interface Home {
     id: "home";
     imgMobile: string;
@@ -55,7 +57,21 @@ interface Projects {
     en: string;
     es: string;
 }
-
-type Section = Home | QPD | Experience | Projects;
-type StringSection = "home" | "projects" | "qPD" | "experience";
-export { Home, HomeCard, QPD, QPDCard, Experience, ExperienceCard, Projects, Sections, Section, StringSection }
+interface Skills {
+    id: "skills";
+    imgMobile: string;
+    imgDesktop: string;
+    en: string;
+    es: string;
+    cards: SkillsCard[];
+}
+interface SkillsCard {
+    id: string;
+    img: { src: string, alt: string };
+    value: number;
+    bkColor: string;
+    outStrokeColor: string;
+}
+type Section = Home | QPD | Experience | Projects | Skills;
+type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
+export { Home, HomeCard, QPD, QPDCard, Experience, ExperienceCard, Projects, Sections, Section, StringSection, SkillsCard, Skills }
