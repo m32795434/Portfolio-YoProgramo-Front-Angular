@@ -134,7 +134,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
       centered: true,
       backdrop: 'static',
       keyboard: true,
-      // windowClass: 'my-custom-class'
+      windowClass: 'cdk-drag'
     }).result.then(
       (result: any) => {
         console.log(`Closed with: ${result}`);
