@@ -24,7 +24,7 @@
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
-                (click)="open(createCardModal, 'create new card')">library_add</button>
+                (click)="open(createCardModal, 'create-new-card')">library_add</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
@@ -179,8 +179,9 @@
             </div>
             <div class="form-group">
                 <label for="value">Skill value (En):</label>
-                <input type="range" min="0" max="100" step="10" class="form-control" id="value" name="value"
-                    [(ngModel)]="newCard.value">
+                <mat-slider discrete>
+                    <input matSliderThumb [(ngModel)]="newCard.value" class="form-control" id="value" name="value">
+                </mat-slider>
             </div>
             <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
         </form>
