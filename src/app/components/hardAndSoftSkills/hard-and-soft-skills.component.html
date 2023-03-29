@@ -49,13 +49,18 @@
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
                 <div *ngFor="let card of cards, let i=index" class="swiper-slide w-100 card">
-                    <div class="d-flex justify-content-center my-2">
+                    <div class="d-grid justify-content-center align-content-center">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal, 'change card header ',i)"
                             aria-label="Change card header and image">settings</button>
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
+                        <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value"
+                            [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
+                            [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
+                            [imageSrc]="card.img.src" [imageHeight]="100" [imageWidth]="100"></circle-progress>
+                        <span>{{card.img.alt+': '+card.value+'%'}}</span>
                     </div>
                 </div>
             </div>
