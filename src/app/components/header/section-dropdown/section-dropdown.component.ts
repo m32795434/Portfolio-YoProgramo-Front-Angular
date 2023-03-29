@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
     selector: 'section-dropdown',
     standalone: true,
     imports: [NgbDropdownModule, RouterModule, FormsModule],
-    templateUrl: './sectionDropdown.html',
+    templateUrl: './section-dropdown.component.html',
     styles: [`
     
     #menu-Hamb {

@@ -2,36 +2,26 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start m-0 py-1">
             <img role="button" tabindex="0" src="../../../assets/images/Argentina-Programa.png" alt="Argentina Programa"
-                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
+                (click)="imgEventHandler()" (keyup)="imgEventHandler()">
         </div>
         <div class="flex-grow-1 d-grid justify-content-center align-content-center d-lg-none">
-            <div class="d-flex">
-                <!-- <span class="toolSaveBtn" data-bs-toggle="tooltip"
-                    data-bs-title="The site save changes every 10s, but you can save manually" data-bs-placement="left"
-                    data-bs-trigger="manual" data-bs-custom-class="innerRed"></span> -->
-
-                <!-- TO SAVE ALL THE CONTENT / SHOW IF LOG IN OK-->
+            <!-- <div class="d-flex">
                 <button class="save-button material-symbols-outlined save" type="button" hidden>save</button>
 
-            </div>
+            </div> -->
         </div>
         <div class="d-flex justify-content-end align-content-center gap-1" id="section-socials">
             <div class="btn-group">
-                <!-- <span class="toolSaveBtnLg" data-bs-toggle="tooltip"
-                    data-bs-title="The site save changes every 10s, but you can save manually" data-bs-placement="left"
-                    data-bs-trigger="manual" data-bs-custom-class="innerRed"></span> -->
-                <button class="save-button material-symbols-outlined saveLg" type="button" hidden>save</button>
+
+                <!-- <button class="save-button material-symbols-outlined saveLg" type="button" hidden>save</button> -->
                 <!-- class="dropdown-toggle" is for the arrow in the button. -->
 
                 <section-dropdown></section-dropdown>
+                <socials-dropdown></socials-dropdown>
+                <app-settings-offcanvas></app-settings-offcanvas>
             </div>
 
-            <img role="button" tabindex="0" src="../../../assets/images/instagram.png" alt="Instagram"
-                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
-            <img role="button" tabindex="0" src="../../../assets/images/linkedin.png" alt="Linkedin"
-                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
-            <img role="button" tabindex="0" src="../../../assets/images/whatsapp.png" alt="Whatsapp"
-                (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)">
+
         </div>
     </div>
 </header>
