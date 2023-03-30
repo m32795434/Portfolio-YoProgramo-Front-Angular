@@ -15,12 +15,6 @@
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="section?.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
-    <!-- <input type="file" accept="image/*" id=" " hidden>
-    <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
-      data-bs-toggle="tooltip" data-bs-title="." data-bs-placement="bottom" data-bs-trigger="manual"
-      data-bs-custom-class="innerRed  Tool" hidden>upload_file</button> -->
-
-
 
     <!-- container-columns absolute top 0 h100 w100-->
     <div class="row m-0 p-0 container-columns">
@@ -59,9 +53,7 @@
                 <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-
             </div>
-
         </div>
     </div>
 </main>
@@ -69,7 +61,7 @@
 <ng-template #imgSrcModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Set Src</h4>
+            <h4 class="modal-title">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -77,23 +69,24 @@
         <div class="modal-body">
             <form (ngSubmit)="saveImgSrc()">
                 <div class="form-group">
-                    <label for="imgMobile">Mobile img src: </label>
+                    <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="imgMobile" class="form-control" id="imgMobile" name="imgMobile"
                         [(ngModel)]="section.imgMobile">
                 </div>
-                <div class="form-group">
-                    <label for="imgDesktop">Desktop img src: </label>
+                <div class="form-group mt-2">
+                    <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="imgDesktop" class="form-control" id="imgDesktop" name="imgDesktop"
                         [(ngModel)]="section.imgDesktop">
                 </div>
-                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
             </form>
         </div>
     </div>
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">Create Card - English version</h4>
+        <h4 class="modal-title">{{language==='en'?'Create Card':'Crear Nueva Tarjeta'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -101,22 +94,23 @@
     <div class="modal-body">
         <form (ngSubmit)="createCard()">
             <div class="form-group">
-                <label for="description">Description(En):</label>
+                <label for="description">{{language === 'en'? 'Description: ' : 'Descripción: '}}</label>
                 <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.en">
             </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            <button type="submit" class="btn mt-2 btn-primary"
+                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
         </form>
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Delete?</h4>
+        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p>Are you sure you want to delete?</p>
+        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
     </div>
     <div class="modal-footer d-grid align-content-center justify-content-center">
         <form (ngSubmit)="deleteCard()">

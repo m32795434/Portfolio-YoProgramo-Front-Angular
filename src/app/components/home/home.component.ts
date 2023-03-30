@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
 import { Home, HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
+import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 declare global {
   interface Window {
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
   //contains all the cards content
   cards: HomeCard[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
   language = 'en';
+  languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex?: number;
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
     en: "", es: ""
   }
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
+  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
@@ -48,6 +50,10 @@ export class HomeComponent implements OnInit {
       this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
+    this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
+      this.language = val;
+      console.log(this.language)
+    })
   }
 
   ngOnInit(): void {
