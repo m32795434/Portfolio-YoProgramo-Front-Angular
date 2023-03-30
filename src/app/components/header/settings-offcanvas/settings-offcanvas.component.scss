@@ -1,0 +1,12 @@
+#settingsBtn {
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    color: #b3b3b3;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+        border-radius: 7px;
+        box-shadow: 0 0 7px 4px #8a8989;
+    }
+}

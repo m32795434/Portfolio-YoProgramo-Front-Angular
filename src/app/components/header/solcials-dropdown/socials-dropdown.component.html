@@ -1,0 +1,23 @@
+<div ngbDropdown class="d-inline-block">
+    <button class="btn" type="button" ngbDropdownToggle [textContent]="language==='en'? 'Follow': 'Seguir'"
+        id="socialsBtn">
+    </button>
+    <div ngbDropdownMenu aria-labelledby="socials-dropdown">
+        <h6 class="dropdown-header">Socials</h6>
+        <div (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)" ngbDropdownItem
+            class="d-flex justify-content-between align-content-end align-items-end" data-social="Instagram">
+            <span>Instagram </span>
+            <img src="../../../assets/images/instagram.png" alt="Instagram">
+        </div>
+        <div (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)" ngbDropdownItem
+            class="d-flex justify-content-between align-content-end align-items-end" data-social="Linkedin">
+            <span>Linkedin </span>
+            <img src="../../../assets/images/linkedin.png" alt="Linkedin">
+        </div>
+        <div (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)" ngbDropdownItem
+            class="d-flex justify-content-between align-content-end align-items-end" data-social="Whatsapp">
+            <span>Whatsapp </span>
+            <img src="../../../assets/images/whatsapp.png" alt="Whatsapp">
+        </div>
+    </div>
+</div>

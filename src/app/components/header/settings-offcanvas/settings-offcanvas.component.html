@@ -1,0 +1,24 @@
+<ng-template #content let-offcanvas>
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvas-basic-title" [textContent]="language==='en'? 'Settings':'Ajustes'">
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <!--  -->
+        <label for="language">Select a Language: </label>
+        <mat-radio-group id="language" name="language" (input)="setLanguage($event)" aria-label="Select an option">
+            <mat-radio-button value="en">English</mat-radio-button>
+            <mat-radio-button value="es">Spanish</mat-radio-button>
+            <hr>
+        </mat-radio-group>
+        <!--  -->
+
+        <!-- <div class="text-end">
+            <button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Save click')">Save</button>
+        </div> -->
+    </div>
+</ng-template>
+
+<button id="settingsBtn" type="button" class="btn material-icons" (click)="openEnd(content)">settings</button>

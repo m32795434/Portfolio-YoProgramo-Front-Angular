@@ -4,47 +4,31 @@ import { RouterModule } from '@angular/router';
 import { LoginService } from 'src/services/login-service/login.service';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { LanguageService } from '../../../../services/language/language.service';
 
 
 @Component({
     selector: 'section-dropdown',
     standalone: true,
     imports: [NgbDropdownModule, RouterModule, FormsModule],
-    templateUrl: './sectionDropdown.html',
-    styles: [`
-    
-    #menu-Hamb {
-    color: #b3b3b3;
-    font-size: 20px;
-    background-color: transparent;
-    outline: none;
-    border: transparent;
-    &:hover {
-            border-radius: 7px;
-            box-shadow: 0 0 7px 4px #8a8989;
-        }
-    }
-    #sectionBtn {
-        font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
-        font-size: 20px;
-        color: #b3b3b3;
-        &:hover {
-            border-radius: 7px;
-            box-shadow: 0 0 7px 4px #8a8989;
-        }
-    }
-`]
+    templateUrl: './section-dropdown.component.html',
+    styleUrls: ['./section-dropdown.component.scss']
 
 })
 export class NgbdDropdownBasic implements OnInit {
     logged = false;
     loggedSubscription = new Subscription();
+    languageSubsc = new Subscription();
     userName = '';
     password = '';
-    constructor(private loginService: LoginService) {
+    language = "en";
+    greaterThan975 = false;
+
+    constructor(private loginService: LoginService, private languageSrv: LanguageService) {
         this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
             this.logged = val;
-        })
+        });
+        this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }
 
     ngOnInit(): void {
@@ -53,17 +37,15 @@ export class NgbdDropdownBasic implements OnInit {
         this.logged = this.loginService.isLogged();
     }
 
-    text = 'Section';
-    greaterThan975 = false;
 
     checkForResize = (): void => {
         const widthViewPort: any = window?.visualViewport?.width;
         if (widthViewPort != null) {
             if (widthViewPort > 975.2) {
-                this.text = 'Section';
+                // this.text = 'Section';
                 this.greaterThan975 = true;
             } else if (widthViewPort < 975.2) {
-                this.text = 'menu';
+                // this.text = 'menu';
                 this.greaterThan975 = false;
             }
         }

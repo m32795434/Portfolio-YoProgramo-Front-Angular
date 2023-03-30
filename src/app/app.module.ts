@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
@@ -18,9 +20,12 @@ import { QPDComponent } from './components/qpd/qpd.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { NgbdDropdownBasic } from './components/header/section-dropdown/sectionDropdown';
+import { NgbdDropdownBasic } from './components/header/section-dropdown/section-dropdown.component';
 import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-and-soft-skills.component';
 import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { SettingsOffcanvasComponent } from './components/header/settings-offcanvas/settings-offcanvas.component';
+import { SocialsDropdown } from './components/header/solcials-dropdown/socials-dropdown.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,11 +36,12 @@ import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
     FooterComponent,
     HeaderComponent,
     HardAndSoftSkillsComponent,
+    SettingsOffcanvasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, NgCircleProgressModule.forRoot(
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule, NgCircleProgressModule.forRoot(
       {
         "backgroundColor": "#FDB900",
         "backgroundPadding": 11,

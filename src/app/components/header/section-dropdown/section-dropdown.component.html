@@ -1,31 +1,31 @@
 <nav ngbDropdown class="d-inline-block">
     <button type="button" [class]="{btn:true,'material-icons':!greaterThan975}"
         [id]="greaterThan975? 'sectionBtn':'menu-Hamb'" ngbDropdownToggle>
-        {{text}}
+        {{!greaterThan975? 'menu' : (language==='en'? 'Section' : 'Sección')}}
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <h6 class="dropdown-header">Section</h6>
+        <h6 class="dropdown-header">{{language==='en'?'Section':'Sección'}}</h6>
         <a class="button" routerLinkActive="activebutton" routerLink="home" ariaCurrentWhenActive="page"
-            ngbDropdownItem>Home</a>
+            ngbDropdownItem>{{language==='en'?'About':'Sobre Mí'}}</a>
         <a class="button" routerLinkActive="activebutton" routerLink="experience" ariaCurrentWhenActive="page"
-            ngbDropdownItem>Experience</a>
+            ngbDropdownItem>{{language==='en'?'Experience':'Experiencia'}}</a>
         <a class="button" routerLinkActive="activebutton" routerLink="qPD" ariaCurrentWhenActive="page"
-            ngbDropdownItem>Qualifications & P.D.</a>
+            ngbDropdownItem>{{language==='en'?'Qualifications & P.D.':'Estudios y Cert.'}}</a>
         <a class="button" routerLinkActive="activebutton" routerLink="projects" ariaCurrentWhenActive="page"
-            ngbDropdownItem>Projects</a>
+            ngbDropdownItem>{{language==='en'?'Projects':'Proyectos'}}</a>
         <a class="button" routerLinkActive="activebutton" routerLink="HardAndSoftSkills" ariaCurrentWhenActive="page"
-            ngbDropdownItem>Hard & Soft Skills</a>
+            ngbDropdownItem>{{language==='en'?'Hard & Soft Skills':'Habilidades'}}</a>
         <hr class="dropdown-divider">
 
 
-        <button class="login" (click)="loginToggle(loginModal)" [innerText]="logged? 'LOGOUT':'LOGIN'"
-            ngbDropdownItem></button>
+        <button class="login" (click)="loginToggle(loginModal)" ngbDropdownItem>{{logged? (language==='en'?
+            'LOGOUT':'SALIR') : (language==='en'? 'LOGIN':'INGRESAR') }}</button>
         <!-- Otra forma -->
         <!-- <a [routerLink]="['/experience']">Enlace a Experience</a> -->
         <!-- LOGIN MODAL -->
         <ng-template #loginModal let-modal class="loginModal">
             <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
+                <h4 class="modal-title">{{language==='en'?'Login':'Ingresar'}}</h4>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -33,16 +33,16 @@
             <div class="modal-body">
                 <form (ngSubmit)="onSubmit(loginModal)">
                     <div class="form-group">
-                        <label for="userName">User Name</label>
+                        <label for="userName">{{language==='en'?'User Name':'Usuario'}}</label>
                         <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="userName">
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">{{language==='en'?'Password':'Contraseña'}}</label>
                         <input type="password" class="form-control" id="password" name="password"
                             [(ngModel)]="password">
                     </div>
                     <button type="submit" class="btn mt-2 btn-primary"
-                        (click)="modal.close('Save click')">Submit</button>
+                        (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
                 </form>
             </div>
         </ng-template>
