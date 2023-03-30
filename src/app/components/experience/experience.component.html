@@ -20,7 +20,7 @@
                     data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
-                    [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
+                    [innerHTML]="language === 'en'? section.en : section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
@@ -43,7 +43,7 @@
                             [hidden]="!logged" (click)="saveH1($event)"
                             aria-label="Change institution name">save</button> -->
                         <h2 class="text-start edit-content" id="h2S2Qa"
-                            [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
+                            [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
                         </h2>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
@@ -52,7 +52,7 @@
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id, i)"
                             aria-label="Change p content">save</button>
-                        <p [innerHTML]="lenguage === 'en'? card.ph.en : card.ph.es"
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
@@ -77,7 +77,7 @@
                     <div class="cardTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)">save</button> -->
-                        <h2 class="text-start edit-content" [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
+                        <h2 class="text-start edit-content" [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
                         </h2>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
@@ -85,7 +85,7 @@
                     <div class="cardMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
-                        <p [innerHTML]="lenguage === 'en'? card.ph.en : card.ph.es"
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="card.id+i">
                         </p>
@@ -142,52 +142,57 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group">
-                    <label for="companyImg">Company img src: </label>
+                    <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
                     <input type="text" class="form-control" id="companyImg" name="companyImg"
                         [(ngModel)]="section.cards[cardsIndex].img.src">
                 </div>
-                <div class="form-group">
-                    <label for="imgAlt">Img alt: </label>
+                <div class="form-group mt-2">
+                    <label for="imgAlt">{{language === 'en'? 'Image Description (alt): ' : 'Descripción de la
+                        Imagen (alt): '}}</label>
                     <input type="text" class="form-control" id="companyImg" name="imgAlt"
                         [(ngModel)]="section.cards[cardsIndex].img.alt">
                 </div>
-                <div class="form-group">
-                    <label for="institution">Company / Institution name</label>
+                <div class="form-group mt-2">
+                    <label for="institution">{{language === 'en'? 'Company / Institution Name: ' : 'Nombre de la
+                        Empresa: '}}</label>
                     <input type="text" class="form-control" id="institution" name="institution"
-                        [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
+                        [(ngModel)]="section.cards[cardsIndex].h2[language]">
                 </div>
-                <div class="form-group">
-                    <label for="companyImg">Start date </label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                            [(ngModel)]="section.cards[cardsIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                            type="button"></button>
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="section.cards[cardsIndex].startDate" ngbDatepicker #d1="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="section.cards[cardsIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                                type="button"></button>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="companyImg">End date </label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                            [(ngModel)]="section.cards[cardsIndex].endDate" ngbDatepicker #d2="ngbDatepicker" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                            type="button"></button>
-                    </div>
-                </div>
-                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
             </form>
         </div>
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Delete?</h4>
+        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p>Are you sure you want to delete?</p>
+        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
     </div>
     <div class="modal-footer d-grid align-content-center justify-content-center">
         <form (ngSubmit)="deleteCard()">
@@ -202,7 +207,7 @@
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">Create Card - English version</h4>
+        <h4 class="modal-title">{{language==='en'?'Create Experience':'Crear Nueva Experiencia'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -210,36 +215,58 @@
     <div class="modal-body">
         <form (ngSubmit)="createCard()">
             <div class="form-group">
-                <label for="companyImg">Company img src:</label>
+                <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
                 <input type="text" class="form-control" id="companyImg" name="companyImg" [(ngModel)]="newCard.img.src">
             </div>
-            <div class="form-group">
-                <label for="institution">Company / Institution name(En):</label>
-                <input type="text" class="form-control" id="institution" name="institution" [(ngModel)]="newCard.h2.en">
+            <div class="form-group mt-2">
+                <label for="imgAlt">{{language === 'en'? 'Image Description (alt): ' : 'Descripción de la
+                    Imagen (alt): '}}</label>
+                <input type="text" class="form-control" id="companyImg" name="imgAlt" [(ngModel)]="newCard.img.alt">
             </div>
-            <div class="form-group">
-                <label for="dp1">Start date:</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
-                        #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                        type="button"></button>
+            <div class="d-flex gap-1 mt-2">
+                <div class="form-group flex-fill">
+                    <label for="institution">{{language === 'en'? 'Company / Institution Name (en): ' : 'Nombre de la
+                        Empresa (en): '}}</label>
+                    <input type="text" class="form-control" id="institution" name="institution"
+                        [(ngModel)]="newCard.h2.en">
+                </div>
+                <div class="form-group flex-fill">
+                    <label for="institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
+                        Empresa (es): '}}</label>
+                    <input type="text" class="form-control" id="institution" name="institution"
+                        [(ngModel)]="newCard.h2.es">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="dp2">End date:</label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
-                        #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                        type="button"></button>
+            <div class="d-flex gap-1 mt-2">
+                <div class="form-group flex-fill">
+                    <label for="dp1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
+                            #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+                <div class="form-group flex-fill">
+                    <label for="dp2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
+                            #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                            type="button"></button>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="description">Description(En):</label>
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
                 <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
             </div>
-            <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.es">
+            </div>
+            <button type="submit" class="btn mt-2 btn-primary mt-2"
+                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
         </form>
     </div>
 </ng-template>

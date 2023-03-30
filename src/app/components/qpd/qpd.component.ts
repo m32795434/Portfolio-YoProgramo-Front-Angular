@@ -45,7 +45,7 @@ export class QPDComponent implements OnInit {
     h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
-  lenguage = 'en';
+  language = 'en';
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -121,15 +121,15 @@ export class QPDComponent implements OnInit {
     // const index = this.section.cards.findIndex((el: HomeCard) => {
     //   return (el.id === targetId)
     // })
-    this.section.cards[i].ph[this.lenguage] = innerHTML;
-    console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
+    this.section.cards[i].ph[this.language] = innerHTML;
+    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
 
     this.dataService.updateSection('qPD', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.lenguage] = innerHTML;
+    this.section[this.language] = innerHTML;
     this.dataService.updateSection('qPD', this.section);
   }
   updateCard() {

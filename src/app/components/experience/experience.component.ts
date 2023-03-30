@@ -1,13 +1,14 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+//DATEPICKER
+
+
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-//DATEPICKER
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
   interface Window {
@@ -45,11 +46,11 @@ export class ExperienceComponent implements OnInit {
     h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
-  lenguage = 'en';
+  language = 'en';
+  languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
-  // greaterThan975 = false;
   model?: NgbDateStruct;
 
   //new card
@@ -70,7 +71,7 @@ export class ExperienceComponent implements OnInit {
     ph: { en: "", es: "" }
   }
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
+  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
     });
@@ -80,7 +81,12 @@ export class ExperienceComponent implements OnInit {
       this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
+    this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
+      this.language = val;
+      console.log(this.language)
+    })
   }
+
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
     const content = this.dataService.getData('experience');
@@ -114,14 +120,14 @@ export class ExperienceComponent implements OnInit {
   }
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.section.cards[i].ph[this.lenguage] = innerHTML;
-    console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
+    this.section.cards[i].ph[this.language] = innerHTML;
+    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
     this.dataService.updateSection('experience', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.lenguage] = innerHTML;
+    this.section[this.language] = innerHTML;
     this.dataService.updateSection('experience', this.section);
   }
   updateCard() {

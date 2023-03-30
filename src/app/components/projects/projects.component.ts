@@ -16,7 +16,7 @@ export class ProjectsComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   section: any = { id: "projects", en: "", es: "" };
-  lenguage = 'en';
+  language = 'en';
   errorMessage = '';
   constructor(private loginService: LoginService, private dataService: DataService,) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -42,7 +42,7 @@ export class ProjectsComponent implements OnInit {
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.lenguage] = innerHTML;
+    this.section[this.language] = innerHTML;
     this.dataService.updateSection('projects', this.section);
   }
 }

@@ -20,7 +20,7 @@
                     data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
-                    [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
+                    [innerHTML]="language === 'en'? section.en : section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
@@ -43,7 +43,7 @@
                             [hidden]="!logged" (click)="saveH1($event)"
                             aria-label="Change institution name">save</button> -->
                         <h2 class="text-start edit-content" id="h2S2Qa"
-                            [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
+                            [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
                         </h2>
                         <h4 class="text-start edit-content" id="#" [innerHTML]=" card.h4.text">
                         </h4>
@@ -54,7 +54,7 @@
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id, i)"
                             aria-label="Change p content">save</button>
-                        <p [innerHTML]="lenguage === 'en'? card.ph.en : card.ph.es"
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
@@ -79,7 +79,7 @@
                     <div class="cardTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)">save</button> -->
-                        <h2 class="text-start edit-content" [innerHTML]="lenguage === 'en'? card.h2.en : card.h2.es">
+                        <h2 class="text-start edit-content" [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
                         </h2>
                         <h4 class="text-start edit-content" [innerHTML]=" card.h4.text">
                         </h4>
@@ -89,7 +89,7 @@
                     <div class="cardMainPh">
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
-                        <p [innerHTML]="lenguage === 'en'? card.ph.en : card.ph.es"
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="card.id+i">
                         </p>
@@ -158,7 +158,7 @@
                 <div class="form-group">
                     <label for="Certificate">Certificate / Title</label>
                     <input type="text" class="form-control" id="Certificate" name="Certificate"
-                        [(ngModel)]="section.cards[cardsIndex].h2[lenguage]">
+                        [(ngModel)]="section.cards[cardsIndex].h2[language]">
                 </div>
                 <div class="form-group">
                     <label for="Institution">Company / Institution name</label>

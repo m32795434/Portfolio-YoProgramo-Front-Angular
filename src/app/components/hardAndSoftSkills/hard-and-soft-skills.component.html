@@ -20,7 +20,7 @@
                     data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
-                    [innerHTML]="lenguage === 'en'? section.en : section.es"></h1>
+                    [innerHTML]="language === 'en'? section.en : section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"

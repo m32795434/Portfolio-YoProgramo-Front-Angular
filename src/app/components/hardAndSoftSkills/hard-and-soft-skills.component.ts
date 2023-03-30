@@ -37,7 +37,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
     outStrokeColor: "blue"
 
   }]
-  lenguage = 'en';
+  language = 'en';
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -96,14 +96,14 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.section.cards[i].ph[this.lenguage] = innerHTML;
-    console.log('this.section.cards[i].ph[this.lenguage]', this.section.cards[i].ph[this.lenguage])
+    this.section.cards[i].ph[this.language] = innerHTML;
+    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
     this.dataService.updateSection('skills', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.lenguage] = innerHTML;
+    this.section[this.language] = innerHTML;
     this.dataService.updateSection('skills', this.section);
   }
   updateCard() {

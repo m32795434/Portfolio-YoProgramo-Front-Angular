@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   section: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
   //contains all the cards content
   cards: HomeCard[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
-  lenguage = 'en';
+  language = 'en';
   swiper: any;
   errorMessage = '';
   cardsIndex?: number;
@@ -86,13 +86,13 @@ export class HomeComponent implements OnInit {
     const index = this.section.cards.findIndex((el: HomeCard) => {
       return (el.id === targetId)
     })
-    this.section.cards[index][this.lenguage] = innerHTML;
+    this.section.cards[index][this.language] = innerHTML;
     this.dataService.updateSection('home', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.lenguage] = innerHTML;
+    this.section[this.language] = innerHTML;
     this.dataService.updateSection('home', this.section);
   }
   saveImgSrc() {
