@@ -89,6 +89,19 @@
           "value": 75,
           "bkColor": "green",
           "outStrokeColor": "red"
+        },
+        {
+          "id": "S6",
+          "img": {
+            "src": "../../../assets/images/Experience-mobile.png",
+            "alt": {
+              "en": "JavasCript",
+              "es": "JavasCript"
+            }
+          },
+          "value": 77,
+          "bkColor": "red",
+          "outStrokeColor": "blue"
         }
       ]
     },
