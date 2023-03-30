@@ -99,7 +99,20 @@
               "es": "JavasCript"
             }
           },
-          "value": 77,
+          "value": 90,
+          "bkColor": "red",
+          "outStrokeColor": "blue"
+        },
+        {
+          "id": "S7",
+          "img": {
+            "src": "../../../assets/images/Experience-mobile.png",
+            "alt": {
+              "en": "Figma",
+              "es": "Figma"
+            }
+          },
+          "value": 50,
           "bkColor": "red",
           "outStrokeColor": "blue"
         }
@@ -116,11 +129,10 @@
           "id": "S1",
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Break - Professional Development"
-          },
-          "h2": {
-            "es": "Descanso - Crecimiento Profesional",
-            "en": "Break - Professional Development"
+            "alt": {
+              "es": "Descanso - Crecimiento Profesional",
+              "en": "Break - Professional Development"
+            }
           },
           "startDate": {
             "year": 2022,
@@ -141,7 +153,10 @@
           "id": "S2",
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Entre Ríos Judiciary"
+            "alt": {
+              "es": "Poder Judicial de Entre Ríos",
+              "en": "Entre Ríos Judiciary"
+            }
           },
           "startDate": {
             "year": 2022,
@@ -153,10 +168,6 @@
             "month": 9,
             "day": 30
           },
-          "h2": {
-            "es": "Poder Judicial de Entre Ríos",
-            "en": "Entre Ríos Judiciary"
-          },
           "ph": {
             "es": "\n                                    Me desempeñé como escribiente suplente. Si bien es un área en la que no tenía\n                                    experiencia alguna, fue una excelente oportunidad para comprender lo que es trabajar\n                                    en el sector público, dentro de un sistema completamente estructurado.",
             "en": "\n                                    I served as an alternate clerk. While it's an area where I didn't have\n                                    any experience, it was an excellent opportunity to understand what it is to work\n                                    in the public sector, within a fully structured system."
@@ -166,7 +177,10 @@
           "id": "S3",
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Break - Professional Development"
+            "alt": {
+              "es": "Descanso - Crecimiento Profesional",
+              "en": "Break - Professional Development"
+            }
           },
           "startDate": {
             "year": 2022,
@@ -178,10 +192,6 @@
             "month": 5,
             "day": 31
           },
-          "h2": {
-            "es": "Descanso - Crecimiento Profesional",
-            "en": "Break - Professional Development"
-          },
           "ph": {
             "es": "\n                                    Durante este período profundicé los contenidos aprendidos en el curso de WesBos y de\n                                    la UTN, reescribiendo código con una mejor calidad, armando mis propias aplicaciones\n                                    y librerías que me servirán a futuro en mi desempeño profesional.",
             "en": "\n                                    During this period, I deepened the contents learned in the course of WesBos and the\n                                    UTN, rewriting code with a better quality, writing my own applications and libraries\n                                    for my professional work."
@@ -191,7 +201,10 @@
           "id": "S4",
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Bravard Accountancy Firm"
+            "alt": {
+              "es": "Estudio Contable Bravard",
+              "en": "Bravard Accountancy Firm"
+            }
           },
           "startDate": {
             "year": 2007,
@@ -203,12 +216,8 @@
             "month": 12,
             "day": 31
           },
-          "h2": {
-            "es": "Estudio Contable Bravard",
-            "en": "Bravard Accountancy Firm"
-          },
           "ph": {
-            "es": "\n                                    Destaco de esta experiencia el trabajo en un equipo multidisciplinario y la\n                                    capacitación constante.",
+            "es": "\n                                    Destaco de esta experiencia el trabajo en un equipo multidisciplinario y la\n                                    capacitación constante.&nbsp;Actividades: Instalaciones, actualizaciones y BackUp - Elaboración de Estados&nbsp;<span style=\"caret-color: red;\">Contables - Confección de inventarios de stock -&nbsp;</span><span style=\"caret-color: red;\">Facturación -&nbsp;</span><span style=\"caret-color: red;\">Registro de comprobantes e Imputaciones contables - Recibos de sueldos y libros –</span><div>Liquidación impuestos – Rendición de comprobantes - Libro Iva Digital -&nbsp;<span style=\"caret-color: red;\">Canal/Banca&nbsp;</span><span style=\"caret-color: red;\">empresa:&nbsp;</span><span style=\"caret-color: red;\">Administración de usuarios - Confección de cheques físicos/e-cheq - Pagos y&nbsp;</span><span style=\"caret-color: red;\">Transferencias - Carga/envío masivo de volantes de pago para servicios públicos -&nbsp;</span><span style=\"caret-color: red;\">Liquidaciones de cobranzas por medios electrónicos - Conciliación bancaria - Libro</span></div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Caja de Tesorería.</div>",
             "en": "<div>I remark from this experience the work in a multidisciplinary team and the&nbsp;<span>constant training.&nbsp;</span><span style=\"caret-color: red;\">Activities: Installations, updates and BackUp -Production of&nbsp;</span><span style=\"caret-color: red;\">Accounting Statements, Inventory management and stock checking.&nbsp;</span><span style=\"caret-color: red;\">Invoicing - Receipts records and account assignment Tax settlement.&nbsp;</span><span style=\"caret-color: red;\">Certificate&nbsp;</span><span style=\"caret-color: red;\">and book of wages.&nbsp;</span><span style=\"caret-color: red;\">Enterprise Banking: User Administration - Checks/e-cheq - Payments&nbsp;</span><span style=\"caret-color: red;\">and&nbsp;</span><span style=\"caret-color: red;\">Transfers - Mass Loading/Sending of digital Public Services payment orders -&nbsp;</span><span style=\"caret-color: red;\">Bank account statements checking -&nbsp;</span><span style=\"caret-color: red;\">Treasury cash book.</span></div>"
           }
         },
@@ -216,7 +225,10 @@
           "id": "S5",
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Bravard Accountancy Firm"
+            "alt": {
+              "es": "PAPPA CHARLY - Casa de Eventos - Autónomo",
+              "en": "PAPPA CHARLY - Hall of Events - Independent"
+            }
           },
           "startDate": {
             "year": 2016,
@@ -227,10 +239,6 @@
             "year": 2019,
             "month": 12,
             "day": 31
-          },
-          "h2": {
-            "es": "PAPPA CHARLY - Casa de Eventos - Autónomo <br>01/2016-12/2019",
-            "en": "PAPPA CHARLY - Hall of Events - Independent"
           },
           "ph": {
             "es": "\n                                    Co-Propietario de la empresa y encargado de la imagen institucional, sistemas de\n                                    audio/video, ventas, facturación, caja. Destaco de esta experiencia lo que significa\n                                    desenvolverse en un\n                                    rol de jefe, coordinar las actividades de los eventos y ser responsable de la\n                                    rentabilidad del negocio.",

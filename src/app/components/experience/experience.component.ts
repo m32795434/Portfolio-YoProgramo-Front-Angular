@@ -32,7 +32,11 @@ export class ExperienceComponent implements OnInit {
   //contains all the cards content
   cards: ExperienceCard[] = [{
     id: "id",
-    img: { src: "", alt: "" },
+    img: {
+      src: "", alt: {
+        en: "", es: ""
+      }
+    },
     startDate: {
       year: 2022,
       month: 6,
@@ -43,7 +47,6 @@ export class ExperienceComponent implements OnInit {
       month: 5,
       day: 31
     },
-    h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
   language = 'en';
@@ -56,7 +59,11 @@ export class ExperienceComponent implements OnInit {
   //new card
   newCard: ExperienceCard = {
     id: "id",
-    img: { src: "", alt: "" },
+    img: {
+      src: "", alt: {
+        en: "", es: ""
+      }
+    },
     startDate: {
       year: 2022,
       month: 6,
@@ -67,7 +74,6 @@ export class ExperienceComponent implements OnInit {
       month: 5,
       day: 31
     },
-    h2: { en: "", es: "" },
     ph: { en: "", es: "" }
   }
 
