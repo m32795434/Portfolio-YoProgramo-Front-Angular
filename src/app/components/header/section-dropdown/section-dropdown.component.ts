@@ -22,7 +22,6 @@ export class NgbdDropdownBasic implements OnInit {
     userName = '';
     password = '';
     language = "en";
-    text = 'Section';
     greaterThan975 = false;
 
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
