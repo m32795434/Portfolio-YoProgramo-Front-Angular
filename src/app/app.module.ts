@@ -10,6 +10,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
@@ -39,7 +41,7 @@ import { SocialsDropdown } from './components/header/solcials-dropdown/socials-d
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, NgCircleProgressModule.forRoot(
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule, NgCircleProgressModule.forRoot(
       {
         "backgroundColor": "#FDB900",
         "backgroundPadding": 11,

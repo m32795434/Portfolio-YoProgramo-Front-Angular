@@ -11,13 +11,17 @@ import { Subscription } from 'rxjs';
 export class SettingsOffcanvasComponent {
   closeResult = '';
   language = "en"
-  languageSubsc = new Subscription();
+  // languageSubsc = new Subscription();
 
   constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService) {
-    this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val)
+    // this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val)
   }
 
-
+  setLanguage(e: any) {
+    const val = e.target.value;
+    this.language = val;
+    this.languageSrv.setLanguage(this.language);
+  }
   openEnd(content: TemplateRef<any>) {
     this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title', position: 'end' }).result.then(
       (result) => {
