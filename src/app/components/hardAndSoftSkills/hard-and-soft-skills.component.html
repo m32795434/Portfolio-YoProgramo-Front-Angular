@@ -36,11 +36,12 @@
                     <button [hidden]="!logged" type="button"
                         class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
                         (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
-                    <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value" [showImage]="true"
-                        [percent]="card.value" [outerStrokeColor]="card.outStrokeColor" [backgroundColor]="card.bkColor"
-                        [animation]="true" [animationDuration]="500" [imageSrc]="card.img.src" [imageHeight]="100"
-                        [imageWidth]="100"></circle-progress>
-                    <span>{{card.img.alt+': '+card.value+'%'}}</span>
+                    <circle-progress tabindex="0"
+                        [attr.aria-label]="language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' +card.value"
+                        [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
+                        [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
+                        [imageSrc]="card.img.src" [imageHeight]="100" [imageWidth]="100"></circle-progress>
+                    <span>{{language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' + card.value+'%'}}</span>
                 </div>
             </div>
         </div>
@@ -56,11 +57,12 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <circle-progress tabindex="0" [attr.aria-label]="card.img.alt+': '+card.value"
+                        <circle-progress tabindex="0"
+                            [attr.aria-label]="language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' +card.value"
                             [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
                             [backgroundColor]="card.bkColor" [animation]="true" [animationDuration]="500"
                             [imageSrc]="card.img.src" [imageHeight]="100" [imageWidth]="100"></circle-progress>
-                        <span>{{card.img.alt+': '+card.value+'%'}}</span>
+                        <span>{{language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' + card.value+'%'}}</span>
                     </div>
                 </div>
             </div>
@@ -79,7 +81,7 @@
 <ng-template #mainImgSrcModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Set Src</h4>
+            <h4 class="modal-title">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -87,16 +89,17 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group">
-                    <label for="imgMobile">Mobile img src: </label>
+                    <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
                         [(ngModel)]="section.imgMobile">
                 </div>
-                <div class="form-group">
-                    <label for="imgDesktop">Desktop img src: </label>
+                <div class="form-group mt-2">
+                    <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
                         [(ngModel)]="section.imgDesktop">
                 </div>
-                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+                <button type="submit" class="btn mt-2 btn-primary"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
             </form>
         </div>
     </div>
@@ -105,7 +108,7 @@
 <ng-template #updateCardModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Update Skill</h4>
+            <h4 class="modal-title">{{language === 'en'? 'Update Skill: ' : 'Actualizar Habilidad: '}}</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -113,14 +116,21 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group">
-                    <label for="skillImg">Skill img src:</label>
+                    <label for="skillImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
                     <input type="text" class="form-control" id="skillImg" name="skillImg"
                         [(ngModel)]="section.cards[cardsIndex].img.src">
                 </div>
                 <div class="form-group">
-                    <label for="imgAlt">Skill name(En):</label>
-                    <input type="text" class="form-control" id="imgAlt" name="imgAlt"
-                        [(ngModel)]="section.cards[cardsIndex].img.alt">
+                    <label for="imgAltEn">{{language === 'en'? 'Skill Name (en): ' : 'Nombre de la Habilidad (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="imgAltEn" name="imgAltEn"
+                        [(ngModel)]="section.cards[cardsIndex].img.alt.en">
+                </div>
+                <div class="form-group">
+                    <label for="imgAltEs">{{language === 'en'? 'Skill Name (es): ' : 'Nombre de la Habilidad (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="imgAltEs" name="imgAltEs"
+                        [(ngModel)]="section.cards[cardsIndex].img.alt.es">
                 </div>
                 <div class="form-group">
                     <label for="value">Skill value:</label>
@@ -179,8 +189,14 @@
                 <input type="text" class="form-control" id="skillImg" name="skillImg" [(ngModel)]="newCard.img.src">
             </div>
             <div class="form-group">
-                <label for="imgAlt">Skill img alt(En):</label>
-                <input type="text" class="form-control" id="imgAlt" name="imgAlt" [(ngModel)]="newCard.img.alt">
+                <label for="imgAltEn">{{language === 'en'? 'Skill Name (en): ' : 'Nombre de la Habilidad (en):
+                    '}}</label>
+                <input type="text" class="form-control" id="imgAltEn" name="imgAltEn" [(ngModel)]="newCard.img.alt.en">
+            </div>
+            <div class="form-group">
+                <label for="imgAltEs">{{language === 'en'? 'Skill Name (es): ' : 'Nombre de la Habilidad (es):
+                    '}}</label>
+                <input type="text" class="form-control" id="imgAltEs" name="imgAltEs" [(ngModel)]="newCard.img.alt.es">
             </div>
             <div class="form-group">
                 <label for="value">Skill value (En):</label>

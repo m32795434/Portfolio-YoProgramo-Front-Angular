@@ -7,6 +7,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { wait } from 'src/app/libraries/utils';
+import { LanguageService } from 'src/services/language/language.service';
 declare global {
   interface Window {
     Swiper: any;
@@ -31,13 +32,18 @@ export class HardAndSoftSkillsComponent implements OnInit {
   //contains all the cards content
   cards: SkillsCard[] = [{
     id: "S1",
-    img: { src: "../../../assets/images/regional-bs.png", alt: "regional-bs" },
+    img: {
+      src: "../../../assets/images/regional-bs.png", alt: {
+        en: "regional-bs", es: "regional-bs"
+      }
+    },
     value: 50,
     bkColor: "red",
     outStrokeColor: "blue"
 
   }]
   language = 'en';
+  languageSubsc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -45,14 +51,18 @@ export class HardAndSoftSkillsComponent implements OnInit {
   //new card
   newCard: SkillsCard = {
     id: "",
-    img: { src: "", alt: "" },
+    img: {
+      src: "", alt: {
+        en: "", es: ""
+      }
+    },
     value: 0,
     bkColor: "red",
     outStrokeColor: "blue"
   }
 
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
+  constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
     });
@@ -62,6 +72,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
+    this.languageSubsc = this.languageSrc.getLanguageObserver().subscribe((val) => this.language = val)
+
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
