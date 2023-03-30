@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LoginService } from 'src/services/login-service/login.service';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { LanguageService } from '../../../../services/language/language.service';
 
 
 @Component({
@@ -17,12 +18,18 @@ import { Subscription } from 'rxjs';
 export class NgbdDropdownBasic implements OnInit {
     logged = false;
     loggedSubscription = new Subscription();
+    languageSubsc = new Subscription();
     userName = '';
     password = '';
-    constructor(private loginService: LoginService) {
+    language = "en";
+    text = 'Section';
+    greaterThan975 = false;
+
+    constructor(private loginService: LoginService, private languageSrv: LanguageService) {
         this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
             this.logged = val;
-        })
+        });
+        this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }
 
     ngOnInit(): void {
@@ -31,17 +38,15 @@ export class NgbdDropdownBasic implements OnInit {
         this.logged = this.loginService.isLogged();
     }
 
-    text = 'Section';
-    greaterThan975 = false;
 
     checkForResize = (): void => {
         const widthViewPort: any = window?.visualViewport?.width;
         if (widthViewPort != null) {
             if (widthViewPort > 975.2) {
-                this.text = 'Section';
+                // this.text = 'Section';
                 this.greaterThan975 = true;
             } else if (widthViewPort < 975.2) {
-                this.text = 'menu';
+                // this.text = 'menu';
                 this.greaterThan975 = false;
             }
         }

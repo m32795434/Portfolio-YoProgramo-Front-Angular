@@ -1,7 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LanguageService } from 'src/services/language/language.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-settings-offcanvas',
@@ -14,7 +13,6 @@ export class SettingsOffcanvasComponent {
   // languageSubsc = new Subscription();
 
   constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService) {
-    // this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val)
   }
 
   setLanguage(e: any) {
