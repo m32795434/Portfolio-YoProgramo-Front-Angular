@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LanguageService } from 'src/services/language/language.service';
 import { getRandomBetween, wait } from '../../libraries/utils'
 
 @Component({
@@ -7,6 +9,13 @@ import { getRandomBetween, wait } from '../../libraries/utils'
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  language = "en";
+  languageSubsc = new Subscription();
+
+  constructor(private languageSrc: LanguageService) {
+    this.languageSubsc = this.languageSrc.getLanguageObserver().subscribe((val) => this.language = val)
+  }
+
   ngOnInit(): void {
     this.write();
   }

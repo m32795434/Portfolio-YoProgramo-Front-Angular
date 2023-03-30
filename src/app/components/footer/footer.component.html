@@ -4,22 +4,24 @@
 
     <div class="d-grid gap-2 mx-auto mb-4">
         <nav class="d-grid gap-2 mx-auto mt-4">
-            <a routerLink="home">Home</a>
-            <a routerLink="experience">Experience</a>
-            <a routerLink="qPD">Qualifications & P.D.</a>
-            <a routerLink="projects">Projects</a>
-            <a routerLink="HardAndSoftSkills">Hard & Soft Skills</a>
+            <a routerLink="home">{{language==="en"?'About':'Acerca de'}}</a>
+            <a routerLink="experience">{{language==='en'?'Experience':'Experiencia'}}</a>
+            <a routerLink="qPD">{{language==='en'?'Qualifications & P.D.':'Estudios y Cert.'}}</a>
+            <a routerLink="projects">{{language==='en'?'Projects':'Proyectos'}}</a>
+            <a routerLink="HardAndSoftSkills">{{language==='en'?'Hard & Soft Skills':'Habilidades'}}</a>
         </nav>
         <div class="mx-auto">
-            <a href="https://api.whatsapp.com/send?phone=5493454093473">Contact Me</a>
+            <a href="https://api.whatsapp.com/send?phone=5493454093473">{{language==='en'?'Contact me!
+                🙋‍♂️':'Contáctame! 🙋‍♂️'}}</a>
         </div>
-        <p>© MAB - All Rights Reserved.</p>
+        <p>{{language==='en'?'© MAB - All Rights Reserved.':'© MAB - Todos los Derechos Reservados.'}}</p>
     </div>
 
     <!-- ------------------------------TYPER ------------------------------------>
 
     <div class="typer-header text-start p-0 d-flex align-items-center justify-content-between">
-        <p class="my-auto pt-1 d-block">Technologies and libraries:~</p>
+        <p class="my-auto pt-1 d-block">{{language==='en'?'Technologies and libraries:~':'Tecnologías y Bibliotecas:~'}}
+        </p>
         <!-- <button type="button" class="btn btn-danger btn-sm material-symbols-outlined cleanLs" data-bs-toggle="tooltip"
             data-bs-title="Clean the Browser Local Storage and undo the changes!" data-bs-placement="top"
             data-bs-trigger="manual">delete</button> -->
@@ -27,11 +29,11 @@
     <div class="typer-body">
         <p class="text-start footer-typer" data-type data-type-min="0" data-type-max="200">
             UI:~ <br>
-            Own Authorship:~$Cardrs -Login-Modal --AsyncTyper --And TONS of Javascript🤯 <br> Bootstrap:~$Layers
+            Own Authorship:~$UI-UX-Design Cardrs --AsyncTyper<br> Bootstrap:~$Layers -Modals
             -Popovers --Tooltips --Toasts --LoginForm <br> Fonts:~ Google Fonts <br>Icons:~ -Material Symbols
-            -Tabler Icons
-            <br>Bundler:~ Parcel
-            <br>Thank you for Watching!📺
+            -Tabler Icons --Bootstrap Icons --Windows Icons
+            <br>Frontend: ~$Angular <br>Backend: ~$Spring Boot <br>Database: ~$María DB
+            <br>Thank you for Watching!📺'
         </p>
     </div>
 </footer>
