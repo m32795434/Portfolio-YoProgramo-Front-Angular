@@ -33,7 +33,6 @@ interface QPDCard {
     endDate: { year: number, month: number, day: number },
     img: { src: string, alt: string }
     h2: { en: string, es: string };
-    h4: { text: string },
     ph: { en: string, es: string };
 }
 interface Experience {

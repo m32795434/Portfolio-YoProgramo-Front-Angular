@@ -5,15 +5,15 @@
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
-                <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
-                    [src]="section?.imgMobile" id="imgMobileQa">
+                <img class="mobile imgsToChange edit-content" data-z="412 x 266"
+                    [alt]="language === 'en'? 'Profile' : 'Perfil'" [src]="section?.imgMobile" id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="section?.imgDesktop"
-                    alt="Manuel perfil" id="imgDesktopQa">
+                    [alt]="language === 'en'? 'Profile' : 'Perfil'" id="imgDesktopQa">
             </div>
             <div class="d-flex wrapper-h1-save">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
@@ -40,9 +40,9 @@
                     </div>
                     <div class="cardTitleDateWrapper">
                         <h2 class="text-start edit-content" id="h2S2Qa"
-                            [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
+                            [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
-                        <h4 class="text-start edit-content" id="#" [innerHTML]=" card.h4.text">
+                        <h4 class="text-start edit-content" id="#" [innerHTML]=" card.img.alt">
                         </h4>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
@@ -51,9 +51,8 @@
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id, i)"
                             aria-label="Change p content">save</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center edit-content"
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
                     </div>
                 </div>
@@ -76,9 +75,9 @@
                     <div class="cardTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!logged" (click)="saveH1($event)">save</button> -->
-                        <h2 class="text-start edit-content" [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
+                        <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
-                        <h4 class="text-start edit-content" [innerHTML]=" card.h4.text">
+                        <h4 class="text-start edit-content" [innerHTML]=" card.img.alt">
                         </h4>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
@@ -136,7 +135,7 @@
 <ng-template #cardHeaderModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Set Card Header</h4>
+            <h4 class="modal-title">{{language === 'en'? 'Update Card Header' : 'Actualizar Encabezado'}}</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -161,7 +160,7 @@
                 <div class="form-group">
                     <label for="Institution">Company / Institution name</label>
                     <input type="text" class="form-control" id="Institution" name="Institution"
-                        [(ngModel)]="section.cards[cardsIndex].h4.text">
+                        [(ngModel)]="section.cards[cardsIndex].img.alt">
                 </div>
                 <div class="form-group">
                     <label for="companyImg">Start date </label>
@@ -227,7 +226,7 @@
             <div class="form-group">
                 <label for="institution">Company / Institution name(En):</label>
                 <input type="text" class="form-control" id="institution" name="institution"
-                    [(ngModel)]="newCard.h4.text">
+                    [(ngModel)]="newCard.img.alt">
             </div>
             <div class="form-group">
                 <label for="dp1">Start date:</label>

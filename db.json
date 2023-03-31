@@ -274,9 +274,6 @@
             "es": "Programador Full Stack Junior",
             "en": "Full Stack Junior Developer"
           },
-          "h4": {
-            "text": "Argentina Programa"
-          },
           "ph": {
             "es": "\n                                    Primeramente se nos capacitó en Fundamentos de la Programacion, Programacion\n                                    Imperativa, POO. - (Finalizado)\n                                    Posteriormente se capacita en la programación Full Stack centrada en las\n                                    tecnologías: Boostrap, Angular, Typescript, Java y María DB. - (Cursando ~50%)\n                                ",
             "en": "\n                                    We were trained in Fundamentals of Programming, Programming\n                                    Imperative, OOP. - (Approved)\n                                    Subsequently, we are being trained in a Full Stack programming focused on these\n                                    technologies: Boostrap, Angular, Typescript, Java and María DB. - (Done ~50%)\n                                "
@@ -301,9 +298,6 @@
           "h2": {
             "es": "Programación Informática",
             "en": "Software Programming"
-          },
-          "h4": {
-            "text": "Udemy"
           },
           "ph": {
             "es": "\n                                    Cursando actualmente: <br>\n                                    Angular de \"Cero a Experto\" de Fernando Herrera. <br>\n                                    Typescript \"The complete developer's guide\" de Stephen Grider <br>\n                                    Master completo en Java de Andrés José Guzmán.\n                                ",
@@ -330,9 +324,6 @@
             "es": "Curso de Javascript",
             "en": "Javascript"
           },
-          "h4": {
-            "text": "Wes Bos"
-          },
           "ph": {
             "es": "\n                                    Este curso entrena sobre los aspectos más significativos de Javascript incluído ES6\n                                    en adelante. Programación imperativa y POO. Aprendí a crear sliders, modals, tab\n                                    panels, galleries; realizar fetch a diferentes Apis externas, y manejar algunas Apis\n                                    muy\n                                    interesantes del explorador como DOM, MediaDevices, AudioContext, Canvas,\n                                    Intersection Observer,\n                                    FaceDetector, entre\n                                    otras. Si bien terminé el curso en Dic/2021, he reescrito el código original\n                                    varias veces aplicando buenas prácticas y POO.",
             "en": "\n                                    This course trains on the most significant aspects of Javascript including ES6\n                                    and further. Imperative programming and OOP. I learned to create sliders, modals,\n                                    tab\n                                    panels, galleries; fetch to different externals Apis, and handle some very\n                                    interesting Web Apis like DOM, MediaDevices, AudioContext, Canvas, Intersection\n                                    Observer,\n                                    FaceDetector, among\n                                    other. Even though I finalized this course in 12/2021, I have re write this code\n                                    many times, applying good practices and POO.\n                                "
@@ -357,9 +348,6 @@
           "h2": {
             "es": "PROFESSIONAL WEBMASTER",
             "en": "PROFESSIONAL WEBMASTER"
-          },
-          "h4": {
-            "text": "UTN - Regional Buenos Aires"
           },
           "ph": {
             "es": "\n                                    Desarrollo de sitios y aplicaciones web. HTML, SCSS, Js, Bootstrap, Principios de\n                                    diseño responsive y accesibilidad; Angular, MaríaDB, NodeJs, Express.\n                                ",
@@ -386,9 +374,6 @@
             "es": "Tec. Sup. Mantenimiento Industrial (Completo)",
             "en": "Technician in Industrial Maintenance (Complete)"
           },
-          "h4": {
-            "text": "Universidad Tecnológica Nacional"
-          },
           "ph": {
             "es": "\n                                    Destaco lo aprendido sobre Programación de Plcs, Electrotecnia, Mantenimiento\n                                    Industrial, Tecnología de materiales, Informática, Inglés, Mecánica e Hidráulica,\n                                    entre\n                                    otras...",
             "en": "\n                                    I remark what I learned about Plcs Programming, Electrotechnics, Industrial\n                                    Maintenance\n                                    , Materials Technology, Computer Science, English, Mechanics and Hydraulics,\n                                    among\n                                    others..."
@@ -413,9 +398,6 @@
           "h2": {
             "es": "TEC. Martillero Público y C.C. (Incompleto)",
             "en": "Auctioneer Tec. and Broker (Incomplete)"
-          },
-          "h4": {
-            "text": "Universidad Nacional del Litoral"
           },
           "ph": {
             "es": "\n                                    Un gran trayecto formativo en tasaciones y contratos. Si bien me gustó mucho la\n                                    carrera, me reecontré con la programación y al día de hoy hacen 2 años que no dejo\n                                    de programar ni un solo día.",
@@ -442,9 +424,6 @@
             "es": "Cont. Público Nacional (Incompleto)",
             "en": " Public Accountant (Incomplete)"
           },
-          "h4": {
-            "text": "Universidad Nacional de Entre Ríos"
-          },
           "ph": {
             "es": "\n                                    Cursé 2 años de esta carrera adquiriendo conocimientos de Contabilidad,\n                                    administración, tesorería, matemáticas. Abandoné este trayecto\n                                    formativo, para poder emprender en un negocio del que fui co-titular por 4 años.",
             "en": "\n                                    I studied this career for two years, acquiring knowledge about Accounting,\n                                    Administration, Treasury and Mathematics. I left this learning path\n                                    , to be able to start in a business for which I was co-owner for 4 years.\n                                "
@@ -469,9 +448,6 @@
           "h2": {
             "es": "Ing. Electrónica (Incompleto)",
             "en": "Electronic Ing. (Incomplete)"
-          },
-          "h4": {
-            "text": "Universidad Nacional de Rosario"
           },
           "ph": {
             "es": "\n                                    Aunque cursé solo el primer año, destaco de este trayecto un gran entrenamiento en\n                                    algoritmos de programación y matemáticas, lo que claramente marcó mi inclinación por\n                                    la programación.",

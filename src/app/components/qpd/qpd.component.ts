@@ -43,7 +43,6 @@ export class QPDComponent implements OnInit {
       day: 31
     },
     h2: { en: "", es: "" },
-    h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
   language = 'en';
@@ -69,7 +68,6 @@ export class QPDComponent implements OnInit {
       day: 31
     },
     h2: { en: "", es: "" },
-    h4: { text: "" },
     ph: { en: "", es: "" }
   }
 
