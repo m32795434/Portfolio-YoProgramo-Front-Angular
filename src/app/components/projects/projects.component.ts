@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { Projects } from 'src/interfaces/sections-interfaces';
+import { LanguageService } from 'src/services/language/language.service';
 
 @Component({
   selector: 'app-projects',
@@ -17,8 +18,10 @@ export class ProjectsComponent implements OnInit {
   //contains all
   section: any = { id: "projects", en: "", es: "" };
   language = 'en';
+  languageSubc = new Subscription();
+
   errorMessage = '';
-  constructor(private loginService: LoginService, private dataService: DataService,) {
+  constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
       console.log('logged at home?', this.logged);
@@ -28,6 +31,9 @@ export class ProjectsComponent implements OnInit {
       this.section = section;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
+    this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
+      this.language = val;
+    })
   }
   ngOnInit(): void {
     const content = this.dataService.getData('projects');
