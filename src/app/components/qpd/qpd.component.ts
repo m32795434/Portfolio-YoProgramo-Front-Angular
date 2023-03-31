@@ -125,8 +125,6 @@ export class QPDComponent implements OnInit {
     //   return (el.id === targetId)
     // })
     this.section.cards[i].ph[this.language] = innerHTML;
-    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
-
     this.dataService.updateSection('qPD', this.section);
   }
   saveH1(e: any) {
