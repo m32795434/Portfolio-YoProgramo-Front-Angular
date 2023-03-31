@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
       this.language = val;
-      console.log(this.language)
     })
   }
 

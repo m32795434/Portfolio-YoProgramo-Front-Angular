@@ -39,9 +39,6 @@
                         <img [src]="card.img.src" [alt]="card.img.alt" class="rounded-circle">
                     </div>
                     <div class="cardTitleDateWrapper">
-                        <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
-                            [hidden]="!logged" (click)="saveH1($event)"
-                            aria-label="Change institution name">save</button> -->
                         <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="language === 'en'? card.h2.en : card.h2.es">
                         </h2>
@@ -112,7 +109,7 @@
 <ng-template #mainImgSrcModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Set Src</h4>
+            <h4 class="modal-title">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -120,16 +117,17 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group">
-                    <label for="imgMobile">Mobile img src: </label>
+                    <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
                         [(ngModel)]="section.imgMobile">
                 </div>
-                <div class="form-group">
-                    <label for="imgDesktop">Desktop img src: </label>
+                <div class="form-group mt-2">
+                    <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
                         [(ngModel)]="section.imgDesktop">
                 </div>
-                <button type="submit" class="btn mt-2 btn-primary" (click)="modal.close('Save click')">Submit</button>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
             </form>
         </div>
     </div>

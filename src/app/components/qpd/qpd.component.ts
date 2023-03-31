@@ -9,6 +9,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { wait } from 'src/app/libraries/utils';
+import { LanguageService } from 'src/services/language/language.service';
 declare global {
   interface Window {
     Swiper: any;
@@ -41,11 +42,12 @@ export class QPDComponent implements OnInit {
       month: 5,
       day: 31
     },
-    h2: { en: "Loading!!..🫠", es: "Cargando!!🫠" },
+    h2: { en: "", es: "" },
     h4: { text: "Cargando!!🫠" },
     ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
   }]
   language = 'en';
+  languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -71,7 +73,7 @@ export class QPDComponent implements OnInit {
     ph: { en: "", es: "" }
   }
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
+  constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
     });
@@ -81,6 +83,9 @@ export class QPDComponent implements OnInit {
       this.cards = this.section['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
+    this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
+      this.language = val;
+    })
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
