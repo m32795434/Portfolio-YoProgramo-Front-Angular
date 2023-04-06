@@ -40,7 +40,7 @@ export class ProjectsComponent implements OnInit {
     if (content) {
       this.section = content;
     } else {
-      this.dataService.getSectionFromJsonServer('projects');
+      this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -49,6 +49,6 @@ export class ProjectsComponent implements OnInit {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.language] = innerHTML;
-    this.dataService.updateSection('projects', this.section);
+    this.dataService.updateSectionAndCards('projects', this.section);
   }
 }

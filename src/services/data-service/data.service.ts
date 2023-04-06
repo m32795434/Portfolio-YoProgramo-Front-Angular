@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { Home, Experience, QPD, Projects, Sections, Section, StringSection, Skills } from 'src/interfaces/sections-interfaces';
 import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
+import { Conexion } from 'src/interfaces/Conexion';
 
 
 @Injectable({
@@ -24,7 +25,11 @@ export class DataService {
     projects: { id: "projects", en: "", es: "" },
     skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };
-  constructor(private JsonServer: JsonServerRequestsService) { }
+  //  = new DataAccess(new JsonServerRequestsService(HttpClient))
+  private conexion: Conexion;
+  public constructor(private dataAccess: JsonServerRequestsService) {
+    this.conexion = this.dataAccess;
+  }
 
   //GET OBSERVERS
   getHomeDataObserver() {
@@ -87,8 +92,8 @@ export class DataService {
     return subscribeSectionObject;
   }
 
-  getSectionFromJsonServer(section: StringSection) {
-    this.JsonServer.getSection(section).subscribe(this.subscribeSectionObjectFunct());
+  getSectionAndCards(section: StringSection) {
+    this.conexion.getSectionAndCards(section).subscribe(this.subscribeSectionObjectFunct());
   }
 
   getData(arg: StringSection): Section | undefined {
@@ -98,8 +103,8 @@ export class DataService {
     }
     return undefined;
   }
-  updateSection(section: StringSection, obj: Section) {
-    this.JsonServer.updateSection(section, obj).subscribe(this.subscribeSectionObjectFunct())
+  updateSectionAndCards(section: StringSection, obj: Section) {
+    this.conexion.updateSectionAndCards(section, obj).subscribe(this.subscribeSectionObjectFunct())
   }
 
 }

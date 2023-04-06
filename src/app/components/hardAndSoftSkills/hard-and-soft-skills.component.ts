@@ -82,7 +82,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.section = content;
       this.cards = this.section['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('skills');
+      this.dataService.getSectionAndCards('skills');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -110,28 +110,28 @@ export class HardAndSoftSkillsComponent implements OnInit {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
     this.section.cards[i].ph[this.language] = innerHTML;
     console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
-    this.dataService.updateSection('skills', this.section);
+    this.dataService.updateSectionAndCards('skills', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.language] = innerHTML;
-    this.dataService.updateSection('skills', this.section);
+    this.dataService.updateSectionAndCards('skills', this.section);
   }
   updateCard() {
     console.log('updating with:', this.section);
-    this.dataService.updateSection('skills', this.section);
+    this.dataService.updateSectionAndCards('skills', this.section);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.section.cards.splice(this.cardsIndex, 1);
     console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('skills', this.section);
+    this.dataService.updateSectionAndCards('skills', this.section);
   }
   createCard() {
     this.newCard.id = `S${this.cards.length}`;
     this.section.cards.push(this.newCard);
-    this.dataService.updateSection('skills', this.section);
+    this.dataService.updateSectionAndCards('skills', this.section);
   }
   //MODALS
 

@@ -92,7 +92,7 @@ export class QPDComponent implements OnInit {
       this.section = content;
       this.cards = this.section['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('qPD');
+      this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -125,28 +125,28 @@ export class QPDComponent implements OnInit {
     //   return (el.id === targetId)
     // })
     this.section.cards[i].ph[this.language] = innerHTML;
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSectionAndCards('qPD', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.language] = innerHTML;
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSectionAndCards('qPD', this.section);
   }
   updateCard() {
     console.log('updating with:', this.section);
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSectionAndCards('qPD', this.section);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.section.cards.splice(this.cardsIndex, 1);
     console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSectionAndCards('qPD', this.section);
   }
   createCard() {
     this.newCard.id = `S${this.cards.length}`;
     this.section.cards.push(this.newCard);
-    this.dataService.updateSection('qPD', this.section);
+    this.dataService.updateSectionAndCards('qPD', this.section);
   }
   //MODALS
 

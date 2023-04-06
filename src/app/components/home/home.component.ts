@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
       this.section = content;
       this.cards = this.section['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('home');
+      this.dataService.getSectionAndCards('home');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -92,29 +92,29 @@ export class HomeComponent implements OnInit {
       return (el.id === targetId)
     })
     this.section.cards[index][this.language] = innerHTML;
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.section);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
     this.section[this.language] = innerHTML;
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.section);
   }
   saveImgSrc() {
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.section);
   }
 
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.section.cards.splice(this.cardsIndex, 1);
     console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.section);
   }
 
   createCard() {
     this.newCard.id = `S${this.cards.length}`;
     this.section.cards.push(this.newCard);
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.section);
   }
   //MODAL
 

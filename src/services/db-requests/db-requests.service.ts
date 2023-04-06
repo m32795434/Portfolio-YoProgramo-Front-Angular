@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RequestServicesInterface } from 'src/interfaces/requestServicesInterface';
+import { Conexion } from 'src/interfaces/Conexion';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbRequestsService implements RequestServicesInterface {
+export class DbRequestsService implements Conexion {
 
   constructor() { }
   getAllSection(): Observable<any> {
