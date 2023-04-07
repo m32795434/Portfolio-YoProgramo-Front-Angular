@@ -77,7 +77,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('skills');
+    const content = this.dataService.localGetSectionAndCards('skills');
     if (content) {
       this.sectionAndCards = content;
     } else {

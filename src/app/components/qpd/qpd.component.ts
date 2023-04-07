@@ -87,7 +87,7 @@ export class QPDComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('qPD');
+    const content = this.dataService.localGetSectionAndCards('qPD');
     if (content) {
       this.sectionAndCards = content;
     } else {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LSRequestsService } from './lsrequests.service';
+import { JsonServerService } from './json-server.service';
 
-describe('LSRequestsService', () => {
-  let service: LSRequestsService;
+describe('JsonServerServiceService', () => {
+  let service: JsonServerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LSRequestsService);
+    service = TestBed.inject(JsonServerService);
   });
 
   it('should be created', () => {

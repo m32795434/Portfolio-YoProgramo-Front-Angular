@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { Home, Experience, QPD, Projects, Sections, Section, StringSection, Skills } from 'src/interfaces/sections-interfaces';
-import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
+import { JsonServerService } from '../json-server/json-server.service';
 import { Conexion } from 'src/interfaces/Conexion';
 
 
@@ -25,9 +25,9 @@ export class DataService {
     projects: { id: "projects", en: "", es: "" },
     skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };
-  //  = new DataAccess(new JsonServerRequestsService(HttpClient))
+  //  = new DataAccess(new JsonServerService(HttpClient))
   private conexion: Conexion;
-  public constructor(private dataAccess: JsonServerRequestsService) {
+  public constructor(private dataAccess: JsonServerService) {
     this.conexion = this.dataAccess;
   }
 
@@ -92,17 +92,19 @@ export class DataService {
     return subscribeSectionObject;
   }
 
-  getSectionAndCards(section: StringSection) {
-    this.conexion.getSectionAndCards(section).subscribe(this.switchSubscribeSectionAndCards());
-  }
-
-  getData(arg: StringSection): Section | undefined {
+  localGetSectionAndCards(arg: StringSection): Section | undefined {
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
     }
     return undefined;
   }
+
+  //TO APIS
+  getSectionAndCards(section: StringSection) {
+    this.conexion.getSectionAndCards(section).subscribe(this.switchSubscribeSectionAndCards());
+  }
+
   updateSectionAndCards(section: StringSection, obj: Section) {
     this.conexion.updateSectionAndCards(section, obj).subscribe(this.switchSubscribeSectionAndCards())
   }

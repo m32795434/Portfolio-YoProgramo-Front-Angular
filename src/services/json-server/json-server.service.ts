@@ -7,7 +7,7 @@ import { Section, StringSection } from '../../interfaces/sections-interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class JsonServerRequestsService implements Conexion {
+export class JsonServerService implements Conexion {
   //URL & CONFIG
   private apiUrl = 'http://localhost:5000/sections';
   private config = { headers: { 'Content-Type': 'application/json' } };

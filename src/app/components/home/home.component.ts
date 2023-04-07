@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const content = this.dataService.getData('home');
+    const content = this.dataService.localGetSectionAndCards('home');
     if (content) {
       this.sectionAndCards = content;
     } else {
