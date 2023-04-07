@@ -27,7 +27,7 @@ export class ProjectsComponent implements OnInit {
       console.log('logged at home?', this.logged);
     });
 
-    this.dataSubscription = this.dataService.getProjectsDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((section) => {
       this.section = section;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })

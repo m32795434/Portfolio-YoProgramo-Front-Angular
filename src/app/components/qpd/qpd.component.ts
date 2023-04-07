@@ -76,7 +76,7 @@ export class QPDComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getQPDAndCardsObserver().subscribe((section) => {
       this.section = section;
       this.cards = this.section['cards'];
     })

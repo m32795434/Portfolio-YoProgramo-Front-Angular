@@ -67,7 +67,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getSkillsDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((section) => {
       this.section = section;
       this.cards = this.section['cards'];
     })

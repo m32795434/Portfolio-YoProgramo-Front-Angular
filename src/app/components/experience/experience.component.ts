@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { Experience, ExperienceCard, Home } from 'src/interfaces/sections-interfaces';
+import { ExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
@@ -83,7 +83,7 @@ export class ExperienceComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getExperienceDataObserver().subscribe((sectionAndCards) => {
+    this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
       // this.cards = this.sectionAndCards['cards'];
     })

@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getHomeDataObserver().subscribe((section) => {
+    this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((section) => {
       this.section = section;
       this.cards = this.section['cards'];
     })

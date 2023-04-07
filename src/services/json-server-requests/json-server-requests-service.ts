@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Conexion } from 'src/interfaces/Conexion';
-import { Experience, Home, Projects, QPD, Section, StringSection } from '../../interfaces/sections-interfaces';
+import { Section, StringSection } from '../../interfaces/sections-interfaces';
 
 @Injectable({
   providedIn: 'root'
