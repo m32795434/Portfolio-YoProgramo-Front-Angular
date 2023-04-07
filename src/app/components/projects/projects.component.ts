@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { Projects } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 
 @Component({

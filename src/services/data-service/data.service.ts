@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { Home, Experience, QPD, Projects, Sections, Section, StringSection, Skills } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, Sections, Section, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
 import { JsonServerService } from '../json-server/json-server.service';
 import { Conexion } from 'src/interfaces/Conexion';
 
@@ -54,7 +54,7 @@ export class DataService {
   //REQUESTS
   switchSubscribeSectionAndCards(): any {
     const subscribeSectionObject = {
-      next: (content: Home | Experience | QPD | Projects | Skills) => {
+      next: (content: HomeAndCards | ExperienceAndCards | QPDAndCards | ProjectsAndCards | SkillsAndCards) => {
         switch (content.id) {
           case "home":
             this.data['home'] = content;
