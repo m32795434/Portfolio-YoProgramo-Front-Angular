@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { HomeCard, QPDCard } from 'src/interfaces/sections-interfaces';
+import { QPDCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,24 +27,25 @@ export class QPDComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  sectionAndCards: any = {
+    id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+      id: "id",
+      img: { src: "", alt: "" },
+      startDate: {
+        year: 2022,
+        month: 6,
+        day: 1
+      },
+      endDate: {
+        year: 2023,
+        month: 5,
+        day: 31
+      },
+      h2: { en: "", es: "" },
+      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+    }]
+  };
   //contains all the cards content
-  cards: QPDCard[] = [{
-    id: "id",
-    img: { src: "", alt: "" },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    h2: { en: "", es: "" },
-    ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
-  }]
   language = 'en';
   languageSubc = new Subscription();
   swiper: any;
@@ -76,9 +77,8 @@ export class QPDComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getQPDDataObserver().subscribe((section) => {
-      this.section = section;
-      this.cards = this.section['cards'];
+    this.dataSubscription = this.dataService.getQPDAndCardsObserver().subscribe((sectionAndCards) => {
+      this.sectionAndCards = sectionAndCards;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -87,12 +87,11 @@ export class QPDComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('qPD');
+    const content = this.dataService.localGetSectionAndCards('qPD');
     if (content) {
-      this.section = content;
-      this.cards = this.section['cards'];
+      this.sectionAndCards = content;
     } else {
-      this.dataService.getSectionFromJsonServer('qPD');
+      this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -124,29 +123,29 @@ export class QPDComponent implements OnInit {
     // const index = this.section.cards.findIndex((el: HomeCard) => {
     //   return (el.id === targetId)
     // })
-    this.section.cards[i].ph[this.language] = innerHTML;
-    this.dataService.updateSection('qPD', this.section);
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.language] = innerHTML;
-    this.dataService.updateSection('qPD', this.section);
+    this.sectionAndCards[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   updateCard() {
-    console.log('updating with:', this.section);
-    this.dataService.updateSection('qPD', this.section);
+    console.log('updating with:', this.sectionAndCards);
+    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
-    this.section.cards.splice(this.cardsIndex, 1);
-    console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('qPD', this.section);
+    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
+    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
+    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   createCard() {
-    this.newCard.id = `S${this.cards.length}`;
-    this.section.cards.push(this.newCard);
-    this.dataService.updateSection('qPD', this.section);
+    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
+    this.sectionAndCards.cards.push(this.newCard);
+    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   //MODALS
 

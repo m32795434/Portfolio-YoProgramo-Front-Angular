@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { Home, Experience, QPD, Projects, Sections, Section, StringSection, Skills } from 'src/interfaces/sections-interfaces';
-import { JsonServerRequestsService } from '../json-server-requests/json-server-requests-service';
+import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, Sections, Section, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
+import { JsonServerService } from '../json-server/json-server.service';
+import { Conexion } from 'src/interfaces/Conexion';
 
 
 @Injectable({
@@ -9,11 +10,11 @@ import { JsonServerRequestsService } from '../json-server-requests/json-server-r
 })
 export class DataService {
   //SUBJECTS
-  private homeDataSubject = new Subject<any>();
-  private experienceDataSubject = new Subject<any>();
-  private qPDDataSubject = new Subject<any>();
-  private projectsDataSubject = new Subject<any>();
-  private skillsDataSubject = new Subject<any>();
+  private homeAndCardsSubject = new Subject<any>();
+  private experienceAndCardsSubject = new Subject<any>();
+  private qPDAndCardsSubject = new Subject<any>();
+  private projectsAndCardsSubject = new Subject<any>();
+  private skillsAndCardsSubject = new Subject<any>();
 
   private errorSubject = new Subject<any>();
 
@@ -24,22 +25,26 @@ export class DataService {
     projects: { id: "projects", en: "", es: "" },
     skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };
-  constructor(private JsonServer: JsonServerRequestsService) { }
+  //  = new DataAccess(new JsonServerService(HttpClient))
+  private conexion: Conexion;
+  public constructor(private dataAccess: JsonServerService) {
+    this.conexion = this.dataAccess;
+  }
 
   //GET OBSERVERS
-  getHomeDataObserver() {
-    return this.homeDataSubject.asObservable();
+  getHomeAndCardsObserver() {
+    return this.homeAndCardsSubject.asObservable();
   }
-  getExperienceDataObserver() {
-    return this.experienceDataSubject.asObservable();
+  getExperienceAndCardsObserver() {
+    return this.experienceAndCardsSubject.asObservable();
   }
-  getQPDDataObserver() {
-    return this.qPDDataSubject.asObservable();
+  getQPDAndCardsObserver() {
+    return this.qPDAndCardsSubject.asObservable();
   }
-  getProjectsDataObserver() {
-    return this.projectsDataSubject.asObservable();
-  } getSkillsDataObserver() {
-    return this.skillsDataSubject.asObservable();
+  getProjectsAndCardsObserver() {
+    return this.projectsAndCardsSubject.asObservable();
+  } getSkillsAndCardsObserver() {
+    return this.skillsAndCardsSubject.asObservable();
   }
 
 
@@ -47,29 +52,29 @@ export class DataService {
     return this.errorSubject.asObservable();
   }
   //REQUESTS
-  subscribeSectionObjectFunct(): any {
+  switchSubscribeSectionAndCards(): any {
     const subscribeSectionObject = {
-      next: (content: Home | Experience | QPD | Projects | Skills) => {
+      next: (content: HomeAndCards | ExperienceAndCards | QPDAndCards | ProjectsAndCards | SkillsAndCards) => {
         switch (content.id) {
           case "home":
             this.data['home'] = content;
-            this.homeDataSubject.next(this.data[content.id]);
+            this.homeAndCardsSubject.next(this.data[content.id]);
             break;
           case "experience":
             this.data['experience'] = content;
-            this.experienceDataSubject.next(this.data[content.id]);
+            this.experienceAndCardsSubject.next(this.data[content.id]);
             break;
           case "projects":
             this.data['projects'] = content;
-            this.projectsDataSubject.next(this.data[content.id]);
+            this.projectsAndCardsSubject.next(this.data[content.id]);
             break;
           case "qPD":
             this.data['qPD'] = content;
-            this.qPDDataSubject.next(this.data[content.id]);
+            this.qPDAndCardsSubject.next(this.data[content.id]);
             break;
           case "skills":
             this.data['skills'] = content;
-            this.skillsDataSubject.next(this.data[content.id]);
+            this.skillsAndCardsSubject.next(this.data[content.id]);
             break;
           default:
             break;
@@ -87,19 +92,21 @@ export class DataService {
     return subscribeSectionObject;
   }
 
-  getSectionFromJsonServer(section: StringSection) {
-    this.JsonServer.getSection(section).subscribe(this.subscribeSectionObjectFunct());
-  }
-
-  getData(arg: StringSection): Section | undefined {
+  localGetSectionAndCards(arg: StringSection): Section | undefined {
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
     }
     return undefined;
   }
-  updateSection(section: StringSection, obj: Section) {
-    this.JsonServer.updateSection(section, obj).subscribe(this.subscribeSectionObjectFunct())
+
+  //TO APIS
+  getSectionAndCards(section: StringSection) {
+    this.conexion.getSectionAndCards(section).subscribe(this.switchSubscribeSectionAndCards());
+  }
+
+  updateSectionAndCards(section: StringSection, obj: Section) {
+    this.conexion.updateSectionAndCards(section, obj).subscribe(this.switchSubscribeSectionAndCards())
   }
 
 }

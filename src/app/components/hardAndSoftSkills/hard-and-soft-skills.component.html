@@ -6,13 +6,13 @@
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
-                    [src]="section?.imgMobile" id="imgMobileQa">
+                    [src]="sectionAndCards?.imgMobile" id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
-                <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="section?.imgDesktop"
+                <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="sectionAndCards?.imgDesktop"
                     alt="Manuel perfil" id="imgDesktopQa">
             </div>
             <div class="d-flex wrapper-h1-save">
@@ -20,7 +20,7 @@
                     data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
-                    [innerHTML]="language === 'en'? section.en : section.es"></h1>
+                    [innerHTML]="language === 'en'? sectionAndCards.en : sectionAndCards.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
@@ -28,7 +28,7 @@
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
-                <div *ngFor="let card of cards, let i=index"
+                <div *ngFor="let card of sectionAndCards.cards, let i=index"
                     class="d-grid justify-content-center align-content-center myCard card">
                     <button class="save-button save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
                         (click)="open(updateCardModal,'change card header' ,i)"
@@ -50,7 +50,7 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
-                <div *ngFor="let card of cards, let i=index" class="swiper-slide w-100 card">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide w-100 card">
                     <div class="d-grid justify-content-center align-content-center">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal, 'change card header ',i)"
@@ -93,12 +93,12 @@
                 <div class="form-group">
                     <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
-                        [(ngModel)]="section.imgMobile">
+                        [(ngModel)]="sectionAndCards.imgMobile">
                 </div>
                 <div class="form-group mt-2">
                     <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
-                        [(ngModel)]="section.imgDesktop">
+                        [(ngModel)]="sectionAndCards.imgDesktop">
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary"
                     (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
@@ -120,28 +120,29 @@
                 <div class="form-group">
                     <label for="skillImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
                     <input type="text" class="form-control" id="skillImg" name="skillImg"
-                        [(ngModel)]="section.cards[cardsIndex].img.src">
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].img.src">
                 </div>
                 <div class="d-flex justify-content-between mt-2 gap-1">
                     <div class="form-group">
                         <label for="imgAltEn">{{language === 'en'? 'Skill Name (en): ' : 'Nombre de la Habilidad (en):
                             '}}</label>
                         <input type="text" class="form-control" id="imgAltEn" name="imgAltEn"
-                            [(ngModel)]="section.cards[cardsIndex].img.alt.en">
+                            [(ngModel)]="sectionAndCards.cards[cardsIndex].img.alt.en">
                     </div>
                     <div class="form-group">
                         <label for="imgAltEs">{{language === 'en'? 'Skill Name (es): ' : 'Nombre de la Habilidad (es):
                             '}}</label>
                         <input type="text" class="form-control" id="imgAltEs" name="imgAltEs"
-                            [(ngModel)]="section.cards[cardsIndex].img.alt.es">
+                            [(ngModel)]="sectionAndCards.cards[cardsIndex].img.alt.es">
                     </div>
                 </div>
                 <div class="form-group mt-2">
                     <label for="value">{{language === 'en'? 'Skill level: ' : 'Nivel en la habilidad:
                         '}}</label>
                     <mat-slider discrete>
-                        <input matSliderThumb [value]="section.cards[cardsIndex].value"
-                            [(ngModel)]="section.cards[cardsIndex].value" class="form-control" id="value" name="value">
+                        <input matSliderThumb [value]="sectionAndCards.cards[cardsIndex].value"
+                            [(ngModel)]="sectionAndCards.cards[cardsIndex].value" class="form-control" id="value"
+                            name="value">
                     </mat-slider>
                 </div>
                 <div class="d-flex justify-content-between mt-2 gap-1">
@@ -149,13 +150,13 @@
                         <label for="bkColor">{{language === 'en'? 'Background color: ' : 'Color de fondo:
                             '}}</label>
                         <input type="text" class="form-control" id="bkColor" name="bkColor"
-                            [(ngModel)]="section.cards[cardsIndex].bkColor">
+                            [(ngModel)]="sectionAndCards.cards[cardsIndex].bkColor">
                     </div>
                     <div class="form-group">
                         <label for="outStrokeColor">{{language === 'en'? 'Progress bar color: ' : 'Color de la barra:
                             '}}</label>
                         <input type="text" class="form-control" id="outStrokeColor" name="outStrokeColor"
-                            [(ngModel)]="section.cards[cardsIndex].outStrokeColor">
+                            [(ngModel)]="sectionAndCards.cards[cardsIndex].outStrokeColor">
                     </div>
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary mt-2"

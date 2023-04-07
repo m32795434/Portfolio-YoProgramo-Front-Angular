@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { Home, HomeCard } from 'src/interfaces/sections-interfaces';
+import { HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
@@ -26,9 +26,8 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  sectionAndCards: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }] };
   //contains all the cards content
-  cards: HomeCard[] = [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }]
   language = 'en';
   languageSubc = new Subscription();
   swiper: any;
@@ -45,9 +44,8 @@ export class HomeComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getHomeDataObserver().subscribe((section) => {
-      this.section = section;
-      this.cards = this.section['cards'];
+    this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((sectionAndCards) => {
+      this.sectionAndCards = sectionAndCards;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -56,12 +54,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const content = this.dataService.getData('home');
+    const content = this.dataService.localGetSectionAndCards('home');
     if (content) {
-      this.section = content;
-      this.cards = this.section['cards'];
+      this.sectionAndCards = content;
     } else {
-      this.dataService.getSectionFromJsonServer('home');
+      this.dataService.getSectionAndCards('home');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -88,33 +85,33 @@ export class HomeComponent implements OnInit {
   saveCardEl(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.section.cards.findIndex((el: HomeCard) => {
+    const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
       return (el.id === targetId)
     })
-    this.section.cards[index][this.language] = innerHTML;
-    this.dataService.updateSection('home', this.section);
+    this.sectionAndCards.cards[index][this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.language] = innerHTML;
-    this.dataService.updateSection('home', this.section);
+    this.sectionAndCards[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
   saveImgSrc() {
-    this.dataService.updateSection('home', this.section);
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
 
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
-    this.section.cards.splice(this.cardsIndex, 1);
-    console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('home', this.section);
+    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
+    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
 
   createCard() {
-    this.newCard.id = `S${this.cards.length}`;
-    this.section.cards.push(this.newCard);
-    this.dataService.updateSection('home', this.section);
+    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
+    this.sectionAndCards.cards.push(this.newCard);
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
   //MODAL
 

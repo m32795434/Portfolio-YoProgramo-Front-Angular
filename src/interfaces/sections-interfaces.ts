@@ -1,12 +1,12 @@
 interface Sections {
-    home: Home;
-    experience: Experience;
-    qPD: QPD;
-    projects: Projects;
-    skills: Skills;
+    home: HomeAndCards;
+    experience: ExperienceAndCards;
+    qPD: QPDAndCards;
+    projects: ProjectsAndCards;
+    skills: SkillsAndCards;
 }
 
-interface Home {
+interface HomeAndCards {
     id: "home";
     imgMobile: string;
     imgDesktop: string;
@@ -19,7 +19,7 @@ interface HomeCard {
     en: string;
     es: string;
 }
-interface QPD {
+interface QPDAndCards {
     id: "qPD";
     imgMobile: string;
     imgDesktop: string;
@@ -35,7 +35,7 @@ interface QPDCard {
     h2: { en: string, es: string };
     ph: { en: string, es: string };
 }
-interface Experience {
+interface ExperienceAndCards {
     id: "experience";
     imgMobile: string;
     imgDesktop: string;
@@ -54,12 +54,12 @@ interface ExperienceCard {
     endDate: { year: number, month: number, day: number },
     ph: { en: string, es: string };
 }
-interface Projects {
+interface ProjectsAndCards {
     id: "projects";
     en: string;
     es: string;
 }
-interface Skills {
+interface SkillsAndCards {
     id: "skills";
     imgMobile: string;
     imgDesktop: string;
@@ -75,6 +75,6 @@ interface SkillsCard {
         }
     }; value: number; bkColor: string; outStrokeColor: string;
 }
-type Section = Home | QPD | Experience | Projects | Skills;
+type Section = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { Home, HomeCard, QPD, QPDCard, Experience, ExperienceCard, Projects, Sections, Section, StringSection, SkillsCard, Skills }
+export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, Sections, Section, StringSection, SkillsCard, SkillsAndCards }

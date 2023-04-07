@@ -28,27 +28,28 @@ export class ExperienceComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
+  sectionAndCards: any = {
+    id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+      id: "id",
+      img: {
+        src: "", alt: {
+          en: "", es: ""
+        }
+      },
+      startDate: {
+        year: 2022,
+        month: 6,
+        day: 1
+      },
+      endDate: {
+        year: 2023,
+        month: 5,
+        day: 31
+      },
+      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+    }]
+  };
   //contains all the cards content
-  cards: ExperienceCard[] = [{
-    id: "id",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
-  }]
   language = 'en';
   languageSubc = new Subscription();
   swiper: any;
@@ -82,9 +83,9 @@ export class ExperienceComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getExperienceDataObserver().subscribe((section) => {
-      this.section = section;
-      this.cards = this.section['cards'];
+    this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
+      this.sectionAndCards = sectionAndCards;
+      // this.cards = this.sectionAndCards['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -94,12 +95,13 @@ export class ExperienceComponent implements OnInit {
 
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.getData('experience');
+    //checks if the main dataService has data from a previous load.
+    const content = this.dataService.localGetSectionAndCards('experience');
     if (content) {
-      this.section = content;
-      this.cards = this.section['cards'];
+      this.sectionAndCards = content;
+      // this.cards = this.sectionAndCards['cards'];
     } else {
-      this.dataService.getSectionFromJsonServer('experience');
+      this.dataService.getSectionAndCards('experience');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -125,30 +127,30 @@ export class ExperienceComponent implements OnInit {
   }
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.section.cards[i].ph[this.language] = innerHTML;
-    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
-    this.dataService.updateSection('experience', this.section);
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
+    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.language] = innerHTML;
-    this.dataService.updateSection('experience', this.section);
+    this.sectionAndCards[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   updateCard() {
-    console.log('updating with:', this.section);
-    this.dataService.updateSection('experience', this.section);
+    console.log('updating with:', this.sectionAndCards);
+    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
-    this.section.cards.splice(this.cardsIndex, 1);
-    console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSection('experience', this.section);
+    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
+    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
+    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   createCard() {
-    this.newCard.id = `S${this.cards.length}`;
-    this.section.cards.push(this.newCard);
-    this.dataService.updateSection('experience', this.section);
+    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
+    this.sectionAndCards.cards.push(this.newCard);
+    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   //MODALS
 

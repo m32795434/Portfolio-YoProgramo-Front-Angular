@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { Projects } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class ProjectsComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "projects", en: "", es: "" };
+  sectionAndCards: any = { id: "projects", en: "", es: "" };
   language = 'en';
   languageSubc = new Subscription();
 
@@ -27,8 +26,8 @@ export class ProjectsComponent implements OnInit {
       console.log('logged at home?', this.logged);
     });
 
-    this.dataSubscription = this.dataService.getProjectsDataObserver().subscribe((section) => {
-      this.section = section;
+    this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
+      this.sectionAndCards = sectionAndCards;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -36,11 +35,11 @@ export class ProjectsComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    const content = this.dataService.getData('projects');
+    const content = this.dataService.localGetSectionAndCards('projects');
     if (content) {
-      this.section = content;
+      this.sectionAndCards = content;
     } else {
-      this.dataService.getSectionFromJsonServer('projects');
+      this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
@@ -48,7 +47,7 @@ export class ProjectsComponent implements OnInit {
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.language] = innerHTML;
-    this.dataService.updateSection('projects', this.section);
+    this.sectionAndCards[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('projects', this.sectionAndCards);
   }
 }
