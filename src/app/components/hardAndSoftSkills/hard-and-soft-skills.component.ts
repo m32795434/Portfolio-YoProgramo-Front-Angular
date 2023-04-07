@@ -28,20 +28,21 @@ export class HardAndSoftSkillsComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  section: any = { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] };
-  //contains all the cards content
-  cards: SkillsCard[] = [{
-    id: "S1",
-    img: {
-      src: "../../../assets/images/regional-bs.png", alt: {
-        en: "regional-bs", es: "regional-bs"
-      }
-    },
-    value: 50,
-    bkColor: "red",
-    outStrokeColor: "blue"
+  sectionAndCards: any = {
+    id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+      id: "S1",
+      img: {
+        src: "../../../assets/images/regional-bs.png", alt: {
+          en: "regional-bs", es: "regional-bs"
+        }
+      },
+      value: 50,
+      bkColor: "red",
+      outStrokeColor: "blue"
 
-  }]
+    }]
+  };
+  //contains all the cards content
   language = 'en';
   languageSubsc = new Subscription();
   swiper: any;
@@ -67,9 +68,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.logged = val;
     });
 
-    this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((section) => {
-      this.section = section;
-      this.cards = this.section['cards'];
+    this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((sectionAndCards) => {
+      this.sectionAndCards = sectionAndCards;
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubsc = this.languageSrc.getLanguageObserver().subscribe((val) => this.language = val)
@@ -79,8 +79,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
     // window.onresize = this.checkForResize;
     const content = this.dataService.getData('skills');
     if (content) {
-      this.section = content;
-      this.cards = this.section['cards'];
+      this.sectionAndCards = content;
     } else {
       this.dataService.getSectionAndCards('skills');
     }
@@ -108,30 +107,30 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.section.cards[i].ph[this.language] = innerHTML;
-    console.log('this.section.cards[i].ph[this.language]', this.section.cards[i].ph[this.language])
-    this.dataService.updateSectionAndCards('skills', this.section);
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
+    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.section[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('skills', this.section);
+    this.sectionAndCards[this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   updateCard() {
-    console.log('updating with:', this.section);
-    this.dataService.updateSectionAndCards('skills', this.section);
+    console.log('updating with:', this.sectionAndCards);
+    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
-    this.section.cards.splice(this.cardsIndex, 1);
-    console.log('this.section.cards', this.section.cards)
-    this.dataService.updateSectionAndCards('skills', this.section);
+    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
+    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
+    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   createCard() {
-    this.newCard.id = `S${this.cards.length}`;
-    this.section.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('skills', this.section);
+    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
+    this.sectionAndCards.cards.push(this.newCard);
+    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   //MODALS
 
