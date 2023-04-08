@@ -6,6 +6,7 @@ import { HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
+import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 declare global {
   interface Window {
     Swiper: any;
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
     en: "", es: ""
   }
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
+  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
+    this.spring.SpringGetSectionAndCards().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }
 
   async initSwiper() {
