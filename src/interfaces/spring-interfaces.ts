@@ -26,15 +26,22 @@ interface SpringQPDAndCards {
     imgDesktop: string;
     en: string;
     es: string;
-    cards: QPDCard[];
+    qpdcardList: QPDCard[];
 }
 interface QPDCard {
     id: string;
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
-    img: { src: string, alt: string }
-    h2: { en: string, es: string };
-    ph: { en: string, es: string };
+    imgSrc: String;
+    imgAlt: String;
+    startDateYear: number;
+    startDateMonth: number;
+    startDateDay: number;
+    endDateYear: number;
+    endDateMonth: number;
+    endDateDay: number;
+    phEs: String;
+    phEn: String;
+    h2En: String;
+    h2Es: String;
 }
 interface SpringExperienceAndCards {
     id: "experience";
@@ -42,24 +49,28 @@ interface SpringExperienceAndCards {
     imgDesktop: string;
     en: string;
     es: string;
-    cards: ExperienceCard[];
+    experienceCardList: ExperienceCard[];
 }
 interface ExperienceCard {
     id: string;
-    img: {
-        src: string, alt: {
-            en: string, es: string
-        }
-    }
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
-    ph: { en: string, es: string };
+    imgSrc: String;
+    imgAltEs: String;
+    imgAltEn: String;
+    startDateYear: number;
+    startDateMonth: number;
+    startDateDay: number;
+    endDateYear: number;
+    endDateMonth: number;
+    endDateDay: number;
+    phEs: String;
+    phEn: String;
 }
 interface SpringProjectsAndCards {
     id: "projects";
     en: string;
     es: string;
-    cards: null;
+    imgMobile: null;
+    imgDesktop: null;
 }
 interface SpringSkillsAndCards {
     id: "skills";
@@ -67,15 +78,16 @@ interface SpringSkillsAndCards {
     imgDesktop: string;
     en: string;
     es: string;
-    cards: SkillsCard[];
+    skillsCardList: SkillsCard[];
 }
 interface SkillsCard {
     id: string;
-    img: {
-        src: string, alt: {
-            en: string, es: string
-        }
-    }; value: number; bkColor: string; outStrokeColor: string;
+    imgSrc: string;
+    imgAltEs: string;
+    imgAltEn: string;
+    value: number;
+    bkColor: string;
+    outStrokeColor: string;
 }
 type Section = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
