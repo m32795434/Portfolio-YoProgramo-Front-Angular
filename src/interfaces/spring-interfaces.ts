@@ -1,4 +1,4 @@
-interface SpringCompleteSections {
+interface SpringAllCompleteSections {
     home: SpringHomeAndCards;
     experience: SpringExperienceAndCards;
     qPD: SpringQPDAndCards;
@@ -13,25 +13,27 @@ interface SpringHomeAndCards {
         en: string;
         es: string;
     }
-    homeCardList: HomeCard[];
+    homeCardList: SpringHomeCard[];
 }
-interface HomeCard {
+interface SpringHomeCard {
     id: string;
-    en: string;
-    es: string;
+    phEn: string, phEs: string;
 }
 interface SpringQPDAndCards {
-    id: "qPD";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
-    qpdcardList: QPDCard[];
+    section: {
+        id: "qPD";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    }
+    qpdcardList: SpringQPDCard[];
 }
-interface QPDCard {
+interface SpringQPDCard {
     id: string;
     imgSrc: String;
-    imgAlt: String;
+    imgAltEn: String;
+    imgAltEs: String;
     startDateYear: number;
     startDateMonth: number;
     startDateDay: number;
@@ -44,14 +46,16 @@ interface QPDCard {
     h2Es: String;
 }
 interface SpringExperienceAndCards {
-    id: "experience";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
-    experienceCardList: ExperienceCard[];
+    section: {
+        id: "experience";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    }
+    experienceCardList: SpringExperienceCard[];
 }
-interface ExperienceCard {
+interface SpringExperienceCard {
     id: string;
     imgSrc: String;
     imgAltEs: String;
@@ -66,21 +70,36 @@ interface ExperienceCard {
     phEn: String;
 }
 interface SpringProjectsAndCards {
-    id: "projects";
-    en: string;
-    es: string;
-    imgMobile: null;
-    imgDesktop: null;
+    section: {
+        id: "projects";
+        en: string;
+        es: string;
+        imgMobile: null;
+        imgDesktop: null;
+    }
+    projectsCardList: SpringProjectsCard[]
+}
+interface SpringProjectsCard {
+    id: String;
+    imgSrc: String;
+    imgAltEs: String;
+    imgAltEn: String;
+    phEs: String;
+    phEn: String;
+    h2En: String;
+    h2Es: String;
 }
 interface SpringSkillsAndCards {
-    id: "skills";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
-    skillsCardList: SkillsCard[];
+    section: {
+        id: "skills";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    }
+    skillsCardList: SpringSkillsCard[];
 }
-interface SkillsCard {
+interface SpringSkillsCard {
     id: string;
     imgSrc: string;
     imgAltEs: string;
@@ -89,6 +108,5 @@ interface SkillsCard {
     bkColor: string;
     outStrokeColor: string;
 }
-type Section = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
-type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { SpringHomeAndCards, HomeCard, SpringQPDAndCards, QPDCard, SpringExperienceAndCards, ExperienceCard, SpringProjectsAndCards, SpringCompleteSections, Section, StringSection, SkillsCard, SpringSkillsAndCards }
+type SpringCompleteSection = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
+export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards }
