@@ -22,7 +22,9 @@ export class DataService {
     home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
-    projects: { id: "projects", en: "", es: "" },
+    projects: {
+      id: "projects", imgMobile: "", imgDesktop: "", en: "", es: "", cards: []
+    },
     skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };
   //  = new DataAccess(new JsonServerService(HttpClient))

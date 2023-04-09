@@ -42,8 +42,9 @@
                         <button [hidden]="!logged" type="button" id="delete"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <p [innerHTML]="language === 'en'? card.en : card.es" class="p-3 m-0 text-center edit-content"
-                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
+                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
+                            [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
                     </div>
                 </div>
@@ -86,16 +87,20 @@
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">{{language==='en'?'Create Card':'Crear Nueva Tarjeta'}}</h4>
+        <h4 class="modal-title">{{language==='en'?'Create new Card':'Crear Nueva Tarjeta'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form (ngSubmit)="createCard()">
-            <div class="form-group">
-                <label for="description">{{language === 'en'? 'Description: ' : 'Descripción: '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.en">
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
+            </div>
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.es">
             </div>
             <button type="submit" class="btn mt-2 btn-primary"
                 (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>

@@ -16,8 +16,7 @@ interface HomeAndCards {
 }
 interface HomeCard {
     id: string;
-    en: string;
-    es: string;
+    ph: { en: string, es: string };
 }
 interface QPDAndCards {
     id: "qPD";
@@ -31,7 +30,11 @@ interface QPDCard {
     id: string;
     startDate: { year: number, month: number, day: number },
     endDate: { year: number, month: number, day: number },
-    img: { src: string, alt: string }
+    img: {
+        src: string, alt: {
+            en: string, es: string
+        }
+    }
     h2: { en: string, es: string };
     ph: { en: string, es: string };
 }
@@ -56,8 +59,21 @@ interface ExperienceCard {
 }
 interface ProjectsAndCards {
     id: "projects";
+    imgMobile: string;
+    imgDesktop: string;
     en: string;
     es: string;
+    cards: ProjectsCard[]
+}
+interface ProjectsCard {
+    id: string;
+    img: {
+        src: string, alt: {
+            en: string, es: string
+        }
+    }
+    h2: { en: string, es: string };
+    ph: { en: string, es: string };
 }
 interface SkillsAndCards {
     id: "skills";
@@ -77,4 +93,4 @@ interface SkillsCard {
 }
 type Section = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, Sections, Section, StringSection, SkillsCard, SkillsAndCards }
+export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, Sections, Section, StringSection, SkillsCard, SkillsAndCards }

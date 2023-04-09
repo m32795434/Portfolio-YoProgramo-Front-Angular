@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { HomeCard } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
@@ -27,7 +27,12 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  sectionAndCards: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }] };
+  sectionAndCards: any = {
+    id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+      id: "id",
+      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+    }]
+  };
   //contains all the cards content
   language = 'en';
   languageSubc = new Subscription();
@@ -36,8 +41,8 @@ export class HomeComponent implements OnInit {
   cardsIndex?: number;
   newCard: HomeCard = {
     id: "id",
-    en: "", es: ""
-  }
+    ph: { en: "", es: "" }
+  };
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur

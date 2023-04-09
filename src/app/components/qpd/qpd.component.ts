@@ -30,7 +30,9 @@ export class QPDComponent implements OnInit {
   sectionAndCards: any = {
     id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
       id: "id",
-      img: { src: "", alt: "" },
+      img: {
+        src: "", alt: { en: "", es: "" }
+      },
       startDate: {
         year: 2022,
         month: 6,
@@ -57,7 +59,7 @@ export class QPDComponent implements OnInit {
   //new card
   newCard: QPDCard = {
     id: "id",
-    img: { src: "", alt: "" },
+    img: { src: "", alt: { en: "", es: "" } },
     startDate: {
       year: 2022,
       month: 6,

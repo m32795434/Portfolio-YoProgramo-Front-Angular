@@ -27,16 +27,20 @@ private config = { headers: { 'Content-Type': 'application/json' } };
   SpringGetSectionAndCards(): Observable<HomeAndCards> {
     return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
       switchMap(response => response.json()),
-      map((data: SpringHomeAndCards) => ({
-        id: data.section.id,
+      map(returnHomeAndCards)
+    );
+  }
+  
+}
+const returnHomeAndCards = (data: SpringHomeAndCards)=>{
+return {
+  id: data.section.id,
         imgMobile: data.section.imgMobile,
         imgDesktop: data.section.imgDesktop,
         en: data.section.en,
         es: data.section.es,
         cards: data.homeCardList
-      }))
-    );
-  }
+}
 }
 /*
 

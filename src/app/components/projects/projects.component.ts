@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
+import { ProjectsCard } from 'src/interfaces/sections-interfaces';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +16,23 @@ export class ProjectsComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  sectionAndCards: any = { id: "projects", en: "", es: "" };
+  sectionAndCards: any = {
+    id: "projects", en: "", es: "", imgMobile: "",
+    imgDesktop: "",
+    cards: []
+  };
+
+  newCard: ProjectsCard = {
+    id: "",
+    img: {
+      src: "", alt: {
+        en: "", es: ""
+      }
+    },
+    h2: { en: "", es: "" },
+    ph: { en: "", es: "" },
+  }
+
   language = 'en';
   languageSubc = new Subscription();
 
