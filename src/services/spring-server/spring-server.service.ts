@@ -33,8 +33,12 @@ private config = { headers: { 'Content-Type': 'application/json' } };
         return this.getExperienceAndCardsObs();
         case "projects":
         return this.getProjectsAndCardsObs();
+        case "qPD":
+        return this.getQPDAndCardsObs();
+        case "skills":
+        return this.getSkillsAndCardsObs();
       default:
-        break;
+        return undefined;
     }
     }
   getHomeAndCardsObs(): Observable<HomeAndCards> {
@@ -56,13 +60,13 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     );
   }
   getSkillsAndCardsObs(): Observable<SkillsAndCards> {
-    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/completeSkillsSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringSkillsAndCards)
     );
   }
   getQPDAndCardsObs(): Observable<QPDAndCards> {
-    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/completeQPDSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringQPDAndCards)
     );
