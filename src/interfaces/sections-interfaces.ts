@@ -1,11 +1,17 @@
-interface Sections {
+interface AllSectionsAndCards {
     home: HomeAndCards;
     experience: ExperienceAndCards;
     qPD: QPDAndCards;
     projects: ProjectsAndCards;
     skills: SkillsAndCards;
 }
-
+interface SectionInfo {
+    id: StringSection;
+    imgMobile: string;
+    imgDesktop: string;
+    en: string;
+    es: string;
+}
 interface HomeAndCards {
     id: "home";
     imgMobile: string;
@@ -91,6 +97,7 @@ interface SkillsCard {
         }
     }; value: number; bkColor: string; outStrokeColor: string;
 }
-type Section = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
+type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
+type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, Sections, Section, StringSection, SkillsCard, SkillsAndCards }
+export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo }

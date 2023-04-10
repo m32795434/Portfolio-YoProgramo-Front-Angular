@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, Sections, Section, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
 import { JsonServerService } from '../json-server/json-server.service';
 import { Conexion } from 'src/interfaces/Conexion';
 
@@ -18,7 +18,7 @@ export class DataService {
 
   private errorSubject = new Subject<any>();
 
-  protected data: Sections = {
+  protected data: AllSectionsAndCards = {
     home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
@@ -94,7 +94,7 @@ export class DataService {
     return subscribeSectionObject;
   }
 
-  localGetSectionAndCards(arg: StringSection): Section | undefined {
+  localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
@@ -107,7 +107,7 @@ export class DataService {
     this.conexion.getSectionAndCards(section).subscribe(this.switchSubscribeSectionAndCards());
   }
 
-  updateSectionAndCards(section: StringSection, obj: Section) {
+  updateSectionAndCards(section: StringSection, obj: SectionAndCards) {
     this.conexion.updateSectionAndCards(section, obj).subscribe(this.switchSubscribeSectionAndCards())
   }
 

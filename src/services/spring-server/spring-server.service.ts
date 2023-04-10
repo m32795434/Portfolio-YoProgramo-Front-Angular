@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import { HomeAndCards, Section, StringSection } from 'src/interfaces/sections-interfaces';
-import { SpringCards, SpringCompleteSection, SpringHomeAndCards} from 'src/interfaces/spring-interfaces';
+import {  ExperienceAndCards, HomeAndCards, SectionAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -16,38 +16,88 @@ private config = { headers: { 'Content-Type': 'application/json' } };
   constructor(private http: HttpClient) {
   
    }
-  updateSectionAndCards(section: StringSection, obj: Section): Observable<Section> {
-    return this.http.put<Section>(`${this.apiUrl}/${section}`, obj, this.config)
+  updateSectionAndCards(section: StringSection, obj: SectionAndCards): Observable<SectionAndCards> {
+    return this.http.put<SectionAndCards>(`${this.apiUrl}/${section}`, obj, this.config)
   }
 
-  getSectionAndCards(section: StringSection): Observable<Section> {
-    return this.http.get<Section>(`${this.apiUrl}/${section}`);
+  getSectionAndCards(section: StringSection): Observable<SectionAndCards> {
+    return this.http.get<SectionAndCards>(`${this.apiUrl}/${section}`);
   }
-  //change its name!
-  SpringGetHomeAndCards(): Observable<Section> {
-    return from(fetch(`${this.apiUrl}/completeSection`)).pipe(
+   //change its name to getSectionAndCards!
+   //GET FULL/Complete SECTIONS => SectionAndCards
+   getSection(sec:StringSection){
+    switch (sec) {
+      case "home":
+        return this.getHomeAndCardsObs();
+        case "experience":
+        return this.getExperienceAndCardsObs();
+      default:
+        break;
+    }
+    }
+  getHomeAndCardsObs(): Observable<HomeAndCards> {
+    return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
       switchMap(response => response.json()),
-      map(mapSection)
+      map(mapSpringHomeAndCards)
+    );
+  }getExperienceAndCardsObs(): Observable<ExperienceAndCards> {
+    return from(fetch(`${this.apiUrl}/completeExperienceSection`)).pipe(
+      switchMap(response => response.json()),
+      map(mapSpringExperienceAndCards)
     );
   }
-  
+ 
 }
-const mapSection = (data: SpringCompleteSection)=>{
+//GET FULL SECTIONS
+//HOME
+const mapSpringHomeAndCards = (data: SpringHomeAndCards)=>{
 return {
   id: data.section.id,
   imgMobile: data.section.imgMobile,
   imgDesktop: data.section.imgDesktop,
   en: data.section.en ,
   es: data.section.es,
-  cards:mapCards(data.cards)
+  cards:mapSpringHomeCards(data.cards)
 }
 }
-const mapCards = (cards:SpringCards)=>{
-const newArrayCards = cards.map((card)=>{
-  //algo con las cards
+const mapSpringHomeCards = (cards:SpringHomeCard[])=>{
+const newHomeCards = cards.map((card)=>{
+  const homeCard = {
+    id: card.id,
+    ph: { en: card.phEn, es: card.phEs }};
+  return homeCard;
 })
-return newArrayCards;
+return newHomeCards;
 }
+//EXPERIENCE
+const mapSpringExperienceAndCards = (data: SpringExperienceAndCards)=>{
+  return {
+    id: data.section.id,
+    imgMobile: data.section.imgMobile,
+    imgDesktop: data.section.imgDesktop,
+    en: data.section.en ,
+    es: data.section.es,
+    cards:mapSpringExperienceCards(data.cards)
+  }
+  }
+  const mapSpringExperienceCards = (cards:SpringExperienceCard[])=>{
+  const newExperienceCards = cards.map((card)=>{
+    const experienceCard = {
+      id: card.id,
+      img: {
+          src: card.imgSrc, alt: {
+              en: card.imgAltEn, es: card.imgAltEs
+          }
+      },
+      startDate: { year: card.startDateYear, month: card.startDateMonth, day: card.startDateDay },
+      endDate: { year: card.endDateYear, month: card.endDateMonth, day: card.endDateDay },
+      ph: { en: card.phEn, es: card.phEs }};
+    return experienceCard;
+  })
+  return newExperienceCards;
+  }
+
+
 /*
 
   deleteTask(task: TaskIterface): Observable<TaskIterface> {

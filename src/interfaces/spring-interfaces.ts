@@ -31,19 +31,19 @@ interface SpringQPDAndCards {
 }
 interface SpringQPDCard {
     id: string;
-    imgSrc: String;
-    imgAltEn: String;
-    imgAltEs: String;
+    imgSrc: string;
+    imgAltEn: string;
+    imgAltEs: string;
     startDateYear: number;
     startDateMonth: number;
     startDateDay: number;
     endDateYear: number;
     endDateMonth: number;
     endDateDay: number;
-    phEs: String;
-    phEn: String;
-    h2En: String;
-    h2Es: String;
+    phEs: string;
+    phEn: string;
+    h2En: string;
+    h2Es: string;
 }
 interface SpringExperienceAndCards {
     section: {
@@ -57,17 +57,17 @@ interface SpringExperienceAndCards {
 }
 interface SpringExperienceCard {
     id: string;
-    imgSrc: String;
-    imgAltEs: String;
-    imgAltEn: String;
+    imgSrc: string;
+    imgAltEs: string;
+    imgAltEn: string;
     startDateYear: number;
     startDateMonth: number;
     startDateDay: number;
     endDateYear: number;
     endDateMonth: number;
     endDateDay: number;
-    phEs: String;
-    phEn: String;
+    phEs: string;
+    phEn: string;
 }
 interface SpringProjectsAndCards {
     section: {
@@ -80,14 +80,14 @@ interface SpringProjectsAndCards {
     cards: SpringProjectsCard[]
 }
 interface SpringProjectsCard {
-    id: String;
-    imgSrc: String;
-    imgAltEs: String;
-    imgAltEn: String;
-    phEs: String;
-    phEn: String;
-    h2En: String;
-    h2Es: String;
+    id: string;
+    imgSrc: string;
+    imgAltEs: string;
+    imgAltEn: string;
+    phEs: string;
+    phEn: string;
+    h2En: string;
+    h2Es: string;
 }
 interface SpringSkillsAndCards {
     section: {
