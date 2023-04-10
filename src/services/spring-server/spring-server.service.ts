@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, SectionAndCards, StringSection } from 'src/interfaces/sections-interfaces';
-import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard} from 'src/interfaces/spring-interfaces';
+import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, SectionAndCards, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,12 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringProjectsAndCards)
+    );
+  }
+  getSkillsAndCardsObs(): Observable<SkillsAndCards> {
+    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+      switchMap(response => response.json()),
+      map(mapSpringSkillsAndCards)
     );
   }
  
@@ -130,6 +136,32 @@ const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
     return projectsCard;
   })
   return newProjectsCards;
+  }
+  //SKILLS
+const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
+  return {
+    id: data.section.id,
+    imgMobile: data.section.imgMobile,
+    imgDesktop: data.section.imgDesktop,
+    en: data.section.en ,
+    es: data.section.es,
+    cards:mapSpringSpringSkillsCards(data.cards)
+  }
+  }
+  const mapSpringSpringSkillsCards = (cards:SpringSkillsCard[])=>{
+  const newSkillsCards = cards.map((card)=>{
+    const skillsCard = {
+      id: card.id,
+      img: {
+          src: card.imgSrc, alt: {
+              en: card.imgAltEn, es: card.imgAltEs
+          }
+      },
+      value: card.value, bkColor: card.bkColor, outStrokeColor: card.outStrokeColor,
+      };
+    return skillsCard;
+  })
+  return newSkillsCards;
   }
 
 /*
