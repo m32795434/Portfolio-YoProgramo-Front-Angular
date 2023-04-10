@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, SectionAndCards, StringSection } from 'src/interfaces/sections-interfaces';
-import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard} from 'src/interfaces/spring-interfaces';
+import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, SectionAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,8 @@ private config = { headers: { 'Content-Type': 'application/json' } };
         return this.getHomeAndCardsObs();
         case "experience":
         return this.getExperienceAndCardsObs();
+        case "projects":
+        return this.getProjectsAndCardsObs();
       default:
         break;
     }
@@ -40,10 +42,17 @@ private config = { headers: { 'Content-Type': 'application/json' } };
       switchMap(response => response.json()),
       map(mapSpringHomeAndCards)
     );
-  }getExperienceAndCardsObs(): Observable<ExperienceAndCards> {
+  }
+  getExperienceAndCardsObs(): Observable<ExperienceAndCards> {
     return from(fetch(`${this.apiUrl}/completeExperienceSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringExperienceAndCards)
+    );
+  }
+  getProjectsAndCardsObs(): Observable<ProjectsAndCards> {
+    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+      switchMap(response => response.json()),
+      map(mapSpringProjectsAndCards)
     );
   }
  
@@ -96,7 +105,32 @@ const mapSpringExperienceAndCards = (data: SpringExperienceAndCards)=>{
   })
   return newExperienceCards;
   }
-
+//PROJECTS
+const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
+  return {
+    id: data.section.id,
+    imgMobile: data.section.imgMobile,
+    imgDesktop: data.section.imgDesktop,
+    en: data.section.en ,
+    es: data.section.es,
+    cards:mapSpringProjectsCards(data.cards)
+  }
+  }
+  const mapSpringProjectsCards = (cards:SpringProjectsCard[])=>{
+  const newProjectsCards = cards.map((card)=>{
+    const projectsCard = {
+      id: card.id,
+      img: {
+          src: card.imgSrc, alt: {
+              en: card.imgAltEn, es: card.imgAltEs
+          }
+      },
+      h2: { en: card.h2En, es: card.h2Es },
+      ph: { en: card.phEn, es: card.phEs }};
+    return projectsCard;
+  })
+  return newProjectsCards;
+  }
 
 /*
 

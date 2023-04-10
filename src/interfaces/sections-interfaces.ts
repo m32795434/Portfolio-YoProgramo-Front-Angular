@@ -65,8 +65,8 @@ interface ExperienceCard {
 }
 interface ProjectsAndCards {
     id: "projects";
-    imgMobile: string;
-    imgDesktop: string;
+    imgMobile: null;
+    imgDesktop: null;
     en: string;
     es: string;
     cards: ProjectsCard[]

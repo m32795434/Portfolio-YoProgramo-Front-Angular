@@ -23,7 +23,7 @@ export class DataService {
     experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
     projects: {
-      id: "projects", imgMobile: "", imgDesktop: "", en: "", es: "", cards: []
+      id: "projects", imgMobile: null, imgDesktop: null, en: "", es: "", cards: []
     },
     skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
   };

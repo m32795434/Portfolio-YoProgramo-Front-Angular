@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
-    this.spring.SpringGetSectionAndCards().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
+    this.spring.getHomeAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }
 
   async initSwiper() {
