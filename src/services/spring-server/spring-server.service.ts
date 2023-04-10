@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, SectionAndCards, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
-import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
+import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, QPDAndCards, SectionAndCards, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +59,12 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringSkillsAndCards)
+    );
+  }
+  getQPDAndCardsObs(): Observable<QPDAndCards> {
+    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+      switchMap(response => response.json()),
+      map(mapSpringQPDAndCards)
     );
   }
  
@@ -145,10 +151,10 @@ const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
     imgDesktop: data.section.imgDesktop,
     en: data.section.en ,
     es: data.section.es,
-    cards:mapSpringSpringSkillsCards(data.cards)
+    cards:mapSpringSkillsCards(data.cards)
   }
   }
-  const mapSpringSpringSkillsCards = (cards:SpringSkillsCard[])=>{
+  const mapSpringSkillsCards = (cards:SpringSkillsCard[])=>{
   const newSkillsCards = cards.map((card)=>{
     const skillsCard = {
       id: card.id,
@@ -163,7 +169,35 @@ const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
   })
   return newSkillsCards;
   }
-
+//QPD
+const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
+  return {
+    id: data.section.id,
+    imgMobile: data.section.imgMobile,
+    imgDesktop: data.section.imgDesktop,
+    en: data.section.en ,
+    es: data.section.es,
+    cards:mapSpringQPDCards(data.cards)
+  }
+  }
+  const mapSpringQPDCards = (cards:SpringQPDCard[])=>{
+  const newQPDCards = cards.map((card)=>{
+    const qPDCard = {
+      id: card.id,
+      img: {
+          src: card.imgSrc, alt: {
+              en: card.imgAltEn, es: card.imgAltEs
+          }
+      },
+      startDate: { year: card.startDateYear, month: card.startDateMonth, day: card.startDateDay },
+      endDate: { year: card.endDateYear, month: card.endDateMonth, day: card.endDateDay },
+      h2: { en: card.h2En, es: card.h2Es },
+      ph: { en: card.phEn, es: card.phEs }
+      };
+    return qPDCard;
+  })
+  return newQPDCards;
+  }
 /*
 
   deleteTask(task: TaskIterface): Observable<TaskIterface> {
