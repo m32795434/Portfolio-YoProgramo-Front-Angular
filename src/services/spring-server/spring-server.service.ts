@@ -4,7 +4,7 @@ import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
 import { HomeAndCards, Section, StringSection } from 'src/interfaces/sections-interfaces';
-import { SpringHomeAndCards } from 'src/interfaces/spring-interfaces';
+import { SpringCards, SpringCompleteSection, SpringHomeAndCards} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,24 +23,30 @@ private config = { headers: { 'Content-Type': 'application/json' } };
   getSectionAndCards(section: StringSection): Observable<Section> {
     return this.http.get<Section>(`${this.apiUrl}/${section}`);
   }
-  
-  SpringGetSectionAndCards(): Observable<HomeAndCards> {
-    return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
+  //change its name!
+  SpringGetHomeAndCards(): Observable<Section> {
+    return from(fetch(`${this.apiUrl}/completeSection`)).pipe(
       switchMap(response => response.json()),
-      map(returnHomeAndCards)
+      map(mapSection)
     );
   }
   
 }
-const returnHomeAndCards = (data: SpringHomeAndCards)=>{
+const mapSection = (data: SpringCompleteSection)=>{
 return {
   id: data.section.id,
-        imgMobile: data.section.imgMobile,
-        imgDesktop: data.section.imgDesktop,
-        en: data.section.en,
-        es: data.section.es,
-        cards: data.homeCardList
+  imgMobile: data.section.imgMobile,
+  imgDesktop: data.section.imgDesktop,
+  en: data.section.en ,
+  es: data.section.es,
+  cards:mapCards(data.cards)
 }
+}
+const mapCards = (cards:SpringCards)=>{
+const newArrayCards = cards.map((card)=>{
+  //algo con las cards
+})
+return newArrayCards;
 }
 /*
 
