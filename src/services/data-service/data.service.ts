@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
 import { JsonServerService } from '../json-server/json-server.service';
 import { Conexion } from 'src/interfaces/Conexion';
+import { SpringServerService } from '../spring-server/spring-server.service';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class DataService {
   };
   //  = new DataAccess(new JsonServerService(HttpClient))
   private conexion: Conexion;
-  public constructor(private dataAccess: JsonServerService) {
+  public constructor(private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
 
@@ -95,6 +96,7 @@ export class DataService {
   }
 
   localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
+    //RETURN THIS TO: this.data[arg].en != ""
     if (this.data[arg].en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
@@ -102,13 +104,14 @@ export class DataService {
     return undefined;
   }
 
-  //TO APIS
+  //TO SERVER
   getSectionAndCards(section: StringSection) {
-    this.conexion.getSectionAndCards(section).subscribe(this.switchSubscribeSectionAndCards());
+    this.conexion.getSectionAndCards(section)?.subscribe(this.switchSubscribeSectionAndCards());
   }
-
+  //for put and others, I will proceed to update the "data" obj when the request is successful
+  //updateSectionAndCards WILL BE DEPRECATED
   updateSectionAndCards(section: StringSection, obj: SectionAndCards) {
-    this.conexion.updateSectionAndCards(section, obj).subscribe(this.switchSubscribeSectionAndCards())
+    this.conexion.updateSectionAndCards(section, obj)?.subscribe((this.switchSubscribeSectionAndCards()))
   }
 
 }

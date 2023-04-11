@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, QPDAndCards, SectionAndCards, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
 import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
@@ -20,27 +20,28 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     return this.http.put<SectionAndCards>(`${this.apiUrl}/${section}`, obj, this.config)
   }
 
-  getSectionAndCards(section: StringSection): Observable<SectionAndCards> {
-    return this.http.get<SectionAndCards>(`${this.apiUrl}/${section}`);
-  }
-   //change its name to getSectionAndCards!
+  // getSectionAndCards(section: StringSection): Observable<SectionAndCards> {
+  //   return this.http.get<SectionAndCards>(`${this.apiUrl}/${section}`);
+  // }
+   //change its name to getSectionAndCards?
+
    //GET FULL/Complete SECTIONS => SectionAndCards
-   getSection(sec:StringSection){
-    switch (sec) {
-      case "home":
-        return this.getHomeAndCardsObs();
-        case "experience":
-        return this.getExperienceAndCardsObs();
-        case "projects":
-        return this.getProjectsAndCardsObs();
-        case "qPD":
-        return this.getQPDAndCardsObs();
-        case "skills":
-        return this.getSkillsAndCardsObs();
-      default:
-        return undefined;
-    }
-    }
+   getSectionAndCards(sec:StringSection):Observable<SectionAndCards>| null{
+   switch (sec) {
+     case "home":
+       return this.getHomeAndCardsObs();
+       case "experience":
+       return this.getExperienceAndCardsObs();
+       case "projects":
+       return this.getProjectsAndCardsObs();
+       case "qPD":
+       return this.getQPDAndCardsObs();
+       case "skills":
+       return this.getSkillsAndCardsObs();
+     default:
+    return null;
+   }
+   }
   getHomeAndCardsObs(): Observable<HomeAndCards> {
     return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
       switchMap(response => response.json()),
@@ -71,8 +72,32 @@ private config = { headers: { 'Content-Type': 'application/json' } };
       map(mapSpringQPDAndCards)
     );
   }
- 
+  // UPDATE SECTION
+  updateSectionInfo(sec:StringSection){
+    switch (sec) {
+      case "home":
+        // this.updateHomeInfo();
+        return 
+        case "experience":
+        return 
+        case "projects":
+        return 
+        case "qPD":
+        return 
+        case "skills":
+        return 
+      default:
+        return undefined;
+    }
+  }
+  //UPDATE SECTION INFO
+// updateHomeInfo():Observable<SectionInfo>{
+//   // return this.http.post<TaskIterface>(`${this.apiUrl}/`, task, this.config);
+// }
 }
+//CREATE NEW CARDS
+
+
 //GET FULL SECTIONS
 //HOME
 const mapSpringHomeAndCards = (data: SpringHomeAndCards)=>{
@@ -222,15 +247,3 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
   //   console.log(result)
   // }
   
-  // async anotherFunction():Promise<HomeAndCards>{
-    // const response = await fetch(`${this.apiUrl}/completeHomeSection`);
-    // const data : SpringHomeAndCards = await response.json()
-    // let sec: HomeAndCards = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }] };
-      // sec.en = data.section.en;
-      // sec.es = data.section.es;
-      // sec.id = data.section.id;
-      // sec.imgDesktop = data.section.imgDesktop;
-      // sec.imgMobile = data.section.imgMobile;
-      // sec.cards = data.homeCardList;
-    // return sec;
-  // }
