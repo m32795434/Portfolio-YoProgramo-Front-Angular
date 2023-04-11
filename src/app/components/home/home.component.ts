@@ -28,7 +28,10 @@ export class HomeComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "home", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "id",
       ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
     }]

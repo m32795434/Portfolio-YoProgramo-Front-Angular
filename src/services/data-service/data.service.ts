@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards } from 'src/interfaces/sections-interfaces';
-import { JsonServerService } from '../json-server/json-server.service';
+import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards, SectionInfo, ExperienceCard } from 'src/interfaces/sections-interfaces';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
 
@@ -11,22 +10,20 @@ import { SpringServerService } from '../spring-server/spring-server.service';
 })
 export class DataService {
   //SUBJECTS
-  private homeAndCardsSubject = new Subject<any>();
-  private experienceAndCardsSubject = new Subject<any>();
-  private qPDAndCardsSubject = new Subject<any>();
-  private projectsAndCardsSubject = new Subject<any>();
-  private skillsAndCardsSubject = new Subject<any>();
+  private homeAndCardsSubject = new Subject<HomeAndCards>();
+  private experienceAndCardsSubject = new Subject<ExperienceAndCards>();
+  private qPDAndCardsSubject = new Subject<QPDAndCards>();
+  private projectsAndCardsSubject = new Subject<ProjectsAndCards>();
+  private skillsAndCardsSubject = new Subject<SkillsAndCards>();
 
   private errorSubject = new Subject<any>();
-
-  protected data: AllSectionsAndCards = {
-    home: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
-    experience: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
-    qPD: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] },
-    projects: {
-      id: "projects", imgMobile: null, imgDesktop: null, en: "", es: "", cards: []
-    },
-    skills: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [] }
+  //convert this into an array. 
+  protected data: any = {
+    home: { section: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
+    experience: { section: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
+    qPD: { section: { id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
+    projects: { section: { id: "projects", imgMobile: null, imgDesktop: null, en: "", es: "" }, cards: [], },
+    skills: { section: { id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], }
   };
   //  = new DataAccess(new JsonServerService(HttpClient))
   private conexion: Conexion;
@@ -35,18 +32,18 @@ export class DataService {
   }
 
   //GET OBSERVERS
-  getHomeAndCardsObserver() {
+  getHomeAndCardsObserver(): Observable<HomeAndCards> {
     return this.homeAndCardsSubject.asObservable();
   }
-  getExperienceAndCardsObserver() {
+  getExperienceAndCardsObserver(): Observable<ExperienceAndCards> {
     return this.experienceAndCardsSubject.asObservable();
   }
-  getQPDAndCardsObserver() {
+  getQPDAndCardsObserver(): Observable<QPDAndCards> {
     return this.qPDAndCardsSubject.asObservable();
   }
-  getProjectsAndCardsObserver() {
+  getProjectsAndCardsObserver(): Observable<ProjectsAndCards> {
     return this.projectsAndCardsSubject.asObservable();
-  } getSkillsAndCardsObserver() {
+  } getSkillsAndCardsObserver(): Observable<SkillsAndCards> {
     return this.skillsAndCardsSubject.asObservable();
   }
 
@@ -57,32 +54,32 @@ export class DataService {
   //REQUESTS
   switchSubscribeSectionAndCards(): any {
     const subscribeSectionObject = {
-      next: (content: HomeAndCards | ExperienceAndCards | QPDAndCards | ProjectsAndCards | SkillsAndCards) => {
-        switch (content.id) {
+      next: (content: SectionAndCards) => {
+        switch (content.section.id) {
           case "home":
-            this.data['home'] = content;
-            this.homeAndCardsSubject.next(this.data[content.id]);
+            this.data.home = content;
+            this.homeAndCardsSubject.next(this.data.home);
             break;
           case "experience":
-            this.data['experience'] = content;
-            this.experienceAndCardsSubject.next(this.data[content.id]);
+            this.data.experience = content;
+            this.experienceAndCardsSubject.next(this.data.experience);
             break;
           case "projects":
-            this.data['projects'] = content;
-            this.projectsAndCardsSubject.next(this.data[content.id]);
+            this.data.projects = content;
+            this.projectsAndCardsSubject.next(this.data.projects);
             break;
           case "qPD":
-            this.data['qPD'] = content;
-            this.qPDAndCardsSubject.next(this.data[content.id]);
+            this.data.qPD = content;
+            this.qPDAndCardsSubject.next(this.data.qPD);
             break;
           case "skills":
-            this.data['skills'] = content;
-            this.skillsAndCardsSubject.next(this.data[content.id]);
+            this.data.skills = content;
+            this.skillsAndCardsSubject.next(this.data.skills);
             break;
           default:
             break;
         }
-        console.log('seccione cargada exitosamente:...', this.data[content.id]);
+        console.log('seccione cargada exitosamente:...', this.data[content.section.id]);
       },
       error: (error: Error) => {
         console.error('Error al cargar la seccion', error);
@@ -97,7 +94,7 @@ export class DataService {
 
   localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
     //RETURN THIS TO: this.data[arg].en != ""
-    if (this.data[arg].en != "") {
+    if (this.data[arg].section.en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
     }
@@ -113,5 +110,8 @@ export class DataService {
   updateSectionAndCards(section: StringSection, obj: SectionAndCards) {
     this.conexion.updateSectionAndCards(section, obj)?.subscribe((this.switchSubscribeSectionAndCards()))
   }
-
+  updateSectionInfo(section: StringSection, obj: SectionAndCards) {
+    // this.conexion.
+    return undefined
+  }
 }

@@ -13,11 +13,13 @@ interface SectionInfo {
     es: string;
 }
 interface HomeAndCards {
-    id: "home";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "home";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    },
     cards: HomeCard[];
 }
 interface HomeCard {
@@ -25,11 +27,13 @@ interface HomeCard {
     ph: { en: string, es: string };
 }
 interface QPDAndCards {
-    id: "qPD";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "qPD";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    },
     cards: QPDCard[];
 }
 interface QPDCard {
@@ -45,11 +49,13 @@ interface QPDCard {
     ph: { en: string, es: string };
 }
 interface ExperienceAndCards {
-    id: "experience";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "experience";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    },
     cards: ExperienceCard[];
 }
 interface ExperienceCard {
@@ -64,11 +70,13 @@ interface ExperienceCard {
     ph: { en: string, es: string };
 }
 interface ProjectsAndCards {
-    id: "projects";
-    imgMobile: null;
-    imgDesktop: null;
-    en: string;
-    es: string;
+    section: {
+        id: "projects";
+        imgMobile: null;
+        imgDesktop: null;
+        en: string;
+        es: string;
+    },
     cards: ProjectsCard[]
 }
 interface ProjectsCard {
@@ -82,11 +90,13 @@ interface ProjectsCard {
     ph: { en: string, es: string };
 }
 interface SkillsAndCards {
-    id: "skills";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "skills";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    },
     cards: SkillsCard[];
 }
 interface SkillsCard {

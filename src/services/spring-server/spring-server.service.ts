@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  ExperienceAndCards, HomeAndCards, HomeCard, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
 import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
@@ -20,13 +20,8 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     return this.http.put<SectionAndCards>(`${this.apiUrl}/${section}`, obj, this.config)
   }
 
-  // getSectionAndCards(section: StringSection): Observable<SectionAndCards> {
-  //   return this.http.get<SectionAndCards>(`${this.apiUrl}/${section}`);
-  // }
-   //change its name to getSectionAndCards?
-
    //GET FULL/Complete SECTIONS => SectionAndCards
-   getSectionAndCards(sec:StringSection):Observable<SectionAndCards>| null{
+   getSectionAndCards(sec:StringSection):Observable<SectionAndCards>| undefined{
    switch (sec) {
      case "home":
        return this.getHomeAndCardsObs();
@@ -39,7 +34,7 @@ private config = { headers: { 'Content-Type': 'application/json' } };
        case "skills":
        return this.getSkillsAndCardsObs();
      default:
-    return null;
+    return undefined;
    }
    }
   getHomeAndCardsObs(): Observable<HomeAndCards> {
@@ -73,22 +68,9 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     );
   }
   // UPDATE SECTION
-  updateSectionInfo(sec:StringSection){
-    switch (sec) {
-      case "home":
-        // this.updateHomeInfo();
-        return 
-        case "experience":
-        return 
-        case "projects":
-        return 
-        case "qPD":
-        return 
-        case "skills":
-        return 
-      default:
-        return undefined;
-    }
+  updateSectionInfo(sec:StringSection, obj: SectionAndCards):Observable<any> | undefined{
+return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
+    
   }
   //UPDATE SECTION INFO
 // updateHomeInfo():Observable<SectionInfo>{
@@ -102,17 +84,13 @@ private config = { headers: { 'Content-Type': 'application/json' } };
 //HOME
 const mapSpringHomeAndCards = (data: SpringHomeAndCards)=>{
 return {
-  id: data.section.id,
-  imgMobile: data.section.imgMobile,
-  imgDesktop: data.section.imgDesktop,
-  en: data.section.en ,
-  es: data.section.es,
+  section: data.section,
   cards:mapSpringHomeCards(data.cards)
 }
 }
 const mapSpringHomeCards = (cards:SpringHomeCard[])=>{
 const newHomeCards = cards.map((card)=>{
-  const homeCard = {
+  const homeCard:HomeCard = {
     id: card.id,
     ph: { en: card.phEn, es: card.phEs }};
   return homeCard;
@@ -122,11 +100,7 @@ return newHomeCards;
 //EXPERIENCE
 const mapSpringExperienceAndCards = (data: SpringExperienceAndCards)=>{
   return {
-    id: data.section.id,
-    imgMobile: data.section.imgMobile,
-    imgDesktop: data.section.imgDesktop,
-    en: data.section.en ,
-    es: data.section.es,
+    section: data.section,
     cards:mapSpringExperienceCards(data.cards)
   }
   }
@@ -149,11 +123,7 @@ const mapSpringExperienceAndCards = (data: SpringExperienceAndCards)=>{
 //PROJECTS
 const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
   return {
-    id: data.section.id,
-    imgMobile: data.section.imgMobile,
-    imgDesktop: data.section.imgDesktop,
-    en: data.section.en ,
-    es: data.section.es,
+    section: data.section,
     cards:mapSpringProjectsCards(data.cards)
   }
   }
@@ -175,11 +145,7 @@ const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
   //SKILLS
 const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
   return {
-    id: data.section.id,
-    imgMobile: data.section.imgMobile,
-    imgDesktop: data.section.imgDesktop,
-    en: data.section.en ,
-    es: data.section.es,
+    section: data.section,
     cards:mapSpringSkillsCards(data.cards)
   }
   }
@@ -201,11 +167,7 @@ const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
 //QPD
 const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
   return {
-    id: data.section.id,
-    imgMobile: data.section.imgMobile,
-    imgDesktop: data.section.imgDesktop,
-    en: data.section.en ,
-    es: data.section.es,
+    section: data.section,
     cards:mapSpringQPDCards(data.cards)
   }
   }

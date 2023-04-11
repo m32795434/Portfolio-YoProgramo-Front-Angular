@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
@@ -29,7 +29,10 @@ export class ExperienceComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "id",
       img: {
         src: "", alt: {
