@@ -6,21 +6,21 @@
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
-                    [src]="sectionAndCards?.imgMobile" id="imgMobileQa">
+                    [src]="sectionAndCards?.section.imgMobile" id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!logged" (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
-                <img class="desktop imgsToChange edit-content" data-z="423 x 756" [src]="sectionAndCards?.imgDesktop"
-                    alt="Manuel perfil" id="imgDesktopQa">
+                <img class="desktop imgsToChange edit-content" data-z="423 x 756"
+                    [src]="sectionAndCards?.section.imgDesktop" alt="Manuel perfil" id="imgDesktopQa">
             </div>
             <div class="d-flex wrapper-h1-save">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
                     data-id="h1Qual" [hidden]="!logged" (click)="saveH1($event)"
                     aria-label="Change Section title">save</button>
                 <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Qual"
-                    [innerHTML]="language === 'en'? sectionAndCards.en : sectionAndCards.es"></h1>
+                    [innerHTML]="language === 'en'? sectionAndCards.section.en : sectionAndCards.section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
@@ -93,12 +93,12 @@
                 <div class="form-group">
                     <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
-                        [(ngModel)]="sectionAndCards.imgMobile">
+                        [(ngModel)]="sectionAndCards.section.imgMobile">
                 </div>
                 <div class="form-group mt-2">
                     <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
-                        [(ngModel)]="sectionAndCards.imgDesktop">
+                        [(ngModel)]="sectionAndCards.section.imgDesktop">
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary"
                     (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>

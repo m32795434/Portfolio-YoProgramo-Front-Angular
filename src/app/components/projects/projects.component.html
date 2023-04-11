@@ -7,7 +7,7 @@
             <button class="edit-button edit-top-left   rounded-circle material-symbols-outlined"
                 hidden>edit</button> -->
             <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Proj"
-                [innerHTML]="language === 'en'? sectionAndCards?.en : sectionAndCards?.es"></h1>
+                [innerHTML]="language === 'en'? sectionAndCards?.section?.en : sectionAndCards?.section?.es"></h1>
             <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
         </div>
 

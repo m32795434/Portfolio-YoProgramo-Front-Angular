@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SkillsCard } from 'src/interfaces/sections-interfaces';
+import { SkillsAndCards, SkillsCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,7 +29,10 @@ export class HardAndSoftSkillsComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "S1",
       img: {
         src: "../../../assets/images/regional-bs.png", alt: {
@@ -107,8 +110,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
+    this.sectionAndCards.cards[i].img.alt[this.language] = innerHTML;
+    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].img.alt[this.language])
     this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   saveH1(e: any) {

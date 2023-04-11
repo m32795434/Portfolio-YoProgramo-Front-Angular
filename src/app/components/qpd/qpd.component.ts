@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { QPDCard } from 'src/interfaces/sections-interfaces';
+import { QPDAndCards, QPDCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +28,10 @@ export class QPDComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "id",
       img: {
         src: "", alt: { en: "", es: "" }
