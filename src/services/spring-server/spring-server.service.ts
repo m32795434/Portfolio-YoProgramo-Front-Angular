@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, HomeCard, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  ABM, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection } from 'src/interfaces/sections-interfaces';
 import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
@@ -23,7 +23,8 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     return this.http.put<SectionAndCards>(`${this.apiUrl}/${section}`, obj, this.config)
   }
 
-   //GET FULL/Complete SECTIONS => SectionAndCards
+   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
+
    getSectionAndCards(sec:StringSection):Observable<SectionAndCards>| undefined{
    switch (sec) {
      case "home":
@@ -71,19 +72,51 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     );
   }
 
-  // UPDATE SECTION
+  // -----------------------------UPDATE SECTION-----------------------------
+
   updateSectionInfo(sec:StringSection, obj: SectionInfo):Observable<any> | undefined{
 return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
   }
-  //CREATE NEW CARDS
-  aBMCard(sec: StringSection, obj: SectionCard): Observable<any> | undefined{
-    return undefined;
+
+  //-----------------------------ABM CARDS-----------------------------
+
+  aBMCard(sec: StringSection, obj: SectionCard, abm:ABM): Observable<any> | undefined{
+    switch (abm) {
+    case "create":
+      let springCard;
+      switch (sec) {
+        case "home":
+        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        break;
+        case "experience":
+        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        break;
+        case "skills":
+        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        break;
+        case "qPD":
+        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        break;
+        case "projects":
+        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        break;
+        default:
+          break;
+      }
+      return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
+    case "delete":
+      return this.http.delete<any>(`${this.apiUrl}/${sec}/deleteCard/${obj.id}`);
+    case "udpdate":
+      return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, obj, this.config);
+  default:
+    break;
+}
   }
   
 }
 
 
-//GET FULL SECTIONS
+//-----------------------------GET FULL SECTIONS-----------------------------
 //HOME
 const mapSpringHomeAndCards = (data: SpringHomeAndCards)=>{
 return {
@@ -191,6 +224,77 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
     return qPDCard;
   })
   return newQPDCards;
+  }
+
+  // ----------------------------- MAP FROM a SectionCard to a Spring Card
+  const toSpringCards = {
+    //HomeCard
+    mapToSpringHomeCard(card:any):SpringHomeCard{
+      return{
+        id:card.id,
+        phEn:card.ph.en,
+        phEs:card.ph.es
+      }
+    },
+    //QPDCard
+    mapToSpringQPDCard(card:any):SpringQPDCard{
+      return{
+        id:card.id,
+        imgSrc:card.img.src,
+        imgAltEn:card.img.alt.en,
+        imgAltEs:card.img.alt.es,
+        startDateYear:card.startDate.year,
+        startDateMonth:card.startDate.month,
+        startDateDay:card.startDate.day,
+        endDateYear:card.endDate.year,
+        endDateMonth:card.endDate.month,
+        endDateDay:card.endDate.day,
+        phEn:card.ph.en,
+        phEs:card.ph.es,
+        h2En:card.h2.en,
+        h2Es:card.h2.es
+      }
+    },
+    //ExperienceCard
+    mapToSpringExperienceCard(card:any):SpringExperienceCard{
+      return{
+        id:card.id,
+        imgSrc:card.img.src,
+        imgAltEn:card.img.alt.en,
+        imgAltEs:card.img.alt.es,
+        startDateYear:card.startDate.year,
+        startDateMonth:card.startDate.month,
+        startDateDay:card.startDate.day,
+        endDateYear:card.endDate.year,
+        endDateMonth:card.endDate.month,
+        endDateDay:card.endDate.day,
+        phEn:card.ph.en,
+        phEs:card.ph.es,
+            }
+    }, 
+    mapToSpringProjectsCard(card:any):SpringProjectsCard{
+      return{
+        id:card.id,
+        imgSrc:card.img.src,
+        imgAltEn:card.img.alt.en,
+        imgAltEs:card.img.alt.es,
+        phEn:card.ph.en,
+        phEs:card.ph.es,
+        h2En:card.h2.en,
+        h2Es:card.h2.es
+      }
+    },
+    mapToSpringSkillsCard(card:any):SpringSkillsCard{
+      return{
+        id:card.id,
+        imgSrc:card.img.src,
+        imgAltEn:card.img.alt.en,
+        imgAltEs:card.img.alt.es,
+        value:card.value,
+        bkColor:card.bkColor,
+        outStrokeColor:card.outStrokeColor,
+      }
+    },
   }
 /*
 
