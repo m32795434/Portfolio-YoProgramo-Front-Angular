@@ -121,6 +121,7 @@ export class QPDComponent implements OnInit {
     });
   }
   saveCardEl(id: any, i: any) {
+    // CHANGE!
     console.log('id:', id, 'index:', i)
     // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
@@ -131,11 +132,16 @@ export class QPDComponent implements OnInit {
     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
     this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
+  // UDPATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('qPD', this.sectionAndCards.section);
+  }
+  //UPDATE request
+  saveImgSrc() {
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
   updateCard() {
     console.log('updating with:', this.sectionAndCards);

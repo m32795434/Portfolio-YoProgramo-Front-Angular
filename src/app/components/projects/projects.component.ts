@@ -63,10 +63,11 @@ export class ProjectsComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
   }
+  // UDPATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('projects', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('projects', this.sectionAndCards.section);
   }
 }

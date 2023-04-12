@@ -114,17 +114,24 @@ export class HardAndSoftSkillsComponent implements OnInit {
     console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].img.alt[this.language])
     this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
+  // UPDATE REQUEST
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
+  }
+  //UPDATE request
+  saveImgSrc() {
+    this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
   }
   updateCard() {
     console.log('updating with:', this.sectionAndCards);
+    // change!
     this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   deleteCard() {
+    // change!
     console.log('deleting index:', this.cardsIndex);
     this.sectionAndCards.cards.splice(this.cardsIndex, 1);
     console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
