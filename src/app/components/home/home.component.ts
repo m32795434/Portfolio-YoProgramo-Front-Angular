@@ -98,29 +98,38 @@ export class HomeComponent implements OnInit {
     const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
       return (el.id === targetId)
     })
+    //here I have to send the put request, about the identified card!
+    //change this code!
     this.sectionAndCards.cards[index][this.language] = innerHTML;
     this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
+  //UPDATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
+  //UPDATE request
   saveImgSrc() {
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
 
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.sectionAndCards.cards.splice(this.cardsIndex, 1);
     console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
+
+    //here I have to send the delete request, about the identified card!
+    //change this code!
     this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
 
   createCard() {
     this.newCard.id = `S${this.sectionAndCards.cards.length}`;
     this.sectionAndCards.cards.push(this.newCard);
+    //here I have to send the post request, with the new card!
+    //change this code!
     this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
   //MODAL

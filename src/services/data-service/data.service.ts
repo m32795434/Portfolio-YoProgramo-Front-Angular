@@ -90,10 +90,44 @@ export class DataService {
       }
     }
     return subscribeSectionObject;
+  } switchSubscribeSectionInfo(section: StringSection, obj: SectionInfo): any {
+    const subscribeSectionObject = {
+      next: () => {
+        switch (section) {
+          case "home":
+            this.data.home.section = obj;
+            this.homeAndCardsSubject.next(this.data.home);
+            break;
+          case "experience":
+            this.data.experience.section = obj;
+            this.experienceAndCardsSubject.next(this.data.experience);
+            break;
+          case "projects":
+            this.data.projects.section = obj;
+            this.projectsAndCardsSubject.next(this.data.projects);
+            break;
+          case "qPD":
+            this.data.qPD.section = obj;
+            this.qPDAndCardsSubject.next(this.data.qPD);
+            break;
+          case "skills":
+            this.data.skills.section = obj;
+            this.skillsAndCardsSubject.next(this.data.skills);
+            break;
+          default:
+            break;
+        }
+        console.log('seccón actualizada exitosamente:...', this.data[section]);
+      },
+      error: (error: Error) => {
+        console.error('Error al actualizar la info de la sección', error);
+        this.errorSubject.next(error.message)
+      }
+    }
+    return subscribeSectionObject;
   }
 
   localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
-    //RETURN THIS TO: this.data[arg].en != ""
     if (this.data[arg].section.en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
       return this.data[arg];
@@ -110,8 +144,8 @@ export class DataService {
   updateSectionAndCards(section: StringSection, obj: SectionAndCards) {
     this.conexion.updateSectionAndCards(section, obj)?.subscribe((this.switchSubscribeSectionAndCards()))
   }
-  updateSectionInfo(section: StringSection, obj: SectionAndCards) {
-    // this.conexion.
-    return undefined
+  updateSectionInfo(section: StringSection, obj: SectionInfo) {
+    // this.switchSubscribeSectionInfo
+    this.conexion.updateSectionInfo(section, obj)?.subscribe(this.switchSubscribeSectionInfo(section, obj));
   }
 }

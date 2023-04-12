@@ -68,9 +68,8 @@ private config = { headers: { 'Content-Type': 'application/json' } };
     );
   }
   // UPDATE SECTION
-  updateSectionInfo(sec:StringSection, obj: SectionAndCards):Observable<any> | undefined{
+  updateSectionInfo(sec:StringSection, obj: SectionInfo):Observable<any> | undefined{
 return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
-    
   }
   //UPDATE SECTION INFO
 // updateHomeInfo():Observable<SectionInfo>{
