@@ -92,17 +92,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  saveCardEl(e: any) {
-    const targetId = e.target.dataset.id;
-    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
-      return (el.id === targetId)
-    })
-    //here I have to send the put request, about the identified card!
-    //change this code!
-    this.sectionAndCards.cards[index][this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
-  }
+  // ----------------------------------SECTION REQUESTS----------------------
   //UPDATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
@@ -115,6 +105,27 @@ export class HomeComponent implements OnInit {
     this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
 
+  // ----------------------------------CARDS REQUESTS----------------------
+  createCard() {
+    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
+    this.sectionAndCards.cards.push(this.newCard);
+    //here I have to send the post request, with the new card!
+    //change this code!
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+  }
+
+  saveCardEl(e: any) {
+    const targetId = e.target.dataset.id;
+    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+    const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
+      return (el.id === targetId)
+    })
+    //here I have to send the put request, about the identified card!
+    //change this code!
+    this.sectionAndCards.cards[index][this.language] = innerHTML;
+    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+  }
+
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
     this.sectionAndCards.cards.splice(this.cardsIndex, 1);
@@ -125,13 +136,7 @@ export class HomeComponent implements OnInit {
     this.dataService.updateSectionAndCards('home', this.sectionAndCards);
   }
 
-  createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    //here I have to send the post request, with the new card!
-    //change this code!
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
-  }
+
   //MODAL
 
   open(content: TemplateRef<any>, ref: string, i?: number) {

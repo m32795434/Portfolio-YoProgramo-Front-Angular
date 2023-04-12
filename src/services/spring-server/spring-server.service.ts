@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import {  ExperienceAndCards, HomeAndCards, HomeCard, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
+import {  ExperienceAndCards, HomeAndCards, HomeCard, ProjectsAndCards, QPDAndCards, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, StringSection } from 'src/interfaces/sections-interfaces';
 import {  SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard} from 'src/interfaces/spring-interfaces';
 
 @Injectable({
@@ -16,6 +16,9 @@ private config = { headers: { 'Content-Type': 'application/json' } };
   constructor(private http: HttpClient) {
   
    }
+  createCard(sec: StringSection, obj: SectionCard): Observable<any> | undefined {
+    throw new Error('Method not implemented.');
+  }
   updateSectionAndCards(section: StringSection, obj: SectionAndCards): Observable<SectionAndCards> {
     return this.http.put<SectionAndCards>(`${this.apiUrl}/${section}`, obj, this.config)
   }
@@ -67,16 +70,17 @@ private config = { headers: { 'Content-Type': 'application/json' } };
       map(mapSpringQPDAndCards)
     );
   }
+
   // UPDATE SECTION
   updateSectionInfo(sec:StringSection, obj: SectionInfo):Observable<any> | undefined{
 return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
   }
-  //UPDATE SECTION INFO
-// updateHomeInfo():Observable<SectionInfo>{
-//   // return this.http.post<TaskIterface>(`${this.apiUrl}/`, task, this.config);
-// }
+  //CREATE NEW CARDS
+  aBMCard(sec: StringSection, obj: SectionCard): Observable<any> | undefined{
+    return undefined;
+  }
+  
 }
-//CREATE NEW CARDS
 
 
 //GET FULL SECTIONS

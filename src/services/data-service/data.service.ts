@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards, SectionInfo, ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards, SectionInfo, ExperienceCard, SectionCard, ABM } from 'src/interfaces/sections-interfaces';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
 
@@ -90,7 +90,8 @@ export class DataService {
       }
     }
     return subscribeSectionObject;
-  } switchSubscribeSectionInfo(section: StringSection, obj: SectionInfo): any {
+  }
+  switchSubscribeSectionInfo(section: StringSection, obj: SectionInfo): any {
     const subscribeSectionObject = {
       next: () => {
         switch (section) {
@@ -127,6 +128,104 @@ export class DataService {
     return subscribeSectionObject;
   }
 
+  switchSubscribeABMCard(section: StringSection, obj: SectionCard, abm: ABM): any {
+    const subscribeSectionObject = {
+      next: () => {
+        switch (abm) {
+          case "create":
+            switch (section) {
+              case "home":
+                this.data.home.section = obj;
+                this.homeAndCardsSubject.next(this.data.home);
+                break;
+              case "experience":
+                this.data.experience.section = obj;
+                this.experienceAndCardsSubject.next(this.data.experience);
+                break;
+              case "projects":
+                this.data.projects.section = obj;
+                this.projectsAndCardsSubject.next(this.data.projects);
+                break;
+              case "qPD":
+                this.data.qPD.section = obj;
+                this.qPDAndCardsSubject.next(this.data.qPD);
+                break;
+              case "skills":
+                this.data.skills.section = obj;
+                this.skillsAndCardsSubject.next(this.data.skills);
+                break;
+              default:
+                break;
+            }
+            break;
+          case "delete":
+            switch (section) {
+              case "home":
+                this.data.home.section = obj;
+                this.homeAndCardsSubject.next(this.data.home);
+                break;
+              case "experience":
+                this.data.experience.section = obj;
+                this.experienceAndCardsSubject.next(this.data.experience);
+                break;
+              case "projects":
+                this.data.projects.section = obj;
+                this.projectsAndCardsSubject.next(this.data.projects);
+                break;
+              case "qPD":
+                this.data.qPD.section = obj;
+                this.qPDAndCardsSubject.next(this.data.qPD);
+                break;
+              case "skills":
+                this.data.skills.section = obj;
+                this.skillsAndCardsSubject.next(this.data.skills);
+                break;
+              default:
+                break;
+            }
+            break;
+          case "udpdate":
+            switch (section) {
+              case "home":
+                this.data.home.section = obj;
+                this.homeAndCardsSubject.next(this.data.home);
+                break;
+              case "experience":
+                this.data.experience.section = obj;
+                this.experienceAndCardsSubject.next(this.data.experience);
+                break;
+              case "projects":
+                this.data.projects.section = obj;
+                this.projectsAndCardsSubject.next(this.data.projects);
+                break;
+              case "qPD":
+                this.data.qPD.section = obj;
+                this.qPDAndCardsSubject.next(this.data.qPD);
+                break;
+              case "skills":
+                this.data.skills.section = obj;
+                this.skillsAndCardsSubject.next(this.data.skills);
+                break;
+              default:
+                break;
+            }
+            break;
+          default:
+            break;
+        }
+        console.log(`successfully ${abm}d: `, obj.id, ' card');
+      },
+      error: (error: Error) => {
+        console.error(`An Error occurred while trying to ${abm}`, error);
+        this.errorSubject.next(error.message)
+      }
+    }
+    return subscribeSectionObject;
+  }
+
+  //CHECK THE CONTENT LOCALLY. IT RUNS WHEN YOU ENTER A SECTION. IF IT'S NOT A "REFRESH", 
+  // THE CONTENT COULD BE HERE, AND YOU CAN SAVE YOURSELF AN HTTP REQUEST
+
   localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
     if (this.data[arg].section.en != "") {
       console.log(`geting ${arg} from service:`, this.data[arg]);
@@ -135,7 +234,8 @@ export class DataService {
     return undefined;
   }
 
-  //TO SERVER
+  //-------------------------------TO SERVER - HTTP REQUESTS--------------------------------
+
   getSectionAndCards(section: StringSection) {
     this.conexion.getSectionAndCards(section)?.subscribe(this.switchSubscribeSectionAndCards());
   }
@@ -145,7 +245,9 @@ export class DataService {
     this.conexion.updateSectionAndCards(section, obj)?.subscribe((this.switchSubscribeSectionAndCards()))
   }
   updateSectionInfo(section: StringSection, obj: SectionInfo) {
-    // this.switchSubscribeSectionInfo
     this.conexion.updateSectionInfo(section, obj)?.subscribe(this.switchSubscribeSectionInfo(section, obj));
+  }
+  aBMCard(sec: StringSection, obj: SectionCard, abm: ABM) {
+    this.conexion.aBMCard(sec, obj, abm)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm));
   }
 }
