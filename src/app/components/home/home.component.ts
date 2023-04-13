@@ -107,11 +107,10 @@ export class HomeComponent implements OnInit {
 
   // ----------------------------------CARDS REQUESTS----------------------
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    //here I have to send the post request, with the new card!
-    //change this code!
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    const cardsLength = this.sectionAndCards.cards.length
+    this.newCard.id = `S${cardsLength}`;
+    // this.sectionAndCards.cards.push(this.newCard);
+    this.dataService.aBMCard('home', this.sectionAndCards, "create", cardsLength);
   }
 
   saveCardEl(e: any) {

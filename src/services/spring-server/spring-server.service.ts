@@ -80,7 +80,7 @@ return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
 
   //-----------------------------ABM CARDS-----------------------------
 
-  aBMCard(sec: StringSection, obj: SectionCard, abm:ABM): Observable<any> | undefined{
+  aBMCard(sec: StringSection, obj: SectionCard, abm:ABM, i:number): Observable<any> | undefined{
     if(abm === "create" || abm === "udpdate"){
       let springCard;
       switch (sec) {
