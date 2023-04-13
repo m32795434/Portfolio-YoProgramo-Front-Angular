@@ -169,6 +169,8 @@ const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
               en: card.imgAltEn, es: card.imgAltEs
           }
       },
+      startDate: { year: card.startDateYear, month: card.startDateMonth, day: card.startDateDay },
+      endDate: { year: card.endDateYear, month: card.endDateMonth, day: card.endDateDay },
       h2: { en: card.h2En, es: card.h2Es },
       ph: { en: card.phEn, es: card.phEs }};
     return projectsCard;
@@ -275,6 +277,12 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
         imgSrc:card.img.src,
         imgAltEn:card.img.alt.en,
         imgAltEs:card.img.alt.es,
+        startDateYear:card.startDate.year,
+        startDateMonth:card.startDate.month,
+        startDateDay:card.startDate.day,
+        endDateYear:card.endDate.year,
+        endDateMonth:card.endDate.month,
+        endDateDay:card.endDate.day,
         phEn:card.ph.en,
         phEs:card.ph.es,
         h2En:card.h2.en,

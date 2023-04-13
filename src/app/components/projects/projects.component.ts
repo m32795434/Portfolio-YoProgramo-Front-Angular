@@ -23,13 +23,22 @@ export class ProjectsComponent implements OnInit {
     },
     cards: []
   };
-
   newCard: ProjectsCard = {
     id: "",
     img: {
       src: "", alt: {
         en: "", es: ""
       }
+    },
+    startDate: {
+      year: 2022,
+      month: 6,
+      day: 1
+    },
+    endDate: {
+      year: 2023,
+      month: 5,
+      day: 31
     },
     h2: { en: "", es: "" },
     ph: { en: "", es: "" },

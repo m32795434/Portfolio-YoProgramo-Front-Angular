@@ -19,7 +19,7 @@ interface HomeAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    },
+    };
     cards: HomeCard[];
 }
 interface HomeCard {
@@ -33,18 +33,18 @@ interface QPDAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    },
+    };
     cards: QPDCard[];
 }
 interface QPDCard {
     id: string;
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
     img: {
         src: string, alt: {
             en: string, es: string
         }
-    }
+    };
     h2: { en: string, es: string };
     ph: { en: string, es: string };
 }
@@ -55,7 +55,7 @@ interface ExperienceAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    },
+    };
     cards: ExperienceCard[];
 }
 interface ExperienceCard {
@@ -64,9 +64,9 @@ interface ExperienceCard {
         src: string, alt: {
             en: string, es: string
         }
-    }
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
+    };
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
     ph: { en: string, es: string };
 }
 interface ProjectsAndCards {
@@ -76,7 +76,7 @@ interface ProjectsAndCards {
         imgDesktop: null;
         en: string;
         es: string;
-    },
+    };
     cards: ProjectsCard[]
 }
 interface ProjectsCard {
@@ -85,7 +85,9 @@ interface ProjectsCard {
         src: string, alt: {
             en: string, es: string
         }
-    }
+    };
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
     h2: { en: string, es: string };
     ph: { en: string, es: string };
 }
@@ -96,7 +98,7 @@ interface SkillsAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    },
+    };
     cards: SkillsCard[];
 }
 interface SkillsCard {
@@ -104,7 +106,7 @@ interface SkillsCard {
     img: {
         src: string, alt: {
             en: string, es: string
-        }
+        };
     }; value: number; bkColor: string; outStrokeColor: string;
 }
 type ABM = "create" | "delete" | "udpdate";

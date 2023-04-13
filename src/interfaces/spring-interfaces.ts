@@ -12,7 +12,7 @@ interface SpringHomeAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    }
+    };
     cards: SpringHomeCard[];
 }
 interface SpringHomeCard {
@@ -26,7 +26,7 @@ interface SpringQPDAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    }
+    };
     cards: SpringQPDCard[];
 }
 interface SpringQPDCard {
@@ -52,7 +52,7 @@ interface SpringExperienceAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    }
+    };
     cards: SpringExperienceCard[];
 }
 interface SpringExperienceCard {
@@ -76,7 +76,7 @@ interface SpringProjectsAndCards {
         es: string;
         imgMobile: null;
         imgDesktop: null;
-    }
+    };
     cards: SpringProjectsCard[]
 }
 interface SpringProjectsCard {
@@ -84,6 +84,12 @@ interface SpringProjectsCard {
     imgSrc: string;
     imgAltEs: string;
     imgAltEn: string;
+    startDateYear: number;
+    startDateMonth: number;
+    startDateDay: number;
+    endDateYear: number;
+    endDateMonth: number;
+    endDateDay: number;
     phEs: string;
     phEn: string;
     h2En: string;
@@ -96,7 +102,7 @@ interface SpringSkillsAndCards {
         imgDesktop: string;
         en: string;
         es: string;
-    }
+    };
     cards: SpringSkillsCard[];
 }
 interface SpringSkillsCard {
