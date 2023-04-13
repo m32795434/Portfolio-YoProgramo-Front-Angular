@@ -7,6 +7,6 @@ export interface Conexion {
     getSectionAndCards(section: StringSection): Observable<SectionAndCards> | undefined;
     updateSectionAndCards(section: StringSection, obj: SectionAndCards): Observable<SectionAndCards> | undefined;
     updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined;
-    aBMCard(sec: StringSection, obj: SectionCard, abm: ABM): Observable<any> | undefined;
+    aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number): Observable<any> | undefined;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }

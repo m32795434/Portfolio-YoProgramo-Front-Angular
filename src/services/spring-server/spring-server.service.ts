@@ -81,38 +81,35 @@ return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
   //-----------------------------ABM CARDS-----------------------------
 
   aBMCard(sec: StringSection, obj: SectionCard, abm:ABM): Observable<any> | undefined{
-    switch (abm) {
-    case "create":
+    if(abm === "create" || abm === "udpdate"){
       let springCard;
       switch (sec) {
         case "home":
         springCard = toSpringCards.mapToSpringHomeCard(obj)
         break;
         case "experience":
-        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        springCard = toSpringCards.mapToSpringExperienceCard(obj)
         break;
         case "skills":
-        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        springCard = toSpringCards.mapToSpringSkillsCard(obj)
         break;
         case "qPD":
-        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        springCard = toSpringCards.mapToSpringQPDCard(obj)
         break;
         case "projects":
-        springCard = toSpringCards.mapToSpringHomeCard(obj)
+        springCard = toSpringCards.mapToSpringProjectsCard(obj)
         break;
         default:
-          break;
+        break;
       }
-      return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
-    case "delete":
+      if(abm === "create"){
+        return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
+      }else {
+        return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, springCard, this.config);
+      }
+    }else 
       return this.http.delete<any>(`${this.apiUrl}/${sec}/deleteCard/${obj.id}`);
-    case "udpdate":
-      return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, obj, this.config);
-  default:
-    break;
-}
   }
-  
 }
 
 

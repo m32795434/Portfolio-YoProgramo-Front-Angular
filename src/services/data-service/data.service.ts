@@ -128,90 +128,60 @@ export class DataService {
     return subscribeSectionObject;
   }
 
-  switchSubscribeABMCard(section: StringSection, obj: SectionCard, abm: ABM): any {
+  switchSubscribeABMCard(section: StringSection, obj: SectionCard, abm: ABM, i: number): any {
     const subscribeSectionObject = {
       next: () => {
-        switch (abm) {
-          case "create":
-            switch (section) {
-              case "home":
-                this.data.home.section = obj;
-                this.homeAndCardsSubject.next(this.data.home);
-                break;
-              case "experience":
-                this.data.experience.section = obj;
-                this.experienceAndCardsSubject.next(this.data.experience);
-                break;
-              case "projects":
-                this.data.projects.section = obj;
-                this.projectsAndCardsSubject.next(this.data.projects);
-                break;
-              case "qPD":
-                this.data.qPD.section = obj;
-                this.qPDAndCardsSubject.next(this.data.qPD);
-                break;
-              case "skills":
-                this.data.skills.section = obj;
-                this.skillsAndCardsSubject.next(this.data.skills);
-                break;
-              default:
-                break;
-            }
-            break;
-          case "delete":
-            switch (section) {
-              case "home":
-                this.data.home.section = obj;
-                this.homeAndCardsSubject.next(this.data.home);
-                break;
-              case "experience":
-                this.data.experience.section = obj;
-                this.experienceAndCardsSubject.next(this.data.experience);
-                break;
-              case "projects":
-                this.data.projects.section = obj;
-                this.projectsAndCardsSubject.next(this.data.projects);
-                break;
-              case "qPD":
-                this.data.qPD.section = obj;
-                this.qPDAndCardsSubject.next(this.data.qPD);
-                break;
-              case "skills":
-                this.data.skills.section = obj;
-                this.skillsAndCardsSubject.next(this.data.skills);
-                break;
-              default:
-                break;
-            }
-            break;
-          case "udpdate":
-            switch (section) {
-              case "home":
-                this.data.home.section = obj;
-                this.homeAndCardsSubject.next(this.data.home);
-                break;
-              case "experience":
-                this.data.experience.section = obj;
-                this.experienceAndCardsSubject.next(this.data.experience);
-                break;
-              case "projects":
-                this.data.projects.section = obj;
-                this.projectsAndCardsSubject.next(this.data.projects);
-                break;
-              case "qPD":
-                this.data.qPD.section = obj;
-                this.qPDAndCardsSubject.next(this.data.qPD);
-                break;
-              case "skills":
-                this.data.skills.section = obj;
-                this.skillsAndCardsSubject.next(this.data.skills);
-                break;
-              default:
-                break;
-            }
-            break;
-          default:
-            break;
+        if (abm === "create" || abm === "udpdate") {
+          switch (section) {
+            case "home":
+              this.data.home.cards[i] = obj;
+              this.homeAndCardsSubject.next(this.data.home);
+              break;
+            case "experience":
+              this.data.experience.cards[i] = obj;
+              this.experienceAndCardsSubject.next(this.data.experience);
+              break;
+            case "projects":
+              this.data.projects.cards[i] = obj;
+              this.projectsAndCardsSubject.next(this.data.projects);
+              break;
+            case "qPD":
+              this.data.qPD.cards[i] = obj;
+              this.qPDAndCardsSubject.next(this.data.qPD);
+              break;
+            case "skills":
+              this.data.skills.cards[i] = obj;
+              this.skillsAndCardsSubject.next(this.data.skills);
+              break;
+            default:
+              break;
+          }
+        } else {
+          //DELETE!
+          switch (section) {
+            case "home":
+              this.data.home.cards.splice(i, 1);
+              this.homeAndCardsSubject.next(this.data.home);
+              break;
+            case "experience":
+              this.data.experience.cards.splice(i, 1);
+              this.experienceAndCardsSubject.next(this.data.experience);
+              break;
+            case "projects":
+              this.data.projects.cards.splice(i, 1);
+              this.projectsAndCardsSubject.next(this.data.projects);
+              break;
+            case "qPD":
+              this.data.qPD.cards.splice(i, 1);
+              this.qPDAndCardsSubject.next(this.data.qPD);
+              break;
+            case "skills":
+              this.data.skills.cards.splice(i, 1);
+              this.skillsAndCardsSubject.next(this.data.skills);
+              break;
+            default:
+              break;
+          }
         }
         console.log(`successfully ${abm}d: `, obj.id, ' card');
       },
@@ -247,7 +217,7 @@ export class DataService {
   updateSectionInfo(section: StringSection, obj: SectionInfo) {
     this.conexion.updateSectionInfo(section, obj)?.subscribe(this.switchSubscribeSectionInfo(section, obj));
   }
-  aBMCard(sec: StringSection, obj: SectionCard, abm: ABM) {
-    this.conexion.aBMCard(sec, obj, abm)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm));
+  aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number) {
+    this.conexion.aBMCard(sec, obj, abm, i)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm, i));
   }
 }
