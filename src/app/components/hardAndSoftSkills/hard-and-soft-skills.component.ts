@@ -53,17 +53,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   cardsIndex = 0;
 
   //new card
-  newCard: SkillsCard = {
-    id: "",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
-    value: 0,
-    bkColor: "red",
-    outStrokeColor: "blue"
-  }
+  newCard: SkillsCard = JSON.parse(JSON.stringify(emptyCard));
 
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
@@ -119,6 +109,13 @@ export class HardAndSoftSkillsComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
   }
+  // POST request
+  createCard() {
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('skills', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
+  }
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
@@ -130,11 +127,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
     console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
     this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
-  createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
-  }
+
   //MODALS
   // ref: reference the modal in the HTML
   // index: to know which card I've clicked
@@ -184,3 +177,14 @@ export class HardAndSoftSkillsComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "",
+  img: {
+    src: "", alt: {
+      en: "", es: ""
+    }
+  },
+  value: 0,
+  bkColor: "red",
+  outStrokeColor: "blue"
+};

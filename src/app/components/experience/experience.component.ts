@@ -61,25 +61,7 @@ export class ExperienceComponent implements OnInit {
   model?: NgbDateStruct;
 
   //new card
-  newCard: ExperienceCard = {
-    id: "id",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    ph: { en: "", es: "" }
-  }
+  newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -138,6 +120,13 @@ export class ExperienceComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('experience', this.sectionAndCards.section);
   }
+  // POST request
+  createCard() {
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('experience', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
+  }
   //UPDATE request
   // this update the content of an element that needs to be modified with contenteditable in place
   saveCardEl(id: any, i: any) {
@@ -156,12 +145,7 @@ export class ExperienceComponent implements OnInit {
     console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
     this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
-  createCard() {
-    // change!
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
-  }
+
   //MODALS
   // ref: reference the modal in the HTML
   // index: to know which card I've clicked
@@ -203,3 +187,22 @@ export class ExperienceComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "id",
+  img: {
+    src: "", alt: {
+      en: "", es: ""
+    }
+  },
+  startDate: {
+    year: 2022,
+    month: 6,
+    day: 1
+  },
+  endDate: {
+    year: 2023,
+    month: 5,
+    day: 31
+  },
+  ph: { en: "", es: "" }
+};

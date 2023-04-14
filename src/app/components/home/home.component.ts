@@ -43,10 +43,8 @@ export class HomeComponent implements OnInit {
   swiper: any;
   errorMessage = '';
   cardsIndex?: number;
-  newCard: HomeCard = {
-    id: "id",
-    ph: { en: "", es: "" }
-  };
+  // this allows to reuse the empty cards' value.
+  newCard: HomeCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur
@@ -109,9 +107,9 @@ export class HomeComponent implements OnInit {
   // ----------------------------------CARDS REQUESTS----------------------
   createCard() {
     const cardsLength = this.sectionAndCards.cards.length
-    this.newCard.id = `S${cardsLength}`;
-    // this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.aBMCard('home', this.sectionAndCards, "create", cardsLength);
+    this.newCard.id = `S${cardsLength + 1}`;
+    this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
 
   //UPDATE request
@@ -178,3 +176,7 @@ export class HomeComponent implements OnInit {
 /************************************
 
 **************************************/
+const emptyCard = {
+  id: "id",
+  ph: { en: "", es: "" }
+};

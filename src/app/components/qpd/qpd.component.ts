@@ -21,6 +21,7 @@ declare global {
   styleUrls: ['./qpd.component.scss'],
 })
 export class QPDComponent implements OnInit {
+
   // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
   private loggedSubscription = new Subscription();
@@ -60,22 +61,8 @@ export class QPDComponent implements OnInit {
   model?: NgbDateStruct;
 
   //new card
-  newCard: QPDCard = {
-    id: "id",
-    img: { src: "", alt: { en: "", es: "" } },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    h2: { en: "", es: "" },
-    ph: { en: "", es: "" }
-  }
+  newCard: QPDCard = JSON.parse(JSON.stringify(emptyCard));
+
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -149,9 +136,10 @@ export class QPDComponent implements OnInit {
     this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('experience', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
   //MODALS
   // ref: reference the modal in the HTML
@@ -194,3 +182,19 @@ export class QPDComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "id",
+  img: { src: "", alt: { en: "", es: "" } },
+  startDate: {
+    year: 2021,
+    month: 1,
+    day: 1
+  },
+  endDate: {
+    year: 2023,
+    month: 5,
+    day: 31
+  },
+  h2: { en: "", es: "" },
+  ph: { en: "", es: "" }
+};
