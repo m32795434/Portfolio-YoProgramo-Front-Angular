@@ -87,6 +87,7 @@
                         </p>
                     </div>
                     <div class="cardMainPh">
+                        <!-- "card.id+i" to diference between the d-lg-block and d-lg-none els. -->
                         <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
                         <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"

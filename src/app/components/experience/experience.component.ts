@@ -138,14 +138,12 @@ export class ExperienceComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('experience', this.sectionAndCards.section);
   }
+  //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
   saveCardEl(id: any, i: any) {
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
-
-    //here I have to send the put request, about the identified card!
-    //change this code!
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
   }
   //UPDATE request
   updateCard() {

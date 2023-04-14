@@ -115,15 +115,10 @@ export class HomeComponent implements OnInit {
   }
 
   //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
   saveCardEl(e: any, i: number) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-
-    // const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
-    //   return (el.id === targetId)
-    // })
-    //here I have to send the put request, about the identified card!
-    //change this code!
     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
     this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
   }

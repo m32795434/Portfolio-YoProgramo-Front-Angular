@@ -108,12 +108,6 @@ export class HardAndSoftSkillsComponent implements OnInit {
       }
     });
   }
-  saveCardEl(id: any, i: any) {
-    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.sectionAndCards.cards[i].img.alt[this.language] = innerHTML;
-    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].img.alt[this.language])
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
-  }
   // UPDATE REQUEST
   saveH1(e: any) {
     const targetId = e.target.dataset.id;

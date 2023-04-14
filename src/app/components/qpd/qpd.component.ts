@@ -120,17 +120,12 @@ export class QPDComponent implements OnInit {
       }
     });
   }
+  //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
   saveCardEl(id: any, i: any) {
-    // CHANGE!
-    console.log('id:', id, 'index:', i)
-    // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    console.log('innerHTML', innerHTML)
-    // const index = this.section.cards.findIndex((el: HomeCard) => {
-    //   return (el.id === targetId)
-    // })
     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[i], "udpdate", i);
   }
   // UDPATE request
   saveH1(e: any) {
