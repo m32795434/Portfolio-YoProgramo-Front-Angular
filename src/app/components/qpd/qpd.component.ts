@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { QPDCard } from 'src/interfaces/sections-interfaces';
+import { QPDAndCards, QPDCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,7 @@ declare global {
   styleUrls: ['./qpd.component.scss'],
 })
 export class QPDComponent implements OnInit {
+
   // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
   private loggedSubscription = new Subscription();
@@ -28,9 +29,14 @@ export class QPDComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "id",
-      img: { src: "", alt: "" },
+      img: {
+        src: "", alt: { en: "", es: "" }
+      },
       startDate: {
         year: 2022,
         month: 6,
@@ -55,22 +61,8 @@ export class QPDComponent implements OnInit {
   model?: NgbDateStruct;
 
   //new card
-  newCard: QPDCard = {
-    id: "id",
-    img: { src: "", alt: "" },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    h2: { en: "", es: "" },
-    ph: { en: "", es: "" }
-  }
+  newCard: QPDCard = JSON.parse(JSON.stringify(emptyCard));
+
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -115,40 +107,43 @@ export class QPDComponent implements OnInit {
       }
     });
   }
+  //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
   saveCardEl(id: any, i: any) {
-    console.log('id:', id, 'index:', i)
-    // const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    console.log('innerHTML', innerHTML)
-    // const index = this.section.cards.findIndex((el: HomeCard) => {
-    //   return (el.id === targetId)
-    // })
     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[i], "udpdate", i);
   }
+  // UDPATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('qPD', this.sectionAndCards.section);
   }
-  updateCard() {
-    console.log('updating with:', this.sectionAndCards);
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+  //UPDATE request
+  saveImgSrc() {
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
-  deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
-  }
+  // POST request
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('qPD', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-  //MODALS
+  //UPDATE request
+  updateCard() {
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+  }
+  //DELETE request
+  deleteCard() {
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+  }
 
+  //MODALS
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;
@@ -187,3 +182,19 @@ export class QPDComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "id",
+  img: { src: "", alt: { en: "", es: "" } },
+  startDate: {
+    year: 2021,
+    month: 1,
+    day: 1
+  },
+  endDate: {
+    year: 2023,
+    month: 5,
+    day: 31
+  },
+  h2: { en: "", es: "" },
+  ph: { en: "", es: "" }
+};

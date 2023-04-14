@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { HomeCard } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, HomeCard } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
+import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 declare global {
   interface Window {
     Swiper: any;
@@ -26,19 +27,26 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  sectionAndCards: any = { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{ id: "id", en: "Loading!!..🫠", es: "Cargando!!🫠" }] };
+  //HomeAndCards | any
+  sectionAndCards: any = {
+    section: {
+      id: "home", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
+      id: "id",
+      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+    }]
+  };
   //contains all the cards content
   language = 'en';
   languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
-  cardsIndex?: number;
-  newCard: HomeCard = {
-    id: "id",
-    en: "", es: ""
-  }
+  cardsIndex = 0;
+  // this allows to reuse the empty cards' value.
+  newCard: HomeCard = JSON.parse(JSON.stringify(emptyCard));
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
+  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
@@ -63,6 +71,7 @@ export class HomeComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
     this.initSwiper();
+    // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }
 
   async initSwiper() {
@@ -82,40 +91,46 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  saveCardEl(e: any) {
-    const targetId = e.target.dataset.id;
-    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
-      return (el.id === targetId)
-    })
-    this.sectionAndCards.cards[index][this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
-  }
+  // ----------------------------------SECTION REQUESTS----------------------
+  //UPDATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
+  //UPDATE request
   saveImgSrc() {
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
 
-  deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
-  }
-
+  // ----------------------------------CARDS REQUESTS----------------------
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    const cardsLength = this.sectionAndCards.cards.length
+    this.newCard.id = `S${cardsLength + 1}`;
+    this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-  //MODAL
 
-  open(content: TemplateRef<any>, ref: string, i?: number) {
+  //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
+  saveCardEl(e: any, i: number) {
+    const targetId = e.target.dataset.id;
+    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
+  }
+
+  //DELETE request
+  deleteCard() {
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+  }
+
+
+  //MODAL
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
+  open(content: TemplateRef<any>, ref: string, i?: any) {
     this.cardsIndex = i;
     this.modalService.open(content, {
       ariaLabelledBy: `${ref}`,
@@ -156,3 +171,7 @@ export class HomeComponent implements OnInit {
 /************************************
 
 **************************************/
+const emptyCard = {
+  id: "id",
+  ph: { en: "", es: "" }
+};

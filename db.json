@@ -3,7 +3,29 @@
     {
       "id": "projects",
       "es": "Otros Proyectos",
-      "en": "Other PROJECTS"
+      "en": "Other PROJECTS",
+      "imgMobile": "",
+      "imgDesktop": "",
+      "cards": [
+        {
+          "id": "S1",
+          "img": {
+            "src": "",
+            "alt": {
+              "en": "",
+              "es": ""
+            }
+          },
+          "h2": {
+            "en": "",
+            "es": ""
+          },
+          "ph": {
+            "en": "",
+            "es": ""
+          }
+        }
+      ]
     },
     {
       "id": "skills",
@@ -268,7 +290,10 @@
           },
           "img": {
             "src": "../../../assets/images/ArgProgIcon.png",
-            "alt": "Argentina Programa"
+            "alt": {
+              "en": "Argentina Programa",
+              "es": "Argentina Programa"
+            }
           },
           "h2": {
             "es": "Programador Full Stack Junior",
@@ -293,7 +318,10 @@
           },
           "img": {
             "src": "../../../assets/images/udemy.png",
-            "alt": "Udemy"
+            "alt": {
+              "en": "Udemy",
+              "es": "Udemy"
+            }
           },
           "h2": {
             "es": "Programación Informática",
@@ -318,7 +346,10 @@
           },
           "img": {
             "src": "../../../assets/images/wes.png",
-            "alt": "Wes Bos"
+            "alt": {
+              "en": "Wes Bos",
+              "es": "Wes Bos"
+            }
           },
           "h2": {
             "es": "Curso de Javascript",
@@ -343,7 +374,10 @@
           },
           "img": {
             "src": "../../../assets/images/regional-bs.png",
-            "alt": "Universidad Tecnológica Nacional Regional Buenos Aires"
+            "alt": {
+              "en": "Universidad Tecnológica Nacional Regional Buenos Aires",
+              "es": "Universidad Tecnológica Nacional Regional Buenos Aires"
+            }
           },
           "h2": {
             "es": "PROFESSIONAL WEBMASTER",
@@ -368,7 +402,10 @@
           },
           "img": {
             "src": "../../../assets/images/utnIcon.png",
-            "alt": "Universidad Tecnológica Nacional"
+            "alt": {
+              "en": "Universidad Tecnológica Nacional",
+              "es": "Universidad Tecnológica Nacional"
+            }
           },
           "h2": {
             "es": "Tec. Sup. Mantenimiento Industrial (Completo)",
@@ -393,7 +430,10 @@
           },
           "img": {
             "src": "../../../assets/images/unl.png",
-            "alt": "Universidad Nacional del Litoral"
+            "alt": {
+              "en": "Universidad Nacional del Litoral",
+              "es": "Universidad Nacional del Litoral"
+            }
           },
           "h2": {
             "es": "TEC. Martillero Público y C.C. (Incompleto)",
@@ -418,7 +458,10 @@
           },
           "img": {
             "src": "../../../assets/images/uner.png",
-            "alt": "Universidad Nacional de Entre Ríos"
+            "alt": {
+              "en": "Universidad Nacional de Entre Ríos",
+              "es": "Universidad Nacional de Entre Ríos"
+            }
           },
           "h2": {
             "es": "Cont. Público Nacional (Incompleto)",
@@ -443,7 +486,10 @@
           },
           "img": {
             "src": "../../../assets/images/unr.png",
-            "alt": "Universidad Nacional de Rosario"
+            "alt": {
+              "en": "Universidad Nacional de Rosario",
+              "es": "Universidad Nacional de Rosario"
+            }
           },
           "h2": {
             "es": "Ing. Electrónica (Incompleto)",
@@ -465,38 +511,52 @@
       "cards": [
         {
           "id": "S1",
-          "en": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming",
-          "es": ""
+          "ph": {
+            "en": "I'm father, husband👪;\n                fan\n                of the biggest (River Plate) and a big fan of the technologies🤖 and 🕹️Video Games🕹️. I had the\n                opportunity\n                to\n                study Programming at university some years ago, but it was in January 2021 that I first met with modern\n                programming",
+            "es": ""
+          }
         },
         {
           "id": "S2",
-          "en": "Since that time I have\n                been studying and\n                developing some stuff in Js and friends.<br><a href=\"https://github.com/m32795434\"> Check it on\n                  GitHub here!🫡</a><br>\n\n              ",
-          "es": ""
+          "ph": {
+            "en": "Since that time I have\n                been studying and\n                developing some stuff in Js and friends.<br><a href=\"https://github.com/m32795434\"> Check it on\n                  GitHub here!🫡</a><br>\n\n              ",
+            "es": ""
+          }
         },
         {
           "id": "S3",
-          "en": "This is an own\n                project🧰,\n                written from scratch in JavaScript\n                  \n                  \n                  \n                  \n                  \n                 and some Bootstrap\n                  \n                  \n                  \n                  \n                +Icons\n                  \n                  \n                  \n                  \n                . No Frameworks. <b>No other third-party\n                  resources</b>",
-          "es": ""
+          "ph": {
+            "en": "This is an own\n                project🧰,\n                written from scratch in JavaScript\n                  \n                  \n                  \n                  \n                  \n                 and some Bootstrap\n                  \n                  \n                  \n                  \n                +Icons\n                  \n                  \n                  \n                  \n                . No Frameworks. <b>No other third-party\n                  resources</b>",
+            "es": ""
+          }
         },
         {
           "id": "S4",
-          "en": "All the technologies\n                that were applied\n                are listed in every page of the site. <a href=\"https://github.com/m32795434/Portfolio-YoProgramo-MaquetadoFront\">\n                  With\n                  this\n                  link </a> you can check the Github repository😁. Enjoy it!",
-          "es": ""
+          "ph": {
+            "en": "All the technologies\n                that were applied\n                are listed in every page of the site. <a href=\"https://github.com/m32795434/Portfolio-YoProgramo-MaquetadoFront\">\n                  With\n                  this\n                  link </a> you can check the Github repository😁. Enjoy it!",
+            "es": ""
+          }
         },
         {
           "id": "S5",
-          "en": "\n                These are the technologies I use!<br>\n                  \n                  \n                  \n                  \n                  \n                \n                  \n                  \n                  \n                  \n                Languages - Databases:<br>\n                JavaScript - Typescript - Sass - HTML - Angular - Node.js - Java - Git - SQL- MongoDB - MySQL<br>\n                \n                  \n                  \n                  \n                  \n                🎨Design Tools:<br>\n                Figma - Pixlr - Clipchamp - Movavi - Obs - Audacity\n                \n            ",
-          "es": ""
+          "ph": {
+            "en": "\n                These are the technologies I use!<br>\n                  \n                  \n                  \n                  \n                  \n                \n                  \n                  \n                  \n                  \n                Languages - Databases:<br>\n                JavaScript - Typescript - Sass - HTML - Angular - Node.js - Java - Git - SQL- MongoDB - MySQL<br>\n                \n                  \n                  \n                  \n                  \n                🎨Design Tools:<br>\n                Figma - Pixlr - Clipchamp - Movavi - Obs - Audacity\n                \n            ",
+            "es": ""
+          }
         },
         {
           "id": "S6",
-          "en": "\n                📒Libraries:<br> Bootstrap - Date-fns - Lodash - Parcel - WebPack - Axios - Await-to-js\n                -\n                Mongoose - Bootswatch - ngx-bootstrap - nodemon - morgan -Cors - Express.<br>\n            ",
-          "es": ""
+          "ph": {
+            "en": "\n                📒Libraries:<br> Bootstrap - Date-fns - Lodash - Parcel - WebPack - Axios - Await-to-js\n                -\n                Mongoose - Bootswatch - ngx-bootstrap - nodemon - morgan -Cors - Express.<br>\n            ",
+            "es": ""
+          }
         },
         {
           "id": "S7",
-          "en": "\n                ⚒️\n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                Others:<br>\n                GitHub - SCRUM - Heroku - Googe Cloud - Vs Code - IntelliJ IDEA - Netlify - StackBlitz <br><a href=\"https://www.linkedin.com/in/manubravard/\" alt=\"Follow me on Linkedin\"> Follow me on </a>\n                  \n                  \n                  \n                  \n                  \n                  \n                ",
-          "es": ""
+          "ph": {
+            "en": "\n                ⚒️\n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                  \n                Others:<br>\n                GitHub - SCRUM - Heroku - Googe Cloud - Vs Code - IntelliJ IDEA - Netlify - StackBlitz <br><a href=\"https://www.linkedin.com/in/manubravard/\" alt=\"Follow me on Linkedin\"> Follow me on </a>\n                  \n                  \n                  \n                  \n                  \n                  \n                ",
+            "es": ""
+          }
         }
       ]
     }

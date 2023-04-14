@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
+import { ProjectsAndCards, ProjectsCard } from 'src/interfaces/sections-interfaces';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +16,34 @@ export class ProjectsComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
-  sectionAndCards: any = { id: "projects", en: "", es: "" };
+  sectionAndCards: any = {
+    section: {
+      id: "projects", en: "", es: "", imgMobile: null,
+      imgDesktop: null,
+    },
+    cards: []
+  };
+  newCard: ProjectsCard = {
+    id: "",
+    img: {
+      src: "", alt: {
+        en: "", es: ""
+      }
+    },
+    startDate: {
+      year: 2022,
+      month: 6,
+      day: 1
+    },
+    endDate: {
+      year: 2023,
+      month: 5,
+      day: 31
+    },
+    h2: { en: "", es: "" },
+    ph: { en: "", es: "" },
+  }
+
   language = 'en';
   languageSubc = new Subscription();
 
@@ -44,10 +72,11 @@ export class ProjectsComponent implements OnInit {
     //checks if the user is logged when init
     this.logged = this.loginService.isLogged();
   }
+  // UDPATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('projects', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('projects', this.sectionAndCards.section);
   }
 }

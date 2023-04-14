@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SkillsCard } from 'src/interfaces/sections-interfaces';
+import { SkillsAndCards, SkillsCard } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,7 +29,10 @@ export class HardAndSoftSkillsComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "S1",
       img: {
         src: "../../../assets/images/regional-bs.png", alt: {
@@ -50,17 +53,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   cardsIndex = 0;
 
   //new card
-  newCard: SkillsCard = {
-    id: "",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
-    value: 0,
-    bkColor: "red",
-    outStrokeColor: "blue"
-  }
+  newCard: SkillsCard = JSON.parse(JSON.stringify(emptyCard));
 
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
@@ -105,35 +98,36 @@ export class HardAndSoftSkillsComponent implements OnInit {
       }
     });
   }
-  saveCardEl(id: any, i: any) {
-    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
-  }
+  // UPDATE REQUEST
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
   }
-  updateCard() {
-    console.log('updating with:', this.sectionAndCards);
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
+  //UPDATE request
+  saveImgSrc() {
+    this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
   }
-  deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
-  }
+  // POST request
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('skills', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-  //MODALS
+  //UPDATE request
+  updateCard() {
+    this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+  }
+  //DELETE request
+  deleteCard() {
+    this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+  }
 
+  //MODALS
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;
@@ -180,3 +174,14 @@ export class HardAndSoftSkillsComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "",
+  img: {
+    src: "", alt: {
+      en: "", es: ""
+    }
+  },
+  value: 0,
+  bkColor: "red",
+  outStrokeColor: "blue"
+};

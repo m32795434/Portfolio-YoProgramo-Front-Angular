@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
@@ -29,7 +29,10 @@ export class ExperienceComponent implements OnInit {
   private errorSubscription = new Subscription();
   //contains all
   sectionAndCards: any = {
-    id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "", cards: [{
+    section: {
+      id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "",
+    },
+    cards: [{
       id: "id",
       img: {
         src: "", alt: {
@@ -58,25 +61,7 @@ export class ExperienceComponent implements OnInit {
   model?: NgbDateStruct;
 
   //new card
-  newCard: ExperienceCard = {
-    id: "id",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
-    startDate: {
-      year: 2022,
-      month: 6,
-      day: 1
-    },
-    endDate: {
-      year: 2023,
-      month: 5,
-      day: 31
-    },
-    ph: { en: "", es: "" }
-  }
+  newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -85,7 +70,6 @@ export class ExperienceComponent implements OnInit {
 
     this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
-      // this.cards = this.sectionAndCards['cards'];
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -99,7 +83,6 @@ export class ExperienceComponent implements OnInit {
     const content = this.dataService.localGetSectionAndCards('experience');
     if (content) {
       this.sectionAndCards = content;
-      // this.cards = this.sectionAndCards['cards'];
     } else {
       this.dataService.getSectionAndCards('experience');
     }
@@ -125,35 +108,44 @@ export class ExperienceComponent implements OnInit {
       }
     });
   }
-  saveCardEl(id: any, i: any) {
-    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    console.log('this.sectionAndCards.cards[i].ph[this.language]', this.sectionAndCards.cards[i].ph[this.language])
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
-  }
+
+  //UPDATE request
   saveH1(e: any) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards[this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+    this.sectionAndCards.section[this.language] = innerHTML;
+    this.dataService.updateSectionInfo('experience', this.sectionAndCards.section);
   }
-  updateCard() {
-    console.log('updating with:', this.sectionAndCards);
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+  //UPDATE request
+  saveImgSrc() {
+    this.dataService.updateSectionInfo('experience', this.sectionAndCards.section);
   }
-  deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
-  }
+  // POST request
   createCard() {
-    this.newCard.id = `S${this.sectionAndCards.cards.length}`;
-    this.sectionAndCards.cards.push(this.newCard);
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('experience', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-  //MODALS
+  //UPDATE request
+  // this update the content of an element that needs to be modified with contenteditable in place
+  saveCardEl(id: any, i: any) {
+    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
+  }
+  //UPDATE request
+  updateCard() {
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+  }
+  //DELETE request
+  deleteCard() {
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+  }
 
+  //MODALS
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;
@@ -192,3 +184,22 @@ export class ExperienceComponent implements OnInit {
     this.swiper.destroy();
   }
 }
+const emptyCard = {
+  id: "id",
+  img: {
+    src: "", alt: {
+      en: "", es: ""
+    }
+  },
+  startDate: {
+    year: 2022,
+    month: 6,
+    day: 1
+  },
+  endDate: {
+    year: 2023,
+    month: 5,
+    day: 31
+  },
+  ph: { en: "", es: "" }
+};

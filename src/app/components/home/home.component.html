@@ -6,13 +6,13 @@
     <div class="d-lg-none">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="sectionAndCards?.imgMobile"
+        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="sectionAndCards?.section.imgMobile"
             alt="Manuel perfil" id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.imgDesktop"
+        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.section.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
 
@@ -28,7 +28,8 @@
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
                     data-id="h1HomeEn" [hidden]="!logged" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged"
-                    id="h1HomeEn" [innerHTML]="language === 'en'? sectionAndCards?.en : sectionAndCards?.es" #h1>
+                    id="h1HomeEn"
+                    [innerHTML]="language === 'en'? sectionAndCards?.section.en : sectionAndCards?.section.es" #h1>
                 </h1>
             </div>
 
@@ -38,12 +39,13 @@
                     <!-- Cards -->
                     <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide">
                         <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="card.id"
-                            [hidden]="!logged" (click)="saveCardEl($event)">save</button>
+                            [hidden]="!logged" (click)="saveCardEl($event, i)">save</button>
                         <button [hidden]="!logged" type="button" id="delete"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <p [innerHTML]="language === 'en'? card.en : card.es" class="p-3 m-0 text-center edit-content"
-                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
+                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
+                            [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
                     </div>
                 </div>
@@ -71,12 +73,12 @@
                 <div class="form-group">
                     <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
                     <input type="imgMobile" class="form-control" id="imgMobile" name="imgMobile"
-                        [(ngModel)]="sectionAndCards.imgMobile">
+                        [(ngModel)]="sectionAndCards.section.imgMobile">
                 </div>
                 <div class="form-group mt-2">
                     <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
                     <input type="imgDesktop" class="form-control" id="imgDesktop" name="imgDesktop"
-                        [(ngModel)]="sectionAndCards.imgDesktop">
+                        [(ngModel)]="sectionAndCards.section.imgDesktop">
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary mt-2"
                     (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
@@ -86,16 +88,20 @@
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
     <div class="modal-header">
-        <h4 class="modal-title">{{language==='en'?'Create Card':'Crear Nueva Tarjeta'}}</h4>
+        <h4 class="modal-title">{{language==='en'?'Create new Card':'Crear Nueva Tarjeta'}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form (ngSubmit)="createCard()">
-            <div class="form-group">
-                <label for="description">{{language === 'en'? 'Description: ' : 'Descripción: '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.en">
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
+            </div>
+            <div class="form-group mt-2">
+                <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.es">
             </div>
             <button type="submit" class="btn mt-2 btn-primary"
                 (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>

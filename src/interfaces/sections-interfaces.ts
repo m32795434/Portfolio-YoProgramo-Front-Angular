@@ -1,46 +1,61 @@
-interface Sections {
+interface AllSectionsAndCards {
     home: HomeAndCards;
     experience: ExperienceAndCards;
     qPD: QPDAndCards;
     projects: ProjectsAndCards;
     skills: SkillsAndCards;
 }
-
-interface HomeAndCards {
-    id: "home";
+interface SectionInfo {
+    id: StringSection;
     imgMobile: string;
     imgDesktop: string;
     en: string;
     es: string;
+}
+interface HomeAndCards {
+    section: {
+        id: "home";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    };
     cards: HomeCard[];
 }
 interface HomeCard {
     id: string;
-    en: string;
-    es: string;
+    ph: { en: string, es: string };
 }
 interface QPDAndCards {
-    id: "qPD";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "qPD";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    };
     cards: QPDCard[];
 }
 interface QPDCard {
     id: string;
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
-    img: { src: string, alt: string }
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
+    img: {
+        src: string, alt: {
+            en: string, es: string
+        }
+    };
     h2: { en: string, es: string };
     ph: { en: string, es: string };
 }
 interface ExperienceAndCards {
-    id: "experience";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "experience";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    };
     cards: ExperienceCard[];
 }
 interface ExperienceCard {
@@ -49,22 +64,41 @@ interface ExperienceCard {
         src: string, alt: {
             en: string, es: string
         }
-    }
-    startDate: { year: number, month: number, day: number },
-    endDate: { year: number, month: number, day: number },
+    };
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
     ph: { en: string, es: string };
 }
 interface ProjectsAndCards {
-    id: "projects";
-    en: string;
-    es: string;
+    section: {
+        id: "projects";
+        imgMobile: null;
+        imgDesktop: null;
+        en: string;
+        es: string;
+    };
+    cards: ProjectsCard[]
+}
+interface ProjectsCard {
+    id: string;
+    img: {
+        src: string, alt: {
+            en: string, es: string
+        }
+    };
+    startDate: { year: number, month: number, day: number };
+    endDate: { year: number, month: number, day: number };
+    h2: { en: string, es: string };
+    ph: { en: string, es: string };
 }
 interface SkillsAndCards {
-    id: "skills";
-    imgMobile: string;
-    imgDesktop: string;
-    en: string;
-    es: string;
+    section: {
+        id: "skills";
+        imgMobile: string;
+        imgDesktop: string;
+        en: string;
+        es: string;
+    };
     cards: SkillsCard[];
 }
 interface SkillsCard {
@@ -72,9 +106,11 @@ interface SkillsCard {
     img: {
         src: string, alt: {
             en: string, es: string
-        }
+        };
     }; value: number; bkColor: string; outStrokeColor: string;
 }
-type Section = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
+type ABM = "create" | "delete" | "udpdate";
+type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
+type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, Sections, Section, StringSection, SkillsCard, SkillsAndCards }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo }
