@@ -189,7 +189,8 @@ const mapSpringSkillsAndCards = (data: SpringSkillsAndCards)=>{
     const skillsCard = {
       id: card.id,
       img: {
-          src: card.imgSrc, alt: {
+          src: card.imgSrc,
+          alt: {
               en: card.imgAltEn, es: card.imgAltEs
           }
       },

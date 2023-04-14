@@ -147,10 +147,9 @@ export class ExperienceComponent implements OnInit {
     //change this code!
     this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
+  //UPDATE request
   updateCard() {
-    //change!
-    console.log('updating with:', this.sectionAndCards);
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
   deleteCard() {
     // change!
@@ -166,7 +165,8 @@ export class ExperienceComponent implements OnInit {
     this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
   }
   //MODALS
-
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;

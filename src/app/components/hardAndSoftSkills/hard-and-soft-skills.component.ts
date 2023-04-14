@@ -125,10 +125,9 @@ export class HardAndSoftSkillsComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('skills', this.sectionAndCards.section);
   }
+  //UPDATE request
   updateCard() {
-    console.log('updating with:', this.sectionAndCards);
-    // change!
-    this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
+    this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
   deleteCard() {
     // change!
@@ -143,7 +142,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
     this.dataService.updateSectionAndCards('skills', this.sectionAndCards);
   }
   //MODALS
-
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;

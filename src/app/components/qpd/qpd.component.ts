@@ -143,9 +143,9 @@ export class QPDComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
+  //UPDATE request
   updateCard() {
-    console.log('updating with:', this.sectionAndCards);
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
   deleteCard() {
     console.log('deleting index:', this.cardsIndex);
@@ -159,7 +159,8 @@ export class QPDComponent implements OnInit {
     this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
   }
   //MODALS
-
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
     console.log(content)
     this.cardsIndex = index;

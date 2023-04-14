@@ -32,7 +32,7 @@
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
-                        <button class="save-button   save-left rounded-circle material-symbols-outlined"
+                        <button class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal,'change card header' ,i)"
                             aria-label="Change card header and image">settings</button>
                         <button [hidden]="!logged" type="button"
