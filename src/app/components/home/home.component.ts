@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
   //contains all
+  //HomeAndCards | any
   sectionAndCards: any = {
     section: {
       id: "home", imgMobile: "", imgDesktop: "", en: "", es: "",
@@ -113,16 +114,18 @@ export class HomeComponent implements OnInit {
     this.dataService.aBMCard('home', this.sectionAndCards, "create", cardsLength);
   }
 
-  saveCardEl(e: any) {
+  //UPDATE request
+  saveCardEl(e: any, i: number) {
     const targetId = e.target.dataset.id;
     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
-      return (el.id === targetId)
-    })
+
+    // const index = this.sectionAndCards.cards.findIndex((el: HomeCard) => {
+    //   return (el.id === targetId)
+    // })
     //here I have to send the put request, about the identified card!
     //change this code!
-    this.sectionAndCards.cards[index][this.language] = innerHTML;
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
   }
 
   deleteCard() {
@@ -137,7 +140,8 @@ export class HomeComponent implements OnInit {
 
 
   //MODAL
-
+  // ref: reference the modal in the HTML
+  // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, i?: number) {
     this.cardsIndex = i;
     this.modalService.open(content, {
