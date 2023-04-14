@@ -125,22 +125,22 @@ export class QPDComponent implements OnInit {
   saveImgSrc() {
     this.dataService.updateSectionInfo('home', this.sectionAndCards.section);
   }
+  // POST request
+  createCard() {
+    const length = this.sectionAndCards.cards.length;
+    this.newCard.id = `S${length + 1}`;
+    this.dataService.aBMCard('qPD', this.newCard, "create", length);
+    this.newCard = JSON.parse(JSON.stringify(emptyCard));
+  }
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
+  //DELETE request
   deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('qPD', this.sectionAndCards);
+    this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
   }
-  createCard() {
-    const length = this.sectionAndCards.cards.length;
-    this.newCard.id = `S${length + 1}`;
-    this.dataService.aBMCard('experience', this.newCard, "create", length);
-    this.newCard = JSON.parse(JSON.stringify(emptyCard));
-  }
+
   //MODALS
   // ref: reference the modal in the HTML
   // index: to know which card I've clicked

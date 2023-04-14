@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
-  cardsIndex?: number;
+  cardsIndex = 0;
   // this allows to reuse the empty cards' value.
   newCard: HomeCard = JSON.parse(JSON.stringify(emptyCard));
 
@@ -121,21 +121,16 @@ export class HomeComponent implements OnInit {
     this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
   }
 
+  //DELETE request
   deleteCard() {
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-
-    //here I have to send the delete request, about the identified card!
-    //change this code!
-    this.dataService.updateSectionAndCards('home', this.sectionAndCards);
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
   }
 
 
   //MODAL
   // ref: reference the modal in the HTML
   // index: to know which card I've clicked
-  open(content: TemplateRef<any>, ref: string, i?: number) {
+  open(content: TemplateRef<any>, ref: string, i?: any) {
     this.cardsIndex = i;
     this.modalService.open(content, {
       ariaLabelledBy: `${ref}`,

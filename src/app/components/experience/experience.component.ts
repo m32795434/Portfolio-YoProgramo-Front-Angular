@@ -138,12 +138,9 @@ export class ExperienceComponent implements OnInit {
   updateCard() {
     this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
+  //DELETE request
   deleteCard() {
-    // change!
-    console.log('deleting index:', this.cardsIndex);
-    this.sectionAndCards.cards.splice(this.cardsIndex, 1);
-    console.log('this.sectionAndCards.cards', this.sectionAndCards.cards)
-    this.dataService.updateSectionAndCards('experience', this.sectionAndCards);
+    this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
   }
 
   //MODALS
