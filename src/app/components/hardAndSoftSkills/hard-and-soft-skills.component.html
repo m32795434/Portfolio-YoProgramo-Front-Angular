@@ -23,7 +23,7 @@
                     [innerHTML]="language === 'en'? sectionAndCards.section.en : sectionAndCards.section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
-                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                class="save-button rounded-circle material-symbols-outlined" aria-label="Create card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
