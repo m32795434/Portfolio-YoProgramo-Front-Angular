@@ -25,11 +25,8 @@ export class ProjectsComponent implements OnInit {
   };
   newCard: ProjectsCard = {
     id: "",
-    img: {
-      src: "", alt: {
-        en: "", es: ""
-      }
-    },
+    vMp4Src: "",
+    vWebSrc: "",
     startDate: {
       year: 2022,
       month: 6,

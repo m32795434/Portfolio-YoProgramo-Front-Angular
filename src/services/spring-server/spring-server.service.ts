@@ -164,11 +164,8 @@ const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
   const newProjectsCards = cards.map((card)=>{
     const projectsCard = {
       id: card.id,
-      img: {
-          src: card.imgSrc, alt: {
-              en: card.imgAltEn, es: card.imgAltEs
-          }
-      },
+      vMp4Src:card.vMp4Src,
+vWebSrc:card.vWebSrc,
       startDate: { year: card.startDateYear, month: card.startDateMonth, day: card.startDateDay },
       endDate: { year: card.endDateYear, month: card.endDateMonth, day: card.endDateDay },
       h2: { en: card.h2En, es: card.h2Es },
@@ -275,9 +272,8 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
     mapToSpringProjectsCard(card:any):SpringProjectsCard{
       return{
         id:card.id,
-        imgSrc:card.img.src,
-        imgAltEn:card.img.alt.en,
-        imgAltEs:card.img.alt.es,
+        vMp4Src:card.vMp4Src,
+        vWebSrc:card.vWebSrc,
         startDateYear:card.startDate.year,
         startDateMonth:card.startDate.month,
         startDateDay:card.startDate.day,

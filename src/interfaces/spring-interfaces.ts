@@ -81,9 +81,8 @@ interface SpringProjectsAndCards {
 }
 interface SpringProjectsCard {
     id: string;
-    imgSrc: string;
-    imgAltEs: string;
-    imgAltEn: string;
+    vMp4Src: string;
+    vWebSrc: string;
     startDateYear: number;
     startDateMonth: number;
     startDateDay: number;
