@@ -1,6 +1,6 @@
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 mainProjects">
-    <div class="m-0 p-0 titleAndButtons">
-        <div class="p-0 m-0 titleWrapper">
+    <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0 allSizesWrapper">
+        <div class="p-0 m-0 col-lg-3 titleWrapper">
             <button class="save-button rounded-circle save-top save-right material-symbols-outlined" data-id="h1Proj"
                 [hidden]="!logged" (click)="saveH1($event)">save</button>
             <!-- <input type="file" accept="image/*" id=" " hidden>
@@ -23,6 +23,249 @@
                 </a>
             </div>
         </div> -->
+        <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
+            <div class="cardWrapper d-grid m-0 p-2 gap-3">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="myCard card">
+                    <div class="d-flex justify-content-center my-2">
+                        <button class="save-button save-left rounded-circle material-symbols-outlined"
+                            [hidden]="!logged" (click)="open(cardHeaderModal,'change card header' ,i)"
+                            aria-label="Change card header and image">settings</button>
+                        <button [hidden]="!logged" type="button"
+                            class="save-button save-right rounded-circle material-symbols-outlined"
+                            aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                        <video autoplay loop muted (click)="toggleVideo()" (focus)="toggleVideo()"
+                            (blur)="toggleVideo()">
+                            <source [src]="card.vWebSrc" type="video/webm" />
+                            <source [src]="card.vMp4Src" type="video/mp4" />
+                            {{language === 'en'? 'Your browser doesn't support webm or mp4 videos' : 'Tu explorador no
+                            soporta videos webm o mp4'}}
+                        </video>
+                    </div>
+                    <div class="cardTitleDateWrapper">
+                        <h2 class="text-start edit-content" id="h2S2Qa"
+                            [innerHTML]="card.h2[language==='en'?'en':'es']">
+                        </h2>
+                        <h4 class="text-start edit-content" id="#" [innerHTML]=" card.img.alt[language]">
+                        </h4>
+                        <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
+                        </p>
+                    </div>
+                    <div class="cardMainPh">
+                        <button class="save-button rounded-circle save-left material-symbols-outlined"
+                            [hidden]="!logged" (click)="saveCardEl(card.id, i)"
+                            aria-label="Change p content">save</button>
+                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center edit-content"
+                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper w-100 p-2 gap-3">
+                <!-- Cards -->
+                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide w-100 card">
+                    <div class="d-flex justify-content-center my-2">
+                        <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
+                            [hidden]="!logged" (click)="open(cardHeaderModal, 'change card header ',i)"
+                            aria-label="Change card header and image">settings</button>
+                        <button [hidden]="!logged" type="button"
+                            class="save-button save-right rounded-circle material-symbols-outlined"
+                            aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
+                        <img [src]="card.img.src" [alt]="card.img.alt[language]" class="rounded-circle">
+                    </div>
+                    <div class="cardTitleDateWrapper">
+                        <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
+                            [hidden]="!logged" (click)="saveH1($event)">save</button> -->
+                        <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
+                        </h2>
+                        <h4 class="text-start edit-content" [innerHTML]=" card.img.alt[language]">
+                        </h4>
+                        <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
+                        </p>
+                    </div>
+                    <div class="cardMainPh">
+                        <button class="save-button rounded-circle save-left material-symbols-outlined"
+                            [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
+                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
+                            [contentEditable]="logged" #p{{i}} [id]="card.id+i">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div>
 </main>
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
+<ng-template #cardHeaderModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Update Card Header' : 'Actualizar Encabezado'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group">
+                    <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
+                    <input type="text" class="form-control" id="companyImg" name="companyImg"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].img.src">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Certificate">{{language === 'en'? 'Qualification Name (en): ' : 'Título / Certificado
+                        (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="Certificate" name="Certificate"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].h2.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Certificate">{{language === 'en'? 'Qualification Name (es): ' : 'Título / Certificado
+                        (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="Certificate" name="Certificate"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].h2.es">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Institution">{{language === 'en'? 'Company / Institution Name (en): ' : 'Nombre de la
+                        Institución (en): '}}</label>
+                    <input type="text" class="form-control" id="Institution" name="Institution"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].img.alt.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="Institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
+                        Institución (es): '}}</label>
+                    <input type="text" class="form-control" id="Institution" name="Institution"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].img.alt.es">
+                </div>
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="sectionAndCards.cards[cardsIndex].startDate" ngbDatepicker
+                                #d1="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="sectionAndCards.cards[cardsIndex].endDate" ngbDatepicker
+                                #d2="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<ng-template #confirmDelete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
+    </div>
+    <div class="modal-footer d-grid align-content-center justify-content-center">
+        <form (ngSubmit)="deleteCard()">
+            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                (click)="modal.dismiss('Cancel')">
+                cancel
+            </button>
+            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                (click)="modal.close('Delete')">delete</button>
+        </form>
+    </div>
+</ng-template>
+<ng-template #createCardModal let-modal class="#">
+    <div class="modal-header">
+        <h4 class="modal-title">{{language==='en'?'New Qualification':'Nuevo Estudio'}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="createCard()">
+            <div class="form-group">
+                <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
+                <input type="text" class="form-control" id="companyImg" name="companyImg" [(ngModel)]="newCard.img.src">
+            </div>
+            <div class="form-group mt-2">
+                <label for="certificateEn">{{language==='en'?'Qualification Name (en)':'Nombre del Título / Certificado
+                    (en)'}}</label>
+                <input type="text" class="form-control" id="certificateEn" name="certificateEn"
+                    [(ngModel)]="newCard.h2.en">
+            </div>
+            <div class="form-group mt-2">
+                <label for="certificateEs">{{language==='en'?'Qualification Name (es)':'Nombre del Título / Certificado
+                    (es)'}}</label>
+                <input type="text" class="form-control" id="certificateEs" name="certificateEs"
+                    [(ngModel)]="newCard.h2.es">
+            </div>
+            <div class="form-group mt-2">
+                <label for="institution">{{language === 'en'? 'Company / Institution Name (en): ' : 'Nombre de la
+                    Institución (en): '}}</label>
+                <input type="text" class="form-control" id="institution" name="institution"
+                    [(ngModel)]="newCard.img.alt.en">
+            </div>
+            <div class="form-group mt-2">
+                <label for="institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
+                    Institución (es): '}}</label>
+                <input type="text" class="form-control" id="institution" name="institution"
+                    [(ngModel)]="newCard.img.alt.es">
+            </div>
+            <div class="d-flex gap-1 mt-2">
+                <div class="form-group">
+                    <label for="dp1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
+                            #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dp2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
+                            #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="descriptionEn">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                <input type="text" class="form-control" id="descriptionEn" name="descriptionEn"
+                    [(ngModel)]="newCard.ph.en">
+            </div>
+            <div class="form-group mt-2">
+                <label for="descriptionEs">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                <input type="text" class="form-control" id="descriptionEs" name="descriptionEs"
+                    [(ngModel)]="newCard.ph.es">
+            </div>
+            <button type="submit" class="btn mt-2 btn-primary mt-2"
+                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+        </form>
+    </div>
+</ng-template>
