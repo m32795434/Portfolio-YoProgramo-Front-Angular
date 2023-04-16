@@ -149,6 +149,16 @@ export class ProjectsComponent implements OnInit {
   ngOnDestroy(): void {
     this.swiper.destroy();
   }
+  toggleVideo(e: Event) {
+    const video: any = e.target;
+    if (video) {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+  }
 }
 const emptyCard = {
   id: "",
@@ -166,4 +176,6 @@ const emptyCard = {
   },
   h2: { en: "", es: "" },
   ph: { en: "", es: "" },
+  urlCode: "",
+  urlLive: "",
 };

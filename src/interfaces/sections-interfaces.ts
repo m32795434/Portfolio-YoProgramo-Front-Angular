@@ -87,6 +87,8 @@ interface ProjectsCard {
     endDate: { year: number, month: number, day: number };
     h2: { en: string, es: string };
     ph: { en: string, es: string };
+    codeUrl: string;
+    deployUrl: string;
 }
 interface SkillsAndCards {
     section: {

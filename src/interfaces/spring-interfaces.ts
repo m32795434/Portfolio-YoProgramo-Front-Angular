@@ -81,8 +81,8 @@ interface SpringProjectsAndCards {
 }
 interface SpringProjectsCard {
     id: string;
-    vMp4Src: string;
-    vWebSrc: string;
+    vmp4Src: string;
+    vwebSrc: string;
     startDateYear: number;
     startDateMonth: number;
     startDateDay: number;
@@ -93,6 +93,8 @@ interface SpringProjectsCard {
     phEn: string;
     h2En: string;
     h2Es: string;
+    codeUrl: string;
+    deployUrl: string;
 }
 interface SpringSkillsAndCards {
     section: {

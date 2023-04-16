@@ -55,7 +55,13 @@ private config = { headers: { 'Content-Type': 'application/json' } };
   }
   getProjectsAndCardsObs(): Observable<ProjectsAndCards> {
     return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
-      switchMap(response => response.json()),
+      switchMap(response => 
+        {
+          console.log('project response:',response)
+          const res = response.json();
+          console.log('response.json():',res);
+          return res
+        }),
       map(mapSpringProjectsAndCards)
     );
   }
@@ -164,12 +170,15 @@ const mapSpringProjectsAndCards = (data: SpringProjectsAndCards)=>{
   const newProjectsCards = cards.map((card)=>{
     const projectsCard = {
       id: card.id,
-      vMp4Src:card.vMp4Src,
-vWebSrc:card.vWebSrc,
+      vMp4Src:card.vmp4Src,
+      vWebSrc:card.vwebSrc,
       startDate: { year: card.startDateYear, month: card.startDateMonth, day: card.startDateDay },
       endDate: { year: card.endDateYear, month: card.endDateMonth, day: card.endDateDay },
       h2: { en: card.h2En, es: card.h2Es },
-      ph: { en: card.phEn, es: card.phEs }};
+      ph: { en: card.phEn, es: card.phEs },
+      codeUrl:card.codeUrl,
+      deployUrl:card.deployUrl
+    };
     return projectsCard;
   })
   return newProjectsCards;
@@ -272,8 +281,8 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
     mapToSpringProjectsCard(card:any):SpringProjectsCard{
       return{
         id:card.id,
-        vMp4Src:card.vMp4Src,
-        vWebSrc:card.vWebSrc,
+        vmp4Src:card.vMp4Src,
+        vwebSrc:card.vWebSrc,
         startDateYear:card.startDate.year,
         startDateMonth:card.startDate.month,
         startDateDay:card.startDate.day,
@@ -283,7 +292,9 @@ const mapSpringQPDAndCards = (data: SpringQPDAndCards)=>{
         phEn:card.ph.en,
         phEs:card.ph.es,
         h2En:card.h2.en,
-        h2Es:card.h2.es
+        h2Es:card.h2.es,
+        codeUrl:card.codeUrl,
+        deployUrl:card.deployUrl
       }
     },
     mapToSpringSkillsCard(card:any):SpringSkillsCard{
