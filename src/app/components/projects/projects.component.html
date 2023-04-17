@@ -223,103 +223,110 @@
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
-    </div>
-    <div class="modal-footer d-grid align-content-center justify-content-center">
-        <form (ngSubmit)="deleteCard()">
-            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
-                (click)="modal.dismiss('Cancel')">
-                cancel
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
-                (click)="modal.close('Delete')">delete</button>
-        </form>
+        </div>
+        <div class="modal-body">
+            <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
+        </div>
+        <div class="modal-footer d-grid align-content-center justify-content-center">
+            <form (ngSubmit)="deleteCard()">
+                <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                    (click)="modal.dismiss('Cancel')">
+                    cancel
+                </button>
+                <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                    (click)="modal.close('Delete')">delete</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">{{language==='en'?'New Project card':'Nueva tarjeta de Proyecto'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="createCard()">
-            <div class="form-group">
-                <label for="webmVideoUrl">{{language === 'en'? 'webm Video Url: ' : 'Url del Video webm: '}}</label>
-                <input type="text" class="form-control" id="webmVideoUrl" name="webmVideoUrl"
-                    [(ngModel)]="newCard.vWebSrc">
-            </div>
-            <div class="form-group">
-                <label for="mp4VideoUrl">{{language === 'en'? 'mp4 Video Url: ' : 'Url del Video mp4: '}}</label>
-                <input type="text" class="form-control" id="mp4VideoUrl" name="mp4VideoUrl"
-                    [(ngModel)]="newCard.vMp4Src">
-            </div>
-            <div class="form-group mt-2">
-                <label for="title">{{language === 'en'? 'Project title (en): ' : 'Título del Proyecto
-                    (en):
-                    '}}</label>
-                <input type="text" class="form-control" id="title" name="title" [(ngModel)]="newCard.h2.en">
-            </div>
-            <div class="form-group mt-2">
-                <label for="titulo">{{language === 'en'? 'Project title (es): ' : 'Título del Proyecto
-                    (es):
-                    '}}</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="newCard.h2.es">
-            </div>
-            <div class="d-flex gap-1 mt-2">
-                <div class="form-group flex-fill">
-                    <label for="companyImg">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="newCard.startDate"
-                            ngbDatepicker #d1="ngbDatepicker" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                            type="button"></button>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language==='en'?'New Project card':'Nueva tarjeta de Proyecto'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="createCard()">
+                <div class="form-group">
+                    <label for="webmVideoUrl">{{language === 'en'? 'webm Video Url: ' : 'Url del Video webm: '}}</label>
+                    <input type="text" class="form-control" id="webmVideoUrl" name="webmVideoUrl"
+                        [(ngModel)]="newCard.vWebSrc">
+                </div>
+                <div class="form-group">
+                    <label for="mp4VideoUrl">{{language === 'en'? 'mp4 Video Url: ' : 'Url del Video mp4: '}}</label>
+                    <input type="text" class="form-control" id="mp4VideoUrl" name="mp4VideoUrl"
+                        [(ngModel)]="newCard.vMp4Src">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="title">{{language === 'en'? 'Project title (en): ' : 'Título del Proyecto
+                        (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="newCard.h2.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="titulo">{{language === 'en'? 'Project title (es): ' : 'Título del Proyecto
+                        (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="newCard.h2.es">
+                </div>
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="newCard.startDate" ngbDatepicker #d1="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <label for="companyImg">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="newCard.endDate"
+                                ngbDatepicker #d2="ngbDatepicker" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                                type="button"></button>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group flex-fill">
-                    <label for="companyImg">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="newCard.endDate"
-                            ngbDatepicker #d2="ngbDatepicker" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                            type="button"></button>
-                    </div>
+                <div class="form-group mt-2">
+                    <label for="descripcion">{{language === 'en'? 'Project description (es): ' : 'Descripción del
+                        Proyecto
+                        (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="newCard.ph.es">
                 </div>
-            </div>
-            <div class="form-group mt-2">
-                <label for="descripcion">{{language === 'en'? 'Project description (es): ' : 'Descripción del
-                    Proyecto
-                    (es):
-                    '}}</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="newCard.ph.es">
-            </div>
-            <div class="form-group mt-2">
-                <label for="description">{{language === 'en'? 'Project description (en): ' : 'Descripción del
-                    Proyecto
-                    (en):
-                    '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
-            </div>
-            <div class="form-group mt-2">
-                <label for="deployUrl">{{language === 'en'? 'Deploy Url: ' : 'Url del Deploy:
-                    '}}</label>
-                <input type="text" class="form-control" id="deployUrl" name="deployUrl" [(ngModel)]="newCard.deployUrl">
-            </div>
-            <div class="form-group mt-2">
-                <label for="codeUrl">{{language === 'en'? 'Code Url: ' : 'Url del Código:
-                    '}}</label>
-                <input type="text" class="form-control" id="codeUrl" name="codeUrl" [(ngModel)]="newCard.codeUrl">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary mt-2"
-                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
-        </form>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Project description (en): ' : 'Descripción del
+                        Proyecto
+                        (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="newCard.ph.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="deployUrl">{{language === 'en'? 'Deploy Url: ' : 'Url del Deploy:
+                        '}}</label>
+                    <input type="text" class="form-control" id="deployUrl" name="deployUrl"
+                        [(ngModel)]="newCard.deployUrl">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="codeUrl">{{language === 'en'? 'Code Url: ' : 'Url del Código:
+                        '}}</label>
+                    <input type="text" class="form-control" id="codeUrl" name="codeUrl" [(ngModel)]="newCard.codeUrl">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+            </form>
+        </div>
     </div>
 </ng-template>
