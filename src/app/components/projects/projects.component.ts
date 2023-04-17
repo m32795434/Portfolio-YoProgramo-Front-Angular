@@ -38,7 +38,7 @@ export class ProjectsComponent implements OnInit {
   errorMessage = '';
   swiper: any;
   cardsIndex = 0;
-
+  sanitizedCards: ProjectsCard[] = [JSON.parse(JSON.stringify(emptyCard))];
 
   constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal, private sanitizer: DomSanitizer) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
@@ -47,9 +47,18 @@ export class ProjectsComponent implements OnInit {
 
     this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
-      this.sectionAndCards.cards.forEach((card: any) => {
-        card.vMp4Src = this.disableSn(card.vMp4Src);
-        card.vWebSrc = this.disableSn(card.vWebSrc);
+      this.sanitizedCards = this.sectionAndCards.cards.map((card: any) => {
+        return {
+          id: card.id,
+          startDate: card.startDate,
+          endDate: card.endDate,
+          h2: card.h2,
+          ph: card.ph,
+          codeUrl: card.codeUrl,
+          deployUrl: card.deployUrl,
+          vMp4Src: this.disableSn(card.vMp4Src),
+          vWebSrc: this.disableSn(card.vWebSrc),
+        }
       });
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })

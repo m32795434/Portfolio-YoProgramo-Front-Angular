@@ -1,6 +1,6 @@
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 mainProjects">
     <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0 allSizesWrapper">
-        <div class="p-0 m-0 col-12 col-lg-3 flex-fill titleWrapper">
+        <div class="p-0 m-0 titleWrapper">
             <button class="save-button rounded-circle save-top save-right material-symbols-outlined" data-id="h1Proj"
                 [hidden]="!logged" (click)="saveH1($event)">save</button>
             <!-- <input type="file" accept="image/*" id=" " hidden>
@@ -13,9 +13,9 @@
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Create card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
-        <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0 projectsWrapper">
+        <div class="d-none d-lg-block m-0 p-0 projectsWrapper">
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
-                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="myCard card">
+                <div *ngFor="let card of sanitizedCards, let i=index" class="myCard d-grid card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal,'change card header' ,i)"
@@ -38,21 +38,25 @@
                         <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
-                        <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
+                        <p class="m-0">
+                            {{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
                     <div class="cardMainPh">
-                        <button class="save-button rounded-circle save-left material-symbols-outlined"
+                        <!-- <button class="save-button rounded-circle save-left material-symbols-outlined"
                             [hidden]="!logged" (click)="saveCardEl(card.id, i)"
-                            aria-label="Change p content">save</button>
-                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center edit-content"
-                            [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
+                            aria-label="Change p content">save</button> -->
+                        <!-- [class]="{contentEditableTrue:logged}" class="edit-content" [contentEditable]="logged"-->
+                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id">
                         </p>
-                        <hr>
-                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
-                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
+                        <hr class="m-0 pad-0">
+                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2 mx-2 mt-1">
+                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' :
+                                'Go
                                 Live!'}}</a>
-                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' :
+                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el
+                                código!' :
                                 'Ir
                                 al
                                 sitio!'}}</a>
@@ -61,11 +65,11 @@
                 </div>
             </div>
         </div>
-        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+        <div class="swiper d-lg-none w-100 m-0 p-0">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
-                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide w-100 card">
+                <div *ngFor="let card of sanitizedCards, let i=index" class="swiper-slide w-100 card">
                     <div class="d-flex justify-content-center my-2">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal, 'change card header ',i)"

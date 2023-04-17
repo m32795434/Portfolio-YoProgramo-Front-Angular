@@ -61,16 +61,18 @@
 
     & .myCard {
         width: 100%;
-        background-color: #f7f7f7;
-        height: 30em;
+        // #f7f7f7;
+        background-color: #e62626;
+        height: 30rem;
         position: relative;
         border: 2px solid grey;
         box-shadow: 1px 1px 5px 2px #ead00a;
 
 
-        & video {
-            width: 100%;
-            height: auto;
+        & iframe {
+            background-color: #ffffff;
+            width: 24rem;
+            height: 12rem;
             box-shadow: 5px 5px grey;
         }
 
@@ -97,9 +99,10 @@
                 opacity: 0.8;
             }
 
-            & video {
-                width: 100px;
-                height: 100px;
+            & iframe {
+                background-color: #ffffff;
+                width: 5vw;
+                height: auto;
                 box-shadow: 5px 5px grey;
             }
 
@@ -124,8 +127,10 @@
 
 .cardTitleDateWrapper {
     color: #5A5A5A;
-    background-color: white;
-    padding: 17px 0 9px 13px;
+    height: 4rem;
+    // white
+    background-color: rgb(14, 205, 42);
+    padding: 2px 0 0px 8px;
 
     &>h2 {
         font-size: 19px;
@@ -140,10 +145,15 @@
 }
 
 .cardMainPh {
+    background-color: #2600ff;
+
     &>p {
         font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
         color: #5A5A5A;
         line-height: 1.5;
+        height: 9rem;
+        width: 98%;
+        overflow: auto;
 
         @media (max-width: 410px) {
             font-size: 14px;

@@ -111,6 +111,7 @@ return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
       if(abm === "create"){
         return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
       }else {
+        console.log('card to update:', springCard)
         return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, springCard, this.config);
       }
     }else 
