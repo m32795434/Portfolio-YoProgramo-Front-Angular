@@ -1,6 +1,6 @@
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 mainProjects">
     <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0 allSizesWrapper">
-        <div class="p-0 m-0 col-lg-3 titleWrapper">
+        <div class="p-0 m-0 col-12 col-lg-3 flex-fill titleWrapper">
             <button class="save-button rounded-circle save-top save-right material-symbols-outlined" data-id="h1Proj"
                 [hidden]="!logged" (click)="saveH1($event)">save</button>
             <!-- <input type="file" accept="image/*" id=" " hidden>
@@ -13,17 +13,7 @@
                 class="save-button rounded-circle material-symbols-outlined" aria-label="Create card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
-
-        <!-- <div class="projectsWrapper d-grid align-content-center justify-content-center m-0 p-2">
-            <div class="d-flex justify-content-center align-content-center flex-wrap gap-2 p-2">
-                <a class="btn btn-warning"
-                    href="https://m32795434.github.io/Portfolio-YoProgramo-MaquetadoFront/projects.html">
-                    {{language==='en'?'Go to my Vanilla Js Portfolio 💼 && Other Projects !':'Ir a mi Portfolio 💼 en
-                    Vanilla Js && Otros Proyectos!'}}
-                </a>
-            </div>
-        </div> -->
-        <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
+        <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0 projectsWrapper">
             <div class="cardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
