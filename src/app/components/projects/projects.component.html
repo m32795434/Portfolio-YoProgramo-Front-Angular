@@ -33,13 +33,16 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
-                        <video autoplay loop muted (click)="toggleVideo($event)" (focus)="toggleVideo($event)"
-                            (blur)="toggleVideo($event)">
+                        <!-- (click)="toggleVideo($event)" (focus)="toggleVideo($event)"(blur)="toggleVideo($event)" -->
+                        <!-- autoplay loop muted  -->
+                        <iframe [src]="card.vMp4Src" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
                             <source [src]="card.vWebSrc" type="video/webm" />
                             <source [src]="card.vMp4Src" type="video/mp4" />
                             {{language === 'en'? 'Your browser doesn't support webm or mp4 videos' : 'Tu explorador no
                             soporta videos webm o mp4'}}
-                        </video>
+                        </iframe>
                     </div>
                     <div class="cardTitleDateWrapper">
                         <h2 class="text-start edit-content" id="h2S2Qa"
@@ -55,14 +58,15 @@
                         <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center edit-content"
                             [class]="{contentEditableTrue:logged}" [contentEditable]="logged" #p{{i}} [id]="card.id">
                         </p>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
-                        <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
-                            Live!'}}</a>
-                        <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' : 'Ir
-                            al
-                            sitio!'}}</a>
+                        <hr>
+                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
+                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
+                                Live!'}}</a>
+                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' :
+                                'Ir
+                                al
+                                sitio!'}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,13 +83,16 @@
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <video autoplay loop muted (click)="toggleVideo($event)" (focus)="toggleVideo($event)"
-                            (blur)="toggleVideo($event)">
+                        <!-- (click)="toggleVideo($event)" (focus)="toggleVideo($event)"(blur)="toggleVideo($event)" -->
+                        <!-- autoplay loop muted  -->
+                        <iframe [src]="card.vMp4Src" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
                             <source [src]="card.vWebSrc" type="video/webm" />
                             <source [src]="card.vMp4Src" type="video/mp4" />
                             {{language === 'en'? 'Your browser doesn't support webm or mp4 videos' : 'Tu explorador no
                             soporta videos webm o mp4'}}
-                        </video>
+                        </iframe>
                     </div>
                     <div class="cardTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
@@ -102,14 +109,15 @@
                             class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
                             [contentEditable]="logged" #p{{i}} [id]="card.id+i">
                         </p>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
-                        <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
-                            Live!'}}</a>
-                        <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' : 'Ir
-                            al
-                            sitio!'}}</a>
+                        <hr>
+                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
+                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
+                                Live!'}}</a>
+                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' :
+                                'Ir
+                                al
+                                sitio!'}}</a>
+                        </div>
                     </div>
                 </div>
             </div>

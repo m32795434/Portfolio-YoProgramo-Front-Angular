@@ -6,6 +6,7 @@ import { LanguageService } from 'src/services/language/language.service';
 import { ProjectsAndCards, ProjectsCard } from 'src/interfaces/sections-interfaces';
 import { wait } from 'src/app/libraries/utils';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare global {
   interface Window {
@@ -39,13 +40,17 @@ export class ProjectsComponent implements OnInit {
   cardsIndex = 0;
 
 
-  constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal) {
+  constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal, private sanitizer: DomSanitizer) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
       this.logged = val;
     });
 
     this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      this.sectionAndCards.cards.forEach((card: any) => {
+        card.vMp4Src = this.disableSn(card.vMp4Src);
+        card.vWebSrc = this.disableSn(card.vWebSrc);
+      });
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -146,20 +151,24 @@ export class ProjectsComponent implements OnInit {
   // getHtmlContent(content: string) {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
+  disableSn(str: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(str)
+  }
   ngOnDestroy(): void {
     this.swiper.destroy();
   }
-  toggleVideo(e: Event) {
-    const video: any = e.target;
-    if (video) {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    }
-  }
+  // toggleVideo(e: Event) {
+  //   const video: any = e.target;
+  //   if (video) {
+  //     if (video.paused) {
+  //       video.play();
+  //     } else {
+  //       video.pause();
+  //     }
+  //   }
+  // }
 }
+
 const emptyCard = {
   id: "",
   vMp4Src: "",
@@ -176,6 +185,6 @@ const emptyCard = {
   },
   h2: { en: "", es: "" },
   ph: { en: "", es: "" },
-  urlCode: "",
-  urlLive: "",
+  codeUrl: "",
+  deployUrl: "",
 };
