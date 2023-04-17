@@ -147,6 +147,14 @@ export class HomeComponent implements OnInit {
         console.log(`Dismissed ${this.getDismissReason(reason)}`);
       },
     );
+    Array.from(document.querySelectorAll('.modal-body input')).forEach((el) => {
+      el.addEventListener('mousedown', (e: Event) => {
+        e.stopPropagation();
+      });
+      el.addEventListener('touchstart', (e: Event) => {
+        e.stopPropagation();
+      });
+    })
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
