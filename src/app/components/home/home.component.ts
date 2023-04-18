@@ -109,16 +109,10 @@ export class HomeComponent implements OnInit {
     this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-
   //UPDATE request
-  // this update the content of an element that needs to be modified with contenteditable in place
-  saveCardEl(e: any, i: number) {
-    const targetId = e.target.dataset.id;
-    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
+  updateCard() {
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
-
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
@@ -181,3 +175,11 @@ const emptyCard = {
   id: "id",
   ph: { en: "", es: "" }
 };
+// //UPDATE request
+//   // this update the content of an element that needs to be modified with contenteditable in place // not in use
+//   saveCardEl(e: any, i: number) {
+//     const targetId = e.target.dataset.id;
+//     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+//     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+//     this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
+//   }

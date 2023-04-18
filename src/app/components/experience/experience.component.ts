@@ -125,13 +125,7 @@ export class ExperienceComponent implements OnInit {
     this.dataService.aBMCard('experience', this.newCard, "create", length);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-  //UPDATE request
-  // this update the content of an element that needs to be modified with contenteditable in place
-  saveCardEl(id: any, i: any) {
-    const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
-  }
+
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('experience', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
@@ -209,3 +203,10 @@ const emptyCard = {
   },
   ph: { en: "", es: "" }
 };
+// //UPDATE request
+//   // this update the content of an element that needs to be modified with contenteditable in place // not in use
+//   saveCardEl(id: any, i: any) {
+//     const innerHTML = document.querySelector(`#${id}`)?.innerHTML;
+//     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+//     this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
+//   }
