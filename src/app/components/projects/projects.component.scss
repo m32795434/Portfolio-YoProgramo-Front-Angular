@@ -9,7 +9,11 @@
 
 .mainProjects {
     position: relative;
-    height: 40rem;
+    height: 47rem;
+
+    @include media-breakpoint-up(sm) {
+        height: 40rem;
+    }
 
     & .allSizesWrapper {
         height: 100%;
@@ -104,42 +108,72 @@
                 height: auto;
                 width: 100%;
                 overflow: auto;
-
-                @media (max-width: 410px) {
-                    font-size: 14px;
-                }
             }
         }
 
         & .linksWrapper {
             height: 5%;
         }
-
-        & button {
-            opacity: 0.8;
-        }
     }
 }
 
 .swiper {
+    background-color: #fed258;
 
     & .swiper-wrapper {
-        height: 530px;
+        height: 600px;
+        width: 100%;
 
         & .swiper-slide {
-            background-color: #f7f7f7;
+
+            height: 36rem;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
 
-            & button {
-                opacity: 0.8;
+
+            & .iframeWrapper {
+                height: 40%;
+                background-color: #5A5A5A;
+
+                iframe {
+                    width: 390px;
+                    height: 95%;
+                    box-shadow: 5px 5px 2px 2px grey;
+                }
             }
 
-            & iframe {
-                background-color: #ffffff;
-                width: 5vw;
-                height: auto;
-                box-shadow: 5px 5px grey;
+            & .cardTitleDateWrapper {
+                height: 15%;
+                background-color: white;
+                padding: 2px 0 0px 8px;
+
+                &>h2 {
+                    color: #000000;
+                    font-size: 19px;
+                    font-weight: 500;
+                }
+
+                &>p {
+                    font-size: 17px;
+                    font-weight: 200;
+                    color: #5A5A5A;
+                }
+            }
+
+            & .cardDesc {
+                background-color: #f5f3f3;
+                height: 40%;
+                overflow: auto;
+
+                & p {
+                    font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                    color: #000000;
+                    line-height: 1.5;
+                }
+            }
+
+            & .linksWrapper {
+                height: 5%;
             }
         }
     }

@@ -8,9 +8,8 @@
                 hidden>edit</button> -->
             <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Proj"
                 [innerHTML]="language === 'en'? sectionAndCards?.section?.en : sectionAndCards?.section?.es"></h1>
-            <!-- <button class="edit-button rounded-circle material-symbols-outlined">edit</button> -->
             <button [hidden]="!logged" id="createCard" type="button"
-                class="save-button rounded-circle material-symbols-outlined" aria-label="Create card"
+                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Create card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block m-0 p-0 projectsWrapper">
@@ -35,8 +34,7 @@
                         </iframe>
                     </div>
                     <div class="cardTitleDateWrapper">
-                        <h2 class="text-start edit-content" id="h2S2Qa"
-                            [innerHTML]="card.h2[language==='en'?'en':'es']">
+                        <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
                         <p class="m-0">
                             {{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
@@ -49,12 +47,11 @@
                             </p>
                         </ng-scrollbar>
                     </div>
-                    <!-- <hr class="m-0 pad-0"> -->
                     <div class="d-flex flex-wrap justify-content-end align-content-center gap-2 mx-2 mt-1 linksWrapper">
-                        <a class="" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' :
+                        <a [href]="card.codeUrl">{{language === 'en'? 'Go to code!' :
                             'Go
                             Live!'}}</a>
-                        <a class="" [href]="card.deployUrl">{{language === 'en'? 'Ver el
+                        <a [href]="card.deployUrl">{{language === 'en'? 'Ver el
                             código!' :
                             'Ir
                             al
@@ -68,15 +65,13 @@
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
                 <div *ngFor="let card of sanitizedCards, let i=index" class="swiper-slide w-100 card">
-                    <div class="d-flex justify-content-center my-2">
+                    <div class="d-flex justify-content-center my-2 iframeWrapper">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal, 'change card header ',i)"
                             aria-label="Change card header and image">settings</button>
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <!-- (click)="toggleVideo($event)" (focus)="toggleVideo($event)"(blur)="toggleVideo($event)" -->
-                        <!-- autoplay loop muted  -->
                         <iframe [src]="card.vMp4Src" title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
@@ -87,29 +82,26 @@
                         </iframe>
                     </div>
                     <div class="cardTitleDateWrapper">
-                        <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
-                            [hidden]="!logged" (click)="saveH1($event)">save</button> -->
                         <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
-                    <div class="cardMainPh">
-                        <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="card.id+i">
+                    <div class="cardDesc">
+                        <!-- <button class="save-button rounded-circle save-left material-symbols-outlined"
+                            [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button> -->
+                        <!-- edit-content [contentEditable]="logged"  [class]="{contentEditableTrue:logged}" -->
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id+i">
                         </p>
-                        <hr>
-                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2">
-                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
-                                Live!'}}</a>
-                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' :
-                                'Ir
-                                al
-                                sitio!'}}</a>
-                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-end align-content-center gap-2 mx-2 mt-1 linksWrapper">
+                        <a [href]="card.codeUrl">{{language === 'en'? 'Go to code!' : 'Go
+                            Live!'}}</a>
+                        <a [href]="card.deployUrl">{{language === 'en'? 'Ver el código!' :
+                            'Ir
+                            al
+                            sitio!'}}</a>
                     </div>
                 </div>
             </div>
