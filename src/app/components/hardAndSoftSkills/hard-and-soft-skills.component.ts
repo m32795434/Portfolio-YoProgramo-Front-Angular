@@ -70,10 +70,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.localGetSectionAndCards('skills');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('skills');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('skills');
     }
     //checks if the user is logged when init

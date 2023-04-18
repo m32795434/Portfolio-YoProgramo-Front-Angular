@@ -196,12 +196,31 @@ export class DataService {
   //CHECK THE CONTENT LOCALLY. IT RUNS WHEN YOU ENTER A SECTION. IF IT'S NOT A "REFRESH", 
   // THE CONTENT COULD BE HERE, AND YOU CAN SAVE YOURSELF AN HTTP REQUEST
 
-  localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
+  localGetSectionAndCards(arg: StringSection): boolean {
     if (this.data[arg].section.en != "") {
       console.log(`geting ${arg} from DataService:`, this.data[arg]);
-      return this.data[arg];
+      switch (arg) {
+        case "home":
+          this.homeAndCardsSubject.next(this.data.home);
+          break;
+        case "experience":
+          this.experienceAndCardsSubject.next(this.data.experience);
+          break;
+        case "projects":
+          this.projectsAndCardsSubject.next(this.data.projects);
+          break;
+        case "qPD":
+          this.qPDAndCardsSubject.next(this.data.qPD);
+          break;
+        case "skills":
+          this.skillsAndCardsSubject.next(this.data.skills);
+          break;
+        default:
+          break;
+      }
+      return true;
     }
-    return undefined;
+    return false
   }
 
   //-------------------------------TO SERVER - HTTP REQUESTS--------------------------------

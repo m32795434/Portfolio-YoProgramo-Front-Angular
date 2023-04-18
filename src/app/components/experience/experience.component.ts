@@ -80,10 +80,8 @@ export class ExperienceComponent implements OnInit {
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
     //checks if the main dataService has data from a previous load.
-    const content = this.dataService.localGetSectionAndCards('experience');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('experience');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('experience');
     }
     //checks if the user is logged when init

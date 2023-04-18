@@ -62,10 +62,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const content = this.dataService.localGetSectionAndCards('home');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('home');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('home');
     }
     //checks if the user is logged when init

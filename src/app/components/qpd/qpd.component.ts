@@ -79,10 +79,8 @@ export class QPDComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.localGetSectionAndCards('qPD');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('qPD');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init

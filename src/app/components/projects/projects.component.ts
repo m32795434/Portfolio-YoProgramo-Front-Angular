@@ -67,10 +67,8 @@ export class ProjectsComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    const content = this.dataService.localGetSectionAndCards('projects');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('projects');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
