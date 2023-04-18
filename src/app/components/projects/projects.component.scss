@@ -9,17 +9,10 @@
 
 .mainProjects {
     position: relative;
-    height: 500px;
+    height: 40rem;
 
     & .allSizesWrapper {
         height: 100%;
-        // @include media-breakpoint-up(lg) {
-        //     height: 100%;
-        // }
-
-        // @include media-breakpoint-up(lg) {
-        //     display: flex;
-        // }
 
         & .titleWrapper {
             position: relative;
@@ -53,27 +46,72 @@
     padding: 21px 13px 13px 7px;
 }
 
-.cardWrapper {
+.cardsWrapper {
+    background-color: white;
     width: 100%;
-    height: 44vw;
+    height: 40rem;
     overflow: auto;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
     & .myCard {
         width: 100%;
-        // #f7f7f7;
-        background-color: #e62626;
+        background-color: rgb(194, 105, 197);
         height: 30rem;
         position: relative;
         border: 2px solid grey;
-        box-shadow: 1px 1px 5px 2px #ead00a;
+        box-shadow: 1px 1px 5px 2px #353534d8;
 
+        & .iframeWrapper {
+            height: 40%;
+            background-color: #0b2c4e;
 
-        & iframe {
-            background-color: #ffffff;
-            width: 24rem;
-            height: 12rem;
-            box-shadow: 5px 5px grey;
+            iframe {
+                width: 390px;
+                height: auto;
+                box-shadow: 5px 5px 2px 2px grey;
+            }
+        }
+
+        & .cardTitleDateWrapper {
+            color: #5A5A5A;
+            height: 15%;
+            background-color: white;
+            padding: 2px 0 0px 8px;
+
+            &>h2 {
+                font-size: 19px;
+                font-weight: 500;
+            }
+
+            &>h4,
+            &>p {
+                font-size: 17px;
+                font-weight: 200;
+            }
+        }
+
+        & .cardDesc {
+            // background-color: rgb(194, 105, 197);
+            height: 35%;
+            width: 100%;
+
+            & p {
+                font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
+                color: #5A5A5A;
+                line-height: 1.5;
+                height: auto;
+                width: 100%;
+                overflow: auto;
+
+                @media (max-width: 410px) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        & .linksWrapper {
+            // background-color: rgb(194, 105, 197);
+            height: 10%;
         }
 
         & button {
@@ -83,14 +121,11 @@
 }
 
 .swiper {
-    // width: 100%;
 
     & .swiper-wrapper {
         height: 530px;
 
-
         & .swiper-slide {
-            // width: 100%;
             background-color: #f7f7f7;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
@@ -105,8 +140,6 @@
                 height: auto;
                 box-shadow: 5px 5px grey;
             }
-
-
         }
     }
 
@@ -121,42 +154,6 @@
 
         &:hover {
             border: 2px solid rgb(0, 0, 0)
-        }
-    }
-}
-
-.cardTitleDateWrapper {
-    color: #5A5A5A;
-    height: 4rem;
-    // white
-    background-color: rgb(14, 205, 42);
-    padding: 2px 0 0px 8px;
-
-    &>h2 {
-        font-size: 19px;
-        font-weight: 500;
-    }
-
-    &>h4,
-    &>p {
-        font-size: 17px;
-        font-weight: 200;
-    }
-}
-
-.cardMainPh {
-    background-color: #2600ff;
-
-    &>p {
-        font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-        color: #5A5A5A;
-        line-height: 1.5;
-        height: 9rem;
-        width: 98%;
-        overflow: auto;
-
-        @media (max-width: 410px) {
-            font-size: 14px;
         }
     }
 }

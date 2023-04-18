@@ -14,9 +14,9 @@
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block m-0 p-0 projectsWrapper">
-            <div class="cardWrapper d-grid m-0 p-2 gap-3">
-                <div *ngFor="let card of sanitizedCards, let i=index" class="myCard d-grid card">
-                    <div class="d-flex justify-content-center my-2">
+            <div class="cardsWrapper d-grid m-0 p-2 gap-3">
+                <div *ngFor="let card of sanitizedCards, let i=index" class="myCard card">
+                    <div class="d-flex justify-content-center m-0 p-0 iframeWrapper">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal,'change card header' ,i)"
                             aria-label="Change card header and image">settings</button>
@@ -42,25 +42,23 @@
                             {{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
-                    <div class="cardMainPh">
-                        <!-- <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveCardEl(card.id, i)"
-                            aria-label="Change p content">save</button> -->
-                        <!-- [class]="{contentEditableTrue:logged}" class="edit-content" [contentEditable]="logged"-->
-                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
-                            [id]="card.id">
-                        </p>
-                        <hr class="m-0 pad-0">
-                        <div class="d-flex flex-wrap justify-content-end align-content-center gap-2 mx-2 mt-1">
-                            <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' :
-                                'Go
-                                Live!'}}</a>
-                            <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el
-                                código!' :
-                                'Ir
-                                al
-                                sitio!'}}</a>
-                        </div>
+                    <div class="cardDesc">
+                        <ng-scrollbar>
+                            <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
+                                [id]="card.id">
+                            </p>
+                        </ng-scrollbar>
+                    </div>
+                    <hr class="m-0 pad-0">
+                    <div class="d-flex flex-wrap justify-content-end align-content-center gap-2 mx-2 mt-1 linksWrapper">
+                        <a class="btn btn-primary" [href]="card.codeUrl">{{language === 'en'? 'Go to code!' :
+                            'Go
+                            Live!'}}</a>
+                        <a class="btn btn-primary" [href]="card.deployUrl">{{language === 'en'? 'Ver el
+                            código!' :
+                            'Ir
+                            al
+                            sitio!'}}</a>
                     </div>
                 </div>
             </div>
