@@ -25,6 +25,7 @@ import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-
 import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { SettingsOffcanvasComponent } from './components/header/settings-offcanvas/settings-offcanvas.component';
 import { SocialsDropdown } from './components/header/solcials-dropdown/socials-dropdown.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,17 @@ import { SocialsDropdown } from './components/header/solcials-dropdown/socials-d
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule, NgCircleProgressModule.forRoot(
+
+    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule,
+    NgScrollbarModule.withConfig({
+      track: "all",
+      visibility: "hover",
+      appearance: "compact",
+      pointerEventsMethod: "viewport",
+      autoHeightDisabled: false,
+      autoWidthDisabled: true
+    }),
+    NgCircleProgressModule.forRoot(
       {
         "backgroundColor": "#FDB900",
         "backgroundPadding": 11,

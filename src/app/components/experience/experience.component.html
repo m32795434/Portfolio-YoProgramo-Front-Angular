@@ -25,7 +25,7 @@
                     [innerHTML]="language === 'en'? sectionAndCards.section.en : sectionAndCards.section.es"></h1>
             </div>
             <button [hidden]="!logged" id="createCard" type="button"
-                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                class="save-button rounded-circle material-symbols-outlined" aria-label="Create card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
@@ -34,7 +34,7 @@
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!logged" (click)="open(updateCardModal,'change card header' ,i)"
-                            aria-label="Change card header and image">settings</button>
+                            aria-label="Update-Card">settings</button>
                         <button [hidden]="!logged" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
@@ -42,9 +42,6 @@
                             class="rounded-circle">
                     </div>
                     <div class="cardTitleDateWrapper">
-                        <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
-                            [hidden]="!logged" (click)="saveH1($event)"
-                            aria-label="Change institution name">save</button> -->
                         <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="card.img.alt[language==='en'? 'en':'es']">
                         </h2>
@@ -52,12 +49,8 @@
                         </p>
                     </div>
                     <div class="cardMainPh">
-                        <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveCardEl(card.id, i)"
-                            aria-label="Change p content">save</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id">
                         </p>
                     </div>
                 </div>
@@ -88,11 +81,8 @@
                     </div>
                     <div class="cardMainPh">
                         <!-- "card.id+i" to diference between the d-lg-block and d-lg-none els. -->
-                        <button class="save-button rounded-circle save-left material-symbols-outlined"
-                            [hidden]="!logged" (click)="saveCardEl(card.id+i, i)">save</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="card.id+i">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id+i">
                         </p>
                     </div>
                 </div>
@@ -140,7 +130,7 @@
 <ng-template #updateCardModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">{{language === 'en'? 'Update Card Header' : 'Actualizar Encabezado'}}
+            <h4 class="modal-title">{{language === 'en'? 'Update Card' : 'Actualizar Tarjeta'}}
             </h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
@@ -189,6 +179,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group mt-2">
+                    <label for="descripcion">{{language === 'en'? 'Description (es): ' : 'Descripción (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.es">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.en">
+                </div>
                 <button type="submit" class="btn btn-primary mt-2"
                     (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
             </form>
@@ -196,83 +198,92 @@
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
-    </div>
-    <div class="modal-footer d-grid align-content-center justify-content-center">
-        <form (ngSubmit)="deleteCard()">
-            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
-                (click)="modal.dismiss('Cancel')">
-                cancel
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
-                (click)="modal.close('Delete')">delete</button>
-        </form>
+        </div>
+        <div class="modal-body">
+            <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
+        </div>
+        <div class="modal-footer d-grid align-content-center justify-content-center">
+            <form (ngSubmit)="deleteCard()">
+                <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                    (click)="modal.dismiss('Cancel')">
+                    cancel
+                </button>
+                <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                    (click)="modal.close('Delete')">delete</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">{{language==='en'?'New Experience':'Nueva Experiencia'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form (ngSubmit)="createCard()">
-            <div class="form-group">
-                <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
-                <input type="text" class="form-control" id="companyImg" name="companyImg" [(ngModel)]="newCard.img.src">
-            </div>
-            <div class="d-flex gap-1 mt-2">
-                <div class="form-group flex-fill">
-                    <label for="institution">{{language === 'en'? 'Company / Institution Name (en): ' : 'Nombre de la
-                        Empresa (en): '}}</label>
-                    <input type="text" class="form-control" id="institution" name="institution"
-                        [(ngModel)]="newCard.img.alt.en">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language==='en'?'New Experience':'Nueva Experiencia'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="createCard()">
+                <div class="form-group">
+                    <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
+                    <input type="text" class="form-control" id="companyImg" name="companyImg"
+                        [(ngModel)]="newCard.img.src">
                 </div>
-                <div class="form-group flex-fill">
-                    <label for="institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
-                        Empresa (es): '}}</label>
-                    <input type="text" class="form-control" id="institution" name="institution"
-                        [(ngModel)]="newCard.img.alt.es">
-                </div>
-            </div>
-            <div class="d-flex gap-1 mt-2">
-                <div class="form-group flex-fill">
-                    <label for="dp1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
-                            #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
-                            type="button"></button>
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group flex-fill">
+                        <label for="institution">{{language === 'en'? 'Company / Institution Name (en): ' : 'Nombre de
+                            la
+                            Empresa (en): '}}</label>
+                        <input type="text" class="form-control" id="institution" name="institution"
+                            [(ngModel)]="newCard.img.alt.en">
+                    </div>
+                    <div class="form-group flex-fill">
+                        <label for="institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de
+                            la
+                            Empresa (es): '}}</label>
+                        <input type="text" class="form-control" id="institution" name="institution"
+                            [(ngModel)]="newCard.img.alt.es">
                     </div>
                 </div>
-                <div class="form-group flex-fill">
-                    <label for="dp2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
-                    <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
-                            #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
-                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
-                            type="button"></button>
+                <div class="d-flex gap-1 mt-2">
+                    <div class="form-group flex-fill">
+                        <label for="dp1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
+                                #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="form-group flex-fill">
+                        <label for="dp2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
+                                #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
+                            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
+                                type="button"></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group mt-2">
-                <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
-            </div>
-            <div class="form-group mt-2">
-                <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.es">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary mt-2"
-                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
-        </form>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="newCard.ph.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="newCard.ph.es">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary mt-2"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+            </form>
+        </div>
     </div>
 </ng-template>

@@ -81,15 +81,14 @@ interface ProjectsAndCards {
 }
 interface ProjectsCard {
     id: string;
-    img: {
-        src: string, alt: {
-            en: string, es: string
-        }
-    };
+    vMp4Src: string;
+    vWebSrc: string;
     startDate: { year: number, month: number, day: number };
     endDate: { year: number, month: number, day: number };
     h2: { en: string, es: string };
     ph: { en: string, es: string };
+    codeUrl: string;
+    deployUrl: string;
 }
 interface SkillsAndCards {
     section: {

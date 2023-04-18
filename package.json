@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.4",
-    "@angular/cdk": "^15.2.4",
+    "@angular/cdk": "^15.2.7",
     "@angular/common": "^15.2.4",
     "@angular/compiler": "^15.2.4",
     "@angular/core": "^15.2.4",
@@ -28,6 +28,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "ng-circle-progress": "^1.7.1",
+    "ngx-scrollbar": "^11.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

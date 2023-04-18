@@ -38,14 +38,14 @@
                 <div class="swiper-wrapper">
                     <!-- Cards -->
                     <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide">
-                        <button class="save-button rounded-circle material-symbols-outlined" [attr.data-id]="card.id"
-                            [hidden]="!logged" (click)="saveCardEl($event, i)">save</button>
+                        <button class="save-button save-left rounded-circle material-symbols-outlined"
+                            [hidden]="!logged" (click)="open(updateCardModal,'Update-Card' ,i)"
+                            aria-label="Update-Card">settings</button>
                         <button [hidden]="!logged" type="button" id="delete"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center edit-content" [class]="{contentEditableTrue:logged}"
-                            [contentEditable]="logged" #p{{i}} [id]="card.id">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id">
                         </p>
                     </div>
                 </div>
@@ -87,45 +87,77 @@
     </div>
 </ng-template>
 <ng-template #createCardModal let-modal class="#">
-    <div class="modal-header">
-        <h4 class="modal-title">{{language==='en'?'Create new Card':'Crear Nueva Tarjeta'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language==='en'?'Create new Card':'Crear Nueva Tarjeta'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="createCard()">
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="newCard.ph.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="newCard.ph.es">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+            </form>
+        </div>
     </div>
-    <div class="modal-body">
-        <form (ngSubmit)="createCard()">
-            <div class="form-group mt-2">
-                <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.en">
-            </div>
-            <div class="form-group mt-2">
-                <label for="description">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
-                <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newCard.ph.es">
-            </div>
-            <button type="submit" class="btn mt-2 btn-primary"
-                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
-        </form>
+</ng-template>
+<ng-template #updateCardModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language==='en'?'Update Card':'Actualizar Tarjeta'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form (ngSubmit)="updateCard()">
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en): '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.en">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="descripcion">{{language === 'en'? 'Description (es): ' : 'Descripción (es): '}}</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.es">
+                </div>
+                <button type="submit" class="btn mt-2 btn-primary"
+                    (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+            </form>
+        </div>
     </div>
 </ng-template>
 <ng-template #confirmDelete let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
-    </div>
-    <div class="modal-footer d-grid align-content-center justify-content-center">
-        <form (ngSubmit)="deleteCard()">
-            <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
-                (click)="modal.dismiss('Cancel')">
-                cancel
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Delete?' : 'Eliminar?'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
-                (click)="modal.close('Delete')">delete</button>
-        </form>
+        </div>
+        <div class="modal-body">
+            <p>{{language === 'en'? 'Are you sure you want to delete?' : 'Está seguro de que desea eliminar?'}}</p>
+        </div>
+        <div class="modal-footer d-grid align-content-center justify-content-center">
+            <form (ngSubmit)="deleteCard()">
+                <button type="button" class="btn btn-secondary material-symbols-outlined" aria-label="Cancel"
+                    (click)="modal.dismiss('Cancel')">
+                    cancel
+                </button>
+                <button type="submit" class="btn mx-2 btn-danger material-symbols-outlined" aria-label="Delete"
+                    (click)="modal.close('Delete')">delete</button>
+            </form>
+        </div>
     </div>
 </ng-template>

@@ -79,10 +79,8 @@ export class QPDComponent implements OnInit {
   }
   ngOnInit(): void {
     // window.onresize = this.checkForResize;
-    const content = this.dataService.localGetSectionAndCards('qPD');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('qPD');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init
@@ -162,6 +160,14 @@ export class QPDComponent implements OnInit {
         console.log(`Dismissed ${this.getDismissReason(reason)}`);
       },
     );
+    Array.from(document.querySelectorAll('.modal-body input')).forEach((el) => {
+      el.addEventListener('mousedown', (e: Event) => {
+        e.stopPropagation();
+      });
+      el.addEventListener('touchstart', (e: Event) => {
+        e.stopPropagation();
+      });
+    })
   }
 
   private getDismissReason(reason: any): string {

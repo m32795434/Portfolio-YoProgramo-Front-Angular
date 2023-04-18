@@ -62,10 +62,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const content = this.dataService.localGetSectionAndCards('home');
-    if (content) {
-      this.sectionAndCards = content;
-    } else {
+    const hasContent = this.dataService.localGetSectionAndCards('home');
+    if (hasContent === false) {
       this.dataService.getSectionAndCards('home');
     }
     //checks if the user is logged when init
@@ -111,16 +109,10 @@ export class HomeComponent implements OnInit {
     this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
-
   //UPDATE request
-  // this update the content of an element that needs to be modified with contenteditable in place
-  saveCardEl(e: any, i: number) {
-    const targetId = e.target.dataset.id;
-    const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
-    this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
-    this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
+  updateCard() {
+    this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
   }
-
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
@@ -147,6 +139,14 @@ export class HomeComponent implements OnInit {
         console.log(`Dismissed ${this.getDismissReason(reason)}`);
       },
     );
+    Array.from(document.querySelectorAll('.modal-body input')).forEach((el) => {
+      el.addEventListener('mousedown', (e: Event) => {
+        e.stopPropagation();
+      });
+      el.addEventListener('touchstart', (e: Event) => {
+        e.stopPropagation();
+      });
+    })
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -175,3 +175,11 @@ const emptyCard = {
   id: "id",
   ph: { en: "", es: "" }
 };
+// //UPDATE request
+//   // this update the content of an element that needs to be modified with contenteditable in place // not in use
+//   saveCardEl(e: any, i: number) {
+//     const targetId = e.target.dataset.id;
+//     const innerHTML = document.querySelector(`#${targetId}`)?.innerHTML;
+//     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
+//     this.dataService.aBMCard('home', this.sectionAndCards.cards[i], "udpdate", i);
+//   }

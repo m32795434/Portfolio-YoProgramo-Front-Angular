@@ -47,7 +47,7 @@ export class LoginService {
       centered: true,
       backdrop: 'static',
       keyboard: true,
-      // windowClass: 'my-custom-class'
+      windowClass: 'cdk-drag'
     });
     this.modalRef.result.then(
       (result) => {
@@ -57,7 +57,14 @@ export class LoginService {
         console.log(`Dismissed ${this.getDismissReason(reason)}`)
       },
     );
-
+    Array.from(document.querySelectorAll('.modal-body input')).forEach((el) => {
+      el.addEventListener('mousedown', (e: Event) => {
+        e.stopPropagation();
+      });
+      el.addEventListener('touchstart', (e: Event) => {
+        e.stopPropagation();
+      });
+    })
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
