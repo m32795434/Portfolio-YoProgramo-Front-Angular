@@ -105,13 +105,13 @@ $yo-programo-front-ng-theme: mat.define-light-theme((color: (primary: $yo-progra
 
 .save-left {
     position: absolute;
-    z-index: 20000;
+    z-index: 10;
     left: 5px;
 }
 
 .save-right {
     position: absolute;
-    z-index: 20000;
+    z-index: 10;
     left: 85%;
 }
 

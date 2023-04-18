@@ -79,7 +79,7 @@ export class DataService {
           default:
             break;
         }
-        console.log('seccione cargada exitosamente:...', this.data[content.section.id]);
+        console.log('seccione cargada exitosamente en DataService:...', this.data[content.section.id]);
       },
       error: (error: Error) => {
         console.error('Error al cargar la seccion', error);
@@ -198,7 +198,7 @@ export class DataService {
 
   localGetSectionAndCards(arg: StringSection): SectionAndCards | undefined {
     if (this.data[arg].section.en != "") {
-      console.log(`geting ${arg} from service:`, this.data[arg]);
+      console.log(`geting ${arg} from DataService:`, this.data[arg]);
       return this.data[arg];
     }
     return undefined;
