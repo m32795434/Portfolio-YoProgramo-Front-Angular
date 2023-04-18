@@ -18,10 +18,19 @@
             position: relative;
             background-color: #D9D9D9;
             height: 20%;
+            border: 2px solid grey;
 
             @include media-breakpoint-up(lg) {
                 height: 100%;
                 // width: 25%;
+            }
+
+            #h1Proj {
+                font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
+                font-size: 28px;
+                color: #1f1d1dae;
+                font-weight: 600;
+                padding: 21px 13px 13px 7px;
             }
         }
 
@@ -38,16 +47,10 @@
 
 }
 
-#h1Proj {
-    font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
-    font-size: 28px;
-    color: #1f1d1dae;
-    font-weight: 600;
-    padding: 21px 13px 13px 7px;
-}
+
 
 .cardsWrapper {
-    background-color: white;
+    background-color: #fed258;
     width: 100%;
     height: 40rem;
     overflow: auto;
@@ -55,7 +58,6 @@
 
     & .myCard {
         width: 100%;
-        background-color: rgb(194, 105, 197);
         height: 30rem;
         position: relative;
         border: 2px solid grey;
@@ -63,41 +65,41 @@
 
         & .iframeWrapper {
             height: 40%;
-            background-color: #0b2c4e;
+            background-color: #5A5A5A;
 
             iframe {
                 width: 390px;
-                height: auto;
+                height: 95%;
                 box-shadow: 5px 5px 2px 2px grey;
             }
         }
 
         & .cardTitleDateWrapper {
-            color: #5A5A5A;
             height: 15%;
             background-color: white;
             padding: 2px 0 0px 8px;
 
             &>h2 {
+                color: #000000;
                 font-size: 19px;
                 font-weight: 500;
             }
 
-            &>h4,
             &>p {
                 font-size: 17px;
                 font-weight: 200;
+                color: #5A5A5A;
             }
         }
 
         & .cardDesc {
-            // background-color: rgb(194, 105, 197);
-            height: 35%;
+            background-color: #f5f3f3;
+            height: 40%;
             width: 100%;
 
             & p {
-                font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-                color: #5A5A5A;
+                font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                color: #000000;
                 line-height: 1.5;
                 height: auto;
                 width: 100%;
@@ -110,8 +112,7 @@
         }
 
         & .linksWrapper {
-            // background-color: rgb(194, 105, 197);
-            height: 10%;
+            height: 5%;
         }
 
         & button {
