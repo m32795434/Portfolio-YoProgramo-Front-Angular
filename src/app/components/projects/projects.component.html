@@ -9,7 +9,7 @@
             <h1 class="edit-content" [class]="{contentEditableTrue:logged}" [contentEditable]="logged" id="h1Proj"
                 [innerHTML]="language === 'en'? sectionAndCards?.section?.en : sectionAndCards?.section?.es"></h1>
             <button [hidden]="!logged" id="createCard" type="button"
-                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Create card"
+                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block m-0 p-0 projectsWrapper">

@@ -1,7 +1,7 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
     <button [hidden]="!logged" id="createCard" type="button"
-        class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="Create-card"
+        class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
         (click)="open(createCardModal, 'create-new-card')">library_add</button>
     <div class="d-lg-none">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined" [hidden]="!logged"
@@ -22,7 +22,7 @@
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <button [hidden]="!logged" id="createCard" type="button"
-                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Create-card"
+                class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
             <div class="d-flex flex-fill">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
