@@ -11,7 +11,7 @@
     position: relative;
     height: 47rem;
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(lg) {
         height: 40rem;
     }
 
@@ -56,9 +56,13 @@
 .cardsWrapper {
     background-color: #fed258;
     width: 100%;
-    height: 40rem;
+    height: 47rem;
     overflow: auto;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    @include media-breakpoint-up(lg) {
+        height: 40rem;
+    }
 
     & .myCard {
         width: 100%;

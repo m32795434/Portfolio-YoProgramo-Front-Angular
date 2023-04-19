@@ -49,9 +49,11 @@
                         </p>
                     </div>
                     <div class="cardMainPh">
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
-                            [id]="card.id">
-                        </p>
+                        <ng-scrollbar>
+                            <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center"
+                                #p{{i}} [id]="card.id">
+                            </p>
+                        </ng-scrollbar>
                     </div>
                 </div>
             </div>

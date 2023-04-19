@@ -122,10 +122,13 @@
 }
 
 .cardMainPh {
-    &>p {
+    overflow: auto;
+
+    & p {
         font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
         color: #5A5A5A;
         line-height: 1.5;
+        height: 250px;
 
         @media (max-width: 410px) {
             font-size: 14px;

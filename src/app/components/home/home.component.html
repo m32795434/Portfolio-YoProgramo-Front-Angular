@@ -44,9 +44,11 @@
                         <button [hidden]="!logged" type="button" id="delete"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
-                            [id]="card.id">
-                        </p>
+                        <div class="cardMainPh">
+                            <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center"
+                                #p{{i}} [id]="card.id">
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <!-- If we need pagination -->
