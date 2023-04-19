@@ -157,10 +157,10 @@
                         [(ngModel)]="sectionAndCards.cards[cardsIndex].h2.en">
                 </div>
                 <div class="form-group mt-2">
-                    <label for="Certificate">{{language === 'en'? 'Qualification Name (es): ' : 'Título / Certificado
+                    <label for="Certificado">{{language === 'en'? 'Qualification Name (es): ' : 'Título / Certificado
                         (es):
                         '}}</label>
-                    <input type="text" class="form-control" id="Certificate" name="Certificate"
+                    <input type="text" class="form-control" id="Certificado" name="Certificado"
                         [(ngModel)]="sectionAndCards.cards[cardsIndex].h2.es">
                 </div>
                 <div class="form-group mt-2">
@@ -177,9 +177,9 @@
                 </div>
                 <div class="d-flex gap-1 mt-2">
                     <div class="form-group flex-fill">
-                        <label for="companyImg">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <label for="d1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
                         <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="d1"
                                 [(ngModel)]="sectionAndCards.cards[cardsIndex].startDate" ngbDatepicker
                                 #d1="ngbDatepicker" />
                             <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
@@ -187,9 +187,9 @@
                         </div>
                     </div>
                     <div class="form-group flex-fill">
-                        <label for="companyImg">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <label for="d2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
                         <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="d2"
                                 [(ngModel)]="sectionAndCards.cards[cardsIndex].endDate" ngbDatepicker
                                 #d2="ngbDatepicker" />
                             <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
@@ -274,25 +274,25 @@
                         [(ngModel)]="newCard.img.alt.en">
                 </div>
                 <div class="form-group mt-2">
-                    <label for="institution">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
+                    <label for="institucion">{{language === 'en'? 'Company / Institution Name (es): ' : 'Nombre de la
                         Institución (es): '}}</label>
-                    <input type="text" class="form-control" id="institution" name="institution"
+                    <input type="text" class="form-control" id="institucion" name="institucion"
                         [(ngModel)]="newCard.img.alt.es">
                 </div>
                 <div class="d-flex gap-1 mt-2">
                     <div class="form-group">
-                        <label for="dp1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
+                        <label for="d1">{{language === 'en'? 'Start Date: ' : 'Fecha de Inicio: '}}</label>
                         <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="dp1" ngbDatepicker
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" id="d1" ngbDatepicker
                                 #d1="ngbDatepicker" [(ngModel)]="newCard.startDate" />
                             <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d1.toggle()"
                                 type="button"></button>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="dp2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
+                        <label for="d2">{{language === 'en'? 'End Date: ' : 'Fecha Fin: '}}</label>
                         <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="dp2" ngbDatepicker
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" id="d2" ngbDatepicker
                                 #d2="ngbDatepicker" [(ngModel)]="newCard.endDate" />
                             <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()"
                                 type="button"></button>
