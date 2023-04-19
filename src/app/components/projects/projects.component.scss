@@ -51,7 +51,15 @@
 
 }
 
-
+.my-scrollbar {
+    --scrollbar-track-color: rgba(223, 17, 17, 0.15);
+    --scrollbar-thumb-color: #e68e1a;
+    // --scrollbar-thumb-hover-color: #beb2ed;
+    --scrollbar-hover-size: 12px;
+    --scrollbar-size: 8px;
+    --scrollbar-transition-duration: 400ms;
+    --scrollbar-transition-delay: 800ms;
+}
 
 .cardsWrapper {
     background-color: #fed258;

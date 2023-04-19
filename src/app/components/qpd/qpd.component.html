@@ -56,9 +56,11 @@
                         </p>
                     </div>
                     <div class="cardMainPh">
-                        <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
-                            [id]="card.id">
-                        </p>
+                        <ng-scrollbar class="my-scrollbar">
+                            <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
+                                [id]="card.id">
+                            </p>
+                        </ng-scrollbar>
                     </div>
                 </div>
             </div>
@@ -196,18 +198,18 @@
                                 type="button"></button>
                         </div>
                     </div>
-                    <div class="form-group mt-2">
-                        <label for="descripcion">{{language === 'en'? 'Description (es): ' : 'Descripción (es):
-                            '}}</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion"
-                            [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.es">
-                    </div>
-                    <div class="form-group mt-2">
-                        <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en):
-                            '}}</label>
-                        <input type="text" class="form-control" id="description" name="description"
-                            [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.en">
-                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="descripcion">{{language === 'en'? 'Description (es): ' : 'Descripción (es):
+                        '}}</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.es">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="description">{{language === 'en'? 'Description (en): ' : 'Descripción (en):
+                        '}}</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        [(ngModel)]="sectionAndCards.cards[cardsIndex].ph.en">
                 </div>
                 <button type="submit" class="btn mt-2 btn-primary mt-2"
                     (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
