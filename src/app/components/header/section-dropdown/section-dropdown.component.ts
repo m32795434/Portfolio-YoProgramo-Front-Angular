@@ -54,7 +54,7 @@ export class NgbdDropdownBasic implements OnInit {
     loginToggle(content: TemplateRef<any>) {
         this.loginService.managelogin(content);
     }
-    onSubmit(content: TemplateRef<any>) {
+    onSubmit() {
         console.log(`User Name: ${this.userName}, Password: ${this.password}`);
         if (this.userName === 'manuel87' && this.password === '1234') {
             this.loginService.shouldEnableContentEditable(true);

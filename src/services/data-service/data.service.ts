@@ -229,10 +229,7 @@ export class DataService {
     this.conexion.getSectionAndCards(section)?.subscribe(this.switchSubscribeSectionAndCards());
   }
   //for put and others, I will proceed to update the "data" obj when the request is successful
-  //updateSectionAndCards WILL BE DEPRECATED
-  updateSectionAndCards(section: StringSection, obj: SectionAndCards) {
-    this.conexion.updateSectionAndCards(section, obj)?.subscribe((this.switchSubscribeSectionAndCards()))
-  }
+
   updateSectionInfo(section: StringSection, obj: SectionInfo) {
     this.conexion.updateSectionInfo(section, obj)?.subscribe(this.switchSubscribeSectionInfo(section, obj));
   }
