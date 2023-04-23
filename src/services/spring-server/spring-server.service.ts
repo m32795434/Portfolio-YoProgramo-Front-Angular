@@ -4,7 +4,7 @@ import { Observable, of, from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
 import { ABM, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User } from 'src/interfaces/sections-interfaces';
-import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard } from 'src/interfaces/spring-interfaces';
+import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard, UpdateUserAndPassObj } from 'src/interfaces/spring-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +17,10 @@ export class SpringServerService implements Conexion {
 
   }
 
-  returnAllUsers(): Observable<any> | undefined {
-    throw new Error('Method not implemented.');
+  checkAuth(user: User): Observable<boolean> | undefined {
+    return this.http.post<boolean>(`${this.apiUrl}/login`, user, this.config)
   }
-  saveUsers(users: User[]): Observable<any> | undefined {
+  saveUser(user: UpdateUserAndPassObj): Observable<any> | undefined {
     throw new Error('Method not implemented.');
   }
 

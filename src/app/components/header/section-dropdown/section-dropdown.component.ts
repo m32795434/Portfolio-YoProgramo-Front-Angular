@@ -5,6 +5,7 @@ import { LoginService } from 'src/services/login-service/login.service';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LanguageService } from '../../../../services/language/language.service';
+import { UserLevels } from 'src/interfaces/sections-interfaces';
 
 
 @Component({
@@ -54,10 +55,15 @@ export class NgbdDropdownBasic implements OnInit {
     loginToggle(content: TemplateRef<any>) {
         this.loginService.managelogin(content);
     }
-    onSubmit() {
-        console.log(`User Name: ${this.userName}, Password: ${this.password}`);
-        if (this.userName === 'manuel87' && this.password === '1234') {
-            this.loginService.shouldEnableContentEditable(true);
-        }
+    onSubmit(e: any) {
+        const userName = e.target.userName.value;
+        const password = e.target.password.value;
+        const id = e.target.id.value;
+        const level = e.target.level.value;
+        this.loginService.checkAuth(userName, password, parseInt(id), level)
+        // console.log(`User Name: ${this.userName}, Password: ${this.password}`);
+        // if (this.userName === 'manuel87' && this.password === '1234') {
+        //     this.loginService.shouldEnableContentEditable(true);
+        // }
     }
 }

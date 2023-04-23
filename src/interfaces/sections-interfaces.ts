@@ -109,13 +109,14 @@ interface SkillsCard {
     }; value: number; bkColor: string; outStrokeColor: string;
 }
 interface User {
-    id: UserIds;
+    id: number;
+    level: UserLevels;
     userName: string;
     userPass: string;
 }
-type UserIds = "root" | "level_1" | "level_2";
+type UserLevels = "root" | "level_1" | "level_2";
 type ABM = "create" | "delete" | "udpdate";
 type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserIds }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels }

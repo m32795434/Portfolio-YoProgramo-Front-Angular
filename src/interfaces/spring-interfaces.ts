@@ -115,12 +115,11 @@ interface SpringSkillsCard {
     bkColor: string;
     outStrokeColor: string;
 }
-interface SpringUser {
-    id: SpringUserIds;
+interface UpdateUserAndPassObj {
+    id: number;
     userName: string;
     userPass: string;
 }
-type SpringUserIds = "root" | "level_1" | "level_2";
 type SpringCards = SpringHomeCard[] | SpringQPDCard[] | SpringExperienceCard[] | SpringProjectsCard[] | SpringSkillsCard[];
 type SpringCompleteSection = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
-export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, SpringUser, SpringUserIds }
+export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, UpdateUserAndPassObj }
