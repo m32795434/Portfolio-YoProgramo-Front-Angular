@@ -3,47 +3,49 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { Observable, Subject } from 'rxjs';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
-import { User, UserLevels } from 'src/interfaces/sections-interfaces';
+import { AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
 // import { editableElements, editButtons, loginButton } from 'src/app/libraries/elements';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private logged = false;
   private loggedSubject = new Subject<any>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
-  private auth = false;
-  private level = "no_level";
+  private logged: AuthObj = {
+    auth: false,
+    level: ""
+  };
 
   constructor(private modalService: NgbModal, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
 
-  getloggedObserver(): Observable<any> {
+  getloggedObserver(): Observable<AuthObj> {
     return this.loggedSubject.asObservable();
   }
-  isLogged(): boolean {
-    const logged: string | null = localStorage.getItem('logged');
-    if (logged) {
-      this.logged = JSON.parse(logged);
-      console.log('refreshed....logged?:', this.logged);
+  isLogged(): any {
+    let logged: any = localStorage.getItem('logged')
+    if (logged != null) {
+      logged = JSON.parse(logged);
+      this.logged = logged;
+      console.log('refreshed....logged?:', this.logged.auth);
       return this.logged;
-    } else {
-      return false;
     }
+    return this.logged;
   }
 
   managelogin(content: TemplateRef<any>) {
-    if (this.logged) {
+    if (this.logged.auth) {
       // LOGOUT
+      console.log('logged?', this.logged.auth);
       console.log('login out...');
-      console.log('logged?', this.logged);
-      this.shouldEnableContentEditable(false);
+      this.logged = { auth: false, level: "" }
+      this.shouldEnableContentEditable(this.logged);
     } else {
       // LOGIN
-      console.log('logged?', this.logged);
+      console.log('logged?', this.logged.auth);
       this.createForm(content);
       console.log('form created');
     }
@@ -84,19 +86,18 @@ export class LoginService {
     }
   }
 
-  shouldEnableContentEditable(bool: boolean) {
-    if (bool) {
-      localStorage.setItem('logged', 'true');
-      this.logged = true;
+  shouldEnableContentEditable(logged: AuthObj) {
+    if (logged.auth) {
+      localStorage.setItem('logged', JSON.stringify(logged));
+      // this.logged.auth = true;
       this.loggedSubject.next(this.logged);
-      console.log('enabling contentEditable');
+      console.log('contentEditable enabled');
 
     } else {
-      localStorage.setItem('logged', 'false');
-      this.logged = false;
+      localStorage.setItem('logged', JSON.stringify(logged));
+      // this.logged = false;
       this.loggedSubject.next(this.logged);
-      console.log('disabling contentEditable');
-
+      console.log('contentEditable disabled');
     }
   }
   checkAuth(user: string, pass: string, id: number, level: UserLevels) {
@@ -105,9 +106,10 @@ export class LoginService {
     }
     console.log('userToCheck:', userToCheck);
     this.conexion.checkAuth(userToCheck)?.subscribe((res) => {
-      this.auth = res;
-      this.level = level;
-      console.log('Authorized?:', this.auth, level);
+      this.logged.auth = res;
+      this.logged.level = level;
+      this.shouldEnableContentEditable(this.logged)
+      // console.log('Authorized?:', this.auth, level);
     })
   }
 }

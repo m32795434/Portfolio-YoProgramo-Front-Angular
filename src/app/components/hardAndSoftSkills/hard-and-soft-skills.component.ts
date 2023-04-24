@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SkillsAndCards, SkillsCard } from 'src/interfaces/sections-interfaces';
+import { SkillsAndCards, SkillsCard, AuthObj, UserLevels } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
   // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
+  level: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -57,8 +58,9 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-      this.logged = val;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
+      this.logged = authObj.auth;
+      this.level = authObj.level;
     });
 
     this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((sectionAndCards) => {
@@ -75,7 +77,9 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.dataService.getSectionAndCards('skills');
     }
     //checks if the user is logged when init
-    this.logged = this.loginService.isLogged();
+    const authObj = this.loginService.isLogged();
+    this.logged = authObj.auth;
+    this.level = authObj.level;
     this.initSwiper();
   }
 

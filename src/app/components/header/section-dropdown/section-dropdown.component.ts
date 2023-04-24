@@ -5,7 +5,7 @@ import { LoginService } from 'src/services/login-service/login.service';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LanguageService } from '../../../../services/language/language.service';
-import { UserLevels } from 'src/interfaces/sections-interfaces';
+import { UserLevels, AuthObj } from 'src/interfaces/sections-interfaces';
 
 
 @Component({
@@ -18,6 +18,7 @@ import { UserLevels } from 'src/interfaces/sections-interfaces';
 })
 export class NgbdDropdownBasic implements OnInit {
     logged = false;
+    level: UserLevels = "";
     loggedSubscription = new Subscription();
     languageSubsc = new Subscription();
     userName = '';
@@ -26,8 +27,9 @@ export class NgbdDropdownBasic implements OnInit {
     greaterThan975 = false;
 
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
-        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-            this.logged = val;
+        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
+            this.logged = authObj.auth;
+            this.level = authObj.level;
         });
         this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }
@@ -35,7 +37,9 @@ export class NgbdDropdownBasic implements OnInit {
     ngOnInit(): void {
         window.onresize = this.checkForResize;
         this.checkForResize();
-        this.logged = this.loginService.isLogged();
+        const authObj = this.loginService.isLogged();
+        this.logged = authObj.auth;
+        this.level = authObj.level;
     }
 
 

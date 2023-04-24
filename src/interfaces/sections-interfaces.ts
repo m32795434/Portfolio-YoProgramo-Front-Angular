@@ -114,9 +114,13 @@ interface User {
     userName: string;
     userPass: string;
 }
-type UserLevels = "root" | "level_1" | "level_2";
+interface AuthObj {
+    auth: boolean;
+    level: UserLevels;
+}
+type UserLevels = "root" | "level_1" | "level_2" | "";
 type ABM = "create" | "delete" | "udpdate";
 type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj }

@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceAndCards, ExperienceCard } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard, AuthObj, UserLevels } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
@@ -24,6 +24,7 @@ export class ExperienceComponent implements OnInit {
 
   // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
+  level: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -64,8 +65,9 @@ export class ExperienceComponent implements OnInit {
   newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-      this.logged = val;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((AuthObj) => {
+      this.logged = AuthObj.auth;
+      this.level = AuthObj.level
     });
 
     this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
@@ -85,7 +87,9 @@ export class ExperienceComponent implements OnInit {
       this.dataService.getSectionAndCards('experience');
     }
     //checks if the user is logged when init
-    this.logged = this.loginService.isLogged();
+    const authObj = this.loginService.isLogged();
+    this.logged = authObj.auth;
+    this.level = authObj.level;
     this.initSwiper();
   }
 

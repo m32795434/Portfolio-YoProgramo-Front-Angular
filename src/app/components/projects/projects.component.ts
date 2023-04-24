@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
-import { ProjectsAndCards, ProjectsCard } from 'src/interfaces/sections-interfaces';
+import { ProjectsAndCards, ProjectsCard, UserLevels } from 'src/interfaces/sections-interfaces';
 import { wait } from 'src/app/libraries/utils';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,6 +20,7 @@ declare global {
 })
 export class ProjectsComponent implements OnInit {
   logged: Boolean | undefined = false;
+  level: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -41,8 +42,9 @@ export class ProjectsComponent implements OnInit {
   sanitizedCards: ProjectsCard[] = [JSON.parse(JSON.stringify(emptyCard))];
 
   constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal, private sanitizer: DomSanitizer) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-      this.logged = val;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
+      this.logged = authObj.auth;
+      this.level = authObj.level;
     });
 
     this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
@@ -72,7 +74,9 @@ export class ProjectsComponent implements OnInit {
       this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
-    this.logged = this.loginService.isLogged();
+    const authObj = this.loginService.isLogged();
+    this.logged = authObj.auth;
+    this.level = authObj.level;
     this.initSwiper();
   }
   async initSwiper() {

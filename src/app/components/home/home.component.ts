@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { HomeAndCards, HomeCard } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, HomeCard, UserLevels } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
@@ -23,6 +23,7 @@ declare global {
 export class HomeComponent implements OnInit {
   // @ViewChild('h1') h1: any;
   logged: Boolean | undefined = false;
+  level: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -48,8 +49,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((val) => {
-      this.logged = val;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
+      this.logged = authObj.auth;
+      this.level = authObj.level;
     });
 
     this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((sectionAndCards) => {
@@ -66,8 +68,10 @@ export class HomeComponent implements OnInit {
     if (hasContent === false) {
       this.dataService.getSectionAndCards('home');
     }
-    //checks if the user is logged when init
-    this.logged = this.loginService.isLogged();
+    //checks in the LocalStorage if the user is logged
+    const authObj = this.loginService.isLogged();
+    this.logged = authObj.auth;
+    this.level = authObj.level;
     this.initSwiper();
     // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }
