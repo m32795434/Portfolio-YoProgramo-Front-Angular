@@ -1,17 +1,19 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
-    <button [hidden]="!logged && level !=='root'" id="createCard" type="button"
+    <button [hidden]="!(logged && level =='root')" id="createCard" type="button"
         class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
         (click)="open(createCardModal, 'create-new-card')">library_add</button>
     <div class="d-lg-none">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
-            [hidden]="!logged && level !=='root'" (click)="open(imgSrcModal, 'image-source')">settings</button>
+            [hidden]="!(logged && (level =='root' || level=='level_1'))"
+            (click)="open(imgSrcModal, 'image-source')">settings</button>
         <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="sectionAndCards?.section.imgMobile"
             alt="Manuel perfil" id="imgMobileHome">
     </div>
     <div class="d-none d-lg-block">
         <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
-            [hidden]="!logged && level !=='root'" (click)="open(imgSrcModal, 'image-source')">settings</button>
+            [hidden]="!(logged && (level =='root' || level=='level_1'))"
+            (click)="open(imgSrcModal, 'image-source')">settings</button>
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.section.imgDesktop"
             alt="Manuel perfil" id="imgDesktopHome">
     </div>
@@ -21,12 +23,12 @@
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
-            <button [hidden]="!logged && level !=='root'" id="createCard" type="button"
+            <button [hidden]="!(logged && level =='root')" id="createCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
             <div class="d-flex flex-fill">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
-                    data-id="h1HomeEn" [hidden]="!logged && level !=='root'" (click)="saveH1($event)">save</button>
+                    data-id="h1HomeEn" [hidden]="!(logged && level =='root')" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged && level==='root'}"
                     [contentEditable]="logged && level==='root'" id="h1HomeEn"
                     [innerHTML]="language === 'en'? sectionAndCards?.section.en : sectionAndCards?.section.es" #h1>
@@ -39,9 +41,9 @@
                     <!-- Cards -->
                     <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!logged && level !=='root'" (click)="open(updateCardModal,'Update-Card' ,i)"
+                            [hidden]="!(logged && level =='root')" (click)="open(updateCardModal,'Update-Card' ,i)"
                             aria-label="Update-Card">settings</button>
-                        <button [hidden]="!logged && level !=='root'" type="button" id="delete"
+                        <button [hidden]="!(logged && level =='root')" type="button" id="delete"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete-card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                         <div class="cardMainPh">
