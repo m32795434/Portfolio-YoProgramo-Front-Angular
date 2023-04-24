@@ -11,6 +11,7 @@ import { AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
 })
 export class LoginService {
   private loggedSubject = new Subject<any>();
+  private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
   private logged: AuthObj = {
@@ -24,6 +25,9 @@ export class LoginService {
 
   getloggedObserver(): Observable<AuthObj> {
     return this.loggedSubject.asObservable();
+  }
+  getIdObserver(): Observable<number> {
+    return this.idSubject.asObservable();
   }
   isLogged(): any {
     let logged: any = localStorage.getItem('logged')
@@ -109,6 +113,7 @@ export class LoginService {
       this.logged.auth = res;
       this.logged.level = level;
       this.shouldEnableContentEditable(this.logged)
+      this.idSubject.next(id);
       // console.log('Authorized?:', this.auth, level);
     })
   }

@@ -7,6 +7,7 @@ import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 import { Subscription } from 'rxjs';
+import { wait } from 'src/app/libraries/utils';
 
 @Component({
   selector: 'app-settings-offcanvas',
@@ -17,9 +18,11 @@ export class SettingsOffcanvasComponent implements OnInit {
   closeResult = '';
   language = "en"
   private loggedSubscription = new Subscription();
-
+  private idSubscription = new Subscription();
+  tempId = 0;
   logged: Boolean | undefined = false;
   level: UserLevels = "";
+  updated = false;
   private conexion: Conexion;
   // languageSubsc = new Subscription();
 
@@ -29,6 +32,7 @@ export class SettingsOffcanvasComponent implements OnInit {
       this.logged = AuthObj.auth;
       this.level = AuthObj.level
     });
+    this.idSubscription = this.loginService.getIdObserver().subscribe((id) => this.tempId = id)
   }
 
   setLanguage(e: any) {
@@ -46,13 +50,32 @@ export class SettingsOffcanvasComponent implements OnInit {
       },
     );
   }
-  saveUser(e: any) {
+  async saveUser(e: any) {
+    const t = e.target;
+    if (t.id.value != this.tempId) {
+      this.language == "en" ? alert('Wrong id!') : alert('Id equivocado!')
+      return;
+    }
+    if (t.userPass.value != t.userPass2.value) {
+      this.language == "en" ? alert('Passwords don\'t match!') : alert('Las claves no coinciden!')
+      return;
+    }
+    if (t.userName.value != t.userName2.value) {
+      this.language == "en" ? alert('Username doesn\'t match!') : alert('El nombre de usuario no coincide!')
+      return;
+    }
     const tempUser: UpdateUserAndPassObj = {
       id: parseInt(e.target.id.value),
       userPass: e.target.userPass.value,
       userName: e.target.userName.value
     }
-    this.conexion.saveUser(tempUser)?.subscribe((res) => { console.log('user data update!', res) })
+    this.conexion.saveUser(tempUser)?.subscribe((res) => {
+      this.updated = true;
+      console.log('user data updated!', res)
+    })
+    t.reset();
+    await wait(3000)
+    this.updated = false;
   }
   private getDismissReason(reason: any): string {
     if (reason === OffcanvasDismissReasons.ESC) {

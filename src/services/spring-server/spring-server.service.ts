@@ -21,7 +21,7 @@ export class SpringServerService implements Conexion {
     return this.http.post<boolean>(`${this.apiUrl}/login`, user, this.config)
   }
   saveUser(user: UpdateUserAndPassObj): Observable<any> | undefined {
-    throw new Error('Method not implemented.');
+    return this.http.put<any>(`${this.apiUrl}/user`, user, this.config)
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
