@@ -18,21 +18,19 @@ export class SettingsOffcanvasComponent implements OnInit {
   closeResult = '';
   language = "en"
   private loggedSubscription = new Subscription();
-  private idSubscription = new Subscription();
   tempId = 0;
   logged: Boolean | undefined = false;
   level: UserLevels = "";
   updated = false;
   private conexion: Conexion;
-  // languageSubsc = new Subscription();
 
   constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService, private loginService: LoginService, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((AuthObj) => {
-      this.logged = AuthObj.auth;
-      this.level = AuthObj.level
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
+      this.logged = authObj.auth;
+      this.level = authObj.level
+      this.tempId = authObj.id;
     });
-    this.idSubscription = this.loginService.getIdObserver().subscribe((id) => this.tempId = id)
   }
 
   setLanguage(e: any) {
@@ -90,5 +88,6 @@ export class SettingsOffcanvasComponent implements OnInit {
     const authObj = this.loginService.isLogged();
     this.logged = authObj.auth;
     this.level = authObj.level;
+    this.tempId = authObj.id;
   }
 }

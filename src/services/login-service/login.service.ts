@@ -15,6 +15,7 @@ export class LoginService {
   modalRef?: NgbModalRef;
   private conexion: Conexion;
   private logged: AuthObj = {
+    id: 0,
     auth: false,
     level: ""
   };
@@ -45,7 +46,7 @@ export class LoginService {
       // LOGOUT
       console.log('logged?', this.logged.auth);
       console.log('login out...');
-      this.logged = { auth: false, level: "" }
+      this.logged = { auth: false, level: "", id: 0 }
       this.shouldEnableContentEditable(this.logged);
     } else {
       // LOGIN
@@ -96,7 +97,6 @@ export class LoginService {
       // this.logged.auth = true;
       this.loggedSubject.next(this.logged);
       console.log('contentEditable enabled');
-
     } else {
       localStorage.setItem('logged', JSON.stringify(logged));
       // this.logged = false;
@@ -110,11 +110,16 @@ export class LoginService {
     }
     console.log('userToCheck:', userToCheck);
     this.conexion.checkAuth(userToCheck)?.subscribe((res) => {
-      this.logged.auth = res;
-      this.logged.level = level;
-      this.shouldEnableContentEditable(this.logged)
-      this.idSubject.next(id);
-      // console.log('Authorized?:', this.auth, level);
+      if (res) {
+        console.log('res:...', res)
+        this.logged.auth = res;
+        this.logged.level = level;
+        this.logged.id = id;
+        this.shouldEnableContentEditable(this.logged)//true
+      } else {
+        this.shouldEnableContentEditable(this.logged)//false
+      }
+
     })
   }
 }

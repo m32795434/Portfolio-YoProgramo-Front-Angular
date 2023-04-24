@@ -115,6 +115,7 @@ interface User {
     userPass: string;
 }
 interface AuthObj {
+    id: number;
     auth: boolean;
     level: UserLevels;
 }
