@@ -22,9 +22,11 @@ interface HomeAndCards {
     };
     cards: HomeCard[];
 }
-interface HomeCard {
-    id: string;
+interface newHomeCard {
     ph: { en: string, es: string };
+}
+interface HomeCard extends newHomeCard {
+    id: number;
 }
 interface QPDAndCards {
     section: {
@@ -37,7 +39,7 @@ interface QPDAndCards {
     cards: QPDCard[];
 }
 interface QPDCard {
-    id: string;
+    id: number;
     startDate: { year: number, month: number, day: number };
     endDate: { year: number, month: number, day: number };
     img: {
@@ -58,8 +60,7 @@ interface ExperienceAndCards {
     };
     cards: ExperienceCard[];
 }
-interface ExperienceCard {
-    id: string;
+interface newExperienceCard {
     img: {
         src: string, alt: {
             en: string, es: string
@@ -68,6 +69,9 @@ interface ExperienceCard {
     startDate: { year: number, month: number, day: number };
     endDate: { year: number, month: number, day: number };
     ph: { en: string, es: string };
+}
+interface ExperienceCard extends newExperienceCard {
+    id: number;
 }
 interface ProjectsAndCards {
     section: {
@@ -79,8 +83,7 @@ interface ProjectsAndCards {
     };
     cards: ProjectsCard[]
 }
-interface ProjectsCard {
-    id: string;
+interface newProjectsCard {
     vMp4Src: string;
     vWebSrc: string;
     startDate: { year: number, month: number, day: number };
@@ -89,6 +92,9 @@ interface ProjectsCard {
     ph: { en: string, es: string };
     codeUrl: string;
     deployUrl: string;
+}
+interface ProjectsCard extends newProjectsCard {
+    id: number;
 }
 interface SkillsAndCards {
     section: {
@@ -100,13 +106,15 @@ interface SkillsAndCards {
     };
     cards: SkillsCard[];
 }
-interface SkillsCard {
-    id: string;
+interface newSkillsCard {
     img: {
         src: string, alt: {
             en: string, es: string
         };
     }; value: number; bkColor: string; outStrokeColor: string;
+}
+interface SkillsCard extends newSkillsCard {
+    id: number;
 }
 interface User {
     id: number;
@@ -124,4 +132,4 @@ type ABM = "create" | "delete" | "udpdate";
 type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj, newHomeCard, newExperienceCard, newProjectsCard, newSkillsCard }

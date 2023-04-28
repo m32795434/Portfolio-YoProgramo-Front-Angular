@@ -34,7 +34,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
       id: "skills", imgMobile: "", imgDesktop: "", en: "", es: "",
     },
     cards: [{
-      id: "S1",
+      id: 0,
       img: {
         src: "../../../assets/images/regional-bs.png", alt: {
           en: "regional-bs", es: "regional-bs"
@@ -114,7 +114,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   // POST request
   createCard() {
     const length = this.sectionAndCards.cards.length;
-    this.newCard.id = `S${length + 1}`;
+    this.newCard.id = length + 1;
     this.dataService.aBMCard('skills', this.newCard, "create", length);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
@@ -177,7 +177,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
 }
 const emptyCard = {
-  id: "",
+  id: 0,
   img: {
     src: "", alt: {
       en: "", es: ""

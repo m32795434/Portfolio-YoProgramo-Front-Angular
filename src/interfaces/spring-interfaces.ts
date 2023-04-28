@@ -15,9 +15,11 @@ interface SpringHomeAndCards {
     };
     cards: SpringHomeCard[];
 }
-interface SpringHomeCard {
-    id: string;
+interface newSpringHomeCard {
     phEn: string, phEs: string;
+}
+interface SpringHomeCard extends newSpringHomeCard {
+    id: number;
 }
 interface SpringQPDAndCards {
     section: {
@@ -29,8 +31,7 @@ interface SpringQPDAndCards {
     };
     cards: SpringQPDCard[];
 }
-interface SpringQPDCard {
-    id: string;
+interface newSpringQPDCard {
     imgSrc: string;
     imgAltEn: string;
     imgAltEs: string;
@@ -45,6 +46,9 @@ interface SpringQPDCard {
     h2En: string;
     h2Es: string;
 }
+interface SpringQPDCard extends newSpringQPDCard {
+    id: number;
+}
 interface SpringExperienceAndCards {
     section: {
         id: "experience";
@@ -55,8 +59,7 @@ interface SpringExperienceAndCards {
     };
     cards: SpringExperienceCard[];
 }
-interface SpringExperienceCard {
-    id: string;
+interface newSpringExperienceCard {
     imgSrc: string;
     imgAltEs: string;
     imgAltEn: string;
@@ -69,6 +72,9 @@ interface SpringExperienceCard {
     phEs: string;
     phEn: string;
 }
+interface SpringExperienceCard extends newSpringExperienceCard {
+    id: number;
+}
 interface SpringProjectsAndCards {
     section: {
         id: "projects";
@@ -79,8 +85,7 @@ interface SpringProjectsAndCards {
     };
     cards: SpringProjectsCard[]
 }
-interface SpringProjectsCard {
-    id: string;
+interface newSpringProjectsCard {
     vmp4Src: string;
     vwebSrc: string;
     startDateYear: number;
@@ -96,6 +101,9 @@ interface SpringProjectsCard {
     codeUrl: string;
     deployUrl: string;
 }
+interface SpringProjectsCard extends newSpringProjectsCard {
+    id: number;
+}
 interface SpringSkillsAndCards {
     section: {
         id: "skills";
@@ -106,14 +114,16 @@ interface SpringSkillsAndCards {
     };
     cards: SpringSkillsCard[];
 }
-interface SpringSkillsCard {
-    id: string;
+interface newSpringSkillsCard {
     imgSrc: string;
     imgAltEs: string;
     imgAltEn: string;
     value: number;
     bkColor: string;
     outStrokeColor: string;
+}
+interface SpringSkillsCard extends newSpringSkillsCard {
+    id: number;
 }
 interface UpdateUserAndPassObj {
     id: number;
@@ -122,4 +132,4 @@ interface UpdateUserAndPassObj {
 }
 type SpringCards = SpringHomeCard[] | SpringQPDCard[] | SpringExperienceCard[] | SpringProjectsCard[] | SpringSkillsCard[];
 type SpringCompleteSection = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
-export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, UpdateUserAndPassObj }
+export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, UpdateUserAndPassObj, newSpringHomeCard, newSpringQPDCard, newSpringExperienceCard, newSpringProjectsCard, newSpringSkillsCard }

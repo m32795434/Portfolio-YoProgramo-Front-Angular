@@ -7,7 +7,7 @@
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266"
-                    [alt]="language === 'en'? 'Profile' : 'Perfil'" [src]="sectionAndCards?.section.imgMobile"
+                    [alt]="language === 'en'? 'Profile' : 'Perfil'" [src]="sectionAndCards?.section?.imgMobile"
                     id="imgMobileQa">
             </div>
             <div class="d-none d-lg-block">
@@ -16,7 +16,7 @@
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="desktop imgsToChange edit-content" data-z="423 x 756"
-                    [src]="sectionAndCards?.section.imgDesktop" [alt]="language === 'en'? 'Profile' : 'Perfil'"
+                    [src]="sectionAndCards?.section?.imgDesktop" [alt]="language === 'en'? 'Profile' : 'Perfil'"
                     id="imgDesktopQa">
             </div>
             <div class="d-flex wrapper-h1-save">

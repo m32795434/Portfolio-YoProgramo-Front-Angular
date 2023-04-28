@@ -105,7 +105,7 @@ export class ProjectsComponent implements OnInit {
   // POST request
   createCard() {
     const length = this.sectionAndCards.cards.length;
-    this.newCard.id = `S${length + 1}`;
+    this.newCard.id = length + 1;
     this.dataService.aBMCard('projects', this.newCard, "create", length);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
@@ -182,7 +182,7 @@ export class ProjectsComponent implements OnInit {
   // }
 }
 const emptyCard = {
-  id: "",
+  id: 0,
   vMp4Src: "",
   vWebSrc: "",
   startDate: {

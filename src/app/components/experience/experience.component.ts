@@ -7,7 +7,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceAndCards, ExperienceCard, AuthObj, UserLevels } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 declare global {
@@ -28,13 +28,13 @@ export class ExperienceComponent implements OnInit {
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
-  //contains all
+  //for debugging: contains all / ExperienceAndCards || any
   sectionAndCards: any = {
     section: {
       id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "",
     },
     cards: [{
-      id: "id",
+      id: 1,
       img: {
         src: "", alt: {
           en: "", es: ""
@@ -125,7 +125,7 @@ export class ExperienceComponent implements OnInit {
   // POST request
   createCard() {
     const length = this.sectionAndCards.cards.length;
-    this.newCard.id = `S${length + 1}`;
+    this.newCard.id = length + 1;
     this.dataService.aBMCard('experience', this.newCard, "create", length);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
@@ -188,8 +188,8 @@ export class ExperienceComponent implements OnInit {
     this.swiper.destroy();
   }
 }
-const emptyCard = {
-  id: "id",
+const emptyCard: ExperienceCard = {
+  id: 0,
   img: {
     src: "", alt: {
       en: "", es: ""

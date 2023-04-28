@@ -34,7 +34,7 @@ export class QPDComponent implements OnInit {
       id: "qPD", imgMobile: "", imgDesktop: "", en: "", es: "",
     },
     cards: [{
-      id: "id",
+      id: 0,
       img: {
         src: "", alt: { en: "", es: "" }
       },
@@ -123,7 +123,7 @@ export class QPDComponent implements OnInit {
   // POST request
   createCard() {
     const length = this.sectionAndCards.cards.length;
-    this.newCard.id = `S${length + 1}`;
+    this.newCard.id = length + 1;
     this.dataService.aBMCard('qPD', this.newCard, "create", length);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
@@ -186,7 +186,7 @@ export class QPDComponent implements OnInit {
   }
 }
 const emptyCard = {
-  id: "id",
+  id: 0,
   img: { src: "", alt: { en: "", es: "" } },
   startDate: {
     year: 2021,

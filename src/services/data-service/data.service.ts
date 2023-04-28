@@ -17,7 +17,7 @@ export class DataService {
   private skillsAndCardsSubject = new Subject<SkillsAndCards>();
 
   private errorSubject = new Subject<any>();
-  //convert this into an array. 
+  //to debuggin: AllSectionsAndCards || any
   protected data: any = {
     home: { section: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
     experience: { section: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
@@ -160,23 +160,29 @@ export class DataService {
           //DELETE!
           switch (section) {
             case "home":
-              this.data.home.cards.splice(i, 1);
+              // this.data.home.cards.splice(i, 1);
+              const homeCards = deleteAndReassingIds(this.data.home.cards, i)
+              this.data.home.cards = homeCards;
               this.homeAndCardsSubject.next(this.data.home);
               break;
             case "experience":
-              this.data.experience.cards.splice(i, 1);
+              const experienceCards = deleteAndReassingIds(this.data.experience.cards, i)
+              this.data.experience.cards = experienceCards;
               this.experienceAndCardsSubject.next(this.data.experience);
               break;
             case "projects":
-              this.data.projects.cards.splice(i, 1);
+              const projectsCards = deleteAndReassingIds(this.data.projects.cards, i)
+              this.data.projects.cards = projectsCards;
               this.projectsAndCardsSubject.next(this.data.projects);
               break;
             case "qPD":
-              this.data.qPD.cards.splice(i, 1);
+              const qPDCards = deleteAndReassingIds(this.data.qPD.cards, i)
+              this.data.qPD.cards = qPDCards;
               this.qPDAndCardsSubject.next(this.data.qPD);
               break;
             case "skills":
-              this.data.skills.cards.splice(i, 1);
+              const skillsCards = deleteAndReassingIds(this.data.skills.cards, i)
+              this.data.skills.cards = skillsCards;
               this.skillsAndCardsSubject.next(this.data.skills);
               break;
             default:
@@ -236,4 +242,11 @@ export class DataService {
   aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number) {
     this.conexion.aBMCard(sec, obj, abm, i)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm, i));
   }
+}
+function deleteAndReassingIds(arr: any, i: number) {
+  const tempArray = arr.toSpliced(i, 1);
+  tempArray.forEach((element: any, i: number) => {
+    element.id = i + 1;
+  });
+  return tempArray;
 }

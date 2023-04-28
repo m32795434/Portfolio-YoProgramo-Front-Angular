@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       id: "home", imgMobile: "", imgDesktop: "", en: "", es: "",
     },
     cards: [{
-      id: "id",
+      id: 0,
       ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
     }]
   };
@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
   // ----------------------------------CARDS REQUESTS----------------------
   createCard() {
     const cardsLength = this.sectionAndCards.cards.length
-    this.newCard.id = `S${cardsLength + 1}`;
+    this.newCard.id = cardsLength + 1;
     this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
   }
@@ -176,7 +176,7 @@ export class HomeComponent implements OnInit {
 
 **************************************/
 const emptyCard = {
-  id: "id",
+  id: 0,
   ph: { en: "", es: "" }
 };
 // //UPDATE request
