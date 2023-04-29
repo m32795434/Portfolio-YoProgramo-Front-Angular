@@ -45,7 +45,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
     BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule,
     NgScrollbarModule.withConfig({
-      track: "all",
+      track: "vertical",
       visibility: "hover",
       appearance: "compact",
       pointerEventsMethod: "viewport",

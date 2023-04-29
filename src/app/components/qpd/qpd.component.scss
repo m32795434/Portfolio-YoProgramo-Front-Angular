@@ -33,7 +33,6 @@
         color: #1f1d1dae;
         font-weight: 600;
         padding: 21px 13px 13px 7px;
-
     }
 
     & h1#h1Qual {
@@ -43,15 +42,7 @@
     }
 }
 
-.my-scrollbar {
-    --scrollbar-track-color: rgba(223, 17, 17, 0.15);
-    --scrollbar-thumb-color: #e68e1a;
-    // --scrollbar-thumb-hover-color: #beb2ed;
-    --scrollbar-hover-size: 12px;
-    --scrollbar-size: 8px;
-    --scrollbar-transition-duration: 400ms;
-    --scrollbar-transition-delay: 800ms;
-}
+
 
 .cardWrapper {
     width: 100%;
@@ -66,7 +57,6 @@
         position: relative;
         border: 2px solid grey;
         box-shadow: 1px 1px 5px 2px #0a0202;
-
 
         & img {
             width: 100px;
@@ -86,7 +76,6 @@
     & .swiper-wrapper {
         height: 530px;
 
-
         & .swiper-slide {
             // width: 100%;
             background-color: #f7f7f7;
@@ -102,8 +91,6 @@
                 height: 100px;
                 box-shadow: 5px 5px grey;
             }
-
-
         }
     }
 
@@ -142,14 +129,24 @@
 .cardMainPh {
     overflow: auto;
 
-    & p {
-        font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-        color: #5A5A5A;
-        line-height: 1.5;
-        height: 250px;
+    .my-scrollbar {
+        --scrollbar-track-color: rgba(223, 17, 17, 0.15);
+        --scrollbar-thumb-color: #e68e1a;
+        // --scrollbar-thumb-hover-color: #beb2ed;
+        --scrollbar-hover-size: 12px;
+        --scrollbar-size: 8px;
+        --scrollbar-transition-duration: 400ms;
+        --scrollbar-transition-delay: 800ms;
 
-        @media (max-width: 410px) {
-            font-size: 14px;
+        & p {
+            font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
+            color: #5A5A5A;
+            line-height: 1.5;
+            height: 250px;
+
+            @media (max-width: 410px) {
+                font-size: 14px;
+            }
         }
     }
 }

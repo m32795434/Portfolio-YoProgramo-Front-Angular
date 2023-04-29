@@ -189,7 +189,7 @@ export class DataService {
               break;
           }
         }
-        console.log(`successfully ${abm}d: `, obj.id, ' card');
+        console.log(`successfully ${abm}d: `, ' card ', obj.id);
       },
       error: (error: Error) => {
         console.error(`An Error occurred while trying to ${abm}`, error);
