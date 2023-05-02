@@ -12,7 +12,7 @@ import { wait } from 'src/app/libraries/utils';
 @Component({
   selector: 'app-settings-offcanvas',
   templateUrl: './settings-offcanvas.component.html',
-  styleUrls: ['./settings-offcanvas.component.scss']
+  // styleUrls: ['./settings-offcanvas.component.scss']
 })
 export class SettingsOffcanvasComponent implements OnInit {
   closeResult = '';

@@ -1,7 +1,3 @@
-// @import '../../../styles.scss';
-@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../../../../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
-
 header {
     background-color: black;
     color: white;
@@ -10,21 +6,10 @@ header {
     @include media-breakpoint-up(lg) {
         background-color: #393838;
     }
+
+    & img[alt="Argentina Programa"]:hover,
+    img[alt="Argentina Programa"]:focus {
+        border-radius: 7px;
+        box-shadow: 0 0 7px 4px #8a8989;
+    }
 }
-
-img[alt="Argentina Programa"]:hover,
-img[alt="Argentina Programa"]:focus {
-    border-radius: 7px;
-    box-shadow: 0 0 7px 4px #8a8989;
-}
-
-// button.save {
-//     color: #FA1C1C;
-//     border: 1px solid #FA1C1C;
-//     font-size: 34px;
-//     background-color: #393838;
-// }
-
-/*:host /deep/ .mi-clase {
-    /* Estilos CSS aquí */
-//}

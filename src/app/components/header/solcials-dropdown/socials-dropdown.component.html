@@ -2,7 +2,7 @@
     <button class="btn" type="button" ngbDropdownToggle [textContent]="language==='en'? 'Follow': 'Seguir'"
         id="socialsBtn">
     </button>
-    <div ngbDropdownMenu aria-labelledby="socials-dropdown">
+    <div ngbDropdownMenu aria-labelledby="socials-dropdown" class="socials-dropdown">
         <h6 class="dropdown-header">Socials</h6>
         <div (click)="imgEventHandler($event)" (keyup)="imgEventHandler($event)" ngbDropdownItem
             class="d-flex justify-content-between align-content-end align-items-end" data-social="Instagram">

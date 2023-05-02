@@ -38,7 +38,7 @@
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
-            <div class="cardWrapper d-grid m-0 p-2 gap-3">
+            <div class="qpdAndExpCardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center my-2">
                         <button class="save-button   save-left rounded-circle material-symbols-outlined"
@@ -50,7 +50,7 @@
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
                         <img [src]="card.img.src" [alt]="card.img.alt[language]" class="rounded-circle">
                     </div>
-                    <div class="cardTitleDateWrapper">
+                    <div class="qpdAndExpCardTitleDateWrapper">
                         <h2 class="text-start edit-content" id="h2S2Qa"
                             [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
@@ -59,7 +59,7 @@
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
-                    <div class="cardMainPh">
+                    <div class="qpdAndExpCardMainPh">
                         <ng-scrollbar class="my-scrollbar">
                             <p [innerHTML]="card.ph[language==='en'?'en':'es']" class="p-3 m-0 text-center" #p{{i}}
                                 [id]="card.id">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+        <div class="qpdAndExpSwiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
@@ -94,7 +94,7 @@
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
-                    <div class="cardMainPh">
+                    <div class="qpdAndExpCardMainPh">
                         <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
                             [id]="card.id+i">
                         </p>

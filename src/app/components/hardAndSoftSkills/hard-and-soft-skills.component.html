@@ -30,7 +30,7 @@
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
-            <div class="cardWrapper d-grid m-0 p-2 gap-3">
+            <div class="skillsCardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index"
                     class="d-grid justify-content-center align-content-center myCard card">
                     <button class="save-button save-left rounded-circle material-symbols-outlined"
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="swiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+        <div class="skillsSwiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->

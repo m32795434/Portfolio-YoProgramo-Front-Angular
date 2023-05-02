@@ -1,41 +1,38 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+// @import '../node_modules/bootstrap/scss/mixins/_breakpoints.scss';
+
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+
 $yo-programo-front-ng-primary: mat.define-palette(mat.$indigo-palette);
 $yo-programo-front-ng-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $yo-programo-front-ng-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
+
 $yo-programo-front-ng-theme: mat.define-light-theme((color: (primary: $yo-programo-front-ng-primary,
                 accent: $yo-programo-front-ng-accent,
                 warn: $yo-programo-front-ng-warn,
             )));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+
 @include mat.all-component-themes($yo-programo-front-ng-theme);
 
-/* You can add global styles to this file, and also import other style files */
+@import "app/components/footer/footer.component.scss";
+@import "app/components/header/section-dropdown/section-dropdown.component.scss";
+@import "app/components/header/settings-offcanvas/settings-offcanvas.component.scss";
+@import "app/components/header/solcials-dropdown/socials-dropdown.component.scss";
+@import "app/components/header/header.component.scss";
+@import "app/components/hardAndSoftSkills/hard-and-soft-skills.component.scss";
+@import "app/components/home/home.component.scss";
+@import "app/components/projects/projects.component.scss";
+@import "app/components/qpd/qpd.component.scss";
+@import "app/components/experience/experience.component.scss";
 
-/* Importing Bootstrap SCSS file. */
-@import "../node_modules/bootstrap/scss/bootstrap";
 
-
-//FOR ALL THE material-symbols-outlined
 :is(button.material-symbols-outlined, button.material-icons) {
     font-family: 'Material Symbols Outlined';
 }
@@ -56,6 +53,44 @@ $yo-programo-front-ng-theme: mat.define-light-theme((color: (primary: $yo-progra
 //-----------------START-MAIN----------------------------
 .main-section {
     position: relative;
+
+    & .imgTitleWrapper {
+        position: relative;
+
+        & .wrapper-h1-save {
+            position: absolute;
+            top: 0;
+
+            & h1 {
+                font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
+                font-size: 28px;
+                background-color: rgba(217, 217, 217, 0.28);
+                color: #1f1d1dae;
+                font-weight: 600;
+                padding: 21px 13px 13px 7px;
+
+            }
+
+            & h1#h1Qual {
+                @include media-breakpoint-only(lg) {
+                    font-size: 23px;
+                }
+            }
+        }
+
+
+
+        & #createCard {
+            position: absolute;
+            z-index: 11;
+            top: 80%;
+
+            @include media-breakpoint-up(lg) {
+                top: 0;
+                left: 85%;
+            }
+        }
+    }
 
     & img {
         width: 100%;
@@ -122,6 +157,19 @@ button[aria-label="create-card"] {
 
 
 //-------------------SWIPER-------------------
+.swiper-button-prev,
+.swiper-button-next {
+    top: 80%;
+    border-radius: 6px;
+    outline: 3px solid gray;
+    color: red;
+    background-color: rgba(124, 128, 149, 0.6901960784);
+    box-shadow: 2px 2px 2px grey;
+
+    &:hover {
+        border: 2px solid rgb(0, 0, 0)
+    }
+}
 
 .swiper-pagination-bullet {
     @include media-breakpoint-up(lg) {

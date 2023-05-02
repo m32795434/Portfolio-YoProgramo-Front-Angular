@@ -1,12 +1,3 @@
-@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../../../../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
-
-//FOR ALL THE material-symbols-outlined
-.material-symbols-outlined,
-.material-icons {
-    font-family: 'Material Symbols Outlined';
-}
-
 .mainProjects {
     position: relative;
     height: 47rem;
@@ -51,7 +42,7 @@
 
 }
 
-.cardsWrapper {
+.projectsCardsWrapper {
     background-color: #fed258;
     width: 100%;
     height: 47rem;
@@ -80,7 +71,7 @@
             }
         }
 
-        & .cardTitleDateWrapper {
+        & .projectsCardTitleDateWrapper {
             height: 15%;
             background-color: white;
             padding: 2px 0 0px 8px;
@@ -103,7 +94,7 @@
             height: 40%;
             width: 100%;
 
-            .my-scrollbar {
+            & .my-scrollbar {
                 --scrollbar-track-color: rgba(223, 17, 17, 0.15);
                 --scrollbar-thumb-color: #e68e1a;
                 // --scrollbar-thumb-hover-color: #beb2ed;
@@ -129,7 +120,7 @@
     }
 }
 
-.swiper {
+.projectsSwiper {
     background-color: #fed258;
 
     & .swiper-wrapper {
@@ -189,56 +180,4 @@
             }
         }
     }
-
-    & .swiper-button-prev,
-    .swiper-button-next {
-        top: 80%;
-        border-radius: 6px;
-        outline: 3px solid gray;
-        color: red;
-        background-color: rgba(124, 128, 149, 0.6901960784);
-        box-shadow: 2px 2px 2px grey;
-
-        &:hover {
-            border: 2px solid rgb(0, 0, 0)
-        }
-    }
 }
-
-// .offcanvas,
-// .offcanvas-body {
-//     --bs-offcanvas-width: 100%;
-// }
-
-// button[data-bs-toggle="offcanvas"] {
-//     border-radius: 9px;
-//     font-family: 'Roboto', sans-serif;
-//     font-size: 23px;
-//     width: 340px;
-//     height: 65px;
-
-
-//     @include media-breakpoint-up(lg) {
-//         width: 380px;
-//         font-size: 26px;
-//         height: 76px;
-
-//     }
-// }
-
-
-// esto era para la coleccion de botones que dirijían a los projects!!!
-// .btn {
-//     border-radius: 9px;
-//     font-family: 'Roboto', sans-serif;
-//     font-size: 20px;
-//     width: 340px;
-//     height: 65px;
-
-//     @include media-breakpoint-up(lg) {
-//         // font-size: 26px;
-//         width: 380px;
-//         height: 76px;
-
-//     }
-// }

@@ -16,7 +16,7 @@ declare global {
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  // styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
   logged: Boolean | undefined = false;

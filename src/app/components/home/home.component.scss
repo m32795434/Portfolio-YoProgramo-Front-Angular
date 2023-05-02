@@ -1,13 +1,4 @@
-// @import '../../../styles.scss';
-@import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
-
-//FOR ALL THE material-symbols-outlined
-.material-symbols-outlined,
-.material-icons {
-    font-family: 'Material Symbols Outlined';
-}
-
-button[aria-label="create-card"] {
+#homeCreateCard {
     top: 50%;
 
     @include media-breakpoint-up(lg) {
@@ -15,11 +6,10 @@ button[aria-label="create-card"] {
     }
 }
 
-.container-columns {
+.homeContainerColumns {
     height: 100%;
     position: absolute;
     top: 0;
-    //z-index: 10;
     width: 100%;
 
     & h1 {
@@ -46,7 +36,7 @@ button[aria-label="create-card"] {
 
 
 
-.swiper {
+.HomeSwiper {
     background-color: rgba(0, 0, 0, 0.66);
     width: 100%;
     height: 10vw;
@@ -63,7 +53,7 @@ button[aria-label="create-card"] {
             width: 100%;
             height: 100%;
 
-            .cardMainPh {
+            & .homeCardMainPh {
                 overflow: auto;
                 height: 90%;
 
@@ -81,41 +71,17 @@ button[aria-label="create-card"] {
                 top: 0px;
                 left: 85%;
             }
-
-            //PARA LOS LINKS DENTRO DE ESTOS PÁRRAFOS, LOS DEFINÍ DENTRO DE STYLE.SCSS PARA DARLE PRIORIDAD
         }
-
-        // @include media-breakpoint-up(lg) {
-        //     height: 15vw;
-        // }
     }
 
 
     @include media-breakpoint-up(lg) {
         background-color: transparent;
     }
-
-
-
-    & .swiper-button-prev,
-    .swiper-button-next {
-        top: 80%;
-        border-radius: 6px;
-        outline: 3px solid gray;
-        color: red;
-        background-color: rgba(124, 128, 149, 0.6901960784);
-        box-shadow: 2px 2px 2px grey;
-
-        &:hover {
-            border: 2px solid rgb(0, 0, 0)
-        }
-    }
-
-
 }
 
 //-------------------TOASTS-------------------
-.toast a {
+.homeToast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
 }

@@ -13,7 +13,7 @@ import { UserLevels, AuthObj } from 'src/interfaces/sections-interfaces';
     standalone: true,
     imports: [NgbDropdownModule, RouterModule, FormsModule],
     templateUrl: './section-dropdown.component.html',
-    styleUrls: ['./section-dropdown.component.scss']
+    // styleUrls: ['./section-dropdown.component.scss']
 
 })
 export class NgbdDropdownBasic implements OnInit {

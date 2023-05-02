@@ -11,11 +11,13 @@
     }
 }
 
-img {
-    width: 25px;
-    height: 25px;
-}
+.socials-dropdown {
+    img {
+        width: 25px;
+        height: 25px;
+    }
 
-div[ngbdropdownitem] {
-    cursor: pointer;
+    div[ngbdropdownitem] {
+        cursor: pointer;
+    }
 }

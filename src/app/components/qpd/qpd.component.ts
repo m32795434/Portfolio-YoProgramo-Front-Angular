@@ -18,7 +18,7 @@ declare global {
 @Component({
   selector: 'app-qpd',
   templateUrl: './qpd.component.html',
-  styleUrls: ['./qpd.component.scss'],
+  // styleUrls: ['./qpd.component.scss'],
 })
 export class QPDComponent implements OnInit {
 

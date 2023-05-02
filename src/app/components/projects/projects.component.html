@@ -14,7 +14,7 @@
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
         <div class="d-none d-lg-block m-0 p-0 projectsWrapper">
-            <div class="cardsWrapper d-grid m-0 p-2 gap-3">
+            <div class="projectsCardsWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sanitizedCards, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center m-0 p-0 iframeWrapper">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
@@ -35,7 +35,7 @@
                             soporta videos webm o mp4'}}
                         </iframe>
                     </div>
-                    <div class="cardTitleDateWrapper">
+                    <div class="projectsCardTitleDateWrapper">
                         <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
                         <p class="m-0">
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="swiper d-lg-none w-100 m-0 p-0">
+        <div class="projectsSwiper d-lg-none w-100 m-0 p-0">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper w-100 p-2 gap-3">
                 <!-- Cards -->
@@ -83,7 +83,7 @@
                             soporta videos webm o mp4'}}
                         </iframe>
                     </div>
-                    <div class="cardTitleDateWrapper">
+                    <div class="projectsCardTitleDateWrapper">
                         <h2 class="text-start edit-content" [innerHTML]="card.h2[language==='en'?'en':'es']">
                         </h2>
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}

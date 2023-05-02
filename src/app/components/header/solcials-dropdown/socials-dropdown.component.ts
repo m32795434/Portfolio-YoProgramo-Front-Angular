@@ -8,7 +8,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     standalone: true,
     imports: [NgbDropdownModule],
     templateUrl: './socials-dropdown.component.html',
-    styleUrls: ['./socials-dropdown.component.scss']
+    // styleUrls: ['./socials-dropdown.component.scss']
 })
 export class SocialsDropdown {
     language = "en";
