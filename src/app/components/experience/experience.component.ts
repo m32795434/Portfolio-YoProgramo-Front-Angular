@@ -96,7 +96,7 @@ export class ExperienceComponent implements OnInit {
 
   async initSwiper() {
     await wait(1000);//Left this code at the end of the callstack!
-    this.swiper = new window.Swiper('.swiper', {
+    this.swiper = new window.Swiper('.expSwiper', {
       direction: 'horizontal',
       loop: false,
 

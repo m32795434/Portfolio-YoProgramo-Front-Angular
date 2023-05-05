@@ -86,7 +86,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
   async initSwiper() {
     await wait(1000);//Left this code at the end of the callstack!
-    this.swiper = new window.Swiper('.swiper', {
+    this.swiper = new window.Swiper('.skillsSwiper', {
       direction: 'horizontal',
       loop: false,
 
