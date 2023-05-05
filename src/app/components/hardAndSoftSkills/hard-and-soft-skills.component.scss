@@ -16,11 +16,14 @@
 }
 
 .swiper.skillsSwiper {
+    width: 100%;
 
     & .swiper-wrapper {
         height: 317px;
+        width: 100%;
 
         & .swiper-slide {
+            width: 96% !important;
             height: 19em;
             background-color: #f7f7f7;
             border: 2px solid grey;

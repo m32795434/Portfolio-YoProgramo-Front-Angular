@@ -49,11 +49,11 @@
                 </div>
             </div>
         </div>
-        <div class="swiper skillsSwiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+        <div class="swiper skillsSwiper flex-fill d-lg-none col-12 m-0 p-0">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper w-100 p-2 gap-3">
+            <div class="swiper-wrapper p-2 gap-3">
                 <!-- Cards -->
-                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide w-100 card">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide card">
                     <div class="d-grid justify-content-center align-content-center">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!(logged && level =='root')"
