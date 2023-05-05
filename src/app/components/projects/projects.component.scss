@@ -37,147 +37,131 @@
             @include media-breakpoint-up(lg) {
                 height: 100%;
             }
+
+            .projectsCardsWrapper {
+                background-color: #fed258;
+                width: 100%;
+                height: 47rem;
+                overflow: auto;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+                @include media-breakpoint-up(lg) {
+                    height: 40rem;
+                }
+
+                & .myCard {
+                    width: 100%;
+                    height: 30rem;
+                    position: relative;
+                    border: 2px solid grey;
+                    box-shadow: 1px 1px 5px 2px #353534d8;
+
+                    & .iframeWrapper {
+                        height: 40%;
+                        background-color: #5A5A5A;
+
+                        iframe {
+                            width: 390px;
+                            height: 95%;
+                            box-shadow: 5px 5px 2px 2px grey;
+                        }
+                    }
+
+                    & .projCardDesc {
+                        background-color: #f5f3f3;
+                        height: 40%;
+                        width: 100%;
+
+                        & .my-scrollbar {
+                            --scrollbar-track-color: rgba(223, 17, 17, 0.15);
+                            --scrollbar-thumb-color: #e68e1a;
+                            // --scrollbar-thumb-hover-color: #beb2ed;
+                            --scrollbar-hover-size: 12px;
+                            --scrollbar-size: 8px;
+                            --scrollbar-transition-duration: 400ms;
+                            --scrollbar-transition-delay: 800ms;
+
+                            & p {
+                                font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                                color: #000000;
+                                line-height: 1.5;
+                                height: auto;
+                                width: 100%;
+                                overflow: auto;
+                            }
+                        }
+                    }
+
+                    & .linksWrapper {
+                        height: 5%;
+                    }
+                }
+            }
+
         }
     }
 
-}
 
-.projectsCardsWrapper {
-    background-color: #fed258;
-    width: 100%;
-    height: 47rem;
-    overflow: auto;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-
-    @include media-breakpoint-up(lg) {
-        height: 40rem;
-    }
-
-    & .myCard {
+    .swiper.projectsSwiper {
+        background-color: #fed258;
         width: 100%;
-        height: 30rem;
-        position: relative;
-        border: 2px solid grey;
-        box-shadow: 1px 1px 5px 2px #353534d8;
 
-        & .iframeWrapper {
-            height: 40%;
-            background-color: #5A5A5A;
-
-            iframe {
-                width: 390px;
-                height: 95%;
-                box-shadow: 5px 5px 2px 2px grey;
-            }
-        }
-
-        & .projectsCardTitleDateWrapper {
-            height: 15%;
-            background-color: white;
-            padding: 2px 0 0px 8px;
-
-            &>h2 {
-                color: #000000;
-                font-size: 19px;
-                font-weight: 500;
-            }
-
-            &>p {
-                font-size: 17px;
-                font-weight: 200;
-                color: #5A5A5A;
-            }
-        }
-
-        & .cardDesc {
-            background-color: #f5f3f3;
-            height: 40%;
+        & .swiper-wrapper {
+            height: 600px;
             width: 100%;
 
-            & .my-scrollbar {
-                --scrollbar-track-color: rgba(223, 17, 17, 0.15);
-                --scrollbar-thumb-color: #e68e1a;
-                // --scrollbar-thumb-hover-color: #beb2ed;
-                --scrollbar-hover-size: 12px;
-                --scrollbar-size: 8px;
-                --scrollbar-transition-duration: 400ms;
-                --scrollbar-transition-delay: 800ms;
+            & .swiper-slide {
+                width: 96% !important;
+                height: 36rem;
+                border: 2px solid grey;
+                box-shadow: 1px 1px 5px 2px grey;
 
-                & p {
-                    font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
-                    color: #000000;
-                    line-height: 1.5;
-                    height: auto;
-                    width: 100%;
+
+                & .iframeWrapper {
+                    height: 40%;
+                    background-color: #5A5A5A;
+
+                    iframe {
+                        width: 390px;
+                        height: 95%;
+                        box-shadow: 5px 5px 2px 2px grey;
+                    }
+                }
+
+                & .projCardDesc {
+                    background-color: #f5f3f3;
+                    height: 40%;
                     overflow: auto;
+
+                    & p {
+                        font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                        color: #000000;
+                        line-height: 1.5;
+                    }
+                }
+
+                & .linksWrapper {
+                    height: 5%;
                 }
             }
-        }
-
-        & .linksWrapper {
-            height: 5%;
         }
     }
-}
 
-.swiper.projectsSwiper {
-    background-color: #fed258;
+    .projectsCardTitleDateWrapper {
+        height: 15%;
+        background-color: white;
+        padding: 2px 0 0px 8px;
 
-    & .swiper-wrapper {
-        height: 600px;
-        width: 100%;
+        &>h2 {
+            color: #000000;
+            font-size: 19px;
+            font-weight: 500;
+        }
 
-        & .swiper-slide {
-
-            height: 36rem;
-            border: 2px solid grey;
-            box-shadow: 1px 1px 5px 2px grey;
-
-
-            & .iframeWrapper {
-                height: 40%;
-                background-color: #5A5A5A;
-
-                iframe {
-                    width: 390px;
-                    height: 95%;
-                    box-shadow: 5px 5px 2px 2px grey;
-                }
-            }
-
-            & .cardTitleDateWrapper {
-                height: 15%;
-                background-color: white;
-                padding: 2px 0 0px 8px;
-
-                &>h2 {
-                    color: #000000;
-                    font-size: 19px;
-                    font-weight: 500;
-                }
-
-                &>p {
-                    font-size: 17px;
-                    font-weight: 200;
-                    color: #5A5A5A;
-                }
-            }
-
-            & .cardDesc {
-                background-color: #f5f3f3;
-                height: 40%;
-                overflow: auto;
-
-                & p {
-                    font: 400 14px Montserrat, 'Open Sans', Lato, 'sans-serif';
-                    color: #000000;
-                    line-height: 1.5;
-                }
-            }
-
-            & .linksWrapper {
-                height: 5%;
-            }
+        &>p {
+            font-size: 17px;
+            font-weight: 200;
+            color: #5A5A5A;
         }
     }
 }
