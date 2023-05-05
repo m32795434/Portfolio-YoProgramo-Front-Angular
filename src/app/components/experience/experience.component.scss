@@ -8,7 +8,7 @@
     & .myCard {
         width: 100%;
         background-color: #f7f7f7;
-        height: 30em;
+        height: 30em; //UNICOOO
         position: relative;
         border: 2px solid grey;
         box-shadow: 1px 1px 5px 2px #0a0202;
@@ -19,57 +19,18 @@
             box-shadow: 5px 5px grey;
         }
 
-        & .qpdAndExpCardTitleDateWrapper {
-            color: #5A5A5A;
-            background-color: white;
-            padding: 17px 0 9px 13px;
-
-            &>h2 {
-                font-size: 19px;
-                font-weight: 500;
-            }
-
-            &>h4,
-            &>p {
-                font-size: 17px;
-                font-weight: 200;
-            }
-        }
-
-        & .qpdAndExpCardMainPh {
-            overflow: auto;
-
-            & .my-scrollbar {
-                --scrollbar-track-color: rgba(223, 17, 17, 0.15);
-                --scrollbar-thumb-color: #e68e1a;
-                // --scrollbar-thumb-hover-color: #beb2ed;
-                --scrollbar-hover-size: 12px;
-                --scrollbar-size: 8px;
-                --scrollbar-transition-duration: 400ms;
-                --scrollbar-transition-delay: 800ms;
-
-                & p {
-                    font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
-                    color: #5A5A5A;
-                    line-height: 1.5;
-                    height: 250px;
-
-                    @media (max-width: 410px) {
-                        font-size: 14px;
-                    }
-                }
-            }
-        }
-
     }
 }
 
 .swiper.qpdAndExpSwiper {
+    width: 100%;
 
     & .swiper-wrapper {
         height: 530px;
+        width: 100%;
 
-        & .swiper-slide {
+        & .swiper-slide.card {
+            width: 96% !important;
             background-color: #f7f7f7;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
@@ -80,5 +41,51 @@
                 box-shadow: 5px 5px grey;
             }
         }
+    }
+}
+
+.qpdAndExpCardTitleDateWrapper {
+    color: #5A5A5A;
+    background-color: white;
+    padding: 17px 0 9px 13px;
+
+    &>h2 {
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    &>h4,
+    &>p {
+        font-size: 17px;
+        font-weight: 200;
+    }
+}
+
+.qpdAndExpCardMainPh {
+    overflow: auto;
+
+    & p {
+        font: 500 16px Roboto, Montserrat, 'Open Sans', Lato, 'sans-serif';
+        color: #5A5A5A;
+        line-height: 1.5;
+        height: 250px;
+
+        @media (max-width: 410px) {
+            font-size: 14px;
+        }
+    }
+
+    & p.expP {
+        height: 270px;
+    }
+
+    & .my-scrollbar {
+        --scrollbar-track-color: rgba(223, 17, 17, 0.15);
+        --scrollbar-thumb-color: #e68e1a;
+        // --scrollbar-thumb-hover-color: #beb2ed;
+        --scrollbar-hover-size: 12px;
+        --scrollbar-size: 8px;
+        --scrollbar-transition-duration: 400ms;
+        --scrollbar-transition-delay: 800ms;
     }
 }

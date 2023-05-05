@@ -62,11 +62,11 @@
                 </div>
             </div>
         </div>
-        <div class="swiper qpdAndExpSwiper expSwiper flex-fill d-lg-none w-100 col-12 m-0 p-0">
+        <div class="swiper qpdAndExpSwiper expSwiper flex-fill d-lg-none col-12 m-0 p-0">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper w-100 p-2 gap-3">
+            <div class="swiper-wrapper p-2 gap-3">
                 <!-- Cards -->
-                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide w-100 card">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide card">
                     <div class="d-flex justify-content-center my-2">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
                             [hidden]="!(logged && level =='root')"
@@ -78,7 +78,7 @@
                         <img [src]="card.img.src" [alt]="card.img.alt[language==='en'? 'en':'es']"
                             class="rounded-circle">
                     </div>
-                    <div class="cardTitleDateWrapper">
+                    <div class="qpdAndExpCardTitleDateWrapper">
                         <!-- <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h2S2Qa"
                             [hidden]="!(logged && level =='root')" (click)="saveH1($event)">save</button> -->
                         <h2 class="text-start edit-content" [innerHTML]="card.img.alt[language==='en'? 'en':'es']">
@@ -86,10 +86,10 @@
                         <p>{{card.startDate.month}}/{{card.startDate.year}}-{{card.endDate.month}}/{{card.endDate.year}}
                         </p>
                     </div>
-                    <div class="cardMainPhqpdAndExpCardMainPh">
+                    <div class="qpdAndExpCardMainPh">
                         <!-- "card.id+i" to diference between the d-lg-block and d-lg-none els. -->
-                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
-                            [id]="card.id+i">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center expP"
+                            #p{{i}} [id]="card.id+i">
                         </p>
                     </div>
                 </div>
