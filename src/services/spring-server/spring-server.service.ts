@@ -11,7 +11,7 @@ import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, Spr
 })
 export class SpringServerService implements Conexion {
   //URL & CONFIG
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
   private config = { headers: { 'Content-Type': 'application/json' } };
   constructor(private http: HttpClient) {
 
