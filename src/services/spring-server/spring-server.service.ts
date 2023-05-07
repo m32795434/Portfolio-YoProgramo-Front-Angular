@@ -11,7 +11,8 @@ import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, Spr
 })
 export class SpringServerService implements Conexion {
   //URL & CONFIG
-  private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
+  // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
+  private apiUrl = 'http://localhost:8080';
   private config = { headers: { 'Content-Type': 'application/json' } };
   constructor(private http: HttpClient) {
 
@@ -43,19 +44,19 @@ export class SpringServerService implements Conexion {
     }
   }
   getHomeAndCardsObs(): Observable<HomeAndCards> {
-    return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeHomeSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringHomeAndCards)
     );
   }
   getExperienceAndCardsObs(): Observable<ExperienceAndCards> {
-    return from(fetch(`${this.apiUrl}/completeExperienceSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeExperienceSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringExperienceAndCards)
     );
   }
   getProjectsAndCardsObs(): Observable<ProjectsAndCards> {
-    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeProjectsSection`)).pipe(
       switchMap(response => {
         console.log('project response:', response)
         const res = response.json();
@@ -66,13 +67,13 @@ export class SpringServerService implements Conexion {
     );
   }
   getSkillsAndCardsObs(): Observable<SkillsAndCards> {
-    return from(fetch(`${this.apiUrl}/completeSkillsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeSkillsSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringSkillsAndCards)
     );
   }
   getQPDAndCardsObs(): Observable<QPDAndCards> {
-    return from(fetch(`${this.apiUrl}/completeQPDSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeQPDSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringQPDAndCards)
     );
@@ -81,7 +82,7 @@ export class SpringServerService implements Conexion {
   // -----------------------------UPDATE SECTION-----------------------------
 
   updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined {
-    return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
+    return this.http.put<any>(`${this.apiUrl}/api/v1/management/update/section`, obj, this.config);
   }
 
   //-----------------------------ABM CARDS-----------------------------
@@ -109,13 +110,13 @@ export class SpringServerService implements Conexion {
           break;
       }
       if (abm === "create") {
-        return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
+        return this.http.post<any>(`${this.apiUrl}/api/v1/admin/${sec}/createCard`, springCard, this.config);
       } else {
         console.log('card to update:', springCard)
-        return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, springCard, this.config);
+        return this.http.put<any>(`${this.apiUrl}/api/v1/admin/${sec}/updateCard`, springCard, this.config);
       }
     } else
-      return this.http.delete<any>(`${this.apiUrl}/${sec}/deleteCard/${obj.id}`);
+      return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`);
   }
 }
 
