@@ -62,9 +62,9 @@ export class NgbdDropdownBasic implements OnInit {
     onSubmit(e: any) {
         const userName = e.target.userName.value;
         const password = e.target.password.value;
-        const id = e.target.id.value;
-        const level = e.target.level.value;
-        this.loginService.checkAuth(userName, password, parseInt(id), level)
+        // const id = e.target.id.value;
+        // const level = e.target.level.value;
+        this.loginService.checkAuth(userName, password);
         // console.log(`User Name: ${this.userName}, Password: ${this.password}`);
         // if (this.userName === 'manuel87' && this.password === '1234') {
         //     this.loginService.shouldEnableContentEditable(true);

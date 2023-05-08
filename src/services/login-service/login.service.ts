@@ -3,7 +3,8 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { Observable, Subject } from 'rxjs';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
-import { AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
+import { Accs_Token, AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
+import jwt_decode from "jwt-decode";
 // import { editableElements, editButtons, loginButton } from 'src/app/libraries/elements';
 
 @Injectable({
@@ -11,20 +12,19 @@ import { AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
 })
 export class LoginService {
   private loggedSubject = new Subject<any>();
+  private authSubject = new Subject<AuthObj>();
   private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
-  private logged: AuthObj = {
-    id: 0,
-    auth: false,
-    level: ""
-  };
+  private logged: UserLevels = "";
 
   constructor(private modalService: NgbModal, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
-
-  getloggedObserver(): Observable<AuthObj> {
+  getAuthObserver(): Observable<AuthObj> {
+    return this.authSubject.asObservable();
+  }
+  getloggedObserver(): Observable<UserLevels> {
     return this.loggedSubject.asObservable();
   }
   getIdObserver(): Observable<number> {
@@ -91,9 +91,15 @@ export class LoginService {
     }
   }
 
-  shouldEnableContentEditable(logged: AuthObj) {
-    if (logged.auth) {
-      localStorage.setItem('logged', JSON.stringify(logged));
+  shouldEnableContentEditable(bool: boolean, res?: AuthObj) {
+    if (bool) {
+      let decode: Accs_Token = {
+        sub: "", role: "", iat: 0, exp: 0
+      };
+      if (res) {
+        decode = jwt_decode(res?.access_token);
+      }
+      localStorage.setItem('access', JSON.stringify(decode));
       // this.logged.auth = true;
       this.loggedSubject.next(this.logged);
       console.log('contentEditable enabled');
@@ -104,22 +110,23 @@ export class LoginService {
       console.log('contentEditable disabled');
     }
   }
-  checkAuth(user: string, pass: string, id: number, level: UserLevels) {
+  checkAuth(user: string, pass: string) {
     const userToCheck: User = {
-      id: id, userName: user, userPass: pass, level: level,
+      email: user, password: pass
     }
     console.log('userToCheck:', userToCheck);
-    this.conexion.checkAuth(userToCheck)?.subscribe((res) => {
-      if (res) {
-        console.log('res:...', res)
-        this.logged.auth = res;
-        this.logged.level = level;
-        this.logged.id = id;
-        this.shouldEnableContentEditable(this.logged)//true
-      } else {
-        this.shouldEnableContentEditable(this.logged)//false
+    this.conexion.checkAuth(userToCheck)?.subscribe({
+      next: res => {
+        this.authSubject.next(res);
+        const decoded: Accs_Token = jwt_decode(res.access_token)
+        console.log('role:...', decoded.role)
+        this.logged = decoded.role;
+        this.shouldEnableContentEditable(true, res)//true
+      },
+      error: err => {
+        this.shouldEnableContentEditable(false)//false
+        console.error(err)
       }
-
     })
   }
 }

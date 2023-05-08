@@ -1,28 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import { ABM, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User } from 'src/interfaces/sections-interfaces';
-import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard, UpdateUserAndPassObj } from 'src/interfaces/spring-interfaces';
+import { ABM, AuthObj, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User, Accs_Token } from 'src/interfaces/sections-interfaces';
+import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard } from 'src/interfaces/spring-interfaces';
+import { LoginService } from '../login-service/login.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpringServerService implements Conexion {
+  private authSubscription = new Subscription();
+  private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
   // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
   private apiUrl = 'http://localhost:8080';
-  private config = { headers: { 'Content-Type': 'application/json' } };
-  constructor(private http: HttpClient) {
+  private config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.t.access_token}`
+    }
+  };
 
+  constructor(private http: HttpClient, private loginService: LoginService) {
+    this.authSubscription = this.loginService.getAuthObserver().subscribe((res) => {
+      this.t = res;
+    })
   }
 
-  checkAuth(user: User): Observable<boolean> | undefined {
-    return this.http.post<boolean>(`${this.apiUrl}/login`, user, this.config)
+  checkAuth(user: User): Observable<AuthObj> | undefined {
+    return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
   }
-  saveUser(user: UpdateUserAndPassObj): Observable<any> | undefined {
-    return this.http.put<any>(`${this.apiUrl}/user`, user, this.config)
+  saveUser(user: User): Observable<string> | undefined {
+    return this.http.put<any>(`${this.apiUrl}/api/v1/mod/user`, user, this.config)
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------

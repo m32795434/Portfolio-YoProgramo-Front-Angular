@@ -117,19 +117,31 @@ interface SkillsCard extends newSkillsCard {
     id: number;
 }
 interface User {
-    id: number;
-    level: UserLevels;
-    userName: string;
-    userPass: string;
+    // id: number;
+    // level: UserLevels;
+    email: string;
+    password: string;
 }
 interface AuthObj {
-    id: number;
-    auth: boolean;
-    level: UserLevels;
+    access_token: string;
+    refresh_token: string;
 }
-type UserLevels = "root" | "level_1" | "level_2" | "";
+interface Ref_Token {
+    sub: string;
+    iat: number;
+    exp: number;
+}
+interface Accs_Token {
+    // id: number;
+    // auth: boolean;
+    sub: string;
+    role: UserLevels;
+    iat: number;
+    exp: number;
+}
+type UserLevels = "ADMIN" | "MANAGER" | "";
 type ABM = "create" | "delete" | "udpdate";
 type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj, newHomeCard, newExperienceCard, newProjectsCard, newSkillsCard }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj, newHomeCard, newExperienceCard, newProjectsCard, newSkillsCard, Accs_Token, Ref_Token }
