@@ -8,7 +8,7 @@ export interface Conexion {
     updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined;
     aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number): Observable<any> | undefined;
     checkAuth(user: User): Observable<AuthObj> | undefined;
-    saveUser(user: PassObj): Observable<string> | undefined;
+    saveUser(user: PassObj): Observable<any>;
     setAuthObj(authObj: AuthObj): void;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }

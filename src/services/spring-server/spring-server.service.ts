@@ -23,6 +23,13 @@ export class SpringServerService implements Conexion {
       'Authorization': ``
     }
   };
+  private textConfig = {
+    headers: {
+      'Accept': 'text/plain',
+      'Content-Type': 'application/json',
+      'Authorization': ``
+    }
+  };
   private config = {
     headers: {
       'Content-Type': 'application/json',
@@ -40,14 +47,19 @@ export class SpringServerService implements Conexion {
     // this.t = authObj;
     this.refreshConfig.headers.Authorization = `Bearer ${authObj.access_token}`
     this.config.headers.Authorization = `Bearer ${authObj.access_token}`
+    this.textConfig.headers.Authorization = `Bearer ${authObj.access_token}`
     console.log('tokens setted in spring server!: ', this.refreshConfig.headers.Authorization, this.config.headers.Authorization)
   }
 
   checkAuth(user: User): Observable<AuthObj> | undefined {
     return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
   }
-  saveUser(passObj: PassObj): Observable<string> | undefined {
-    return this.http.put<string>(`${this.apiUrl}/api/v1/mod/user`, passObj, this.config)
+  saveUser(passObj: PassObj): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig).pipe(map(response => {
+      console.log("response: ", response)
+      JSON.stringify(response);
+
+    }))
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
