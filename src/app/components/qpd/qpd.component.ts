@@ -85,8 +85,8 @@ export class QPDComponent implements OnInit {
       this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
 

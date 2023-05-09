@@ -13,14 +13,20 @@ import { LoginService } from '../login-service/login.service';
 })
 export class SpringServerService implements Conexion {
   private authSubscription = new Subscription();
-  private t: AuthObj = { access_token: "", refresh_token: "" };
+  // private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
   // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
   private apiUrl = 'http://localhost:8080';
+  private refreshConfig = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': ``
+    }
+  };
   private config = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.t.access_token}`
+      'Authorization': ``
     }
   };
 
@@ -31,8 +37,10 @@ export class SpringServerService implements Conexion {
   }
 
   setAuthObj(authObj: AuthObj) {
-    this.t = authObj;
-    console.log('tokens setted in spring server!: ', this.t)
+    // this.t = authObj;
+    this.refreshConfig.headers.Authorization = `Bearer ${authObj.access_token}`
+    this.config.headers.Authorization = `Bearer ${authObj.access_token}`
+    console.log('tokens setted in spring server!: ', this.refreshConfig.headers.Authorization, this.config.headers.Authorization)
   }
 
   checkAuth(user: User): Observable<AuthObj> | undefined {
@@ -130,8 +138,7 @@ export class SpringServerService implements Conexion {
         return this.http.post<any>(`${this.apiUrl}/api/v1/admin/${sec}/createCard`, springCard, this.config);
       } else {
         console.log('card to update:', springCard)
-        console.log('token!:', this.t.access_token);
-        console.log('this.config!: ', this.config)
+        console.log('Auth!: ', this.config.headers.Authorization)
         return this.http.put<any>(`${this.apiUrl}/api/v1/admin/${sec}/updateCard`, springCard, this.config);
       }
     } else

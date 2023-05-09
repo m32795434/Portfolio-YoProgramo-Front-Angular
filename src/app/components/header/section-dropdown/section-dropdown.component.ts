@@ -36,8 +36,8 @@ export class NgbdDropdownBasic implements OnInit {
     ngOnInit(): void {
         window.onresize = this.checkForResize;
         this.checkForResize();
-        const logged = this.loginService.isLogged();
-        this.logged = logged;
+        // this.loginService.isLogged();
+        // this.logged = logged;
     }
 
 
@@ -54,6 +54,7 @@ export class NgbdDropdownBasic implements OnInit {
         }
 
     }
+
     loginToggle(content: TemplateRef<any>) {
         this.loginService.managelogin(content);
     }

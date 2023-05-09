@@ -82,7 +82,7 @@ export class SettingsOffcanvasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    // this.loginService.isLogged();
+    // this.logged = logged;
   }
 }

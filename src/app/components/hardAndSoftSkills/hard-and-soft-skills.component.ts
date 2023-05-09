@@ -76,8 +76,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.dataService.getSectionAndCards('skills');
     }
     //checks if the user is logged when init
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
 

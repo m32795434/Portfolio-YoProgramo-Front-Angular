@@ -30,16 +30,20 @@ export class LoginService {
   getIdObserver(): Observable<number> {
     return this.idSubject.asObservable();
   }
-  isLogged(): UserLevels {
+  isLogged(): void {
     let authObjt: any = localStorage.getItem('authObjt');
-    if (authObjt != null) {
+    if (authObjt != null && authObjt != "undefined") {
       authObjt = JSON.parse(authObjt);
+      this.conexion.setAuthObj(authObjt)
       const access: Accs_Token = jwt_decode(authObjt.access_token);
       this.logged = access.role;
       console.log('refreshed....any role?:', this.logged);
-      return this.logged;
+      this.loggedSubject.next(this.logged);
+    } else {
+      console.log('not logged. authObj == null?:', authObjt);
+      console.log('not logged, to loggedSubject: ', this.logged);
+      this.loggedSubject.next(this.logged);
     }
-    return this.logged;
   }
 
   managelogin(content: TemplateRef<any>) {

@@ -86,8 +86,8 @@ export class ExperienceComponent implements OnInit {
       this.dataService.getSectionAndCards('experience');
     }
     //checks if the user is logged when init
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
 
@@ -212,3 +212,7 @@ const emptyCard: ExperienceCard = {
 //     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
 //     this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
 //   }
+
+//que cada uno llame a isLogged en login service. login service que haga el envío al subject y setee los tokens en spring server con los token del localstorage
+//que no hagan esto ninguno del header. solo los componentes main
+//

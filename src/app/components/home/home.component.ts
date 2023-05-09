@@ -68,8 +68,8 @@ export class HomeComponent implements OnInit {
       this.dataService.getSectionAndCards('home');
     }
     //checks in the LocalStorage if the user is logged
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
     // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }

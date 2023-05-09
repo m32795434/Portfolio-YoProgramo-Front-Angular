@@ -73,8 +73,8 @@ export class ProjectsComponent implements OnInit {
       this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
-    const logged = this.loginService.isLogged();
-    this.logged = logged;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
   async initSwiper() {
