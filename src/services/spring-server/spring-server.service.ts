@@ -156,7 +156,7 @@ export class SpringServerService implements Conexion {
         return this.http.put<any>(`${this.apiUrl}/api/v1/admin/${sec}/updateCard`, springCard, this.config);
       }
     } else
-      return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`);
+      return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`, this.config);
   }
 }
 
