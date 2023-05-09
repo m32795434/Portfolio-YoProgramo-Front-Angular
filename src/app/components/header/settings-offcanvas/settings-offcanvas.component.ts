@@ -26,7 +26,6 @@ export class SettingsOffcanvasComponent implements OnInit {
     this.conexion = this.dataAccess;
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
-      console.log('in settings role: ', this.logged)
     });
   }
 
@@ -64,7 +63,6 @@ export class SettingsOffcanvasComponent implements OnInit {
     }
     this.conexion.saveUser(passObj)?.subscribe((res) => {
       this.updated = true;
-      console.log('user pass updated!. Response:', res)
     })
     t.reset();
     await wait(3000)

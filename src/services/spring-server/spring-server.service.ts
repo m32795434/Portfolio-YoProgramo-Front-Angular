@@ -97,9 +97,9 @@ export class SpringServerService implements Conexion {
   getProjectsAndCardsObs(): Observable<ProjectsAndCards> {
     return from(fetch(`${this.apiUrl}/getComplete/completeProjectsSection`)).pipe(
       switchMap(response => {
-        console.log('project response:', response)
+        // console.log('project response:', response)
         const res = response.json();
-        console.log('response.json():', res);
+        // console.log('response.json():', res);
         return res
       }),
       map(mapSpringProjectsAndCards)

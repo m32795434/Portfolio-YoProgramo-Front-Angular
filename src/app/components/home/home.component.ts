@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
-      console.log('in home role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((sectionAndCards) => {

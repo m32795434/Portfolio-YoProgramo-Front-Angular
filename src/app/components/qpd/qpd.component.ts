@@ -67,7 +67,6 @@ export class QPDComponent implements OnInit {
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
-      console.log('in qPd role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getQPDAndCardsObserver().subscribe((sectionAndCards) => {

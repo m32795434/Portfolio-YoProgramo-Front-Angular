@@ -59,7 +59,6 @@ export class HardAndSoftSkillsComponent implements OnInit {
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
-      console.log('in skills role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((sectionAndCards) => {

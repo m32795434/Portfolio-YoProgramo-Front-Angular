@@ -28,7 +28,6 @@ export class NgbdDropdownBasic implements OnInit {
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
         this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
             this.logged = role;
-            console.log('in dropdown role: ', this.logged)
         });
         this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }

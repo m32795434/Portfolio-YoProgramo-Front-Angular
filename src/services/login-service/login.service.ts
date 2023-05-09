@@ -40,8 +40,6 @@ export class LoginService {
       console.log('refreshed....any role?:', this.logged);
       this.loggedSubject.next(this.logged);
     } else {
-      console.log('not logged. authObj == null?:', authObjt);
-      console.log('not logged, to loggedSubject: ', this.logged);
       this.loggedSubject.next(this.logged);
     }
   }
@@ -127,7 +125,6 @@ export class LoginService {
         const decoded: Accs_Token = jwt_decode(res.access_token)
         this.logged = decoded.role;
         this.shouldEnableContentEditable(true, res)//true
-        console.log('role:...', decoded.role, 'Authobjt: ', res, 'this.logged: ', this.logged)
       },
       error: err => {
         this.shouldEnableContentEditable(false)//false
