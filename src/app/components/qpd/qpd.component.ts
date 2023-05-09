@@ -23,8 +23,7 @@ declare global {
 export class QPDComponent implements OnInit {
 
   // @ViewChild('h1') h1: any;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -66,9 +65,9 @@ export class QPDComponent implements OnInit {
 
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-      this.logged = authObj.auth;
-      this.level = authObj.level;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
+      console.log('in qPd role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getQPDAndCardsObserver().subscribe((sectionAndCards) => {
@@ -86,9 +85,8 @@ export class QPDComponent implements OnInit {
       this.dataService.getSectionAndCards('qPD');
     }
     //checks if the user is logged when init
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    const logged = this.loginService.isLogged();
+    this.logged = logged;
     this.initSwiper();
   }
 

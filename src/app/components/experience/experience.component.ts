@@ -23,8 +23,7 @@ declare global {
 export class ExperienceComponent implements OnInit {
 
   // @ViewChild('h1') h1: any;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -65,9 +64,9 @@ export class ExperienceComponent implements OnInit {
   newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((AuthObj) => {
-      this.logged = AuthObj.auth;
-      this.level = AuthObj.level
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
+      console.log('in exp role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
@@ -87,9 +86,8 @@ export class ExperienceComponent implements OnInit {
       this.dataService.getSectionAndCards('experience');
     }
     //checks if the user is logged when init
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    const logged = this.loginService.isLogged();
+    this.logged = logged;
     this.initSwiper();
   }
 

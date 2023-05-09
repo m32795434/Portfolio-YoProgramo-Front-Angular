@@ -12,7 +12,7 @@ import jwt_decode from "jwt-decode";
 })
 export class LoginService {
   private loggedSubject = new Subject<any>();
-  private authSubject = new Subject<AuthObj>();
+  // private authSubject = new Subject<AuthObj>();
   private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
@@ -21,36 +21,37 @@ export class LoginService {
   constructor(private modalService: NgbModal, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
-  getAuthObserver(): Observable<AuthObj> {
-    return this.authSubject.asObservable();
-  }
+  // getAuthObserver(): Observable<AuthObj> {
+  //   return this.authSubject.asObservable();
+  // }
   getloggedObserver(): Observable<UserLevels> {
     return this.loggedSubject.asObservable();
   }
   getIdObserver(): Observable<number> {
     return this.idSubject.asObservable();
   }
-  isLogged(): any {
-    let logged: any = localStorage.getItem('logged')
-    if (logged != null) {
-      logged = JSON.parse(logged);
-      this.logged = logged;
-      console.log('refreshed....logged?:', this.logged.auth);
+  isLogged(): UserLevels {
+    let authObjt: any = localStorage.getItem('authObjt');
+    if (authObjt != null) {
+      authObjt = JSON.parse(authObjt);
+      const access: Accs_Token = jwt_decode(authObjt.access_token);
+      this.logged = access.role;
+      console.log('refreshed....any role?:', this.logged);
       return this.logged;
     }
     return this.logged;
   }
 
   managelogin(content: TemplateRef<any>) {
-    if (this.logged.auth) {
+    if (this.logged) {
       // LOGOUT
-      console.log('logged?', this.logged.auth);
+      console.log('role logged?', this.logged);
       console.log('login out...');
-      this.logged = { auth: false, level: "", id: 0 }
-      this.shouldEnableContentEditable(this.logged);
+      this.logged = "";
+      this.shouldEnableContentEditable(false);
     } else {
       // LOGIN
-      console.log('logged?', this.logged.auth);
+      console.log('role logged?', this.logged);
       this.createForm(content);
       console.log('form created');
     }
@@ -92,19 +93,19 @@ export class LoginService {
   }
 
   shouldEnableContentEditable(bool: boolean, res?: AuthObj) {
+    let decode: Accs_Token = {
+      sub: "", role: "", iat: 0, exp: 0
+    };
     if (bool) {
-      let decode: Accs_Token = {
-        sub: "", role: "", iat: 0, exp: 0
-      };
       if (res) {
         decode = jwt_decode(res?.access_token);
       }
-      localStorage.setItem('access', JSON.stringify(decode));
+      localStorage.setItem('authObjt', JSON.stringify(res));
       // this.logged.auth = true;
       this.loggedSubject.next(this.logged);
       console.log('contentEditable enabled');
     } else {
-      localStorage.setItem('logged', JSON.stringify(logged));
+      localStorage.setItem('authObjt', JSON.stringify(res));
       // this.logged = false;
       this.loggedSubject.next(this.logged);
       console.log('contentEditable disabled');
@@ -117,11 +118,12 @@ export class LoginService {
     console.log('userToCheck:', userToCheck);
     this.conexion.checkAuth(userToCheck)?.subscribe({
       next: res => {
-        this.authSubject.next(res);
+        this.conexion.setAuthObj(res);
+        console.log('sending tokens to sring server!:', res)
         const decoded: Accs_Token = jwt_decode(res.access_token)
-        console.log('role:...', decoded.role)
         this.logged = decoded.role;
         this.shouldEnableContentEditable(true, res)//true
+        console.log('role:...', decoded.role, 'Authobjt: ', res, 'this.logged: ', this.logged)
       },
       error: err => {
         this.shouldEnableContentEditable(false)//false

@@ -17,8 +17,7 @@ import { UserLevels, AuthObj } from 'src/interfaces/sections-interfaces';
 
 })
 export class NgbdDropdownBasic implements OnInit {
-    logged = false;
-    level: UserLevels = "";
+    logged: UserLevels = "";
     loggedSubscription = new Subscription();
     languageSubsc = new Subscription();
     userName = '';
@@ -27,9 +26,9 @@ export class NgbdDropdownBasic implements OnInit {
     greaterThan975 = false;
 
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
-        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-            this.logged = authObj.auth;
-            this.level = authObj.level;
+        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+            this.logged = role;
+            console.log('in dropdown role: ', this.logged)
         });
         this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }
@@ -37,9 +36,8 @@ export class NgbdDropdownBasic implements OnInit {
     ngOnInit(): void {
         window.onresize = this.checkForResize;
         this.checkForResize();
-        const authObj = this.loginService.isLogged();
-        this.logged = authObj.auth;
-        this.level = authObj.level;
+        const logged = this.loginService.isLogged();
+        this.logged = logged;
     }
 
 

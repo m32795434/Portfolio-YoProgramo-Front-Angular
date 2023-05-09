@@ -1,8 +1,7 @@
 import { Component, TemplateRef, OnInit } from '@angular/core';
 import { NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Conexion } from 'src/interfaces/Conexion';
-import { UserLevels } from 'src/interfaces/sections-interfaces';
-import { UpdateUserAndPassObj } from 'src/interfaces/spring-interfaces';
+import { PassObj, UserLevels } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
@@ -18,18 +17,16 @@ export class SettingsOffcanvasComponent implements OnInit {
   closeResult = '';
   language = "en"
   private loggedSubscription = new Subscription();
-  tempId = 0;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  // tempId = 0;
+  logged: UserLevels = "";
   updated = false;
   private conexion: Conexion;
 
   constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService, private loginService: LoginService, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-      this.logged = authObj.auth;
-      this.level = authObj.level
-      this.tempId = authObj.id;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
+      console.log('in settings role: ', this.logged)
     });
   }
 
@@ -50,31 +47,30 @@ export class SettingsOffcanvasComponent implements OnInit {
   }
   async saveUser(e: any) {
     const t = e.target;
-    if (t.id.value != this.tempId) {
-      this.language == "en" ? alert('Wrong id!') : alert('Id equivocado!')
-      return;
-    }
+    // if (t.id.value != this.tempId) {
+    //   this.language == "en" ? alert('Wrong id!') : alert('Id equivocado!')
+    //   return;
+    // }
     if (t.userPass.value != t.userPass2.value) {
       this.language == "en" ? alert('Passwords don\'t match!') : alert('Las claves no coinciden!')
       return;
     }
-    if (t.userName.value != t.userName2.value) {
-      this.language == "en" ? alert('Username doesn\'t match!') : alert('El nombre de usuario no coincide!')
-      return;
+    // if (t.userName.value != t.userName2.value) {
+    //   this.language == "en" ? alert('Username doesn\'t match!') : alert('El nombre de usuario no coincide!')
+    //   return;
+    // }
+    const passObj: PassObj = {
+      password: e.target.userPass.value,
     }
-    const tempUser: UpdateUserAndPassObj = {
-      id: parseInt(e.target.id.value),
-      userPass: e.target.userPass.value,
-      userName: e.target.userName.value
-    }
-    this.conexion.saveUser(tempUser)?.subscribe((res) => {
+    this.conexion.saveUser(passObj)?.subscribe((res) => {
       this.updated = true;
-      console.log('user data updated!', res)
+      console.log('user pass updated!', res)
     })
     t.reset();
     await wait(3000)
     this.updated = false;
   }
+
   private getDismissReason(reason: any): string {
     if (reason === OffcanvasDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -84,10 +80,9 @@ export class SettingsOffcanvasComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   ngOnInit(): void {
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
-    this.tempId = authObj.id;
+    const logged = this.loginService.isLogged();
+    this.logged = logged;
   }
 }

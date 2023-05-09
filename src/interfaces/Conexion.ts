@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ABM, AuthObj, SectionAndCards, SectionInfo, StringSection, User } from './sections-interfaces';
+import { ABM, AuthObj, PassObj, SectionAndCards, SectionInfo, StringSection, User } from './sections-interfaces';
 import { SectionCard } from './sections-interfaces';
 
 export interface Conexion {
@@ -8,6 +8,7 @@ export interface Conexion {
     updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined;
     aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number): Observable<any> | undefined;
     checkAuth(user: User): Observable<AuthObj> | undefined;
-    saveUser(user: User): Observable<string> | undefined;
+    saveUser(user: PassObj): Observable<string> | undefined;
+    setAuthObj(authObj: AuthObj): void;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }

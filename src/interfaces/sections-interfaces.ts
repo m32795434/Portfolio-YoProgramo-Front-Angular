@@ -122,6 +122,9 @@ interface User {
     email: string;
     password: string;
 }
+interface PassObj {
+    password: string;
+}
 interface AuthObj {
     access_token: string;
     refresh_token: string;
@@ -144,4 +147,4 @@ type ABM = "create" | "delete" | "udpdate";
 type SectionAndCards = HomeAndCards | QPDAndCards | ExperienceAndCards | ProjectsAndCards | SkillsAndCards;
 type SectionCard = HomeCard | QPDCard | ExperienceCard | ProjectsCard | SkillsCard;
 type StringSection = "home" | "projects" | "qPD" | "experience" | "skills";
-export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj, newHomeCard, newExperienceCard, newProjectsCard, newSkillsCard, Accs_Token, Ref_Token }
+export { ABM, HomeAndCards, HomeCard, QPDAndCards, QPDCard, ExperienceAndCards, ExperienceCard, ProjectsAndCards, ProjectsCard, AllSectionsAndCards, SectionAndCards, StringSection, SkillsCard, SkillsAndCards, SectionCard, SectionInfo, User, UserLevels, AuthObj, newHomeCard, newExperienceCard, newProjectsCard, newSkillsCard, Accs_Token, Ref_Token, PassObj }

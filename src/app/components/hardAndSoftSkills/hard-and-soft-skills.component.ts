@@ -23,8 +23,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
 
   // @ViewChild('h1') h1: any;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -58,9 +57,9 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
 
   constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-      this.logged = authObj.auth;
-      this.level = authObj.level;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
+      console.log('in skills role: ', this.logged)
     });
 
     this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((sectionAndCards) => {
@@ -77,9 +76,8 @@ export class HardAndSoftSkillsComponent implements OnInit {
       this.dataService.getSectionAndCards('skills');
     }
     //checks if the user is logged when init
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    const logged = this.loginService.isLogged();
+    this.logged = logged;
     this.initSwiper();
   }
 

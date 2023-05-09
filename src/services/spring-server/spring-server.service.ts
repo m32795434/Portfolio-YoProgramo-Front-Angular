@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, from, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import { ABM, AuthObj, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User, Accs_Token } from 'src/interfaces/sections-interfaces';
+import { ABM, AuthObj, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User, Accs_Token, PassObj } from 'src/interfaces/sections-interfaces';
 import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard } from 'src/interfaces/spring-interfaces';
 import { LoginService } from '../login-service/login.service';
 
@@ -24,17 +24,22 @@ export class SpringServerService implements Conexion {
     }
   };
 
-  constructor(private http: HttpClient, private loginService: LoginService) {
-    this.authSubscription = this.loginService.getAuthObserver().subscribe((res) => {
-      this.t = res;
-    })
+  constructor(private http: HttpClient) {
+    // this.authSubscription = this.loginService.getAuthObserver().subscribe((res) => {
+    //   this.t = res;
+    // })
+  }
+
+  setAuthObj(authObj: AuthObj) {
+    this.t = authObj;
+    console.log('tokens setted in spring server!: ', this.t)
   }
 
   checkAuth(user: User): Observable<AuthObj> | undefined {
     return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
   }
-  saveUser(user: User): Observable<string> | undefined {
-    return this.http.put<any>(`${this.apiUrl}/api/v1/mod/user`, user, this.config)
+  saveUser(passObj: PassObj): Observable<string> | undefined {
+    return this.http.put<string>(`${this.apiUrl}/api/v1/mod/user`, passObj, this.config)
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
@@ -125,6 +130,8 @@ export class SpringServerService implements Conexion {
         return this.http.post<any>(`${this.apiUrl}/api/v1/admin/${sec}/createCard`, springCard, this.config);
       } else {
         console.log('card to update:', springCard)
+        console.log('token!:', this.t.access_token);
+        console.log('this.config!: ', this.config)
         return this.http.put<any>(`${this.apiUrl}/api/v1/admin/${sec}/updateCard`, springCard, this.config);
       }
     } else
