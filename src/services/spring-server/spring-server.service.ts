@@ -24,11 +24,9 @@ export class SpringServerService implements Conexion {
     }
   };
   private textConfig = {
-    headers: {
-      'Accept': 'text/plain',
-      'Content-Type': 'application/json',
-      'Authorization': ``
-    }
+    'Content-Type': 'application/json',
+    'Accept': 'text/plain',
+    'Authorization': ""
   };
   private config = {
     headers: {
@@ -47,7 +45,7 @@ export class SpringServerService implements Conexion {
     // this.t = authObj;
     this.refreshConfig.headers.Authorization = `Bearer ${authObj.access_token}`
     this.config.headers.Authorization = `Bearer ${authObj.access_token}`
-    this.textConfig.headers.Authorization = `Bearer ${authObj.access_token}`
+    this.textConfig.Authorization = `Bearer ${authObj.access_token}`
     console.log('tokens setted in spring server!: ', this.refreshConfig.headers.Authorization, this.config.headers.Authorization)
   }
 
@@ -55,11 +53,15 @@ export class SpringServerService implements Conexion {
     return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
   }
   saveUser(passObj: PassObj): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig).pipe(map(response => {
-      console.log("response: ", response)
-      JSON.stringify(response);
-
-    }))
+    // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
+    return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {
+      method: 'PUT',
+      headers: this.textConfig,
+      body: JSON.stringify(passObj),
+    })).pipe(
+      //waits text as a response!
+      switchMap((response) => response.text())
+    );
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
