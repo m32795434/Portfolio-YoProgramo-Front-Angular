@@ -51,7 +51,7 @@ export class SettingsOffcanvasComponent implements OnInit {
     //   return;
     // }
     if (t.userPass.value != t.userPass2.value) {
-      this.language == "en" ? alert('Passwords don\'t match!') : alert('Las claves no coinciden!')
+      this.language == "en" ? alert('Passwords doesn\'t match!') : alert('Las claves no coinciden!')
       return;
     }
     // if (t.userName.value != t.userName2.value) {

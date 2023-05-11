@@ -57,6 +57,10 @@ export class SpringServerService implements Conexion {
     return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/refresh-token`, null, this.refreshConfig)
   }
 
+  logout(): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/v1/auth/logout`, null, this.config)
+  }
+
   saveUser(passObj: PassObj): Observable<any> {
     // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
     return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {

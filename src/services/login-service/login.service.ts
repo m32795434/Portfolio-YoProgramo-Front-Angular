@@ -1,6 +1,6 @@
 import { Injectable, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
 import { Accs_Token, AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
@@ -13,7 +13,6 @@ import { Ref_Token } from 'src/interfaces/sections-interfaces';
 })
 export class LoginService {
   private loggedSubject = new Subject<any>();
-  // private authSubject = new Subject<AuthObj>();
   private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
@@ -22,9 +21,7 @@ export class LoginService {
   constructor(private modalService: NgbModal, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
-  // getAuthObserver(): Observable<AuthObj> {
-  //   return this.authSubject.asObservable();
-  // }
+
   getloggedObserver(): Observable<UserLevels> {
     return this.loggedSubject.asObservable();
   }
@@ -37,7 +34,7 @@ export class LoginService {
     let authObjt: any = localStorage.getItem('authObjt');
     if (authObjt != null && authObjt != "undefined") {
       authObjt = JSON.parse(authObjt);
-      //bring me the tokens but first!tokens are valid?---------------------------------------------------------------------AQUI
+      //bring me the tokens but first!tokens are valid?
       const refreshT: Ref_Token = jwt_decode(authObjt.refresh_token);
       const accessT: Accs_Token = jwt_decode(authObjt.access_token);
       console.log('accessT:  ', accessT);
@@ -49,11 +46,7 @@ export class LoginService {
       if (accessTExpTime >= now) {
         console.log('access token exp time: OK. VAlidate until: ', new Date());
         this.conexion.setAuthObj(authObjt);
-        // localStorage.setItem('authObjt', JSON.stringify(authObjt));
         this.shouldEnableContentEditable(true, authObjt) // enable content to edit, and store the tokens in the LS.
-        // this.logged = accessT.role;
-        // console.log('refreshed....any role?:', this.logged);
-        // this.loggedSubject.next(this.logged);
       } else {
         console.log('access token: Expired')
 
@@ -64,7 +57,6 @@ export class LoginService {
           this.conexion.refreshToken().subscribe(this.respAuthObject);
         } else {
           this.shouldEnableContentEditable(false);
-          // alert('Session expired, please Sign in again!');
           console.log('refresh token EXPIRED, please sign in again!')
           const logginButton: any = document.querySelector('#logginButton');
           logginButton.click();
@@ -79,7 +71,13 @@ export class LoginService {
       // LOGOUT
       console.log('role logged?', this.logged);
       console.log('login out...');
-      // localStorage.setItem('authObjt', JSON.stringify(undefined));//undefined
+      this.conexion.logout().subscribe({
+        next(value) {
+          console.log('tokens setted to "Expired"!')
+        }, error(err) {
+          console.error(err)
+        },
+      })
       this.shouldEnableContentEditable(false);
     } else {
       // LOGIN
@@ -154,12 +152,10 @@ export class LoginService {
       //refresh tokens> 7 days of validate. When we refresh with it,it doesn't change. The access token changes. The refresh tokens, die when they expire.
       console.log('sending tokens to spring server!:', res)
       this.conexion.setAuthObj(res);
-      // localStorage.setItem('authObjt', JSON.stringify(res));
       this.shouldEnableContentEditable(true, res)//true
       alert('logged!');
     },
     error: (err: any) => {
-      // localStorage.setItem('authObjt', JSON.stringify(undefined));//undefined
       this.shouldEnableContentEditable(false)//false
       console.error(err)
     }

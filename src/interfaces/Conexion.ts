@@ -11,5 +11,6 @@ export interface Conexion {
     saveUser(user: PassObj): Observable<any>;
     setAuthObj(authObj: AuthObj): void;
     refreshToken(): Observable<AuthObj>;
+    logout(): Observable<any>;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }
