@@ -10,5 +10,6 @@ export interface Conexion {
     checkAuth(user: User): Observable<AuthObj> | undefined;
     saveUser(user: PassObj): Observable<any>;
     setAuthObj(authObj: AuthObj): void;
+    refreshToken(): Observable<AuthObj>;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }

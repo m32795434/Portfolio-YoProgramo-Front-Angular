@@ -84,7 +84,7 @@ export class ExperienceComponent implements OnInit {
     if (hasContent === false) {
       this.dataService.getSectionAndCards('experience');
     }
-    //checks if the user is logged when init
+    //is logged? bring me the tokens!(every main component do this)
     this.loginService.isLogged();
     // this.logged = logged;
     this.initSwiper();

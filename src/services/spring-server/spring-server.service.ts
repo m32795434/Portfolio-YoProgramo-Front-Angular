@@ -43,7 +43,7 @@ export class SpringServerService implements Conexion {
 
   setAuthObj(authObj: AuthObj) {
     // this.t = authObj;
-    this.refreshConfig.headers.Authorization = `Bearer ${authObj.access_token}`
+    this.refreshConfig.headers.Authorization = `Bearer ${authObj.refresh_token}`//it goes the refresh one!
     this.config.headers.Authorization = `Bearer ${authObj.access_token}`
     this.textConfig.Authorization = `Bearer ${authObj.access_token}`
     console.log('tokens setted in spring server!: ', this.refreshConfig.headers.Authorization, this.config.headers.Authorization)
@@ -52,6 +52,11 @@ export class SpringServerService implements Conexion {
   checkAuth(user: User): Observable<AuthObj> | undefined {
     return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
   }
+
+  refreshToken(): Observable<AuthObj> {
+    return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/refresh-token`, null, this.refreshConfig)
+  }
+
   saveUser(passObj: PassObj): Observable<any> {
     // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
     return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {
