@@ -2,14 +2,14 @@
     <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0 allSizesWrapper">
         <div class="p-0 m-0 titleWrapper">
             <button class="save-button rounded-circle save-top save-right material-symbols-outlined" data-id="h1Proj"
-                [hidden]="!(logged && level =='root')" (click)="saveH1($event)">save</button>
+                [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
             <!-- <input type="file" accept="image/*" id=" " hidden>
             <button class="edit-button edit-top-left   rounded-circle material-symbols-outlined"
                 hidden>edit</button> -->
-            <h1 class="edit-content" [class]="{contentEditableTrue:logged && level==='root'}"
-                [contentEditable]="logged && level==='root'" id="h1Proj"
+            <h1 class="edit-content" [class]="{contentEditableTrue:logged =='ADMIN'}"
+                [contentEditable]="logged =='ADMIN'" id="h1Proj"
                 [innerHTML]="language === 'en'? sectionAndCards?.section?.en : sectionAndCards?.section?.es"></h1>
-            <button [hidden]="!(logged && level =='root')" id="createCard" type="button"
+            <button [hidden]="!(logged =='ADMIN')" id="createCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
         </div>
@@ -18,10 +18,9 @@
                 <div *ngFor="let card of sanitizedCards, let i=index" class="myCard card">
                     <div class="d-flex justify-content-center m-0 p-0 iframeWrapper">
                         <button class="save-button save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!(logged && level =='root')"
-                            (click)="open(updateCardModal,'change card header' ,i)"
+                            [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'change card header' ,i)"
                             aria-label="Change card header and image">settings</button>
-                        <button [hidden]="!(logged && level =='root')" type="button"
+                        <button [hidden]="!(logged =='ADMIN')" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
                         <!-- (click)="toggleVideo($event)" (focus)="toggleVideo($event)"(blur)="toggleVideo($event)" -->
@@ -68,10 +67,9 @@
                 <div *ngFor="let card of sanitizedCards, let i=index" class="swiper-slide card">
                     <div class="d-flex justify-content-center my-2 iframeWrapper">
                         <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!(logged && level =='root')"
-                            (click)="open(updateCardModal, 'change card header ',i)"
+                            [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal, 'change card header ',i)"
                             aria-label="Change card header and image">settings</button>
-                        <button [hidden]="!(logged && level =='root')" type="button"
+                        <button [hidden]="!(logged =='ADMIN')" type="button"
                             class="save-button save-right rounded-circle material-symbols-outlined"
                             aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                         <iframe [src]="card.vMp4Src" title="YouTube video player" frameborder="0"

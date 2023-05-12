@@ -22,8 +22,7 @@ declare global {
 })
 export class HomeComponent implements OnInit {
   // @ViewChild('h1') h1: any;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -49,9 +48,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService) {
     //updates the user login status when changes occur
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-      this.logged = authObj.auth;
-      this.level = authObj.level;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
     });
 
     this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((sectionAndCards) => {
@@ -69,9 +67,8 @@ export class HomeComponent implements OnInit {
       this.dataService.getSectionAndCards('home');
     }
     //checks in the LocalStorage if the user is logged
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
     // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
   }

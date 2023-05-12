@@ -1,27 +1,76 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Conexion } from 'src/interfaces/Conexion';
-import { ABM, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User } from 'src/interfaces/sections-interfaces';
-import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard, UpdateUserAndPassObj } from 'src/interfaces/spring-interfaces';
+import { ABM, AuthObj, ExperienceAndCards, ExperienceCard, HomeAndCards, HomeCard, ProjectsAndCards, ProjectsCard, QPDAndCards, QPDCard, SectionAndCards, SectionCard, SectionInfo, SkillsAndCards, SkillsCard, StringSection, User, Accs_Token, PassObj } from 'src/interfaces/sections-interfaces';
+import { SpringExperienceAndCards, SpringExperienceCard, SpringHomeAndCards, SpringHomeCard, SpringProjectsAndCards, SpringProjectsCard, SpringQPDAndCards, SpringQPDCard, SpringSkillsAndCards, SpringSkillsCard } from 'src/interfaces/spring-interfaces';
+import { LoginService } from '../login-service/login.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpringServerService implements Conexion {
+  private authSubscription = new Subscription();
+  // private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
   private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
-  private config = { headers: { 'Content-Type': 'application/json' } };
+  // private apiUrl = 'http://localhost:8080';
+  private refreshConfig = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': ``
+    }
+  };
+  private textConfig = {
+    'Content-Type': 'application/json',
+    'Accept': 'text/plain',
+    'Authorization': ""
+  };
+  private config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': ``
+    }
+  };
+
   constructor(private http: HttpClient) {
-
+    // this.authSubscription = this.loginService.getAuthObserver().subscribe((res) => {
+    //   this.t = res;
+    // })
   }
 
-  checkAuth(user: User): Observable<boolean> | undefined {
-    return this.http.post<boolean>(`${this.apiUrl}/login`, user, this.config)
+  setAuthObj(authObj: AuthObj) {
+    // this.t = authObj;
+    this.refreshConfig.headers.Authorization = `Bearer ${authObj.refresh_token}`//it goes the refresh one!
+    this.config.headers.Authorization = `Bearer ${authObj.access_token}`
+    this.textConfig.Authorization = `Bearer ${authObj.access_token}`
+    console.log('tokens setted in spring server!: ', this.refreshConfig.headers.Authorization, this.config.headers.Authorization)
   }
-  saveUser(user: UpdateUserAndPassObj): Observable<any> | undefined {
-    return this.http.put<any>(`${this.apiUrl}/user`, user, this.config)
+
+  checkAuth(user: User): Observable<AuthObj> | undefined {
+    return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/authenticate`, user, this.config)
+  }
+
+  refreshToken(): Observable<AuthObj> {
+    return this.http.post<AuthObj>(`${this.apiUrl}/api/v1/auth/refresh-token`, null, this.refreshConfig)
+  }
+
+  logout(): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/v1/auth/logout`, null, this.config)
+  }
+
+  saveUser(passObj: PassObj): Observable<any> {
+    // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
+    return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {
+      method: 'PUT',
+      headers: this.textConfig,
+      body: JSON.stringify(passObj),
+    })).pipe(
+      //waits text as a response!
+      switchMap((response) => response.text())
+    );
   }
 
   //-----------------------------GET FULL/Complete SECTIONS => SectionAndCards-----------------------------
@@ -43,36 +92,36 @@ export class SpringServerService implements Conexion {
     }
   }
   getHomeAndCardsObs(): Observable<HomeAndCards> {
-    return from(fetch(`${this.apiUrl}/completeHomeSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeHomeSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringHomeAndCards)
     );
   }
   getExperienceAndCardsObs(): Observable<ExperienceAndCards> {
-    return from(fetch(`${this.apiUrl}/completeExperienceSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeExperienceSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringExperienceAndCards)
     );
   }
   getProjectsAndCardsObs(): Observable<ProjectsAndCards> {
-    return from(fetch(`${this.apiUrl}/completeProjectsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeProjectsSection`)).pipe(
       switchMap(response => {
-        console.log('project response:', response)
+        // console.log('project response:', response)
         const res = response.json();
-        console.log('response.json():', res);
+        // console.log('response.json():', res);
         return res
       }),
       map(mapSpringProjectsAndCards)
     );
   }
   getSkillsAndCardsObs(): Observable<SkillsAndCards> {
-    return from(fetch(`${this.apiUrl}/completeSkillsSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeSkillsSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringSkillsAndCards)
     );
   }
   getQPDAndCardsObs(): Observable<QPDAndCards> {
-    return from(fetch(`${this.apiUrl}/completeQPDSection`)).pipe(
+    return from(fetch(`${this.apiUrl}/getComplete/completeQPDSection`)).pipe(
       switchMap(response => response.json()),
       map(mapSpringQPDAndCards)
     );
@@ -81,7 +130,7 @@ export class SpringServerService implements Conexion {
   // -----------------------------UPDATE SECTION-----------------------------
 
   updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined {
-    return this.http.put<any>(`${this.apiUrl}/update/section`, obj, this.config);
+    return this.http.put<any>(`${this.apiUrl}/api/v1/management/update/section`, obj, this.config);
   }
 
   //-----------------------------ABM CARDS-----------------------------
@@ -109,13 +158,14 @@ export class SpringServerService implements Conexion {
           break;
       }
       if (abm === "create") {
-        return this.http.post<any>(`${this.apiUrl}/${sec}/createCard`, springCard, this.config);
+        return this.http.post<any>(`${this.apiUrl}/api/v1/admin/${sec}/createCard`, springCard, this.config);
       } else {
         console.log('card to update:', springCard)
-        return this.http.put<any>(`${this.apiUrl}/${sec}/updateCard`, springCard, this.config);
+        console.log('Auth!: ', this.config.headers.Authorization)
+        return this.http.put<any>(`${this.apiUrl}/api/v1/admin/${sec}/updateCard`, springCard, this.config);
       }
     } else
-      return this.http.delete<any>(`${this.apiUrl}/${sec}/deleteCard/${obj.id}`);
+      return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`, this.config);
   }
 }
 

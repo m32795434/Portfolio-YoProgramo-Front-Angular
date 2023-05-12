@@ -23,8 +23,7 @@ declare global {
 export class ExperienceComponent implements OnInit {
 
   // @ViewChild('h1') h1: any;
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -65,9 +64,8 @@ export class ExperienceComponent implements OnInit {
   newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((AuthObj) => {
-      this.logged = AuthObj.auth;
-      this.level = AuthObj.level
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
     });
 
     this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
@@ -86,10 +84,9 @@ export class ExperienceComponent implements OnInit {
     if (hasContent === false) {
       this.dataService.getSectionAndCards('experience');
     }
-    //checks if the user is logged when init
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    //is logged? bring me the tokens!(every main component do this)
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
 
@@ -214,3 +211,7 @@ const emptyCard: ExperienceCard = {
 //     this.sectionAndCards.cards[i].ph[this.language] = innerHTML;
 //     this.dataService.aBMCard('experience', this.sectionAndCards.cards[i], "udpdate", i);
 //   }
+
+//que cada uno llame a isLogged en login service. login service que haga el envío al subject y setee los tokens en spring server con los token del localstorage
+//que no hagan esto ninguno del header. solo los componentes main
+//

@@ -17,8 +17,7 @@ import { UserLevels, AuthObj } from 'src/interfaces/sections-interfaces';
 
 })
 export class NgbdDropdownBasic implements OnInit {
-    logged = false;
-    level: UserLevels = "";
+    logged: UserLevels = "";
     loggedSubscription = new Subscription();
     languageSubsc = new Subscription();
     userName = '';
@@ -27,9 +26,8 @@ export class NgbdDropdownBasic implements OnInit {
     greaterThan975 = false;
 
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
-        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-            this.logged = authObj.auth;
-            this.level = authObj.level;
+        this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+            this.logged = role;
         });
         this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
     }
@@ -37,9 +35,8 @@ export class NgbdDropdownBasic implements OnInit {
     ngOnInit(): void {
         window.onresize = this.checkForResize;
         this.checkForResize();
-        const authObj = this.loginService.isLogged();
-        this.logged = authObj.auth;
-        this.level = authObj.level;
+        // this.loginService.isLogged();
+        // this.logged = logged;
     }
 
 
@@ -56,15 +53,16 @@ export class NgbdDropdownBasic implements OnInit {
         }
 
     }
+
     loginToggle(content: TemplateRef<any>) {
         this.loginService.managelogin(content);
     }
     onSubmit(e: any) {
         const userName = e.target.userName.value;
         const password = e.target.password.value;
-        const id = e.target.id.value;
-        const level = e.target.level.value;
-        this.loginService.checkAuth(userName, password, parseInt(id), level)
+        // const id = e.target.id.value;
+        // const level = e.target.level.value;
+        this.loginService.checkAuth(userName, password);
         // console.log(`User Name: ${this.userName}, Password: ${this.password}`);
         // if (this.userName === 'manuel87' && this.password === '1234') {
         //     this.loginService.shouldEnableContentEditable(true);

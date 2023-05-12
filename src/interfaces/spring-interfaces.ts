@@ -125,11 +125,6 @@ interface newSpringSkillsCard {
 interface SpringSkillsCard extends newSpringSkillsCard {
     id: number;
 }
-interface UpdateUserAndPassObj {
-    id: number;
-    userName: string;
-    userPass: string;
-}
 type SpringCards = SpringHomeCard[] | SpringQPDCard[] | SpringExperienceCard[] | SpringProjectsCard[] | SpringSkillsCard[];
 type SpringCompleteSection = SpringHomeAndCards | SpringQPDAndCards | SpringExperienceAndCards | SpringProjectsAndCards | SpringSkillsAndCards;
-export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, UpdateUserAndPassObj, newSpringHomeCard, newSpringQPDCard, newSpringExperienceCard, newSpringProjectsCard, newSpringSkillsCard }
+export { SpringHomeAndCards, SpringHomeCard, SpringQPDAndCards, SpringQPDCard, SpringExperienceAndCards, SpringExperienceCard, SpringProjectsAndCards, SpringProjectsCard, SpringAllCompleteSections, SpringCompleteSection, SpringSkillsCard, SpringSkillsAndCards, SpringCards, newSpringHomeCard, newSpringQPDCard, newSpringExperienceCard, newSpringProjectsCard, newSpringSkillsCard }

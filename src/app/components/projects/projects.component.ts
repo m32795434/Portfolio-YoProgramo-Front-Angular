@@ -19,8 +19,7 @@ declare global {
   // styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  logged: Boolean | undefined = false;
-  level: UserLevels = "";
+  logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
@@ -42,9 +41,8 @@ export class ProjectsComponent implements OnInit {
   sanitizedCards: ProjectsCard[] = [JSON.parse(JSON.stringify(emptyCard))];
 
   constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal, private sanitizer: DomSanitizer) {
-    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((authObj) => {
-      this.logged = authObj.auth;
-      this.level = authObj.level;
+    this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
+      this.logged = role;
     });
 
     this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
@@ -74,9 +72,8 @@ export class ProjectsComponent implements OnInit {
       this.dataService.getSectionAndCards('projects');
     }
     //checks if the user is logged when init
-    const authObj = this.loginService.isLogged();
-    this.logged = authObj.auth;
-    this.level = authObj.level;
+    this.loginService.isLogged();
+    // this.logged = logged;
     this.initSwiper();
   }
   async initSwiper() {

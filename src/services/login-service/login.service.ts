@@ -1,9 +1,11 @@
 import { Injectable, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
-import { AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
+import { Accs_Token, AuthObj, User, UserLevels } from 'src/interfaces/sections-interfaces';
+import jwt_decode from "jwt-decode";
+import { Ref_Token } from 'src/interfaces/sections-interfaces';
 // import { editableElements, editButtons, loginButton } from 'src/app/libraries/elements';
 
 @Injectable({
@@ -14,43 +16,72 @@ export class LoginService {
   private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
-  private logged: AuthObj = {
-    id: 0,
-    auth: false,
-    level: ""
-  };
+  private logged: UserLevels = "";
 
   constructor(private modalService: NgbModal, private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
 
-  getloggedObserver(): Observable<AuthObj> {
+  getloggedObserver(): Observable<UserLevels> {
     return this.loggedSubject.asObservable();
   }
   getIdObserver(): Observable<number> {
     return this.idSubject.asObservable();
   }
-  isLogged(): any {
-    let logged: any = localStorage.getItem('logged')
-    if (logged != null) {
-      logged = JSON.parse(logged);
-      this.logged = logged;
-      console.log('refreshed....logged?:', this.logged.auth);
-      return this.logged;
+
+
+  isLogged(): void {
+    let authObjt: any = localStorage.getItem('authObjt');
+    if (authObjt != null && authObjt != "undefined") {
+      authObjt = JSON.parse(authObjt);
+      //bring me the tokens but first!tokens are valid?
+      const refreshT: Ref_Token = jwt_decode(authObjt.refresh_token);
+      const accessT: Accs_Token = jwt_decode(authObjt.access_token);
+      console.log('accessT:  ', accessT);
+      console.log('refreshT: ', refreshT);
+      const now = new Date().getTime();
+      const accessTExpTime = accessT.exp * 1000;
+      const refreshTExpTime = refreshT.exp * 1000;
+
+      if (accessTExpTime >= now) {
+        console.log('access token exp time: OK. VAlidate until: ', new Date());
+        this.conexion.setAuthObj(authObjt);
+        this.shouldEnableContentEditable(true, authObjt) // enable content to edit, and store the tokens in the LS.
+      } else {
+        console.log('access token: Expired')
+
+        if (refreshTExpTime >= now) {
+          console.log('refresh token exp time: OK, refreshing access token!')
+          authObjt.access_token = "";
+          this.conexion.setAuthObj(authObjt)
+          this.conexion.refreshToken().subscribe(this.respAuthObject);
+        } else {
+          this.shouldEnableContentEditable(false);
+          console.log('refresh token EXPIRED, please sign in again!')
+          const logginButton: any = document.querySelector('#logginButton');
+          logginButton.click();
+        }
+      }
     }
-    return this.logged;
   }
 
+
   managelogin(content: TemplateRef<any>) {
-    if (this.logged.auth) {
+    if (this.logged) {
       // LOGOUT
-      console.log('logged?', this.logged.auth);
+      console.log('role logged?', this.logged);
       console.log('login out...');
-      this.logged = { auth: false, level: "", id: 0 }
-      this.shouldEnableContentEditable(this.logged);
+      this.conexion.logout().subscribe({
+        next(value) {
+          console.log('tokens setted to "Expired"!')
+        }, error(err) {
+          console.error(err)
+        },
+      })
+      this.shouldEnableContentEditable(false);
     } else {
       // LOGIN
-      console.log('logged?', this.logged.auth);
+      console.log('role logged?', this.logged);
       this.createForm(content);
       console.log('form created');
     }
@@ -91,35 +122,42 @@ export class LoginService {
     }
   }
 
-  shouldEnableContentEditable(logged: AuthObj) {
-    if (logged.auth) {
-      localStorage.setItem('logged', JSON.stringify(logged));
-      // this.logged.auth = true;
-      this.loggedSubject.next(this.logged);
-      console.log('contentEditable enabled');
+  shouldEnableContentEditable(bool: boolean, res?: AuthObj) {
+    if (bool) {
+      if (res) {
+        localStorage.setItem('authObjt', JSON.stringify(res));
+        const decoded: Accs_Token = jwt_decode(res.access_token)
+        this.logged = decoded.role; //set here the role for everyone who needs
+        this.loggedSubject.next(this.logged);// send the role to everyone who needs
+        console.log('contentEditable enabled');
+      }
     } else {
-      localStorage.setItem('logged', JSON.stringify(logged));
-      // this.logged = false;
+      this.logged = "";
       this.loggedSubject.next(this.logged);
+      localStorage.setItem('authObjt', JSON.stringify(undefined));
       console.log('contentEditable disabled');
     }
   }
-  checkAuth(user: string, pass: string, id: number, level: UserLevels) {
+
+  checkAuth(user: string, pass: string) {
     const userToCheck: User = {
-      id: id, userName: user, userPass: pass, level: level,
+      email: user, password: pass
     }
     console.log('userToCheck:', userToCheck);
-    this.conexion.checkAuth(userToCheck)?.subscribe((res) => {
-      if (res) {
-        console.log('res:...', res)
-        this.logged.auth = res;
-        this.logged.level = level;
-        this.logged.id = id;
-        this.shouldEnableContentEditable(this.logged)//true
-      } else {
-        this.shouldEnableContentEditable(this.logged)//false
-      }
-
-    })
+    this.conexion.checkAuth(userToCheck)?.subscribe(this.respAuthObject)
+  }
+  private respAuthObject = {
+    next: (res: AuthObj) => {
+      //-----------------------------------------------------------------------------------------------------------AQUI
+      //refresh tokens> 7 days of validate. When we refresh with it,it doesn't change. The access token changes. The refresh tokens, die when they expire.
+      console.log('sending tokens to spring server!:', res)
+      this.conexion.setAuthObj(res);
+      this.shouldEnableContentEditable(true, res)//true
+      alert('logged!');
+    },
+    error: (err: any) => {
+      this.shouldEnableContentEditable(false)//false
+      console.error(err)
+    }
   }
 }
