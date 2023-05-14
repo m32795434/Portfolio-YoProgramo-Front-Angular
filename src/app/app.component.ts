@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Component } from '@angular/core';
+// import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-root',
@@ -8,44 +8,44 @@ import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fir
 })
 export class AppComponent {
   // title = 'yo-programo-front-ng';
-  images: string[];
+  // images: string[];
 
-  //inyect--> 
-  constructor(private storage: Storage) {
-    this.images = [];
+  //inyect--> private storage: Storage
+  constructor() {
+    // this.images = [];
   }
 
   ngOnInit() {
-    this.getImages();
+    // this.getImages();
   }
 
-  uploadImage($event: any) {
-    const file = $event.target.files[0];
-    console.log(file);
+  // uploadImage($event: any) {
+  //   const file = $event.target.files[0];
+  //   console.log(file);
 
-    const imgRef = ref(this.storage, `images/${file.name}`);
+  //   const imgRef = ref(this.storage, `images/${file.name}`);
 
-    uploadBytes(imgRef, file)
-      .then(response => {
-        console.log(response)
-        this.getImages();
-      })
-      .catch(error => console.log(error));
+  //   uploadBytes(imgRef, file)
+  //     .then(response => {
+  //       console.log(response)
+  //       this.getImages();
+  //     })
+  //     .catch(error => console.log(error));
 
-  }
+  // }
 
-  getImages() {
-    const imagesRef = ref(this.storage, 'images');
+  // getImages() {
+  //   const imagesRef = ref(this.storage, 'images');
 
-    listAll(imagesRef)
-      .then(async response => {
-        console.log(response);
-        this.images = [];
-        for (let item of response.items) {
-          const url = await getDownloadURL(item);
-          this.images.push(url);
-        }
-      })
-      .catch(error => console.log(error));
-  }
+  //   listAll(imagesRef)
+  //     .then(async response => {
+  //       console.log(response);
+  //       this.images = [];
+  //       for (let item of response.items) {
+  //         const url = await getDownloadURL(item);
+  //         this.images.push(url);
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 }

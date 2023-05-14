@@ -179,51 +179,28 @@ export class HomeComponent implements OnInit {
     this.swiper.destroy();
   }
 
-  //firebase store
-  uploadImage($event: any) {
-    const file = $event.target.files[0];
-    console.log(file);
+  //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
 
-    const imgRef = ref(this.storage, `images/${file.name}`);
-
-    uploadBytes(imgRef, file)
-      .then(response => {
-        console.log(response)
-        // this.getImages();
-      })
-      .catch(error => console.log(error));
-
-  }
-
-  // getImages() {
-  //   const imagesRef = ref(this.storage, 'images');
-
-  //   listAll(imagesRef)
-  //     .then(async response => {
-  //       console.log(response);
-  //       this.images = [];
-  //       for (let item of response.items) {
-  //         const url = await getDownloadURL(item);
-  //         this.images.push(url);
-  //       }
-  //     })
-  //     .catch(error => console.log(error));
-  // }
-
-  //drag and drop
   public onDragOver(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    if (event?.currentTarget?.attributes?.name?.value === 'mobile') {
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
       this.mobileDragOver = true;
     } else {
       this.desktopDragOver = true;
     }
   }
 
-  public onDrop(event: DragEvent) {
+  public onDrop(event: any) {
     event.preventDefault();
-    // this.isDragOver = false;
+    let size = "";
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+      this.mobileDragOver = false;
+      size = "imgMobile";
+    } else {
+      this.desktopDragOver = false;
+      size = "imgDesktop";
+    }
     let file: any;
     if (event.dataTransfer?.files[0]) {
       if (event.dataTransfer?.files[0].type.startsWith('image')) {
@@ -231,9 +208,11 @@ export class HomeComponent implements OnInit {
         console.log('file:', file)
         const imgRef = ref(this.storage, `images/${file.name}`);
         uploadBytes(imgRef, file)
-          .then(response => {
+          .then(async response => {
             console.log(response)
-            // this.getImages();
+            const url = await getDownloadURL(imgRef);
+            console.log('setting url: ', url)
+            this.sectionAndCards.section[size] = url;
           })
           .catch(error => console.log(error));
       } else {
@@ -241,9 +220,13 @@ export class HomeComponent implements OnInit {
       }
     }
   }
-  public onDragLeave(event: DragEvent) {
+  public onDragLeave(event: any) {
     event.preventDefault();
-    // this.isDragOver = false;
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+      this.mobileDragOver = false;
+    } else {
+      this.desktopDragOver = false;
+    }
   }
 
 }
