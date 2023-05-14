@@ -30,6 +30,9 @@
             <button [hidden]="!(logged =='ADMIN')" id="createCard" type="button"
                 class="save-button rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create new card')">library_add</button>
+            <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
+                class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
+                (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
         </div>
         <div class="d-none d-lg-block col-lg-9 flex-fill m-0 p-0">
             <div class="qpdAndExpCardWrapper d-grid m-0 p-2 gap-3">
@@ -104,6 +107,23 @@
 </main>
 
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
+
+<ng-template #cardSortModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Sort the cards!' : 'Ordena las tarjetas!'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div cdkDropList class="example-list" (cdkDropListDropped)="dropCards($event)">
+                <div class="example-box" *ngFor="let card of sectionAndCards?.cards" cdkDrag>
+                    {{card?.img?.alt[language]}}</div>
+            </div>
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #mainImgSrcModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">

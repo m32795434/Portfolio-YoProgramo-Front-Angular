@@ -8,7 +8,7 @@ export interface Conexion {
     updateSectionInfo(sec: StringSection, obj: SectionInfo): Observable<any> | undefined;
     aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number): Observable<any> | undefined;
     checkAuth(user: User): Observable<AuthObj> | undefined;
-    saveUser(user: PassObj): Observable<any>;
+    saveUser(user: PassObj): Observable<string>;
     setAuthObj(authObj: AuthObj): void;
     refreshToken(): Observable<AuthObj>;
     logout(): Observable<any>;

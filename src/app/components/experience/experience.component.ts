@@ -7,14 +7,15 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard, SectionAndCards } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 
 //firebase storage
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
-
+// DRAG AND DROP TO SORT
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 declare global {
   interface Window {
@@ -257,6 +258,14 @@ export class ExperienceComponent implements OnInit {
       this.cardDragOver = false;
     }
   }
+
+
+  //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
+  dropCards(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
+    console.log('cards: ', this.sectionAndCards.cards)
+  }
+
 }
 const emptyCard: ExperienceCard = {
   id: 0,

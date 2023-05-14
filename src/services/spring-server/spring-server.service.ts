@@ -15,8 +15,8 @@ export class SpringServerService implements Conexion {
   private authSubscription = new Subscription();
   // private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
-  private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
-  // private apiUrl = 'http://localhost:8080';
+  // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
+  private apiUrl = 'http://localhost:8080';
   private refreshConfig = {
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export class SpringServerService implements Conexion {
     return this.http.post<any>(`${this.apiUrl}/api/v1/auth/logout`, null, this.config)
   }
 
-  saveUser(passObj: PassObj): Observable<any> {
+  saveUser(passObj: PassObj): Observable<string> {
     // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
     return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {
       method: 'PUT',
