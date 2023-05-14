@@ -230,3 +230,16 @@ body {
 .ng-scroll-content {
     width: 100%;
 }
+
+
+//drag and drop areas
+.drop-area {
+    border: 2px dashed #ccc;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.drop-area.drag-over {
+    border: 3px dashed red;
+}

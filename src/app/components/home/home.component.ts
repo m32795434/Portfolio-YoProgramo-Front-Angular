@@ -25,7 +25,6 @@ declare global {
 })
 export class HomeComponent implements OnInit {
   //firebase store
-  images: string[];
   //drag and drop
   public mobileDragOver = false;
   public desktopDragOver = false;
@@ -56,7 +55,6 @@ export class HomeComponent implements OnInit {
   newCard: HomeCard = JSON.parse(JSON.stringify(emptyCard));
 
   constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService, private spring: SpringServerService, private storage: Storage) {
-    this.images = [];
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;

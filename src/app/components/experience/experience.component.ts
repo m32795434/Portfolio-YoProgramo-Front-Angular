@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 //DATEPICKER
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { LoginService } from '../../../services/login-service/login.service';
@@ -10,6 +10,12 @@ import { DataService } from '../../../services/data-service/data.service';
 import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
+
+//firebase storage
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+
+
+
 declare global {
   interface Window {
     Swiper: any;
@@ -21,6 +27,10 @@ declare global {
   // styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
+  //firebase store
+  //drag and drop
+  public mobileDragOver = false;
+  public desktopDragOver = false;
 
   // @ViewChild('h1') h1: any;
   logged: UserLevels = "";
@@ -63,7 +73,7 @@ export class ExperienceComponent implements OnInit {
   //new card
   newCard: ExperienceCard = JSON.parse(JSON.stringify(emptyCard));
 
-  constructor(private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
+  constructor(private storage: Storage, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
     });
@@ -183,6 +193,56 @@ export class ExperienceComponent implements OnInit {
   // }
   ngOnDestroy(): void {
     this.swiper.destroy();
+  }
+
+  //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
+
+  public onDragOver(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+      this.mobileDragOver = true;
+    } else {
+      this.desktopDragOver = true;
+    }
+  }
+
+  public onDrop(event: any) {
+    event.preventDefault();
+    let size = "";
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+      this.mobileDragOver = false;
+      size = "imgMobile";
+    } else {
+      this.desktopDragOver = false;
+      size = "imgDesktop";
+    }
+    let file: any;
+    if (event.dataTransfer?.files[0]) {
+      if (event.dataTransfer?.files[0].type.startsWith('image')) {
+        file = event.dataTransfer.files[0];
+        console.log('file:', file)
+        const imgRef = ref(this.storage, `images/${file.name}`);
+        uploadBytes(imgRef, file)
+          .then(async response => {
+            console.log(response)
+            const url = await getDownloadURL(imgRef);
+            console.log('setting url: ', url)
+            this.sectionAndCards.section[size] = url;
+          })
+          .catch(error => console.log(error));
+      } else {
+        alert('not an image!')
+      }
+    }
+  }
+  public onDragLeave(event: any) {
+    event.preventDefault();
+    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+      this.mobileDragOver = false;
+    } else {
+      this.desktopDragOver = false;
+    }
   }
 }
 const emptyCard: ExperienceCard = {
