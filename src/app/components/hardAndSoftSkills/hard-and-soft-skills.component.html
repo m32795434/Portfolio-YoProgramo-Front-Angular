@@ -95,13 +95,18 @@
             <form (ngSubmit)="saveImgSrc()">
                 <div class="form-group drop-area" [class]="{'drag-over':mobileDragOver}" (drop)="onDrop($event)"
                     (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgMobile">
-                    <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
+                    <label for="imgMobile">{{language === 'en'? 'Type or Drop for Mobile size: ' : 'Tipee la Url o tire
+                        una
+                        imagen tamaño Mobile:
+                        '}}></label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
                         [(ngModel)]="sectionAndCards.section.imgMobile">
                 </div>
                 <div class="form-group mt-2 drop-area" [class]="{'drag-over':desktopDragOver}" (drop)="onDrop($event)"
                     (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgDesktop">
-                    <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
+                    <label for="imgDesktop">{{language === 'en'? 'Type or Drop for Desktop size: ' : 'Tipee la Url o
+                        tire una
+                        imagen tamaño Escritorio: '}}></label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
                         [(ngModel)]="sectionAndCards.section.imgDesktop">
                 </div>
