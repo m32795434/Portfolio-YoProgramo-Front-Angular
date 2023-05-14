@@ -115,13 +115,20 @@
         </div>
         <div class="modal-body">
             <form (ngSubmit)="saveImgSrc()">
-                <div class="form-group">
-                    <label for="imgMobile">{{language === 'en'? 'Mobile: ' : 'Dispositivos Portátiles: '}}</label>
+                <div class="form-group drop-area" [class]="{'drag-over':mobileDragOver}" (drop)="onDrop($event)"
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgMobile">
+                    <label for="imgMobile">{{language === 'en'? 'Type or Drop for Mobile size: ' : 'Tipee la Url o tire
+                        una
+                        imagen tamaño Mobile:
+                        '}}></label>
                     <input type="text" class="form-control" id="imgMobile" name="imgMobile"
                         [(ngModel)]="sectionAndCards.section.imgMobile">
                 </div>
-                <div class="form-group mt-2">
-                    <label for="imgDesktop">{{language === 'en'? 'Desktop: ' : 'Escritorio: '}}</label>
+                <div class="form-group mt-2 drop-area" [class]="{'drag-over':desktopDragOver}" (drop)="onDrop($event)"
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgDesktop">
+                    <label for="imgDesktop">{{language === 'en'? 'Type or Drop for Desktop size: ' : 'Tipee la Url o
+                        tire una
+                        imagen tamaño Escritorio: '}}></label>
                     <input type="text" class="form-control" id="imgDesktop" name="imgDesktop"
                         [(ngModel)]="sectionAndCards.section.imgDesktop">
                 </div>
@@ -143,8 +150,13 @@
         </div>
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
-                <div class="form-group">
-                    <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
+                <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    <label for="companyImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
+                        tire
+                        una
+                        imagen:
+                        '}}></label>
                     <input type="text" class="form-control" id="companyImg" name="companyImg"
                         [(ngModel)]="sectionAndCards.cards[cardsIndex].img.src">
                 </div>

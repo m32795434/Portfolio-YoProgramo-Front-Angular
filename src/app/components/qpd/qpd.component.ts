@@ -7,9 +7,12 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //DATEPICKER
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { wait } from 'src/app/libraries/utils';
 import { LanguageService } from 'src/services/language/language.service';
+
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+
+
 declare global {
   interface Window {
     Swiper: any;
@@ -21,6 +24,11 @@ declare global {
   // styleUrls: ['./qpd.component.scss'],
 })
 export class QPDComponent implements OnInit {
+  //firebase store
+  //drag and drop
+  public mobileDragOver = false;
+  public desktopDragOver = false;
+  public cardDragOver = false;
 
   // @ViewChild('h1') h1: any;
   logged: UserLevels = "";
@@ -64,7 +72,7 @@ export class QPDComponent implements OnInit {
   newCard: QPDCard = JSON.parse(JSON.stringify(emptyCard));
 
 
-  constructor(private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
+  constructor(private storage: Storage, private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
     });
@@ -127,10 +135,12 @@ export class QPDComponent implements OnInit {
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+    this.cardsIndex = 0;
   }
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('qPD', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+    this.cardsIndex = 0;
   }
 
   //MODALS
@@ -181,6 +191,67 @@ export class QPDComponent implements OnInit {
   ngOnDestroy(): void {
     this.swiper.destroy();
   }
+
+  //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
+
+  public onDragOver(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
+      this.mobileDragOver = true;
+    } else if (name === 'imgDesktop') {
+      this.desktopDragOver = true;
+    } else if (name === 'imgCard') {
+      this.cardDragOver = true;
+    }
+  }
+
+  public onDrop(event: any) {
+    event.preventDefault();
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
+      this.mobileDragOver = false;
+    } else if (name === 'imgDesktop') {
+      this.desktopDragOver = false;
+    } else if (name === 'imgCard') {
+      this.cardDragOver = false;
+    }
+    let file: any;
+    if (event.dataTransfer?.files[0]) {
+      if (event.dataTransfer?.files[0].type.startsWith('image')) {
+        file = event.dataTransfer.files[0];
+        console.log('file:', file)
+        const imgRef = ref(this.storage, `images/${file.name}`);
+        uploadBytes(imgRef, file)
+          .then(async response => {
+            console.log(response)
+            const url = await getDownloadURL(imgRef);
+            console.log('setting url: ', url)
+            if (name === 'imgMobile' || name === 'imgDesktop') {
+              this.sectionAndCards.section[name] = url;
+            } else if (name === 'imgCard') {
+              this.sectionAndCards.cards[this.cardsIndex].img.src = url;
+            }
+          })
+          .catch(error => console.log(error));
+      } else {
+        alert('not an image!')
+      }
+    }
+  }
+  public onDragLeave(event: any) {
+    event.preventDefault();
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
+      this.mobileDragOver = false;
+    } else if (name === 'imgDesktop') {
+      this.desktopDragOver = false;
+    } else if (name === 'imgCard') {
+      this.cardDragOver = false;
+    }
+  }
+
 }
 const emptyCard = {
   id: 0,

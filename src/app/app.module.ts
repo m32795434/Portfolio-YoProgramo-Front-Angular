@@ -26,6 +26,9 @@ import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap'
 import { SettingsOffcanvasComponent } from './components/header/settings-offcanvas/settings-offcanvas.component';
 import { SocialsDropdown } from './components/header/solcials-dropdown/socials-dropdown.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
         "showSubtitle": false,
         "showInnerStroke": false,
         "startFromZero": false
-      })
+      }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
