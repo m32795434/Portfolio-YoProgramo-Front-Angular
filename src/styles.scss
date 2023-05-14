@@ -235,9 +235,13 @@ body {
 //drag and drop areas
 .drop-area {
     border: 2px dashed #ccc;
-    padding: 1rem;
+    padding: .5rem;
     text-align: center;
     font-weight: bold;
+
+    @include media-breakpoint-up(md) {
+        padding: 1rem;
+    }
 }
 
 .drop-area.drag-over {

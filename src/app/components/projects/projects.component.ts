@@ -110,10 +110,12 @@ export class ProjectsComponent implements OnInit {
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('projects', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+    this.cardsIndex = 0;
   }
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('projects', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+    this.cardsIndex = 0;
   }
 
   //MODALS

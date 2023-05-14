@@ -121,10 +121,12 @@ export class HomeComponent implements OnInit {
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+    this.cardsIndex = 0;
   }
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('home', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+    this.cardsIndex = 0;
   }
 
 

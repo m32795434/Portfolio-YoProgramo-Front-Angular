@@ -28,6 +28,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
   //drag and drop
   public mobileDragOver = false;
   public desktopDragOver = false;
+  public cardDragOver = false;
 
   // @ViewChild('h1') h1: any;
   logged: UserLevels = "";
@@ -125,10 +126,12 @@ export class HardAndSoftSkillsComponent implements OnInit {
   //UPDATE request
   updateCard() {
     this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "udpdate", this.cardsIndex);
+    this.cardsIndex = 0;
   }
   //DELETE request
   deleteCard() {
     this.dataService.aBMCard('skills', this.sectionAndCards.cards[this.cardsIndex], "delete", this.cardsIndex);
+    this.cardsIndex = 0;
   }
 
   //MODALS
@@ -185,22 +188,25 @@ export class HardAndSoftSkillsComponent implements OnInit {
   public onDragOver(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
       this.mobileDragOver = true;
-    } else {
+    } else if (name === 'imgDesktop') {
       this.desktopDragOver = true;
+    } else if (name === 'imgCard') {
+      this.cardDragOver = true;
     }
   }
 
   public onDrop(event: any) {
     event.preventDefault();
-    let size = "";
-    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
       this.mobileDragOver = false;
-      size = "imgMobile";
-    } else {
+    } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
-      size = "imgDesktop";
+    } else if (name === 'imgCard') {
+      this.cardDragOver = false;
     }
     let file: any;
     if (event.dataTransfer?.files[0]) {
@@ -213,7 +219,11 @@ export class HardAndSoftSkillsComponent implements OnInit {
             console.log(response)
             const url = await getDownloadURL(imgRef);
             console.log('setting url: ', url)
-            this.sectionAndCards.section[size] = url;
+            if (name === 'imgMobile' || name === 'imgDesktop') {
+              this.sectionAndCards.section[name] = url;
+            } else if (name === 'imgCard') {
+              this.sectionAndCards.cards[this.cardsIndex].img.src = url;
+            }
           })
           .catch(error => console.log(error));
       } else {
@@ -223,10 +233,13 @@ export class HardAndSoftSkillsComponent implements OnInit {
   }
   public onDragLeave(event: any) {
     event.preventDefault();
-    if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
+    let name = event?.currentTarget?.attributes?.name?.value;
+    if (name === 'imgMobile') {
       this.mobileDragOver = false;
-    } else {
+    } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
+    } else if (name === 'imgCard') {
+      this.cardDragOver = false;
     }
   }
 }

@@ -150,8 +150,13 @@
         </div>
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
-                <div class="form-group">
-                    <label for="companyImg">{{language === 'en'? 'Image Url: ' : 'Url de la Imagen: '}}</label>
+                <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    <label for="companyImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
+                        tire
+                        una
+                        imagen:
+                        '}}></label>
                     <input type="text" class="form-control" id="companyImg" name="companyImg"
                         [(ngModel)]="sectionAndCards.cards[cardsIndex].img.src">
                 </div>
