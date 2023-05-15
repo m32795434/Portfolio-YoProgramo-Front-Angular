@@ -12,9 +12,10 @@ import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 
 //firebase storage
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 
-
+// DRAG AND DROP TO SORT
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 declare global {
   interface Window {
@@ -257,6 +258,19 @@ export class ExperienceComponent implements OnInit {
       this.cardDragOver = false;
     }
   }
+
+
+  //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
+  dropCards(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
+    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
+    this.sectionAndCards.cards.forEach((card: ExperienceCard, id: number) => {
+      card.id = id + 1;
+    });
+    console.log('cards sorted to store: ', this.sectionAndCards.cards);
+    this.dataService.sortCards('experience', this.sectionAndCards.cards);
+  }
+
 }
 const emptyCard: ExperienceCard = {
   id: 0,

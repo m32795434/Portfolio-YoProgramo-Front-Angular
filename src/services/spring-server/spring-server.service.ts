@@ -15,8 +15,8 @@ export class SpringServerService implements Conexion {
   private authSubscription = new Subscription();
   // private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
-  private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
-  // private apiUrl = 'http://localhost:8080';
+  // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
+  private apiUrl = 'http://localhost:8080';
   private refreshConfig = {
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export class SpringServerService implements Conexion {
     return this.http.post<any>(`${this.apiUrl}/api/v1/auth/logout`, null, this.config)
   }
 
-  saveUser(passObj: PassObj): Observable<any> {
+  saveUser(passObj: PassObj): Observable<string> {
     // return this.http.put(`${this.apiUrl}/api/v1/mod/user`, passObj, this.textConfig);
     return from(fetch(`${this.apiUrl}/api/v1/mod/user`, {
       method: 'PUT',
@@ -167,6 +167,46 @@ export class SpringServerService implements Conexion {
     } else
       return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`, this.config);
   }
+  sortCards(sec: StringSection, arr: SectionCard[]): Observable<any> {
+    let springCardArr;
+    switch (sec) {
+      case "home":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringHomeCard(card)
+          return tempCard;
+        })
+        break;
+      case "experience":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringExperienceCard(card)
+          return tempCard;
+        })
+        break;
+      case "skills":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringSkillsCard(card)
+          return tempCard;
+        })
+        break;
+      case "qPD":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringQPDCard(card)
+          return tempCard;
+        })
+        break;
+      case "projects":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringProjectsCard(card)
+          return tempCard;
+        })
+        break;
+      default:
+        break;
+    }
+    console.log('springCardArr: ', springCardArr)
+    return this.http.put<any>(`${this.apiUrl}/api/v1/management/${sec}/sortCards`, springCardArr, this.config);
+  }
+
 }
 
 

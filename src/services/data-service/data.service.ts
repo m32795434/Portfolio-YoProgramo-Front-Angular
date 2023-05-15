@@ -9,6 +9,7 @@ import { SpringServerService } from '../spring-server/spring-server.service';
   providedIn: 'root'
 })
 export class DataService {
+
   //SUBJECTS
   private homeAndCardsSubject = new Subject<HomeAndCards>();
   private experienceAndCardsSubject = new Subject<ExperienceAndCards>();
@@ -229,6 +230,43 @@ export class DataService {
     return false
   }
 
+  switchSubscribeSortCards(sec: StringSection, arr: SectionCard[]) {
+    const subscribeObj = {
+      next: () => {
+        switch (sec) {
+          case "home":
+            this.data.home.cards = arr;
+            this.homeAndCardsSubject.next(this.data.home);
+            break;
+          case "experience":
+            this.data.experience.cards = arr;
+            this.experienceAndCardsSubject.next(this.data.experience);
+            break;
+          case "projects":
+            this.data.projects.cards = arr;
+            this.projectsAndCardsSubject.next(this.data.projects);
+            break;
+          case "qPD":
+            this.data.qPD.cards = arr;
+            this.qPDAndCardsSubject.next(this.data.qPD);
+            break;
+          case "skills":
+            this.data.skills.cards = arr;
+            this.skillsAndCardsSubject.next(this.data.skills);
+            break;
+          default:
+            break;
+        }
+        console.log(`${sec} Cards sorted!`)
+      },
+      error: (error: Error) => {
+        console.error(`An Error occurred while trying to sort the cards`, error);
+        this.errorSubject.next(error.message)
+      }
+    }
+    return subscribeObj;
+  }
+
   //-------------------------------TO SERVER - HTTP REQUESTS--------------------------------
 
   getSectionAndCards(section: StringSection) {
@@ -241,6 +279,9 @@ export class DataService {
   }
   aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number) {
     this.conexion.aBMCard(sec, obj, abm, i)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm, i));
+  }
+  sortCards(sec: StringSection, arr: SectionCard[]) {
+    this.conexion.sortCards(sec, arr).subscribe(this.switchSubscribeSortCards(sec, arr));
   }
 }
 function deleteAndReassingIds(arr: any, i: number) {

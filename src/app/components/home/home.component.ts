@@ -9,6 +9,8 @@ import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
+// DRAG AND DROP TO SORT
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 declare global {
   interface Window {
@@ -227,6 +229,18 @@ export class HomeComponent implements OnInit {
     } else {
       this.desktopDragOver = false;
     }
+  }
+
+  //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
+
+  dropCards(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
+    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
+    this.sectionAndCards.cards.forEach((card: HomeCard, id: number) => {
+      card.id = id + 1;
+    });
+    console.log('cards sorted to store: ', this.sectionAndCards.cards);
+    this.dataService.sortCards('home', this.sectionAndCards.cards);
   }
 
 }
