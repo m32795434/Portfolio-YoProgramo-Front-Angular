@@ -11,6 +11,8 @@ import { LanguageService } from 'src/services/language/language.service';
 
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
+// DRAG AND DROP TO SORT
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 declare global {
   interface Window {
@@ -241,6 +243,18 @@ export class HardAndSoftSkillsComponent implements OnInit {
     } else if (name === 'imgCard') {
       this.cardDragOver = false;
     }
+  }
+
+  //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
+
+  dropCards(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
+    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
+    this.sectionAndCards.cards.forEach((card: SkillsCard, id: number) => {
+      card.id = id + 1;
+    });
+    console.log('cards sorted to store: ', this.sectionAndCards.cards);
+    this.dataService.sortCards('skills', this.sectionAndCards.cards);
   }
 }
 const emptyCard = {

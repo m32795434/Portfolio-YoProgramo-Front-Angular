@@ -155,6 +155,15 @@ button[aria-label="create-card"] {
     left: 85%;
 }
 
+div[ngbDropdown]>button::after {
+    display: none;
+}
+
+nav[ngbDropdown]>button::after {
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
+}
 
 //-------------------SWIPER-------------------
 .swiper-button-prev,

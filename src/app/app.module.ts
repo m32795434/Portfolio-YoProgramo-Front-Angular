@@ -21,14 +21,15 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbdDropdownBasic } from './components/header/section-dropdown/section-dropdown.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { HardAndSoftSkillsComponent } from './components/hardAndSoftSkills/hard-and-soft-skills.component';
 import { NgbAlertModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { SettingsOffcanvasComponent } from './components/header/settings-offcanvas/settings-offcanvas.component';
 import { SocialsDropdown } from './components/header/solcials-dropdown/socials-dropdown.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    NgbDropdownModule,
     BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule,
     NgScrollbarModule.withConfig({
       track: "vertical",

@@ -7,12 +7,12 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../../services/login-service/login.service';
 import { DataService } from '../../../services/data-service/data.service';
-import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard, SectionAndCards } from 'src/interfaces/sections-interfaces';
+import { ExperienceAndCards, ExperienceCard, UserLevels, newExperienceCard } from 'src/interfaces/sections-interfaces';
 import { LanguageService } from 'src/services/language/language.service';
 import { wait } from 'src/app/libraries/utils';
 
 //firebase storage
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 
 // DRAG AND DROP TO SORT
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -263,7 +263,12 @@ export class ExperienceComponent implements OnInit {
   //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
   dropCards(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
-    console.log('cards: ', this.sectionAndCards.cards)
+    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
+    this.sectionAndCards.cards.forEach((card: ExperienceCard, id: number) => {
+      card.id = id + 1;
+    });
+    console.log('cards sorted to store: ', this.sectionAndCards.cards);
+    this.dataService.sortCards('experience', this.sectionAndCards.cards);
   }
 
 }

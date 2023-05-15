@@ -8,6 +8,9 @@ import { wait } from 'src/app/libraries/utils';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
 
+// DRAG AND DROP TO SORT
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 declare global {
   interface Window {
     Swiper: any;
@@ -179,6 +182,19 @@ export class ProjectsComponent implements OnInit {
   //     }
   //   }
   // }
+
+  //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
+
+  dropCards(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
+    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
+    this.sectionAndCards.cards.forEach((card: ProjectsCard, id: number) => {
+      card.id = id + 1;
+    });
+    console.log('cards sorted to store: ', this.sectionAndCards.cards);
+    this.dataService.sortCards('projects', this.sectionAndCards.cards);
+  }
+
 }
 const emptyCard = {
   id: 0,

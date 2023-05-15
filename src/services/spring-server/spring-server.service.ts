@@ -167,6 +167,46 @@ export class SpringServerService implements Conexion {
     } else
       return this.http.delete<any>(`${this.apiUrl}/api/v1/admin/${sec}/deleteCard/${obj.id}`, this.config);
   }
+  sortCards(sec: StringSection, arr: SectionCard[]): Observable<any> {
+    let springCardArr;
+    switch (sec) {
+      case "home":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringHomeCard(card)
+          return tempCard;
+        })
+        break;
+      case "experience":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringExperienceCard(card)
+          return tempCard;
+        })
+        break;
+      case "skills":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringSkillsCard(card)
+          return tempCard;
+        })
+        break;
+      case "qPD":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringQPDCard(card)
+          return tempCard;
+        })
+        break;
+      case "projects":
+        springCardArr = arr.map((card) => {
+          const tempCard = toSpringCards.mapToSpringProjectsCard(card)
+          return tempCard;
+        })
+        break;
+      default:
+        break;
+    }
+    console.log('springCardArr: ', springCardArr)
+    return this.http.put<any>(`${this.apiUrl}/api/v1/management/${sec}/sortCards`, springCardArr, this.config);
+  }
+
 }
 
 

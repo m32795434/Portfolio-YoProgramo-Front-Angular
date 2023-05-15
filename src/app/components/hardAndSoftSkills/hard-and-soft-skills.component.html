@@ -33,12 +33,27 @@
             <div class="skillsCardWrapper d-grid m-0 p-2 gap-3">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index"
                     class="d-grid justify-content-center align-content-center myCard card">
-                    <button class="save-button save-left rounded-circle material-symbols-outlined"
-                        [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'change card header' ,i)"
-                        aria-label="Change card header and image">settings</button>
-                    <button [hidden]="!(logged =='ADMIN')" type="button"
-                        class="save-button save-right rounded-circle material-symbols-outlined" aria-label="Delete card"
-                        (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+
+                    <div ngbDropdown class="save-right material-symbols-outlined"
+                        [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">
+                        <button type="button" class="save-button rounded-circle material-symbols-outlined"
+                            id="card-settings" ngbDropdownToggle
+                            [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">settings</button>
+                        <div ngbDropdownMenu aria-labelledby="card-settings" class="text-center">
+                            <!-- ngbDropdownItem -->
+                            <button class="save-button rounded-circle material-symbols-outlined"
+                                [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'card settings' ,i)"
+                                aria-label="Update-Card">settings</button>
+                            <button [hidden]="!(logged =='ADMIN')" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                                (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                            <!-- sortCards -->
+                            <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
+                                (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
+                        </div>
+                    </div>
+
                     <circle-progress tabindex="0"
                         [attr.aria-label]="language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' +card.value"
                         [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
@@ -54,13 +69,28 @@
             <div class="swiper-wrapper p-2 gap-3">
                 <!-- Cards -->
                 <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide card">
+
+                    <div ngbDropdown class="save-right material-symbols-outlined"
+                        [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">
+                        <button type="button" class="save-button rounded-circle material-symbols-outlined"
+                            id="card-settings" ngbDropdownToggle
+                            [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">settings</button>
+                        <div ngbDropdownMenu aria-labelledby="card-settings" class="text-center">
+                            <!-- ngbDropdownItem -->
+                            <button class="save-button rounded-circle material-symbols-outlined"
+                                [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'card settings' ,i)"
+                                aria-label="Update-Card">settings</button>
+                            <button [hidden]="!(logged =='ADMIN')" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                                (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                            <!-- sortCards -->
+                            <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
+                                (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
+                        </div>
+                    </div>
+
                     <div class="d-grid justify-content-center align-content-center">
-                        <button type="button" class="save-button save-left rounded-circle material-symbols-outlined"
-                            [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal, 'change card header ',i)"
-                            aria-label="Change card header and image">settings</button>
-                        <button [hidden]="!(logged =='ADMIN')" type="button"
-                            class="save-button save-right rounded-circle material-symbols-outlined"
-                            aria-label="Delete card" (click)="open(confirmDelete,'delete the card?' ,i)">delete</button>
                         <circle-progress tabindex="0"
                             [attr.aria-label]="language==='en'? card.img.alt.en+': ' : card.img.alt.es+': ' +card.value"
                             [showImage]="true" [percent]="card.value" [outerStrokeColor]="card.outStrokeColor"
@@ -83,6 +113,22 @@
 </main>
 
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
+<ng-template #cardSortModal let-modal class="#">
+    <div cdkDrag cdkDragRootElement=".modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">{{language === 'en'? 'Sort the cards!' : 'Ordena las tarjetas!'}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div cdkDropList class="example-list" (cdkDropListDropped)="dropCards($event)">
+                <div class="example-box" *ngFor="let card of sectionAndCards?.cards" cdkDrag>
+                    {{card?.img?.alt[language]}}</div>
+            </div>
+        </div>
+    </div>
+</ng-template>
 <ng-template #mainImgSrcModal let-modal class="#">
     <div cdkDrag cdkDragRootElement=".modal-content">
         <div class="modal-header">

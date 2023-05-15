@@ -12,5 +12,6 @@ export interface Conexion {
     setAuthObj(authObj: AuthObj): void;
     refreshToken(): Observable<AuthObj>;
     logout(): Observable<any>;
+    sortCards(sec: StringSection, arr: SectionCard[]): Observable<any>;
     // updateElContent(obj: ElInterface, val: string): Observable<ElInterface>;
 }
