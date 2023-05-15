@@ -92,7 +92,7 @@
         <div class="modal-body">
             <div cdkDropList class="example-list" (cdkDropListDropped)="dropCards($event)">
                 <div class="example-box" *ngFor="let card of sectionAndCards?.cards" cdkDrag>
-                    {{card?.ph[language].substring(0,15)}}</div>
+                    {{card?.ph[language].substring(0,30)}}</div>
             </div>
         </div>
     </div>
