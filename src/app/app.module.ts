@@ -30,6 +30,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { SnipperLoadingComponent } from './components/snipper-loading/snipper-loading.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     HeaderComponent,
     HardAndSoftSkillsComponent,
     SettingsOffcanvasComponent,
+    SnipperLoadingComponent,
   ],
   imports: [
     BrowserModule,

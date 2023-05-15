@@ -306,3 +306,10 @@ body {
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+// auto dark mode
+body {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    color-scheme: light dark !important;
+}

@@ -15,7 +15,7 @@
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="desktop imgsToChange edit-content" data-z="423 x 756"
-                    [src]="sectionAndCards?.section.imgDesktop" alt="Manuel perfil" id="imgDesktopQa">
+                    [src]="sectionAndCards?.section.imgDesktop" alt="Manuel perfil" id="imgDesktopQa" #imgDesktopSkills>
             </div>
             <div class="d-flex wrapper-h1-save">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
@@ -110,6 +110,7 @@
             <div class="swiper-button-next"></div>
         </div>
     </div>
+    <app-snipper-loading [isLoadingSnipper]="isLoading"></app-snipper-loading>
 </main>
 
 <ng-template #errorLoading>{{errorMessage}}</ng-template>

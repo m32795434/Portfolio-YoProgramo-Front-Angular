@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SkillsAndCards, SkillsCard, AuthObj, UserLevels } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
@@ -25,7 +25,10 @@ declare global {
   templateUrl: './hard-and-soft-skills.component.html',
   // styleUrls: ['./hard-and-soft-skills.component.scss']
 })
-export class HardAndSoftSkillsComponent implements OnInit {
+export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
+  //loader
+  isLoading = false;
+  @ViewChild('imgDesktopSkills') imgDesktopSkills!: ElementRef;
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -79,6 +82,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.isLoading = true;
     // window.onresize = this.checkForResize;
     const hasContent = this.dataService.localGetSectionAndCards('skills');
     if (hasContent === false) {
@@ -202,6 +206,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
   public onDrop(event: any) {
     event.preventDefault();
+    this.isLoading = true;
     let name = event?.currentTarget?.attributes?.name?.value;
     if (name === 'imgMobile') {
       this.mobileDragOver = false;
@@ -226,6 +231,7 @@ export class HardAndSoftSkillsComponent implements OnInit {
             } else if (name === 'imgCard') {
               this.sectionAndCards.cards[this.cardsIndex].img.src = url;
             }
+            this.isLoading = false;
           })
           .catch(error => console.log(error));
       } else {
@@ -249,13 +255,22 @@ export class HardAndSoftSkillsComponent implements OnInit {
 
   dropCards(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
-    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
     this.sectionAndCards.cards.forEach((card: SkillsCard, id: number) => {
       card.id = id + 1;
     });
-    console.log('cards sorted to store: ', this.sectionAndCards.cards);
     this.dataService.sortCards('skills', this.sectionAndCards.cards);
   }
+
+  //---------------------------------------------ngAfterViewInit----------------------------------------
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.imgDesktopSkills.nativeElement.addEventListener('load', () => {
+      console.log('carga completa!')
+      this.isLoading = false;
+    });
+  }
+
 }
 const emptyCard = {
   id: 0,

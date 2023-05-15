@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //DATEPICKER
@@ -27,7 +27,11 @@ declare global {
   templateUrl: './experience.component.html',
   // styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent implements OnInit {
+export class ExperienceComponent implements OnInit, AfterViewInit {
+  //loader
+  isLoading = false;
+  @ViewChild('imgDesktopExp') imgDesktopExp!: ElementRef;
+
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -61,7 +65,7 @@ export class ExperienceComponent implements OnInit {
         month: 5,
         day: 31
       },
-      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+      ph: { en: "", es: "" }
     }]
   };
   //contains all the cards content
@@ -89,7 +93,9 @@ export class ExperienceComponent implements OnInit {
     })
   }
 
+
   ngOnInit(): void {
+    this.isLoading = true;
     // window.onresize = this.checkForResize;
     //checks if the main dataService has data from a previous load.
     const hasContent = this.dataService.localGetSectionAndCards('experience');
@@ -216,6 +222,7 @@ export class ExperienceComponent implements OnInit {
 
   public onDrop(event: any) {
     event.preventDefault();
+    this.isLoading = true;
     let name = event?.currentTarget?.attributes?.name?.value;
     if (name === 'imgMobile') {
       this.mobileDragOver = false;
@@ -240,6 +247,7 @@ export class ExperienceComponent implements OnInit {
             } else if (name === 'imgCard') {
               this.sectionAndCards.cards[this.cardsIndex].img.src = url;
             }
+            this.isLoading = false;
           })
           .catch(error => console.log(error));
       } else {
@@ -263,12 +271,17 @@ export class ExperienceComponent implements OnInit {
   //--------------------------------------------------DRAG AND DROP TO SORT--------------------------------------------------
   dropCards(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
-    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
     this.sectionAndCards.cards.forEach((card: ExperienceCard, id: number) => {
       card.id = id + 1;
     });
-    console.log('cards sorted to store: ', this.sectionAndCards.cards);
     this.dataService.sortCards('experience', this.sectionAndCards.cards);
+  }
+
+  ngAfterViewInit(): void {
+    this.imgDesktopExp.nativeElement.addEventListener('load', () => {
+      console.log('carga completa!')
+      this.isLoading = false;
+    });
   }
 
 }

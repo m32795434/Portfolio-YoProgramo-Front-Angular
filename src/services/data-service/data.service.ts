@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { HomeAndCards, ExperienceAndCards, QPDAndCards, ProjectsAndCards, AllSectionsAndCards, SectionAndCards, StringSection, SkillsAndCards, SectionInfo, ExperienceCard, SectionCard, ABM } from 'src/interfaces/sections-interfaces';
 import { Conexion } from 'src/interfaces/Conexion';
 import { SpringServerService } from '../spring-server/spring-server.service';
+import { wait } from 'src/app/libraries/utils';
 
 
 @Injectable({
@@ -16,9 +17,12 @@ export class DataService {
   private qPDAndCardsSubject = new Subject<QPDAndCards>();
   private projectsAndCardsSubject = new Subject<ProjectsAndCards>();
   private skillsAndCardsSubject = new Subject<SkillsAndCards>();
-
+  private isLoadingSubject = new Subject<boolean>();
+  private isLoadingProjectSubject = new Subject<boolean>();
   private errorSubject = new Subject<any>();
-  //to debuggin: AllSectionsAndCards || any
+
+
+  //for debuggin: AllSectionsAndCards || any
   protected data: any = {
     home: { section: { id: "home", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
     experience: { section: { id: "experience", imgMobile: "", imgDesktop: "", en: "", es: "" }, cards: [], },
@@ -31,6 +35,7 @@ export class DataService {
   public constructor(private dataAccess: SpringServerService) {
     this.conexion = this.dataAccess;
   }
+  private isLoading = false;
 
   //GET OBSERVERS
   getHomeAndCardsObserver(): Observable<HomeAndCards> {
@@ -44,9 +49,17 @@ export class DataService {
   }
   getProjectsAndCardsObserver(): Observable<ProjectsAndCards> {
     return this.projectsAndCardsSubject.asObservable();
-  } getSkillsAndCardsObserver(): Observable<SkillsAndCards> {
+  }
+  getSkillsAndCardsObserver(): Observable<SkillsAndCards> {
     return this.skillsAndCardsSubject.asObservable();
   }
+  getIsLoadingObserver(): Observable<boolean> {
+    return this.isLoadingSubject.asObservable();
+  }
+  getIsLoadingProjectsObserver(): Observable<boolean> {
+    return this.isLoadingProjectSubject.asObservable();
+  }
+
 
 
   getErrorObserver() {
@@ -80,6 +93,7 @@ export class DataService {
           default:
             break;
         }
+        this.isLoadingProjectSubject.next(false);
         console.log('seccione cargada exitosamente en DataService:...', this.data[content.section.id]);
       },
       error: (error: Error) => {
@@ -119,6 +133,8 @@ export class DataService {
           default:
             break;
         }
+        this.isLoading = false;
+        this.isLoadingSubject.next(this.isLoading);
         console.log('seccón actualizada exitosamente:...', this.data[section]);
       },
       error: (error: Error) => {
@@ -190,6 +206,8 @@ export class DataService {
               break;
           }
         }
+        this.isLoading = false;
+        this.isLoadingSubject.next(this.isLoading);
         console.log(`successfully ${abm}d: `, ' card ', obj.id);
       },
       error: (error: Error) => {
@@ -225,6 +243,7 @@ export class DataService {
         default:
           break;
       }
+      this.isLoadingProjectSubject.next(false);
       return true;
     }
     return false
@@ -232,7 +251,7 @@ export class DataService {
 
   switchSubscribeSortCards(sec: StringSection, arr: SectionCard[]) {
     const subscribeObj = {
-      next: () => {
+      next: async () => {
         switch (sec) {
           case "home":
             this.data.home.cards = arr;
@@ -257,6 +276,9 @@ export class DataService {
           default:
             break;
         }
+        // await wait(100000000000000000000);
+        this.isLoading = false;
+        this.isLoadingSubject.next(this.isLoading);
         console.log(`${sec} Cards sorted!`)
       },
       error: (error: Error) => {
@@ -275,12 +297,18 @@ export class DataService {
   //for put and others, I will proceed to update the "data" obj when the request is successful
 
   updateSectionInfo(section: StringSection, obj: SectionInfo) {
+    this.isLoading = true;
+    this.isLoadingSubject.next(this.isLoading);
     this.conexion.updateSectionInfo(section, obj)?.subscribe(this.switchSubscribeSectionInfo(section, obj));
   }
   aBMCard(sec: StringSection, obj: SectionCard, abm: ABM, i: number) {
+    this.isLoading = true;
+    this.isLoadingSubject.next(this.isLoading);
     this.conexion.aBMCard(sec, obj, abm, i)?.subscribe(this.switchSubscribeABMCard(sec, obj, abm, i));
   }
   sortCards(sec: StringSection, arr: SectionCard[]) {
+    this.isLoading = true;
+    this.isLoadingSubject.next(this.isLoading);
     this.conexion.sortCards(sec, arr).subscribe(this.switchSubscribeSortCards(sec, arr));
   }
 }
