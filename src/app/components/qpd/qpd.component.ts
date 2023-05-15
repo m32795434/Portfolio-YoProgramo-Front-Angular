@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { QPDAndCards, QPDCard, UserLevels } from 'src/interfaces/sections-interfaces';
 import { LoginService } from '../../../services/login-service/login.service';
@@ -25,7 +25,10 @@ declare global {
   templateUrl: './qpd.component.html',
   // styleUrls: ['./qpd.component.scss'],
 })
-export class QPDComponent implements OnInit {
+export class QPDComponent implements OnInit, AfterViewInit {
+  //loader
+  isLoading = false;
+  @ViewChild('imgDesktopQPD') imgDesktopQPD!: ElementRef;
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -58,7 +61,7 @@ export class QPDComponent implements OnInit {
         day: 31
       },
       h2: { en: "", es: "" },
-      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+      ph: { en: "", es: "" }
     }]
   };
   //contains all the cards content
@@ -88,6 +91,7 @@ export class QPDComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    this.isLoading = true;
     // window.onresize = this.checkForResize;
     const hasContent = this.dataService.localGetSectionAndCards('qPD');
     if (hasContent === false) {
@@ -211,6 +215,7 @@ export class QPDComponent implements OnInit {
 
   public onDrop(event: any) {
     event.preventDefault();
+    this.isLoading = true;
     let name = event?.currentTarget?.attributes?.name?.value;
     if (name === 'imgMobile') {
       this.mobileDragOver = false;
@@ -235,6 +240,7 @@ export class QPDComponent implements OnInit {
             } else if (name === 'imgCard') {
               this.sectionAndCards.cards[this.cardsIndex].img.src = url;
             }
+            this.isLoading = false;
           })
           .catch(error => console.log(error));
       } else {
@@ -258,12 +264,21 @@ export class QPDComponent implements OnInit {
 
   dropCards(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
-    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
     this.sectionAndCards.cards.forEach((card: QPDCard, id: number) => {
       card.id = id + 1;
     });
-    console.log('cards sorted to store: ', this.sectionAndCards.cards);
     this.dataService.sortCards('qPD', this.sectionAndCards.cards);
+  }
+
+  //---------------------------------------------ngAfterViewInit----------------------------------------
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.imgDesktopQPD.nativeElement.addEventListener('load', () => {
+      console.log('carga completa!')
+      this.isLoading = false;
+    });
   }
 
 }

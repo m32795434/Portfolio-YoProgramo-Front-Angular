@@ -15,8 +15,8 @@ export class SpringServerService implements Conexion {
   private authSubscription = new Subscription();
   // private t: AuthObj = { access_token: "", refresh_token: "" };
   //URL & CONFIG
-  private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
-  // private apiUrl = 'http://localhost:8080';
+  // private apiUrl = 'https://manuelbravard-yoprogramo-api.onrender.com';
+  private apiUrl = 'http://localhost:8080';
   private refreshConfig = {
     headers: {
       'Content-Type': 'application/json',
@@ -203,7 +203,6 @@ export class SpringServerService implements Conexion {
       default:
         break;
     }
-    console.log('springCardArr: ', springCardArr)
     return this.http.put<any>(`${this.apiUrl}/api/v1/management/${sec}/sortCards`, springCardArr, this.config);
   }
 

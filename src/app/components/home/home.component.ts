@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef, AfterViewInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
@@ -25,7 +25,11 @@ declare global {
   templateUrl: './home.component.html',
   // styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  //loader
+  isLoading = false;
+  @ViewChild('imgDesktopHome') imgDesktopHome!: ElementRef;
+
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -44,7 +48,7 @@ export class HomeComponent implements OnInit {
     },
     cards: [{
       id: 0,
-      ph: { en: "Loading!!..🫠", es: "Cargando!!🫠" }
+      ph: { en: "", es: "" }
     }]
   };
   //contains all the cards content
@@ -72,6 +76,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     const hasContent = this.dataService.localGetSectionAndCards('home');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('home');
@@ -195,6 +200,7 @@ export class HomeComponent implements OnInit {
 
   public onDrop(event: any) {
     event.preventDefault();
+    this.isLoading = true;
     let size = "";
     if (event?.currentTarget?.attributes?.name?.value === 'imgMobile') {
       this.mobileDragOver = false;
@@ -215,6 +221,7 @@ export class HomeComponent implements OnInit {
             const url = await getDownloadURL(imgRef);
             console.log('setting url: ', url)
             this.sectionAndCards.section[size] = url;
+            this.isLoading = false;
           })
           .catch(error => console.log(error));
       } else {
@@ -235,12 +242,20 @@ export class HomeComponent implements OnInit {
 
   dropCards(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.sectionAndCards.cards, event.previousIndex, event.currentIndex);
-    console.log('cards to sort and change id: ', this.sectionAndCards.cards);
     this.sectionAndCards.cards.forEach((card: HomeCard, id: number) => {
       card.id = id + 1;
     });
-    console.log('cards sorted to store: ', this.sectionAndCards.cards);
     this.dataService.sortCards('home', this.sectionAndCards.cards);
+  }
+
+  //---------------------------------------------ngAfterViewInit----------------------------------------
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.imgDesktopHome.nativeElement.addEventListener('load', () => {
+      console.log('carga completa!')
+      this.isLoading = false;
+    });
   }
 
 }

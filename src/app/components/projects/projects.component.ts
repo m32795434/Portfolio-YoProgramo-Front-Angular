@@ -22,10 +22,14 @@ declare global {
   // styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
+  //loader
+  isLoading = false;
+
   logged: UserLevels = "";
   private loggedSubscription = new Subscription();
   private dataSubscription = new Subscription();
   private errorSubscription = new Subscription();
+  private isLoadingSubscription = new Subscription();
   //contains all
   //ProjectsAndCards
   sectionAndCards: any = {
@@ -68,8 +72,11 @@ export class ProjectsComponent implements OnInit {
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
       this.language = val;
     })
+    this.isLoadingSubscription = this.dataService.getIsLoadingProjectsObserver().subscribe((bol) => this.isLoading = bol)
   }
+
   ngOnInit(): void {
+    this.isLoading = true;
     const hasContent = this.dataService.localGetSectionAndCards('projects');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('projects');
@@ -191,7 +198,6 @@ export class ProjectsComponent implements OnInit {
     this.sectionAndCards.cards.forEach((card: ProjectsCard, id: number) => {
       card.id = id + 1;
     });
-    console.log('cards sorted to store: ', this.sectionAndCards.cards);
     this.dataService.sortCards('projects', this.sectionAndCards.cards);
   }
 

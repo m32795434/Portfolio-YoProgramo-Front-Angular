@@ -15,7 +15,7 @@
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
         <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.section.imgDesktop"
-            alt="Manuel perfil" id="imgDesktopHome">
+            alt="Manuel perfil" id="imgDesktopHome" #imgDesktopHome>
     </div>
 
     <!-- container-columns absolute top 0 h100 w100-->
@@ -78,6 +78,7 @@
             </div>
         </div>
     </div>
+    <app-snipper-loading [isLoadingSnipper]="isLoading"></app-snipper-loading>
 </main>
 <ng-template #errorLoading>{{errorMessage}}</ng-template>
 
