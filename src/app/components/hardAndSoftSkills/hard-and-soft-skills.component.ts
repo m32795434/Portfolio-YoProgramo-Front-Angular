@@ -229,7 +229,11 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
             if (name === 'imgMobile' || name === 'imgDesktop') {
               this.sectionAndCards.section[name] = url;
             } else if (name === 'imgCard') {
-              this.sectionAndCards.cards[this.cardsIndex].img.src = url;
+              if (this.cardsIndex === 0 || this.cardsIndex === undefined) {
+                this.newCard.img.src = url;
+              } else {
+                this.sectionAndCards.cards[this.cardsIndex].img.src = url;
+              }
             }
             this.isLoading = false;
           })
