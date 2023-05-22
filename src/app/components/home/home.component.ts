@@ -8,6 +8,7 @@ import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 // DRAG AND DROP TO SORT
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -24,6 +25,16 @@ declare global {
   selector: 'app-home',
   templateUrl: './home.component.html',
   // styleUrls: ['./home.component.scss']
+  // animations: [
+  //   trigger('cardAnimation', [
+  //     transition(':enter', [
+  //       query(':self', [
+  //         style({ opacity: 0, transform: 'translateY(-100%)' }),
+  //         animate(500, style({ opacity: 1, transform: 'translateY(0)' }))
+  //       ])
+  //     ])
+  //   ])
+  // ]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   //loader
@@ -252,16 +263,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.imgDesktopHome.nativeElement.addEventListener('load', () => {
-      console.log('carga completa!')
+    this.imgDesktopHome.nativeElement.addEventListener('load', async () => {
+      // await wait(500);
+      console.log('carga completa!');
       this.isLoading = false;
+      slideLeftIn();
     });
     this.imgDesktopHome.nativeElement.addEventListener('error', () => {
       console.log('Error en la carga del elemento img')
       this.isLoading = false;
+      slideLeftIn();
     });
   }
-
 }
 //
 /************************************
@@ -271,6 +284,15 @@ const emptyCard = {
   id: 0,
   ph: { en: "", es: "" }
 };
+
+async function slideLeftIn() {
+  const els = Array.from(document.querySelectorAll('.slide-left-out'));
+  const length = els.length;
+  for (let i = 0; i < length; i++) {
+    els[i].classList.add('slide-left-in');
+    await wait(400);
+  }
+}
 // //UPDATE request
 //   // this update the content of an element that needs to be modified with contenteditable in place // not in use
 //   saveCardEl(e: any, i: number) {

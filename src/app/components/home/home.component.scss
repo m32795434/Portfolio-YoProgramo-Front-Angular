@@ -101,3 +101,15 @@
     text-decoration: underline;
     color: rgb(255, 255, 255);
 }
+
+//-------------------slide functionality-------------------
+.slide-left-out {
+    transform: translateY(-100px) rotateX(180deg);
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.slide-left-in {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
