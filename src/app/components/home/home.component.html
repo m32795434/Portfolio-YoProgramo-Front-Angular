@@ -1,5 +1,5 @@
 <!-- main-section  relative -->
-<main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
+<main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section" id="main-home">
     <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
         class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
         (click)="open(createCardModal, 'create-new-card')">library_add</button>
@@ -35,7 +35,7 @@
                 </h1>
             </div>
 
-            <div class="swiper HomeSwiper flex-fill">
+            <div class="swiper HomeSwiper d-md-none d-lg-block flex-fill">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Cards -->
@@ -76,6 +76,37 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
+
+            <div class="home-cards-wrapper d-none d-md-block d-lg-none">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index">
+                    <div ngbDropdown class="save-right material-symbols-outlined"
+                        [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">
+                        <button type="button" class="save-button rounded-circle material-symbols-outlined"
+                            id="card-settings" ngbDropdownToggle
+                            [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">settings</button>
+                        <div ngbDropdownMenu aria-labelledby="card-settings" class="text-center">
+                            <!-- ngbDropdownItem -->
+                            <button class="save-button rounded-circle material-symbols-outlined"
+                                [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'card settings' ,i)"
+                                aria-label="Update-Card">settings</button>
+                            <button [hidden]="!(logged =='ADMIN')" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                                (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                            <!-- sortCards -->
+                            <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
+                                (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
+                        </div>
+                    </div>
+
+                    <div class="homeCardMainPh">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es" class="p-3 m-0 text-center" #p{{i}}
+                            [id]="card.id">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <app-snipper-loading [isLoadingSnipper]="isLoading"></app-snipper-loading>

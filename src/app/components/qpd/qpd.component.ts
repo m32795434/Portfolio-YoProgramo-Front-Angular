@@ -283,6 +283,10 @@ export class QPDComponent implements OnInit, AfterViewInit {
       console.log('carga completa!')
       this.isLoading = false;
     });
+    this.imgDesktopQPD.nativeElement.addEventListener('error', () => {
+      console.log('Error en la carga del elemento img')
+      this.isLoading = false;
+    });
   }
 
 }

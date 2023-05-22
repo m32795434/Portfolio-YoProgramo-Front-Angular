@@ -256,6 +256,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       console.log('carga completa!')
       this.isLoading = false;
     });
+    this.imgDesktopHome.nativeElement.addEventListener('error', () => {
+      console.log('Error en la carga del elemento img')
+      this.isLoading = false;
+    });
   }
 
 }
