@@ -1,5 +1,5 @@
 #main-home {
-    height: 151vw;
+    height: 150vw;
     width: 100%;
 
     @include media-breakpoint-up(lg) {
@@ -7,7 +7,7 @@
     }
 
     & #imgMobileHome {
-        max-height: 151vw;
+        max-height: 150vw;
     }
 
     & #imgDesktopHome {
@@ -52,7 +52,7 @@
     }
 
     & .swiper.HomeSwiper {
-        background-color: rgba(0, 0, 0, 0.66);
+        background-color: rgba(255, 255, 255, 0.66);
         width: 100%;
         height: 10vw;
 
@@ -67,6 +67,7 @@
             & .swiper-slide {
                 width: 100%;
                 height: 100%;
+                overflow: hidden;
 
                 & .homeCardMainPh {
                     overflow: auto;
@@ -74,9 +75,13 @@
 
                     & p {
                         font: 500 16px Montserrat, 'Open Sans', Lato, 'sans-serif';
-                        color: white;
+                        color: rgb(0, 0, 0);
                         letter-spacing: 0.2rem;
                         height: 85%;
+
+                        @include media-breakpoint-up(lg) {
+                            color: white
+                        }
                     }
                 }
 
@@ -96,6 +101,10 @@
     }
 }
 
+.home-cards-wrapper {
+    overflow: hidden;
+}
+
 //-------------------TOASTS-------------------
 .homeToast a {
     text-decoration: underline;
@@ -103,13 +112,14 @@
 }
 
 //-------------------slide functionality-------------------
-.slide-left-out {
+.desk-slide-top-out,
+.mobile-slide-top-out {
     transform: translateY(-100px) rotateX(180deg);
     opacity: 0;
-    transition: all 1s ease-out;
+    transition: all 1s ease-in-out;
 }
 
-.slide-left-in {
+.slide-top-in {
     opacity: 1;
     transform: translateY(0) rotateX(0);
 }

@@ -8,7 +8,7 @@ import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+// import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 // DRAG AND DROP TO SORT
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
   @ViewChild('imgDesktopHome') imgDesktopHome!: ElementRef;
+  @ViewChild('imgMobileHome') imgMobileHome!: ElementRef;
 
   //firebase store
   //drag and drop
@@ -97,6 +98,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // this.logged = logged;
     this.initSwiper();
     // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
+    checkOrientation();
   }
 
   async initSwiper() {
@@ -263,17 +265,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.imgDesktopHome.nativeElement.addEventListener('load', async () => {
-      // await wait(500);
-      console.log('carga completa!');
-      this.isLoading = false;
-      slideLeftIn();
-    });
-    this.imgDesktopHome.nativeElement.addEventListener('error', () => {
-      console.log('Error en la carga del elemento img')
-      this.isLoading = false;
-      slideLeftIn();
-    });
+    const width = window.visualViewport?.width;
+    if (width && width >= 975) {
+      this.imgDesktopHome.nativeElement.addEventListener('load', async () => {
+        // await wait(500);
+        console.log('carga completa!');
+        this.isLoading = false;
+        deskSlideTopIn();
+      });
+      this.imgDesktopHome.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+          deskSlideTopIn();
+        }
+      });
+    } else {
+      this.imgMobileHome.nativeElement.addEventListener('load', async () => {
+        // await wait(500);
+        console.log('carga completa!');
+        this.isLoading = false;
+        mobileSlideTopIn();
+      });
+      this.imgMobileHome.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+          deskSlideTopIn();
+        }
+      });
+    }
   }
 }
 //
@@ -285,14 +306,36 @@ const emptyCard = {
   ph: { en: "", es: "" }
 };
 
-async function slideLeftIn() {
-  const els = Array.from(document.querySelectorAll('.slide-left-out'));
+async function mobileSlideTopIn() {
+  const els = Array.from(document.querySelectorAll('.mobile-slide-top-out'));
   const length = els.length;
   for (let i = 0; i < length; i++) {
-    els[i].classList.add('slide-left-in');
-    await wait(400);
+    els[i].classList.add('slide-top-in');
+    await wait(300);
   }
 }
+async function deskSlideTopIn() {
+  const els = Array.from(document.querySelectorAll('.desk-slide-top-out'));
+  const length = els.length;
+  for (let i = 0; i < length; i++) {
+    els[i].classList.add('slide-top-in');
+    await wait(300);
+  }
+}
+function checkOrientation() {
+  window.addEventListener('orientationchange', () => {
+    if (window.orientation === 0) {
+      mobileSlideTopIn();
+      deskSlideTopIn();
+      console.log('Dispositivo en posición vertical');
+    } else {
+      mobileSlideTopIn();
+      deskSlideTopIn();
+      console.log('Dispositivo en posición horizontal');
+    }
+  });
+}
+
 // //UPDATE request
 //   // this update the content of an element that needs to be modified with contenteditable in place // not in use
 //   saveCardEl(e: any, i: number) {

@@ -4,18 +4,18 @@
         class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
         (click)="open(createCardModal, 'create-new-card')">library_add</button>
     <div class="d-lg-none">
-        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+        <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="sectionAndCards?.section.imgMobile"
-            alt="Manuel perfil" id="imgMobileHome">
+        <img class="mobile imgsToChange edit-content mobile-slide-top-out" data-z="912 x 1368"
+            [src]="sectionAndCards?.section.imgMobile" alt="Manuel perfil" id="imgMobileHome" #imgMobileHome>
     </div>
     <div class="d-none d-lg-block">
-        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+        <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.section.imgDesktop"
-            alt="Manuel perfil" id="imgDesktopHome" #imgDesktopHome>
+        <img class="desktop imgsToChange edit-content desk-slide-top-out" data-z="1920 x 756"
+            [src]="sectionAndCards?.section.imgDesktop" alt="Manuel perfil" id="imgDesktopHome" #imgDesktopHome>
     </div>
 
     <!-- container-columns absolute top 0 h100 w100-->
@@ -29,13 +29,13 @@
             <div class="d-flex flex-fill">
                 <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
                     data-id="h1HomeEn" [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
-                <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged =='ADMIN'}"
-                    [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
+                <h1 class="mx-1 mt-4 edit-content mobile-slide-top-out desk-slide-top-out"
+                    [class]="{contentEditableTrue:logged =='ADMIN'}" [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
                     [innerHTML]="language === 'en'? sectionAndCards?.section.en : sectionAndCards?.section.es" #h1>
                 </h1>
             </div>
 
-            <div class="swiper HomeSwiper d-md-none d-lg-block flex-fill">
+            <div class="swiper HomeSwiper d-md-none d-lg-block flex-fill mobile-slide-top-out desk-slide-top-out">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Cards -->
@@ -100,7 +100,7 @@
                     </div>
                     <div class="homeCardMainPh">
                         <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
-                            class="p-3 m-0 text-center slide-left-out" #p{{i}} [id]="card.id">
+                            class="p-3 m-0 text-center mobile-slide-top-out" #pt{{i}} [id]="'tabletCard-'+card.id">
                         </p>
                     </div>
                 </div>
