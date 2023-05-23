@@ -18,6 +18,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.write();
+    initObserver();
   }
 
   async write() {
@@ -37,5 +38,30 @@ export class FooterComponent implements OnInit {
         }
       }
     }
+  }
+}
+function initObserver() {
+  const typerHeader: any = document.querySelector('.typer-header');
+  // const body: any = document.querySelector('body');
+  const links = Array.from(document.querySelectorAll('.footer-a'))
+  function obCallback(entries: any, ob: any) {
+    entries.forEach((entry: any) => {
+      if (entry.isIntersecting) {
+        console.log('applying classes!');
+        // ob.unobserve(terms.lastElementChild); // scape
+        links.forEach((link) => { link.classList.add('bigger') })
+      }
+      else {
+        console.log('removing classes');
+        links.forEach((link) => { link.classList.remove('bigger') })
+      }
+    });
+  }
+  const ob = new IntersectionObserver(obCallback);
+  console.log('ob', ob);
+  console.log('typerHeader', typerHeader);
+  if (typerHeader) {
+    console.log('typerHeader.lastElementChild', typerHeader.lastElementChild)
+    ob.observe(typerHeader.lastElementChild);
   }
 }
