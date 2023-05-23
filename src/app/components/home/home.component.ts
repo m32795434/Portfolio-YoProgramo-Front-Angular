@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef, ElementRef, AfterViewInit } 
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { wait } from 'src/app/libraries/utils';
-import { HomeAndCards, HomeCard, UserLevels } from 'src/interfaces/sections-interfaces';
+import { HomeAndCards, HomeCard, UserLevels, SectionAndCards } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
@@ -132,11 +132,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   // ----------------------------------CARDS REQUESTS----------------------
-  createCard() {
+  async createCard() {
     const cardsLength = this.sectionAndCards.cards.length
     this.newCard.id = cardsLength + 1;
     this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
+    await wait(500);
+    mobileSlideTopIn();
   }
   //UPDATE request
   updateCard() {
