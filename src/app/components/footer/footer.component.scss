@@ -21,6 +21,7 @@ footer {
         line-height: 1.5;
         display: inline-block;
         transition: border-bottom 0.5s ease-in-out, font-size 0.2s ease-in-out;
+        width: 250px;
 
         @include media-breakpoint-only(xs) {
             width: 270px;
@@ -31,7 +32,6 @@ footer {
         &:hover {
             color: white;
             font-size: 20px;
-            width: 250px;
             border-bottom: 6px solid #5a5a5a;
             transition: border-bottom 0.5s ease-in-out, font-size 0.2s ease-in-out;
 
@@ -79,9 +79,9 @@ footer {
         border: 1px solid rgba(255, 255, 255, 0.594);
         border-radius: 5px;
 
-        @include media-breakpoint-up(lg) {
-            width: 250px;
-        }
+        // @include media-breakpoint-up(lg) {
+        //     width: 250px;
+        // }
 
         @keyframes bigger {
             0% {

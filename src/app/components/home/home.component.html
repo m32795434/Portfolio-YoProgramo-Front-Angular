@@ -1,8 +1,5 @@
 <!-- main-section  relative -->
 <main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section" id="main-home">
-    <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
-        class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
-        (click)="open(createCardModal, 'create-new-card')">library_add</button>
     <div class="d-lg-none">
         <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
@@ -23,11 +20,11 @@
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
         <!-- to allow to split at middle / don't delete-->
         <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
-            <button [hidden]="!(logged =='ADMIN')" id="createCard" type="button"
+            <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
             <div class="d-flex flex-fill toFadeRight" style="transition: transform 0.5s linear;">
-                <button class="save-button rounded-circle save-left material-symbols-outlined" data-id="h1HomeEn"
+                <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h1HomeEn"
                     [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content mobile-slide-top-out desk-slide-top-out"
                     [class]="{contentEditableTrue:logged =='ADMIN'}" [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
@@ -77,7 +74,7 @@
                 <div class="swiper-button-next toFadeRight"></div>
             </div>
 
-            <div class="home-cards-wrapper d-none d-md-block d-lg-none">
+            <div class="home-cards-wrapper-md d-none d-md-block d-lg-none">
                 <div *ngFor="let card of sectionAndCards.cards, let i=index">
                     <div ngbDropdown class="save-right material-symbols-outlined"
                         [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">
@@ -98,7 +95,7 @@
                                 (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
                         </div>
                     </div>
-                    <div class="homeCardMainPh">
+                    <div class="about-cards-md">
                         <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
                             class="p-3 m-0 text-center mobile-slide-top-out" #pt{{i}} [id]="'tabletCard-'+card.id">
                         </p>
