@@ -178,7 +178,10 @@ footer {
                 }
             }
         }
-
     }
+}
 
+.fadeRight {
+    transform: translateX(100vw);
+    transition: transform 0.5s linear;
 }

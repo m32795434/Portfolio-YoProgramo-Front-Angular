@@ -33,6 +33,23 @@ $yo-programo-front-ng-theme: mat.define-light-theme((color: (primary: $yo-progra
 @import "app/components/experience/experience.component.scss";
 
 
+// auto dark mode
+body {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    color-scheme: light dark !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 :is(button.material-symbols-outlined, button.material-icons) {
     font-family: 'Material Symbols Outlined';
 }
@@ -53,6 +70,7 @@ $yo-programo-front-ng-theme: mat.define-light-theme((color: (primary: $yo-progra
 //-----------------START-MAIN----------------------------
 .main-section {
     position: relative;
+    // overflow: hidden;
 
     & .imgTitleWrapper {
         position: relative;
@@ -166,8 +184,13 @@ nav[ngbDropdown]>button::after {
 }
 
 //-------------------SWIPER-------------------
+.swiper-pagination {
+    transition: transform 0.5s linear;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
+    transition: transform 0.5s linear;
     top: 80%;
     border-radius: 6px;
     outline: 3px solid gray;
@@ -225,15 +248,6 @@ nav[ngbDropdown]>button::after {
     background-color: #2e01ff40 !important;
 }
 
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
 //---------------------NGX-SCROLLBAR
 .ng-scroll-content {
@@ -305,11 +319,4 @@ body {
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-// auto dark mode
-body {
-    background-color: Canvas !important;
-    color: CanvasText !important;
-    color-scheme: light dark !important;
 }

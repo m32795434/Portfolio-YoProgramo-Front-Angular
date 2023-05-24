@@ -26,9 +26,9 @@
             <button [hidden]="!(logged =='ADMIN')" id="createCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
-            <div class="d-flex flex-fill">
-                <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
-                    data-id="h1HomeEn" [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
+            <div class="d-flex flex-fill toFadeRight" style="transition: transform 0.5s linear;">
+                <button class="save-button rounded-circle save-left material-symbols-outlined" data-id="h1HomeEn"
+                    [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
                 <h1 class="mx-1 mt-4 edit-content mobile-slide-top-out desk-slide-top-out"
                     [class]="{contentEditableTrue:logged =='ADMIN'}" [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
                     [innerHTML]="language === 'en'? sectionAndCards?.section.en : sectionAndCards?.section.es" #h1>
@@ -37,7 +37,7 @@
 
             <div class="swiper HomeSwiper d-md-none d-lg-block flex-fill mobile-slide-top-out desk-slide-top-out">
                 <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper toFadeRight">
                     <!-- Cards -->
                     <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide">
 
@@ -70,11 +70,11 @@
                     </div>
                 </div>
                 <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination toFadeRight"></div>
 
                 <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev toFadeRight"></div>
+                <div class="swiper-button-next toFadeRight"></div>
             </div>
 
             <div class="home-cards-wrapper d-none d-md-block d-lg-none">
