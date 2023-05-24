@@ -1,3 +1,19 @@
+.imgTitleWrapper {
+    height: 65vw;
+
+    @include media-breakpoint-up(lg) {
+        height: 44vw;
+    }
+
+    #imgDesktopSkills {
+        max-height: 44vw;
+    }
+
+    #imgMobileSkills {
+        max-height: 65vw;
+    }
+}
+
 .skillsCardWrapper {
     width: 100%;
     height: 44vw;

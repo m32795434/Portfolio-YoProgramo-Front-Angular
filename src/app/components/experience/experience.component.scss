@@ -1,3 +1,21 @@
+.imgTitleWrapper {
+    height: 65vw;
+
+    @include media-breakpoint-up(lg) {
+        height: 44vw;
+    }
+
+    #imgDesktopQa,
+    #imgDesktopExp {
+        max-height: 44vw;
+    }
+
+    #imgMobileQa,
+    #imgMobileExp {
+        max-height: 65vw;
+    }
+}
+
 //same for qPD
 .qpdAndExpCardWrapper {
     width: 100%;
