@@ -37,14 +37,15 @@
     & .swiper-wrapper {
         height: 317px;
         width: 100%;
+        gap: 2%;
+        padding: 0 0 1% 1%;
 
         & .swiper-slide {
-            width: 96% !important;
+            width: 98% !important;
             height: 19em;
             background-color: #f7f7f7;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
-
         }
     }
 }

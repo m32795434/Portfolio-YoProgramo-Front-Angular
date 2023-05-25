@@ -46,9 +46,11 @@
     & .swiper-wrapper {
         height: 530px;
         width: 100%;
+        gap: 2%;
+        padding: 0 0 1% 1%;
 
         & .swiper-slide.card {
-            width: 96% !important;
+            width: 98% !important;
             background-color: #f7f7f7;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;
