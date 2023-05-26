@@ -53,7 +53,7 @@
                                 <button [hidden]="!(logged =='ADMIN')" type="button"
                                     class="save-button rounded-circle material-symbols-outlined"
                                     aria-label="Delete card"
-                                    (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                                    (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
                                 <!-- sortCards -->
                                 <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards"
                                     type="button" class="save-button rounded-circle material-symbols-outlined"
@@ -100,7 +100,7 @@
                                 <button [hidden]="!(logged =='ADMIN')" type="button"
                                     class="save-button rounded-circle material-symbols-outlined"
                                     aria-label="Delete card"
-                                    (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                                    (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
                                 <!-- sortCards -->
                                 <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards"
                                     type="button" class="save-button rounded-circle material-symbols-outlined"

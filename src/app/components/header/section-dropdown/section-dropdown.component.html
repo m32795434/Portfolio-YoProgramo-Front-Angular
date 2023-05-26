@@ -24,41 +24,39 @@
         <!-- Otra forma -->
         <!-- <a [routerLink]="['/experience']">Enlace a Experience</a> -->
         <!-- LOGIN MODAL -->
-        <div class="camp">
-            <ng-template #loginModal let-modal>
-                <div cdkDrag cdkDragRootElement=".modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">{{language==='en'?'Login':'Ingresar'}}</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form (ngSubmit)="onSubmit($event)">
-                            <!-- <div class="form-group">
+        <ng-template #loginModal let-modal>
+            <div cdkDrag cdkDragRootElement=".modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{language==='en'?'Login':'Ingresar'}}</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit($event)">
+                        <!-- <div class="form-group">
                                 <label for="id">Id</label>
                                 <input type="text" class="form-control" id="id" name="id">
                             </div> -->
-                            <!-- <div class="form-group mt-2">
+                        <!-- <div class="form-group mt-2">
                                 <label for="level">{{language==='en'?'Access Level':'Nivel de Acceso'}}</label>
                                 <input type="text" class="form-control" id="level" name="level">
                             </div> -->
-                            <div class="form-group mt-2">
-                                <label for="userName">{{language==='en'?'User Name':'Nombre de Usuario'}}</label>
-                                <input type="text" class="form-control" id="userName" name="userName">
-                                <!-- [(ngModel)]="userName" -->
-                            </div>
-                            <div class="form-group mt-2">
-                                <label for="password">{{language==='en'?'Password':'Contraseña'}}</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                                <!-- [(ngModel)]="password" -->
-                            </div>
-                            <button type="submit" class="btn mt-2 btn-primary"
-                                (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
-                        </form>
-                    </div>
+                        <div class="form-group mt-2">
+                            <label for="userName">{{language==='en'?'User Name':'Nombre de Usuario'}}</label>
+                            <input type="text" class="form-control" id="userName" name="userName">
+                            <!-- [(ngModel)]="userName" -->
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="password">{{language==='en'?'Password':'Contraseña'}}</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                            <!-- [(ngModel)]="password" -->
+                        </div>
+                        <button type="submit" class="btn mt-2 btn-primary"
+                            (click)="modal.close('Save click')">{{language==='en'?'Submit':'Enviar'}}</button>
+                    </form>
                 </div>
-            </ng-template>
-        </div>
+            </div>
+        </ng-template>
     </div>
 </nav>

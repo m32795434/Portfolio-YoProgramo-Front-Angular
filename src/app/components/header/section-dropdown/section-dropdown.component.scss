@@ -21,3 +21,33 @@
         box-shadow: 0 0 7px 4px #8a8989;
     }
 }
+
+//--------------------login modal background ---------------------
+[aria-labelledby="login-modal"] {
+    background-color: #a1a2a3;
+    color: #fff5e8;
+
+    & .modal-content {
+        position: relative;
+        z-index: 10;
+        background-color: transparent;
+
+        &:before {
+            border-radius: 5px;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("/assets/images/road-gf565e6624_640.jpg") center / cover no-repeat;
+            opacity: 0.5;
+        }
+
+        & .modal-header,
+        .modal-body {
+            position: relative;
+            z-index: 20;
+        }
+    }
+}

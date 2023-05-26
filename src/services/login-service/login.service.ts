@@ -88,7 +88,7 @@ export class LoginService {
   }
   createForm(content: TemplateRef<any>) {
     this.modalRef = this.modalService.open(content, {
-      ariaLabelledBy: 'loginModal',
+      ariaLabelledBy: 'login-modal',
       size: 'lg',
       centered: true,
       backdrop: 'static',
