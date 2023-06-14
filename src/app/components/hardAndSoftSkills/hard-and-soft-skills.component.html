@@ -7,7 +7,7 @@
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266" alt="Manuel perfil"
-                    [src]="sectionAndCards?.section.imgMobile" id="imgMobileSkills">
+                    [src]="sectionAndCards?.section.imgMobile" id="imgMobileSkills" #imgMobileSkills>
             </div>
             <div class="d-none d-lg-block">
                 <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
@@ -176,7 +176,7 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
-                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="cardImg">
                     <label for="skillImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
                         tire
                         una
@@ -262,7 +262,7 @@
         <div class="modal-body">
             <form (ngSubmit)="createCard()">
                 <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
-                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="newCardImg">
                     <label for="skillImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
                         tire
                         una

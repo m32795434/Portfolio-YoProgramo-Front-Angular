@@ -29,6 +29,8 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
   @ViewChild('imgDesktopSkills') imgDesktopSkills!: ElementRef;
+  @ViewChild('imgMobileSkills') imgMobileSkills!: ElementRef;
+
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -48,13 +50,13 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
     cards: [{
       id: 0,
       img: {
-        src: "../../../assets/images/regional-bs.png", alt: {
-          en: "regional-bs", es: "regional-bs"
+        src: "", alt: {
+          en: "", es: ""
         }
       },
-      value: 50,
-      bkColor: "red",
-      outStrokeColor: "blue"
+      value: 0,
+      bkColor: "",
+      outStrokeColor: ""
 
     }]
   };
@@ -199,7 +201,7 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = true;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = true;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = true;
     }
   }
@@ -212,7 +214,7 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = false;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = false;
     }
     let file: any;
@@ -228,12 +230,10 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
             console.log('setting url: ', url)
             if (name === 'imgMobile' || name === 'imgDesktop') {
               this.sectionAndCards.section[name] = url;
-            } else if (name === 'imgCard') {
-              if (this.cardsIndex === 0 || this.cardsIndex === undefined) {
-                this.newCard.img.src = url;
-              } else {
-                this.sectionAndCards.cards[this.cardsIndex].img.src = url;
-              }
+            } else if (name === 'newCardImg') {
+              this.newCard.img.src = url;
+            } else if (name === 'cardImg') {
+              this.sectionAndCards.cards[this.cardsIndex].img.src = url;
             }
             this.isLoading = false;
           })
@@ -250,7 +250,7 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = false;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = false;
     }
   }
@@ -267,16 +267,30 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
 
   //---------------------------------------------ngAfterViewInit----------------------------------------
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.imgDesktopSkills.nativeElement.addEventListener('load', () => {
-      console.log('carga completa!')
-      this.isLoading = false;
-    });
-    this.imgDesktopSkills.nativeElement.addEventListener('error', () => {
-      console.log('Error en la carga del elemento img')
-      this.isLoading = false;
-    });
+    const width = window.visualViewport?.width;
+    if (width && width >= 975) {
+      this.imgDesktopSkills.nativeElement.addEventListener('load', async () => {
+        console.log('carga completa!');
+        this.isLoading = false;
+      });
+      this.imgDesktopSkills.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+        }
+      });
+    } else {
+      this.imgMobileSkills.nativeElement.addEventListener('load', async () => {
+        console.log('carga completa!');
+        this.isLoading = false;
+      });
+      this.imgMobileSkills.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+        }
+      });
+    }
   }
 
 }

@@ -29,6 +29,8 @@ export class QPDComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
   @ViewChild('imgDesktopQPD') imgDesktopQPD!: ElementRef;
+  @ViewChild('imgMobileQPD') imgMobileQPD!: ElementRef;
+
   //firebase store
   //drag and drop
   public mobileDragOver = false;
@@ -208,7 +210,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = true;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = true;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = true;
     }
   }
@@ -221,7 +223,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = false;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = false;
     }
     let file: any;
@@ -237,12 +239,10 @@ export class QPDComponent implements OnInit, AfterViewInit {
             console.log('setting url: ', url)
             if (name === 'imgMobile' || name === 'imgDesktop') {
               this.sectionAndCards.section[name] = url;
-            } else if (name === 'imgCard') {
-              if (this.cardsIndex === 0 || this.cardsIndex === undefined) {
-                this.newCard.img.src = url;
-              } else {
-                this.sectionAndCards.cards[this.cardsIndex].img.src = url;
-              }
+            } else if (name === 'newCardImg') {
+              this.newCard.img.src = url;
+            } else if (name === 'cardImg') {
+              this.sectionAndCards.cards[this.cardsIndex].img.src = url;
             }
             this.isLoading = false;
           })
@@ -259,7 +259,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
       this.mobileDragOver = false;
     } else if (name === 'imgDesktop') {
       this.desktopDragOver = false;
-    } else if (name === 'imgCard') {
+    } else if (name === 'cardImg') {
       this.cardDragOver = false;
     }
   }
@@ -277,16 +277,30 @@ export class QPDComponent implements OnInit, AfterViewInit {
   //---------------------------------------------ngAfterViewInit----------------------------------------
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.imgDesktopQPD.nativeElement.addEventListener('load', () => {
-      console.log('carga completa!')
-      this.isLoading = false;
-    });
-    this.imgDesktopQPD.nativeElement.addEventListener('error', () => {
-      console.log('Error en la carga del elemento img')
-      this.isLoading = false;
-    });
+    const width = window.visualViewport?.width;
+    if (width && width >= 975) {
+      this.imgDesktopQPD.nativeElement.addEventListener('load', async () => {
+        console.log('carga completa!');
+        this.isLoading = false;
+      });
+      this.imgDesktopQPD.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+        }
+      });
+    } else {
+      this.imgMobileQPD.nativeElement.addEventListener('load', async () => {
+        console.log('carga completa!');
+        this.isLoading = false;
+      });
+      this.imgMobileQPD.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+        }
+      });
+    }
   }
 
 }
