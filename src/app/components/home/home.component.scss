@@ -1,87 +1,131 @@
-#homeCreateCard {
-    top: 50%;
-
-    @include media-breakpoint-up(lg) {
-        top: 40%;
-    }
-}
-
-.homeContainerColumns {
-    height: 100%;
-    position: absolute;
-    top: 0;
+#main-home {
+    height: 150vw;
     width: 100%;
 
-    & h1 {
-        font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
-        font-size: 9vw;
-        color: white;
+    @include media-breakpoint-up(lg) {
+        height: 38vw;
+    }
+
+    & #imgMobileHome {
+        max-height: 150vw;
+    }
+
+    & #imgDesktopHome {
+        max-height: 38vw;
+    }
+
+    & #homeCreateCard {
+        top: 50%;
 
         @include media-breakpoint-up(lg) {
-            font-size: 4.5vw;
+            top: 40%;
         }
-
-    }
-}
-
-#main-Half-BackG {
-    position: relative;
-    width: 100%;
-
-    @include media-breakpoint-up(lg) {
-        background-color: rgba(0, 0, 0, 0.6);
-        width: 50%;
-    }
-}
-
-
-
-.swiper.HomeSwiper {
-    background-color: rgba(0, 0, 0, 0.66);
-    width: 100%;
-    height: 10vw;
-
-    @include media-breakpoint-up(lg) {
-        height: 18vw;
     }
 
-    & .swiper-wrapper {
+    & .homeContainerColumns {
+        overflow: hidden;
         height: 100%;
         width: 100%;
+        position: absolute;
+        top: 0;
 
-        & .swiper-slide {
+        & #main-Half-BackG {
+            // because to enter from the right again at the same speed
+            //some style is applied from the footer component
+            transition: transform 0.5s linear;
+            position: relative;
             width: 100%;
             height: 100%;
 
-            & .homeCardMainPh {
-                overflow: auto;
-                height: 90%;
-
-                & p {
-                    font: 500 16px Montserrat, 'Open Sans', Lato, 'sans-serif';
-                    color: white;
-                    letter-spacing: 0.2rem;
-                    height: 85%;
-                }
+            @include media-breakpoint-up(lg) {
+                background-color: rgba(0, 0, 0, 0.6);
+                width: 50%;
             }
 
-            &>#delete {
-                position: absolute;
-                z-index: 11;
-                top: 0px;
-                left: 85%;
+            & h1 {
+                font-family: Montserrat, 'Open Sans', Lato, 'sans-serif';
+                font-size: 9vw;
+                color: white;
+
+                @include media-breakpoint-up(lg) {
+                    font-size: 4.5vw;
+                }
+
             }
         }
     }
 
+    & .swiper.HomeSwiper {
+        background-color: rgba(255, 255, 255, 0.66);
+        width: 100%;
+        height: 10vw;
 
-    @include media-breakpoint-up(lg) {
-        background-color: transparent;
+        @include media-breakpoint-up(lg) {
+            height: 18vw;
+        }
+
+        & .swiper-wrapper {
+            transition: transform 0.5s linear;
+            height: 100%;
+            width: 100%;
+
+            & .swiper-slide {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                & .homeCardMainPh {
+                    overflow: auto;
+                    height: 90%;
+
+                    & p {
+                        font: 500 16px Montserrat, 'Open Sans', Lato, 'sans-serif';
+                        color: rgb(0, 0, 0);
+                        letter-spacing: 0.2rem;
+                        height: 85%;
+
+                        @include media-breakpoint-up(lg) {
+                            color: white
+                        }
+                    }
+                }
+
+                &>#delete {
+                    position: absolute;
+                    z-index: 11;
+                    top: 0px;
+                    left: 85%;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            background-color: transparent;
+        }
     }
 }
+
+.home-cards-wrapper-md {
+    overflow: auto;
+    height: 520px;
+    background-color: rgba(255, 255, 255, 0.66);
+
+    & .about-cards-md {
+        overflow: hidden;
+    }
+}
+
 
 //-------------------TOASTS-------------------
 .homeToast a {
     text-decoration: underline;
     color: rgb(255, 255, 255);
+}
+
+//-------------------slide functionality-------------------
+.desk-slide-top-out,
+.mobile-slide-top-out {
+    transform: translateY(-100px) rotateX(180deg);
+    opacity: 0;
+    transition: all 1s ease-in-out;
 }

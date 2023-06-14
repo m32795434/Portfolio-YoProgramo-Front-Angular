@@ -1,3 +1,21 @@
+.imgTitleWrapper {
+    height: 65vw;
+
+    @include media-breakpoint-up(lg) {
+        height: 44vw;
+    }
+
+    #imgDesktopQa,
+    #imgDesktopExp {
+        max-height: 44vw;
+    }
+
+    #imgMobileQa,
+    #imgMobileExp {
+        max-height: 65vw;
+    }
+}
+
 //same for qPD
 .qpdAndExpCardWrapper {
     width: 100%;
@@ -24,13 +42,18 @@
 
 .swiper.qpdAndExpSwiper {
     width: 100%;
+    height: 572px;
+    background-color: #fed258;
+
 
     & .swiper-wrapper {
         height: 530px;
         width: 100%;
+        gap: 2%;
+        padding: 0 0 1% 1%;
 
         & .swiper-slide.card {
-            width: 96% !important;
+            width: 98% !important;
             background-color: #f7f7f7;
             border: 2px solid grey;
             box-shadow: 1px 1px 5px 2px grey;

@@ -1,6 +1,6 @@
 .mainProjects {
     position: relative;
-    height: 47rem;
+    height: 48rem;
 
     @include media-breakpoint-up(lg) {
         height: 40rem;
@@ -109,9 +109,11 @@
         & .swiper-wrapper {
             height: 600px;
             width: 100%;
+            gap: 2%;
+            padding: 0 0 1% 1%;
 
             & .swiper-slide {
-                width: 96% !important;
+                width: 98% !important;
                 height: 36rem;
                 border: 2px solid grey;
                 box-shadow: 1px 1px 5px 2px grey;

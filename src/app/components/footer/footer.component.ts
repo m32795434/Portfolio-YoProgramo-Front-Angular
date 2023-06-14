@@ -18,6 +18,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.write();
+    initObserver();
   }
 
   async write() {
@@ -37,5 +38,41 @@ export class FooterComponent implements OnInit {
         }
       }
     }
+  }
+}
+function initObserver() {
+  const typerHeader: any = document.querySelector('.typer-header');
+  const links = Array.from(document.querySelectorAll('.footer-a'));
+  let halfBlack: any;
+  let toFadeRightEls: any;
+  let length: any;
+  async function obCallback(entries: any, ob: any) {
+    entries.forEach(async (entry: any) => {
+      if (entry.isIntersecting) {
+        links.forEach((link) => { link.classList.add('bigger') })
+        halfBlack = document.getElementById("main-Half-BackG");
+        toFadeRightEls = Array.from(document.querySelectorAll('.toFadeRight'));
+        length = toFadeRightEls.length;
+        for (let i = 0; i < length; i++) {
+          toFadeRightEls[i].classList.add('fadeRight')
+          await wait(100);
+        }
+        halfBlack?.classList.add('fadeRight');
+        await wait(2000);
+        links.forEach((link) => { link.classList.remove('bigger') })
+      }
+      else {
+        console.log('removing class')
+        halfBlack?.classList.remove('fadeRight');
+        for (let i = 0; i < length; i++) {
+          await wait(200);
+          toFadeRightEls[i].classList.remove('fadeRight')
+        }
+      }
+    });
+  }
+  const ob = new IntersectionObserver(obCallback);
+  if (typerHeader) {
+    ob.observe(typerHeader.lastElementChild);
   }
 }

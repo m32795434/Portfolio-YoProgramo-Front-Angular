@@ -1,43 +1,42 @@
 <!-- main-section  relative -->
-<main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section">
-    <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
-        class="d-lg-none save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
-        (click)="open(createCardModal, 'create-new-card')">library_add</button>
+<main *ngIf="!errorMessage else errorLoading" class="container-fluid m-0 p-0 main-section" id="main-home">
     <div class="d-lg-none">
-        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+        <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="mobile imgsToChange edit-content" data-z="912 x 1368" [src]="sectionAndCards?.section.imgMobile"
-            alt="Manuel perfil" id="imgMobileHome">
+        <img class="mobile imgsToChange edit-content mobile-slide-top-out" data-z="912 x 1368"
+            [src]="sectionAndCards?.section.imgMobile" alt="Manuel perfil" id="imgMobileHome" #imgMobileHome>
     </div>
     <div class="d-none d-lg-block">
-        <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+        <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
             [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
             (click)="open(imgSrcModal, 'image-source')">settings</button>
-        <img class="desktop imgsToChange edit-content" data-z="1920 x 756" [src]="sectionAndCards?.section.imgDesktop"
-            alt="Manuel perfil" id="imgDesktopHome" #imgDesktopHome>
+        <img class="desktop imgsToChange edit-content desk-slide-top-out" data-z="1920 x 756"
+            [src]="sectionAndCards?.section.imgDesktop" alt="Manuel perfil" id="imgDesktopHome" #imgDesktopHome>
     </div>
 
     <!-- container-columns absolute top 0 h100 w100-->
     <div class="row m-0 p-0 homeContainerColumns">
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
         <!-- to allow to split at middle / don't delete-->
-        <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
-            <button [hidden]="!(logged =='ADMIN')" id="createCard" type="button"
+        <!-- main-Half-BackG doesn't have a xxxx-slide-top-out class, because it's a big containter. Otherwise, the effect that I will create, it's not the expected -->
+
+        <div class="d-flex hover-3d flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
+            <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>
-            <div class="d-flex flex-fill">
-                <button class="save-button rounded-circle save-top save-right material-symbols-outlined"
-                    data-id="h1HomeEn" [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
-                <h1 class="mx-1 mt-4 edit-content" [class]="{contentEditableTrue:logged =='ADMIN'}"
-                    [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
+            <div class="d-flex flex-fill toFadeRight" style="transition: transform 0.5s linear;">
+                <button class="save-button rounded-circle save-right material-symbols-outlined" data-id="h1HomeEn"
+                    [hidden]="!(logged =='ADMIN')" (click)="saveH1($event)">save</button>
+                <h1 class="mx-1 mt-4 edit-content mobile-slide-top-out desk-slide-top-out"
+                    [class]="{contentEditableTrue:logged =='ADMIN'}" [contentEditable]="logged =='ADMIN'" id="h1HomeEn"
                     [innerHTML]="language === 'en'? sectionAndCards?.section.en : sectionAndCards?.section.es" #h1>
                 </h1>
             </div>
 
-            <div class="swiper HomeSwiper flex-fill">
+            <div class="swiper HomeSwiper d-md-none d-lg-block flex-fill mobile-slide-top-out desk-slide-top-out">
                 <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper toFadeRight">
                     <!-- Cards -->
                     <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide">
 
@@ -54,7 +53,7 @@
                                 <button [hidden]="!(logged =='ADMIN')" type="button"
                                     class="save-button rounded-circle material-symbols-outlined"
                                     aria-label="Delete card"
-                                    (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                                    (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
                                 <!-- sortCards -->
                                 <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards"
                                     type="button" class="save-button rounded-circle material-symbols-outlined"
@@ -70,12 +69,42 @@
                     </div>
                 </div>
                 <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination toFadeRight"></div>
 
                 <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev toFadeRight"></div>
+                <div class="swiper-button-next toFadeRight"></div>
             </div>
+
+            <div class="home-cards-wrapper-md d-none d-md-block d-lg-none">
+                <div *ngFor="let card of sectionAndCards.cards, let i=index">
+                    <div ngbDropdown class="save-right material-symbols-outlined"
+                        [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">
+                        <button type="button" class="save-button rounded-circle material-symbols-outlined"
+                            id="card-settings" ngbDropdownToggle
+                            [hidden]="!(logged =='ADMIN' || logged =='MANAGER')">settings</button>
+                        <div ngbDropdownMenu aria-labelledby="card-settings" class="text-center">
+                            <!-- ngbDropdownItem -->
+                            <button class="save-button rounded-circle material-symbols-outlined"
+                                [hidden]="!(logged =='ADMIN')" (click)="open(updateCardModal,'card settings' ,i)"
+                                aria-label="Update-Card">settings</button>
+                            <button [hidden]="!(logged =='ADMIN')" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
+                                (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
+                            <!-- sortCards -->
+                            <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
+                                class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
+                                (click)="open(cardSortModal, 'Sort Cards!')">sort</button>
+                        </div>
+                    </div>
+                    <div class="about-cards-md">
+                        <p [innerHTML]="language === 'en'? card.ph.en : card.ph.es"
+                            class="p-3 m-0 text-center mobile-slide-top-out" #pt{{i}} [id]="'tabletCard-'+card.id">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <app-snipper-loading [isLoadingSnipper]="isLoading"></app-snipper-loading>

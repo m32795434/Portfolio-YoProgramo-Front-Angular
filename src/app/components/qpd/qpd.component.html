@@ -8,16 +8,16 @@
     <div class="d-flex flex-column w-100 flex-lg-row m-0 p-0">
         <div class="col-12 col-lg-3 flex-fill p-0 m-0 imgTitleWrapper">
             <div class="d-lg-none">
-                <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+                <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
                 <img class="mobile imgsToChange edit-content" data-z="412 x 266"
                     [alt]="language === 'en'? 'Profile' : 'Perfil'" [src]="sectionAndCards?.section.imgMobile"
-                    id="imgMobileQa">
+                    id="imgMobileQa" #imgMobileQPD>
             </div>
             <div class="d-none d-lg-block">
-                <button class="save-button   save-top save-left rounded-circle material-symbols-outlined"
+                <button class="save-button save-top save-left rounded-circle material-symbols-outlined"
                     [hidden]="!(logged =='MANAGER' || logged=='ADMIN')"
                     (click)="open(mainImgSrcModal, 'change image src')"
                     aria-label="Change main image source">settings</button>
@@ -53,7 +53,7 @@
                                 aria-label="Update-Card">settings</button>
                             <button [hidden]="!(logged =='ADMIN')" type="button"
                                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
-                                (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                                (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
                             <!-- sortCards -->
                             <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
                                 class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
@@ -85,7 +85,7 @@
         </div>
         <div class="swiper qpdAndExpSwiper qpdSwiper flex-fill d-lg-none col-12 m-0 p-0">
             <!-- Additional required wrapper -->
-            <div class="swiper-wrapper p-2 gap-3">
+            <div class="swiper-wrapper py-2">
                 <!-- Cards -->
                 <div *ngFor="let card of sectionAndCards.cards, let i=index" class="swiper-slide card">
 
@@ -101,7 +101,7 @@
                                 aria-label="Update-Card">settings</button>
                             <button [hidden]="!(logged =='ADMIN')" type="button"
                                 class="save-button rounded-circle material-symbols-outlined" aria-label="Delete card"
-                                (click)="open(confirmDelete,'confirm delete?' ,i)">delete</button>
+                                (click)="open(confirmDelete,'confirm-delete-modal' ,i)">delete</button>
                             <!-- sortCards -->
                             <button [hidden]="!(logged =='ADMIN' || logged =='MANAGER')" id="sortCards" type="button"
                                 class="save-button rounded-circle material-symbols-outlined" aria-label="sort-cards"
@@ -205,7 +205,7 @@
         <div class="modal-body">
             <form (ngSubmit)="updateCard()">
                 <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
-                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="cardImg">
                     <label for="companyImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
                         tire
                         una
@@ -314,7 +314,7 @@
         <div class="modal-body">
             <form (ngSubmit)="createCard()">
                 <div class="form-group drop-area" [class]="{'drag-over':cardDragOver}" (drop)="onDrop($event)"
-                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="imgCard">
+                    (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" name="newCardImg">
                     <label for="companyImg">{{language === 'en'? 'Type the Url or Drop an image: ' : 'Tipee la Url o
                         tire
                         una

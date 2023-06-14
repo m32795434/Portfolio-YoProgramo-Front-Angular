@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewChild, TemplateRef, ElementRef, AfterViewInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { wait } from 'src/app/libraries/utils';
-import { HomeAndCards, HomeCard, UserLevels } from 'src/interfaces/sections-interfaces';
+import { wait, hover3dApplier } from 'src/app/libraries/utils';
+import { HomeAndCards, HomeCard, UserLevels, SectionAndCards } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
 import { LoginService } from 'src/services/login-service/login.service';
 import { SpringServerService } from 'src/services/spring-server/spring-server.service';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+// import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 // DRAG AND DROP TO SORT
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -24,11 +25,22 @@ declare global {
   selector: 'app-home',
   templateUrl: './home.component.html',
   // styleUrls: ['./home.component.scss']
+  // animations: [
+  //   trigger('cardAnimation', [
+  //     transition(':enter', [
+  //       query(':self', [
+  //         style({ opacity: 0, transform: 'translateY(-100%)' }),
+  //         animate(500, style({ opacity: 1, transform: 'translateY(0)' }))
+  //       ])
+  //     ])
+  //   ])
+  // ]
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
   @ViewChild('imgDesktopHome') imgDesktopHome!: ElementRef;
+  @ViewChild('imgMobileHome') imgMobileHome!: ElementRef;
 
   //firebase store
   //drag and drop
@@ -86,6 +98,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // this.logged = logged;
     this.initSwiper();
     // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
+    checkOrientation();
   }
 
   async initSwiper() {
@@ -119,11 +132,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   // ----------------------------------CARDS REQUESTS----------------------
-  createCard() {
+  async createCard() {
     const cardsLength = this.sectionAndCards.cards.length
     this.newCard.id = cardsLength + 1;
     this.dataService.aBMCard('home', this.newCard, "create", cardsLength);
     this.newCard = JSON.parse(JSON.stringify(emptyCard));
+    await wait(500);
+    mobileSlideTopIn();
   }
   //UPDATE request
   updateCard() {
@@ -252,12 +267,39 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.imgDesktopHome.nativeElement.addEventListener('load', () => {
-      console.log('carga completa!')
-      this.isLoading = false;
-    });
+    const width = window.visualViewport?.width;
+    if (width && width >= 975) {
+      this.imgDesktopHome.nativeElement.addEventListener('load', async () => {
+        // await wait(500);
+        console.log('carga completa!');
+        this.isLoading = false;
+        deskSlideTopIn();
+        await wait(0);
+        hover3dApplier();
+      });
+      this.imgDesktopHome.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img desktop:', event)
+          this.isLoading = false;
+          deskSlideTopIn();
+        }
+      });
+    } else {
+      this.imgMobileHome.nativeElement.addEventListener('load', async () => {
+        // await wait(500);
+        console.log('carga completa!');
+        this.isLoading = false;
+        mobileSlideTopIn();
+      });
+      this.imgMobileHome.nativeElement.addEventListener('error', async (event: any) => {
+        if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
+          console.log('Error en la carga del elemento img mobile:', event)
+          this.isLoading = false;
+          deskSlideTopIn();
+        }
+      });
+    }
   }
-
 }
 //
 /************************************
@@ -267,6 +309,37 @@ const emptyCard = {
   id: 0,
   ph: { en: "", es: "" }
 };
+
+async function mobileSlideTopIn() {
+  const els = Array.from(document.querySelectorAll('.mobile-slide-top-out'));
+  const length = els.length;
+  for (let i = 0; i < length; i++) {
+    els[i].classList.add('slide-in');
+    await wait(300);
+  }
+}
+async function deskSlideTopIn() {
+  const els = Array.from(document.querySelectorAll('.desk-slide-top-out'));
+  const length = els.length;
+  for (let i = 0; i < length; i++) {
+    els[i].classList.add('slide-in');
+    await wait(300);
+  }
+}
+function checkOrientation() {
+  window.addEventListener('orientationchange', () => {
+    if (window.matchMedia("(orientation: portrait)").matches) {
+      mobileSlideTopIn();
+      deskSlideTopIn();
+      console.log('Dispositivo en posición vertical');
+    } else if (window.matchMedia("(orientation: landscape)").matches) {
+      mobileSlideTopIn();
+      deskSlideTopIn();
+      console.log('Dispositivo en posición horizontal');
+    }
+  });
+}
+
 // //UPDATE request
 //   // this update the content of an element that needs to be modified with contenteditable in place // not in use
 //   saveCardEl(e: any, i: number) {
