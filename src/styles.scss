@@ -251,6 +251,8 @@ nav[ngbDropdown]>button::after {
         position: relative;
         z-index: 10;
         background-color: transparent;
+        animation: shake 0.5s linear 1;
+
 
         &:before {
             border-radius: 5px;
@@ -270,6 +272,34 @@ nav[ngbDropdown]>button::after {
             position: relative;
             z-index: 20;
         }
+    }
+}
+
+.shake {
+    animation: shake 0.5s linear 1;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(4px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
     }
 }
 
@@ -358,4 +388,18 @@ nav[ngbDropdown]>button::after {
 div[aria-labelledby="card-settings"] {
     background-color: rgba(255, 255, 255, 0.37);
     ;
+}
+
+//----------------------------HOVER-3D-----------------------------------------------------------
+.hover-3d {
+    &:hover {
+        box-shadow: 0px 0px 50px rgba(0, 0, 0, 1) !important;
+    }
+}
+
+//------------------------------SLIDES IN ANIMATIONS
+
+.slide-in {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotateX(0) rotateY(0);
 }

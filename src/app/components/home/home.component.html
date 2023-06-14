@@ -19,7 +19,9 @@
     <div class="row m-0 p-0 homeContainerColumns">
         <div class="d-none d-lg-block col-lg-6 m-0 p-0" style="width: 50%;"></div>
         <!-- to allow to split at middle / don't delete-->
-        <div class="d-flex flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
+        <!-- main-Half-BackG doesn't have a xxxx-slide-top-out class, because it's a big containter. Otherwise, the effect that I will create, it's not the expected -->
+
+        <div class="d-flex hover-3d flex-column justify-content-between m-0 p-0" id="main-Half-BackG">
             <button [hidden]="!(logged =='ADMIN')" id="homeCreateCard" type="button"
                 class="save-button save-right rounded-circle material-symbols-outlined" aria-label="create-card"
                 (click)="open(createCardModal, 'create-new-card')">library_add</button>

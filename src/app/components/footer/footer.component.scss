@@ -182,6 +182,6 @@ footer {
 }
 
 .fadeRight {
-    transform: translateX(100vw);
-    transition: transform 0.5s linear;
+    transform: translateX(100vw) !important;
+    transition: transform 0.5s linear !important;
 }

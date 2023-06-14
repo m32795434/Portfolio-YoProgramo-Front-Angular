@@ -30,7 +30,9 @@
         top: 0;
 
         & #main-Half-BackG {
-            transition: transform 1s ease-in-out;
+            // because to enter from the right again at the same speed
+            //some style is applied from the footer component
+            transition: transform 0.5s linear;
             position: relative;
             width: 100%;
             height: 100%;
@@ -126,9 +128,4 @@
     transform: translateY(-100px) rotateX(180deg);
     opacity: 0;
     transition: all 1s ease-in-out;
-}
-
-.slide-top-in {
-    opacity: 1;
-    transform: translateY(0) rotateX(0);
 }

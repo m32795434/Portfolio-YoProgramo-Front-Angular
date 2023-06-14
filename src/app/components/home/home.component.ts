@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef, ElementRef, AfterViewInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
-import { wait } from 'src/app/libraries/utils';
+import { wait, hover3dApplier } from 'src/app/libraries/utils';
 import { HomeAndCards, HomeCard, UserLevels, SectionAndCards } from 'src/interfaces/sections-interfaces';
 import { DataService } from 'src/services/data-service/data.service';
 import { LanguageService } from 'src/services/language/language.service';
@@ -274,6 +274,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         console.log('carga completa!');
         this.isLoading = false;
         deskSlideTopIn();
+        await wait(0);
+        hover3dApplier();
       });
       this.imgDesktopHome.nativeElement.addEventListener('error', async (event: any) => {
         if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
@@ -291,7 +293,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
       this.imgMobileHome.nativeElement.addEventListener('error', async (event: any) => {
         if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
-          console.log('Error en la carga del elemento img desktop:', event)
+          console.log('Error en la carga del elemento img mobile:', event)
           this.isLoading = false;
           deskSlideTopIn();
         }
@@ -312,7 +314,7 @@ async function mobileSlideTopIn() {
   const els = Array.from(document.querySelectorAll('.mobile-slide-top-out'));
   const length = els.length;
   for (let i = 0; i < length; i++) {
-    els[i].classList.add('slide-top-in');
+    els[i].classList.add('slide-in');
     await wait(300);
   }
 }
@@ -320,17 +322,17 @@ async function deskSlideTopIn() {
   const els = Array.from(document.querySelectorAll('.desk-slide-top-out'));
   const length = els.length;
   for (let i = 0; i < length; i++) {
-    els[i].classList.add('slide-top-in');
+    els[i].classList.add('slide-in');
     await wait(300);
   }
 }
 function checkOrientation() {
   window.addEventListener('orientationchange', () => {
-    if (window.orientation === 0) {
+    if (window.matchMedia("(orientation: portrait)").matches) {
       mobileSlideTopIn();
       deskSlideTopIn();
       console.log('Dispositivo en posición vertical');
-    } else {
+    } else if (window.matchMedia("(orientation: landscape)").matches) {
       mobileSlideTopIn();
       deskSlideTopIn();
       console.log('Dispositivo en posición horizontal');
