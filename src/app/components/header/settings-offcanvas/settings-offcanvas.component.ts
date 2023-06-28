@@ -14,12 +14,14 @@ import { wait } from 'src/app/libraries/utils';
   // styleUrls: ['./settings-offcanvas.component.scss']
 })
 export class SettingsOffcanvasComponent implements OnInit {
-  closeResult = '';
-  language = "en"
+  protected closeResult = '';
+  protected language = "en"
   private loggedSubscription = new Subscription();
+  private languageSubc = new Subscription();
+
   // tempId = 0;
-  logged: UserLevels = "";
-  updated = false;
+  protected logged: UserLevels = "";
+  protected updated = false;
   private conexion: Conexion;
 
   constructor(private offcanvasService: NgbOffcanvas, private languageSrv: LanguageService, private loginService: LoginService, private dataAccess: SpringServerService) {
@@ -27,12 +29,14 @@ export class SettingsOffcanvasComponent implements OnInit {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
     });
+    this.languageSubc = this.languageSrv.getLanguageObserver().subscribe((val) => {
+      this.language = val;
+    })
   }
 
   setLanguage(e: any) {
-    const val = e.target.value;
-    this.language = val;
-    this.languageSrv.setLanguage(this.language);
+    this.languageSrv.setLanguage(e.target.value);
+
   }
   openEnd(content: TemplateRef<any>) {
     this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title', position: 'end' }).result.then(

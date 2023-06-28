@@ -28,8 +28,8 @@ declare global {
 export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
-  @ViewChild('imgDesktopSkills') imgDesktopSkills!: ElementRef;
-  @ViewChild('imgMobileSkills') imgMobileSkills!: ElementRef;
+  @ViewChild('imgDesktopSkills') imgDesktopSkills!: ElementRef | null;
+  @ViewChild('imgMobileSkills') imgMobileSkills!: ElementRef | null;
 
   //firebase store
   //drag and drop
@@ -62,7 +62,7 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   };
   //contains all the cards content
   language = 'en';
-  languageSubsc = new Subscription();
+  private languageSubsc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -74,35 +74,44 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   constructor(private storage: Storage, private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
+      console.log('logged subscription')
+
     });
 
     this.dataSubscription = this.dataService.getSkillsAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      if (this.isLoading === false) {
+        if (this.swiper != null && this.swiper != undefined) {
+          this.swiper.destroy();
+        }
+        this.initSwiper();
+      }
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubsc = this.languageSrc.getLanguageObserver().subscribe((val) => this.language = val)
 
   }
   ngOnInit(): void {
+    //checks in the LocalStorage
+    this.loginService.isLogged();
+    this.languageSrc.checkLanguage();
+    // content load
     this.isLoading = true;
     // window.onresize = this.checkForResize;
     const hasContent = this.dataService.localGetSectionAndCards('skills');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('skills');
     }
-    //checks if the user is logged when init
-    this.loginService.isLogged();
-    // this.logged = logged;
-    this.initSwiper();
+    this.checkOrientation();
   }
 
 
   async initSwiper() {
-    await wait(1000);//Left this code at the end of the callstack!
+    await wait(0);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.skillsSwiper', {
       direction: 'horizontal',
       loop: false,
-
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -112,6 +121,8 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
         prevEl: '.swiper-button-prev',
       }
     });
+    console.log('swiper created!');
+
   }
   // UPDATE REQUEST
   saveH1(e: any) {
@@ -188,7 +199,16 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
   ngOnDestroy(): void {
-    this.swiper.destroy();
+    this.loggedSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.languageSubsc.unsubscribe();
+    this.imgDesktopSkills = null;
+    this.imgMobileSkills = null;
+    if (this.swiper != null && this.swiper != undefined) {
+      this.swiper.destroy();
+    }
+    window.removeEventListener('orientationchange', this.orietationChangeHAndler);
   }
 
   //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
@@ -268,7 +288,7 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
   //---------------------------------------------ngAfterViewInit----------------------------------------
   ngAfterViewInit(): void {
     const width = window.visualViewport?.width;
-    if (width && width >= 975) {
+    if (width && width >= 975 && this.imgDesktopSkills) {
       this.imgDesktopSkills.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
@@ -279,10 +299,12 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         }
       });
-    } else {
+    } else if (this.imgMobileSkills) {
       this.imgMobileSkills.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
+        this.initSwiper();
+
       });
       this.imgMobileSkills.nativeElement.addEventListener('error', async (event: any) => {
         if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
@@ -291,6 +313,23 @@ export class HardAndSoftSkillsComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  orietationChangeHAndler = async () => {
+    await wait(0);
+    //do this everywhere!
+    const width = window?.visualViewport?.width
+    if (width && width < 975) {
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        if (this.swiper === null || this.swiper === undefined) {
+          this.initSwiper();
+        }
+      }
+    }
+  }
+
+  private checkOrientation() {
+    window.addEventListener('orientationchange', this.orietationChangeHAndler);
   }
 
 }

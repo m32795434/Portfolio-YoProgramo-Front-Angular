@@ -39,8 +39,8 @@ declare global {
 export class HomeComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
-  @ViewChild('imgDesktopHome') imgDesktopHome!: ElementRef;
-  @ViewChild('imgMobileHome') imgMobileHome!: ElementRef;
+  @ViewChild('imgDesktopHome') imgDesktopHome!: ElementRef | null;
+  @ViewChild('imgMobileHome') imgMobileHome!: ElementRef | null;
 
   //firebase store
   //drag and drop
@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
   //contains all the cards content
   language = 'en';
-  languageSubc = new Subscription();
+  private languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -76,10 +76,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //updates the user login status when changes occur
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
+      console.log('logged subscription')
+
     });
 
     this.dataSubscription = this.dataService.getHomeAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      if (this.isLoading === false) {
+        if (this.swiper != null && this.swiper != undefined) {
+          this.swiper.destroy();
+        }
+        this.initSwiper();
+      }
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -88,25 +96,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    //checks in the LocalStorage
+    this.loginService.isLogged();
+    this.languageSrc.checkLanguage();
+    // content load
     this.isLoading = true;
     const hasContent = this.dataService.localGetSectionAndCards('home');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('home');
     }
-    //checks in the LocalStorage if the user is logged
-    this.loginService.isLogged();
-    // this.logged = logged;
-    this.initSwiper();
-    // this.spring.getQPDAndCardsObs().subscribe((res) => { console.log('Complete seccion from Spring?', res) })
     checkOrientation();
   }
 
   async initSwiper() {
-    await wait(1000);//Left this code at the end of the callstack!
+    await wait(0);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.HomeSwiper', {
       direction: 'horizontal',
       loop: false,
-
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -116,6 +123,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         prevEl: '.swiper-button-prev',
       }
     });
+    console.log('swipper created!')
   }
 
   // ----------------------------------SECTION REQUESTS----------------------
@@ -198,7 +206,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
   ngOnDestroy(): void {
-    this.swiper.destroy();
+    this.loggedSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.languageSubc.unsubscribe();
+    this.imgDesktopHome = null;
+    this.imgMobileHome = null;
+    if (this.swiper != null && this.swiper != undefined) {
+      this.swiper.destroy();
+    }
+    window.removeEventListener('orientationchange', orietationChangeHAndler);
   }
 
   //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
@@ -268,11 +285,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     const width = window.visualViewport?.width;
-    if (width && width >= 975) {
+    if (width && width >= 975 && this.imgDesktopHome) {
       this.imgDesktopHome.nativeElement.addEventListener('load', async () => {
         // await wait(500);
         console.log('carga completa!');
         this.isLoading = false;
+        this.initSwiper();
         deskSlideTopIn();
         await wait(0);
         hover3dApplier();
@@ -284,11 +302,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
           deskSlideTopIn();
         }
       });
-    } else {
+    } else if (this.imgMobileHome) {
       this.imgMobileHome.nativeElement.addEventListener('load', async () => {
         // await wait(500);
         console.log('carga completa!');
         this.isLoading = false;
+        this.initSwiper();
         mobileSlideTopIn();
       });
       this.imgMobileHome.nativeElement.addEventListener('error', async (event: any) => {
@@ -326,18 +345,19 @@ async function deskSlideTopIn() {
     await wait(300);
   }
 }
+function orietationChangeHAndler() {
+  if (window.matchMedia("(orientation: portrait)").matches) {
+    mobileSlideTopIn();
+    deskSlideTopIn();
+    console.log('Dispositivo en posición vertical');
+  } else if (window.matchMedia("(orientation: landscape)").matches) {
+    mobileSlideTopIn();
+    deskSlideTopIn();
+    console.log('Dispositivo en posición horizontal');
+  }
+}
 function checkOrientation() {
-  window.addEventListener('orientationchange', () => {
-    if (window.matchMedia("(orientation: portrait)").matches) {
-      mobileSlideTopIn();
-      deskSlideTopIn();
-      console.log('Dispositivo en posición vertical');
-    } else if (window.matchMedia("(orientation: landscape)").matches) {
-      mobileSlideTopIn();
-      deskSlideTopIn();
-      console.log('Dispositivo en posición horizontal');
-    }
-  });
+  window.addEventListener('orientationchange', orietationChangeHAndler);
 }
 
 // //UPDATE request

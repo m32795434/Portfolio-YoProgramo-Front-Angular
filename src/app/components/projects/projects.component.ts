@@ -50,10 +50,19 @@ export class ProjectsComponent implements OnInit {
   constructor(private loginService: LoginService, private dataService: DataService, private languageSrc: LanguageService, private modalService: NgbModal, private sanitizer: DomSanitizer) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
+      console.log('logged subscription')
+
     });
 
     this.dataSubscription = this.dataService.getProjectsAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      const width = window?.visualViewport?.width
+      if (width && width < 975) {
+        if (this.swiper != null && this.swiper != undefined) {
+          this.swiper.destroy();
+        }
+        this.initSwiper();
+      }
       this.sanitizedCards = this.sectionAndCards.cards.map((card: any) => {
         return {
           id: card.id,
@@ -76,22 +85,23 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //checks in the LocalStorage
+    this.loginService.isLogged();
+    this.languageSrc.checkLanguage();
+    // content load
     this.isLoading = true;
     const hasContent = this.dataService.localGetSectionAndCards('projects');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('projects');
     }
-    //checks if the user is logged when init
-    this.loginService.isLogged();
-    // this.logged = logged;
-    this.initSwiper();
+    this.checkOrientation();
   }
   async initSwiper() {
-    await wait(1000);//Left this code at the end of the callstack!
+    await wait(0);
     this.swiper = new window.Swiper('.projectsSwiper', {
       direction: 'horizontal',
       loop: false,
-
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -101,6 +111,7 @@ export class ProjectsComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       }
     });
+    console.log('swiper created!');
   }
   // UDPATE request
   saveH1(e: any) {
@@ -177,7 +188,15 @@ export class ProjectsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(str)
   }
   ngOnDestroy(): void {
-    this.swiper.destroy();
+    this.loggedSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.languageSubc.unsubscribe();
+    this.isLoadingSubscription.unsubscribe();
+    if (this.swiper != null && this.swiper != undefined) {
+      this.swiper.destroy();
+    }
+    window.removeEventListener('orientationchange', this.orietationChangeHAndler);
   }
   // toggleVideo(e: Event) {
   //   const video: any = e.target;
@@ -201,7 +220,23 @@ export class ProjectsComponent implements OnInit {
     this.dataService.sortCards('projects', this.sectionAndCards.cards);
   }
 
+  orietationChangeHAndler = async () => {
+    await wait(0);
+    //do this everywhere!
+    const width = window?.visualViewport?.width
+    if (width && width < 975) {
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        if (this.swiper === null || this.swiper === undefined) {
+          this.initSwiper();
+        }
+      }
+    }
+  }
+  private checkOrientation() {
+    window.addEventListener('orientationchange', this.orietationChangeHAndler);
+  }
 }
+
 const emptyCard = {
   id: 0,
   vMp4Src: "",

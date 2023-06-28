@@ -6,8 +6,9 @@
     </div>
     <div class="offcanvas-body">
 
-        <label for="language">Select a Language: </label>
-        <mat-radio-group id="language" name="language" (input)="setLanguage($event)" aria-label="Select an option">
+        <label for="language">{{language==="en"? "Language: " : "Lenguage: " }}</label>
+        <mat-radio-group id="language" name="language" [(ngModel)]="language" (input)="setLanguage($event)"
+            aria-label="Select an option">
             <mat-radio-button value="en">English</mat-radio-button>
             <mat-radio-button value="es">Spanish</mat-radio-button>
             <hr>

@@ -30,8 +30,8 @@ declare global {
 export class ExperienceComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
-  @ViewChild('imgDesktopExp') imgDesktopExp!: ElementRef;
-  @ViewChild('imgMobileExp') imgMobileExp!: ElementRef;
+  @ViewChild('imgDesktopExp') imgDesktopExp!: ElementRef | null;
+  @ViewChild('imgMobileExp') imgMobileExp!: ElementRef | null;
 
 
   //firebase store
@@ -72,7 +72,7 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   };
   //contains all the cards content
   language = 'en';
-  languageSubc = new Subscription();
+  private languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -84,10 +84,18 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   constructor(private storage: Storage, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal, private languageSrc: LanguageService) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
+      console.log('logged subscription')
+
     });
 
     this.dataSubscription = this.dataService.getExperienceAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      if (this.isLoading === false) {
+        if (this.swiper != null && this.swiper != undefined) {
+          this.swiper.destroy();
+        }
+        this.initSwiper();
+      }
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -97,6 +105,10 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    //checks in the LocalStorage
+    this.loginService.isLogged();
+    this.languageSrc.checkLanguage();
+    // content load
     this.isLoading = true;
     // window.onresize = this.checkForResize;
     //checks if the main dataService has data from a previous load.
@@ -104,19 +116,16 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
     if (hasContent === false) {
       this.dataService.getSectionAndCards('experience');
     }
-    //is logged? bring me the tokens!(every main component do this)
-    this.loginService.isLogged();
-    // this.logged = logged;
-    this.initSwiper();
+    this.checkOrientation();
   }
 
 
   async initSwiper() {
-    await wait(1000);//Left this code at the end of the callstack!
+    await wait(0);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.expSwiper', {
       direction: 'horizontal',
       loop: false,
-
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -126,6 +135,8 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
         prevEl: '.swiper-button-prev',
       }
     });
+    console.log('swipper created!')
+
   }
 
   //UPDATE request
@@ -162,7 +173,6 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   // ref: reference the modal in the HTML
   // index: to know which card I've clicked
   open(content: TemplateRef<any>, ref: string, index?: any) {
-    console.log(content)
     this.cardsIndex = index;
     this.modalService.open(content, {
       ariaLabelledBy: `${ref}`,
@@ -204,7 +214,16 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
   ngOnDestroy(): void {
-    this.swiper.destroy();
+    this.loggedSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.languageSubc.unsubscribe();
+    this.imgDesktopExp = null;
+    this.imgMobileExp = null;
+    if (this.swiper != null && this.swiper != undefined) {
+      this.swiper.destroy();
+    }
+    window.removeEventListener('orientationchange', this.orietationChangeHAndler);
   }
 
   //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
@@ -283,7 +302,7 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const width = window.visualViewport?.width;
-    if (width && width >= 975) {
+    if (width && width >= 975 && this.imgDesktopExp) {
       this.imgDesktopExp.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
@@ -294,10 +313,11 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         }
       });
-    } else {
+    } else if (this.imgMobileExp) {
       this.imgMobileExp.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
+        this.initSwiper();
       });
       this.imgMobileExp.nativeElement.addEventListener('error', async (event: any) => {
         if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
@@ -307,7 +327,21 @@ export class ExperienceComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
+  orietationChangeHAndler = async () => {
+    await wait(0);
+    //do this everywhere!
+    const width = window?.visualViewport?.width
+    if (width && width < 975) {
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        if (this.swiper === null || this.swiper === undefined) {
+          this.initSwiper();
+        }
+      }
+    }
+  }
+  private checkOrientation() {
+    window.addEventListener('orientationchange', this.orietationChangeHAndler);
+  }
 }
 const emptyCard: ExperienceCard = {
   id: 0,

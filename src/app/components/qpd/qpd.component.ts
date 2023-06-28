@@ -28,8 +28,8 @@ declare global {
 export class QPDComponent implements OnInit, AfterViewInit {
   //loader
   isLoading = false;
-  @ViewChild('imgDesktopQPD') imgDesktopQPD!: ElementRef;
-  @ViewChild('imgMobileQPD') imgMobileQPD!: ElementRef;
+  @ViewChild('imgDesktopQPD') imgDesktopQPD!: ElementRef | null;
+  @ViewChild('imgMobileQPD') imgMobileQPD!: ElementRef | null;
 
   //firebase store
   //drag and drop
@@ -68,7 +68,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
   };
   //contains all the cards content
   language = 'en';
-  languageSubc = new Subscription();
+  private languageSubc = new Subscription();
   swiper: any;
   errorMessage = '';
   cardsIndex = 0;
@@ -82,10 +82,17 @@ export class QPDComponent implements OnInit, AfterViewInit {
   constructor(private storage: Storage, private languageSrc: LanguageService, private loginService: LoginService, private dataService: DataService, private modalService: NgbModal) {
     this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
       this.logged = role;
+      console.log('logged subscription')
     });
 
     this.dataSubscription = this.dataService.getQPDAndCardsObserver().subscribe((sectionAndCards) => {
       this.sectionAndCards = sectionAndCards;
+      if (this.isLoading === false) {
+        if (this.swiper != null && this.swiper != undefined) {
+          this.swiper.destroy();
+        }
+        this.initSwiper();
+      }
     })
     this.errorSubscription = this.dataService.getErrorObserver().subscribe((message) => { this.errorMessage = message })
     this.languageSubc = this.languageSrc.getLanguageObserver().subscribe((val) => {
@@ -93,25 +100,26 @@ export class QPDComponent implements OnInit, AfterViewInit {
     })
   }
   ngOnInit(): void {
+    //checks in the LocalStorage
+    this.loginService.isLogged();
+    this.languageSrc.checkLanguage();
+    // content load
     this.isLoading = true;
     // window.onresize = this.checkForResize;
     const hasContent = this.dataService.localGetSectionAndCards('qPD');
     if (hasContent === false) {
       this.dataService.getSectionAndCards('qPD');
     }
-    //checks if the user is logged when init
-    this.loginService.isLogged();
-    // this.logged = logged;
-    this.initSwiper();
+    this.checkOrientation();
   }
 
 
   async initSwiper() {
-    await wait(1000);//Left this code at the end of the callstack!
+    await wait(0);//Left this code at the end of the callstack!
     this.swiper = new window.Swiper('.qpdSwiper', {
       direction: 'horizontal',
       loop: false,
-
+      grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -121,6 +129,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
         prevEl: '.swiper-button-prev',
       }
     });
+    console.log('swipper created!')
   }
   // UDPATE request
   saveH1(e: any) {
@@ -197,7 +206,16 @@ export class QPDComponent implements OnInit, AfterViewInit {
   //   return this.sanitizer.bypassSecurityTrustHtml(content);
   // }
   ngOnDestroy(): void {
-    this.swiper.destroy();
+    this.loggedSubscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.languageSubc.unsubscribe();
+    this.imgDesktopQPD = null;
+    this.imgMobileQPD = null;
+    if (this.swiper != null && this.swiper != undefined) {
+      this.swiper.destroy();
+    }
+    window.removeEventListener('orientationchange', this.orietationChangeHAndler);
   }
 
   //--------------------------------------------------FIREBASE STORE + DRAG AND DROP------------------------------------------------------
@@ -278,7 +296,7 @@ export class QPDComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const width = window.visualViewport?.width;
-    if (width && width >= 975) {
+    if (width && width >= 975 && this.imgDesktopQPD) {
       this.imgDesktopQPD.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
@@ -289,10 +307,12 @@ export class QPDComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         }
       });
-    } else {
+    } else if (this.imgMobileQPD) {
       this.imgMobileQPD.nativeElement.addEventListener('load', async () => {
         console.log('carga completa!');
         this.isLoading = false;
+        this.initSwiper();
+
       });
       this.imgMobileQPD.nativeElement.addEventListener('error', async (event: any) => {
         if (event.target.__zone_symbol__errorfalse[0].runCount >= 4) {
@@ -302,8 +322,23 @@ export class QPDComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
+  orietationChangeHAndler = async () => {
+    await wait(0);
+    //do this everywhere!
+    const width = window?.visualViewport?.width
+    if (width && width < 975) {
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        if (this.swiper === null || this.swiper === undefined) {
+          this.initSwiper();
+        }
+      }
+    }
+  }
+  private checkOrientation() {
+    window.addEventListener('orientationchange', this.orietationChangeHAndler);
+  }
 }
+
 const emptyCard = {
   id: 0,
   img: { src: "", alt: { en: "", es: "" } },
