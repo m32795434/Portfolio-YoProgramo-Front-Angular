@@ -31,6 +31,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { SnipperLoadingComponent } from './components/snipper-loading/snipper-loading.component';
+import { NgbdToastGlobal } from './components/toasts/toast-global.component';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,13 @@ import { SnipperLoadingComponent } from './components/snipper-loading/snipper-lo
     HardAndSoftSkillsComponent,
     SettingsOffcanvasComponent,
     SnipperLoadingComponent,
+    NgbdDropdownBasic
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbDropdownModule,
-    BrowserAnimationsModule, NgbdDropdownBasic, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule,
+    BrowserAnimationsModule, RouterModule, FontAwesomeModule, HttpClientModule, FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule, DragDropModule, MatSliderModule, JsonPipe, SocialsDropdown, MatRadioModule, NgbdToastGlobal,
     NgScrollbarModule.withConfig({
       track: "vertical",
       visibility: "hover",

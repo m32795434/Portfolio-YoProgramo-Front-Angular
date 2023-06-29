@@ -13,6 +13,10 @@ import { Ref_Token } from 'src/interfaces/sections-interfaces';
 })
 export class LoginService {
   private loggedSubject = new Subject<any>();
+  private isLoadingSubject = new Subject<any>();
+  private loginOkSubject = new Subject<string>();
+  private loginErrorSubject = new Subject<string>();
+
   private idSubject = new Subject<number>();
   modalRef?: NgbModalRef;
   private conexion: Conexion;
@@ -27,6 +31,15 @@ export class LoginService {
   }
   getIdObserver(): Observable<number> {
     return this.idSubject.asObservable();
+  }
+  getisLoadingObserver(): Observable<boolean> {
+    return this.isLoadingSubject.asObservable();
+  }
+  getLoginErrorObserver(): Observable<string> {
+    return this.loginErrorSubject.asObservable();
+  }
+  getLoginOkObserver(): Observable<string> {
+    return this.loginOkSubject.asObservable();
   }
 
 
@@ -44,7 +57,7 @@ export class LoginService {
       const refreshTExpTime = refreshT.exp * 1000;
 
       if (accessTExpTime >= now) {
-        console.log('access token exp time: OK. VAlidate until: ', new Date());
+        console.log('access token exp time: OK. VAlidate until: ', new Date(accessTExpTime));
         this.conexion.setAuthObj(authObjt);
         this.shouldEnableContentEditable(true, authObjt) // enable content to edit, and store the tokens in the LS.
       } else {
@@ -140,6 +153,7 @@ export class LoginService {
   }
 
   checkAuth(user: string, pass: string) {
+    this.isLoadingSubject.next(true);
     const userToCheck: User = {
       email: user, password: pass
     }
@@ -153,11 +167,15 @@ export class LoginService {
       console.log('sending tokens to spring server!:', res)
       this.conexion.setAuthObj(res);
       this.shouldEnableContentEditable(true, res)//true
-      alert('logged!');
+      this.isLoadingSubject.next(false);
+      console.log('logged!:', res)
+      this.loginOkSubject.next('Successfully logged!');
     },
     error: (err: any) => {
       this.shouldEnableContentEditable(false)//false
       console.error(err)
+      this.isLoadingSubject.next(false);
+      this.loginErrorSubject.next('Fail to login in😿!');
     }
   }
 }

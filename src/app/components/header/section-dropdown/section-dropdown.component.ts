@@ -10,8 +10,8 @@ import { UserLevels, AuthObj } from 'src/interfaces/sections-interfaces';
 
 @Component({
     selector: 'section-dropdown',
-    standalone: true,
-    imports: [NgbDropdownModule, RouterModule, FormsModule],
+    // standalone: true,
+    // imports: [NgbDropdownModule, RouterModule, FormsModule],
     templateUrl: './section-dropdown.component.html',
     // styleUrls: ['./section-dropdown.component.scss']
 
@@ -20,16 +20,19 @@ export class NgbdDropdownBasic implements OnInit {
     logged: UserLevels = "";
     loggedSubscription = new Subscription();
     languageSubsc = new Subscription();
+    isLoadingSubsc = new Subscription();
     userName = '';
     password = '';
     language = "en";
     greaterThan975 = false;
+    protected isLoading = false;
 
     constructor(private loginService: LoginService, private languageSrv: LanguageService) {
         this.loggedSubscription = this.loginService.getloggedObserver().subscribe((role) => {
             this.logged = role;
         });
         this.languageSubsc = this.languageSrv.getLanguageObserver().subscribe((val) => this.language = val);
+        this.isLoadingSubsc = this.loginService.getisLoadingObserver().subscribe((bool) => this.isLoading = bool);
     }
 
     ngOnInit(): void {

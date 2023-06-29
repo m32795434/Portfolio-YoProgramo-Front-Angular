@@ -20,6 +20,9 @@ export class DataService {
   private isLoadingSubject = new Subject<boolean>();
   private isLoadingProjectSubject = new Subject<boolean>();
   private errorSubject = new Subject<any>();
+  private deletedSubject = new Subject<string>();
+  private updatedOrCreatedSubject = new Subject<string>();
+
 
 
   //for debuggin: AllSectionsAndCards || any
@@ -58,6 +61,12 @@ export class DataService {
   }
   getIsLoadingProjectsObserver(): Observable<boolean> {
     return this.isLoadingProjectSubject.asObservable();
+  }
+  getdeletedSubjectObserver(): Observable<string> {
+    return this.deletedSubject.asObservable();
+  }
+  getupdatedOrCreatedSubjectObserver(): Observable<string> {
+    return this.updatedOrCreatedSubject.asObservable();
   }
 
 
@@ -173,6 +182,7 @@ export class DataService {
             default:
               break;
           }
+          this.updatedOrCreatedSubject.next(`Successfully ${abm}d card  (${obj.id})`);
         } else {
           //DELETE!
           switch (section) {
@@ -205,6 +215,7 @@ export class DataService {
             default:
               break;
           }
+          this.deletedSubject.next(`Successfully deleted card  (${obj.id})`);
         }
         this.isLoading = false;
         this.isLoadingSubject.next(this.isLoading);
