@@ -144,11 +144,13 @@ export class DataService {
         }
         this.isLoading = false;
         this.isLoadingSubject.next(this.isLoading);
-        console.log('seccón actualizada exitosamente:...', this.data[section]);
+        this.updatedOrCreatedSubject.next(`Succesfully updated the ${section}'s SectionInfo`);
+        console.log('SectionInfo actualizada exitosamente:...', this.data[section].section);
       },
       error: (error: Error) => {
         console.error('Error al actualizar la info de la sección', error);
-        this.errorSubject.next(error.message)
+        this.errorSubject.next(error.message);
+        this.deletedSubject.next(`Fail to update the ${section}'s SectionInfo`);
       }
     }
     return subscribeSectionObject;
