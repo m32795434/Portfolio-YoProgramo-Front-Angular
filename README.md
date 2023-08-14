@@ -1,16 +1,16 @@
-## Proyecto final ArgPrograma etapa YoProgramo
-Src Code> https://github.com/m32795434/Portfolio-YoProgramo-MaquetadoFront 
+## Final Project Argentina Programa - Stage "Yo Programo"
+This repository, in addition to containing the code submitted for the last stage of Argentina Programa, serves as the basic example code for my current portfolio. Due to security reasons, my portfolio is kept as a private repository.
 
->/> transcribiendo a angular!...
+Backend> https://github.com/m32795434/Portfolio-YoProgramo-Back-SpringBoot
 
-En el desafío del primer módulo de la capacitación debíamos aplicar la metodología SCRUM. Dado que es mi portfolio, me consideré en todas las posiciones que SCRUM determina. A saber: Product Owner, Scrum Master, Developer. Por tanto aunque parezca un poco redundante todo esto, lo apliqué solo a modo de práctica, y en cada posición consideré todos los aspectos que consideraría en caso de trabajar con un equipo real, teniendo que asumir alguna de dichas funciones.<br>
-Actualmente continúo aplicando las características y funcionalidades adicionales que nos ofrece Github, tales como ["Projects", "Labels", "Issues", "Pull Requests", "Tags"]. Aunque parezca un poco <strong>"burocrático"</strong>, (ya que estoy jugando con esto en <b>solitario</b>), de esta forma llevo un correcto registro de todas las tareas, realizadas y a realizar, y considero este acercamiento es más eficiente.
+In the first challenge, we were required to apply the SCRUM methodology. Since this is my portfolio, I assumed all the roles defined by SCRUM. Namely: Product Owner, Scrum Master, Developer. Therefore, even though it might seem a bit redundant, I applied this only for the purpose of practice, and in each role, I considered all the aspects I would consider when working with a real team, taking on the responsibilities of each of those roles.<br>
+Subsequently, I applied the additional features and functionalities that Github offers us, such as ["Releases", "Branches", "Projects", "Labels", "Issues", "Pull Requests", "Tags", etc]. This approach allows me to maintain a proper record of all tasks, both completed and to be done, and I consider this more efficient.
 
-Los archivos de informacion sobre el proyecto los van a encontrar en la carpeta /ProyectInfo en el directorio raiz.
+The project-related information files can be found in the /ProyectInfo folder in the root directory.
 
-Enlace al Figma:https://www.figma.com/file/OzmM9ZwWiCKJm0VOkrIZa5/Portfolio-YoProgramo?node-id=0%3A1&t=8uwZka9PgEAfaabS-1
+Link to Figma: https://www.figma.com/file/OzmM9ZwWiCKJm0VOkrIZa5/Portfolio-YoProgramo?node-id=0%3A1&t=8uwZka9PgEAfaabS-1
 
-## Algunas capturas:
+## Some Screenshots:
 
 <div style="display:grid;align-items:center; justify-items:center;gap:1rem;">
 <h2 style="text-align:center;">Digital Mockup</h2>
