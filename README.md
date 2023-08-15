@@ -1,14 +1,22 @@
-## Final Project Argentina Programa - Stage "Yo Programo"
-This repository, in addition to containing the code submitted for the last stage of Argentina Programa, serves as the basic example code for my current portfolio. Due to security reasons, my portfolio is kept as a private repository.
+## Final Project Argentina Programa - Stage "Yo Programo" - Frontend
 
-Backend> https://github.com/m32795434/Portfolio-YoProgramo-Back-SpringBoot
+This is a DEMO of my real Portfolio 💼. A complete CRUD, written from scratch in Angular + Typescript + Java + Spring Boot + MySQL, applying SOLID principles. It has Spring Security and Jwt configured. It can make use of two roles. It has a functionality of auto-refreshing tokens, Password Management, Drag & Drop, List Sorting, "contenteditable" and lots of animations (not all the animations here). The entire site is translated into Spanish and English (Settings Panel).
 
-In the first challenge, we were required to apply the SCRUM methodology. Since this is my portfolio, I assumed all the roles defined by SCRUM. Namely: Product Owner, Scrum Master, Developer. Therefore, even though it might seem a bit redundant, I applied this only for the purpose of practice, and in each role, I considered all the aspects I would consider when working with a real team, taking on the responsibilities of each of those roles.<br>
+This repository, contains the code submitted for the last stage of Argentina Programa.
+
+Due to security reasons, my REAL portfolio is kept as a private repository.
+
+## SCRUM
+In the first challenge of Argentina Programa, we were required to apply the SCRUM methodology. Since this is my portfolio, I assumed all the roles defined by SCRUM. Namely: Product Owner, Scrum Master, Developer. Therefore, even though it might seem a bit redundant, I applied this only for the purpose of practice, and in each role, I considered all the aspects I would consider when working with a real team, taking on the responsibilities of each of those roles.<br>
 Subsequently, I applied the additional features and functionalities that Github offers us, such as ["Releases", "Branches", "Projects", "Labels", "Issues", "Pull Requests", "Tags", etc]. This approach allows me to maintain a proper record of all tasks, both completed and to be done, and I consider this more efficient.
+
+## Other info
 
 The project-related information files can be found in the /ProyectInfo folder in the root directory.
 
 Link to Figma: https://www.figma.com/file/OzmM9ZwWiCKJm0VOkrIZa5/Portfolio-YoProgramo?node-id=0%3A1&t=8uwZka9PgEAfaabS-1
+
+Backend> https://github.com/m32795434/Portfolio-YoProgramo-Back-SpringBoot
 
 ## Some Screenshots:
 
@@ -58,3 +66,5 @@ Link to Figma: https://www.figma.com/file/OzmM9ZwWiCKJm0VOkrIZa5/Portfolio-YoPro
 <h2 style="text-align:center;">Acceptance Criteria</h2>
 <img src="./ProjectInfo/img/Acceptance-Criteria.png" alt="Acceptance Criteria" style="max-width:600px; height:auto;">
 </div>
+
+## See you folks! ♥️
