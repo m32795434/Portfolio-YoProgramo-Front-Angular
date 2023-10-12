@@ -1,6 +1,29 @@
 {
   "hosting": {
     "public": "build",
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "https://manuel-bravard-projects.web.app/",
+        "type": 301
+      },{
+        "source": "/projects",
+        "destination": "https://manuel-bravard-projects.web.app/projects",
+        "type": 301
+      },{
+        "source": "/experience",
+        "destination": "https://manuel-bravard-projects.web.app/experience",
+        "type": 301
+      },{
+        "source": "/qPD",
+        "destination": "https://manuel-bravard-projects.web.app/qPD",
+        "type": 301
+      },{
+        "source": "/HardAndSoftSkills",
+        "destination": "https://manuel-bravard-projects.web.app/HardAndSoftSkills",
+        "type": 301
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
