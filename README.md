@@ -68,4 +68,8 @@ Backend DEMO> https://github.com/m32795434/Portfolio-YoProgramo-Back-SpringBoot
 <img src="./ProjectInfo/img/Acceptance-Criteria.png" alt="Acceptance Criteria" style="max-width:600px; height:auto;">
 </div>
 
+<hr style="margin:1rem 0;">
+
+Remember to read the License.txt before using this code.
+
 ## See you folks! ♥️
