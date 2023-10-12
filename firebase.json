@@ -4,7 +4,12 @@
     "redirects": [
       {
         "source": "/",
-        "destination": "https://manuel-bravard-projects.web.app/",
+        "destination": "https://manuel-bravard-projects.web.app/home",
+        "type": 301
+      },
+      {
+        "source": "/home",
+        "destination": "https://manuel-bravard-projects.web.app/home",
         "type": 301
       },{
         "source": "/projects",
